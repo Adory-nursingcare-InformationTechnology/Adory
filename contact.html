@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ - 株式会社Adory</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fff;
+      padding: 40px;
+      color: #333;
+    }
+    h1 {
+      color: #D41D00;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #D41D00;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #b81800;
+    }
+  </style>
+</head>
+<body>
+  <h1>お問い合わせ</h1>
+  <form action="https://formspree.io/f/mwkgylnv" method="POST">
+    <input type="hidden" name="_redirect" value="https://example.com/thanks.html">
+    <label for="name">お名前</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="email">メールアドレス</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="subject">件名</label>
+    <input type="text" name="subject" id="subject" required>
+
+    <label for="message">メッセージ</label>
+    <textarea name="message" id="message" rows="6" required></textarea>
+
+    <button type="submit">送信</button>
+  </form>
+</body>
+</html>
