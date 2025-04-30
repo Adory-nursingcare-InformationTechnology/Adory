@@ -148,7 +148,7 @@
 html{scroll-behavior:smooth;}
 
 /* avoid header overlap when scrolling */
-#hero, #company-profile, #business{scroll-margin-top:120px;}
+#hero, #company-profile, #business, #contact{scroll-margin-top:120px;}
 
 </style>
 </head>
@@ -159,7 +159,7 @@ html{scroll-behavior:smooth;}
       <ul>
         <li><a href="#hero">ホーム</a></li>
         <li><a href="#company-profile">会社概要</a></li>
-        <li><a href="#services">事業内容</a></li>
+        <li><a href="#business">事業内容</a></li>
         <li><a href="#contact">お問い合わせ</a></li>
       </ul>
     </nav>
@@ -207,6 +207,31 @@ html{scroll-behavior:smooth;}
   <h2>事業内容</h2>
   <p class="coming-soon">COMING&nbsp;SOON</p>
   <p style="margin-top:20px;font-size:1.1rem;color:#666;">現在準備中です。公開までしばらくお待ちください。</p>
+</section>
+<!-- ===== Contact Section ===== -->
+<section id="contact" style="padding:120px 20px;text-align:center;background:#fff;">
+  <h2 style="font-size:2.2rem;font-weight:700;color:#D41D00;margin-bottom:40px;">お問い合わせ</h2>
+
+  <form action="https://formsubmit.co/takuyanyan50@gmail.com" method="POST" style="max-width:640px;margin:0 auto;background:#fafafa;padding:40px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);">
+    <input type="hidden" name="_next" value="thanks.html">
+    <input type="hidden" name="_captcha" value="false">
+
+    <label style="display:block;font-weight:700;margin-bottom:6px;text-align:left;">お名前
+      <input type="text" name="お名前" required style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:1rem;margin-bottom:24px;">
+    </label>
+
+    <label style="display:block;font-weight:700;margin-bottom:6px;text-align:left;">メールアドレス
+      <input type="email" name="メールアドレス" required style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:1rem;margin-bottom:24px;">
+    </label>
+
+    <label style="display:block;font-weight:700;margin-bottom:6px;text-align:left;">お問い合わせ内容
+      <textarea name="お問い合わせ内容" rows="6" required style="width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:1rem;margin-bottom:24px;"></textarea>
+    </label>
+
+    <button type="submit" style="display:block;width:100%;padding:14px;border:none;border-radius:40px;font-size:1rem;font-weight:700;background:linear-gradient(90deg,#D41D00,#FF9A3F);color:#fff;cursor:pointer;transition:opacity .25s;">送信</button>
+  </form>
+
+  <p style="margin-top:20px;font-size:.9rem;color:#666;">初回のみ、Formsubmit からの確認メールを承認してください。</p>
 </section>
 </body>
 </html>
