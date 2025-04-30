@@ -1,242 +1,89 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>株式会社Adory トップページ + 会社概要</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>株式会社Adory</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
+      margin: 0;
+      font-family: "Helvetica Neue", sans-serif;
     }
     header {
-      background: linear-gradient(to right, #D41D00 0%, #FF9A3F 100%);
-      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-    .logo h1 {
-      color: white;
+      padding: 20px 40px;
+      background-color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     nav ul {
       display: flex;
       list-style: none;
-    }
-    nav li {
-      margin-left: 30px;
-      font-weight: bold;
+      gap: 20px;
     }
     nav a {
       text-decoration: none;
-      color: #fff;
+      color: #D85C1E;
+      font-weight: bold;
     }
     .hero {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 60px 40px;
-      background: linear-gradient(to right, #D41D00 0%, #FF9A3F 100%);
+      padding: 60px;
+      background: linear-gradient(to right, #FF9A3F 0%, #FFE0C0 100%);
       color: white;
-    
-  min-height: 100vh;
-}
+      position: relative;
+    }
     .hero-text {
       max-width: 50%;
+      color: white;
+      z-index: 2;
+      margin-top: -20px;
     }
-    .hero-text h1 {
-      font-size: 2.4rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .hero-text h2 {
-      font-size: 1.1rem;
-      font-weight: normal;
-      margin-bottom: 20px;
-    }
-    .hero-text p {
-      font-size: 1rem;
+    .hero-image {
+      flex-grow: 1;
+      z-index: 1;
+      margin-top: -40px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
     }
     .hero-image img {
-      max-width: 500px;
       width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      height: auto;
+      object-fit: cover;
+      border-radius: 0;
     }
-    .contact-btn {
-      position: fixed;
-      top: 40%;
-      right: 0;
-      background-color: #D41D00;
-      color: white;
-      padding: 12px 20px;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-weight: bold;
-      text-align: center;
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-      cursor: pointer;
-    }
-    .message-section {
-      background-color: #fff;
-      padding: 80px 40px;
-    
-  min-height: 100vh;
-}
-    .message-content {
-      display: flex;
-      max-width: 1100px;
-      margin: 0 auto;
-      align-items: flex-start;
-      gap: 40px;
-    }
-    .message-image img {
-      max-width: 400px;
-      width: 100%;
-      border-radius: 8px;
-    }
-    .message-text h2 {
-      color: #D41D00;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-    .message-text h3 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    .message-text p {
-      font-size: 1rem;
-      color: #444;
-      margin-bottom: 20px;
-    }
-    .message-text .ceo {
-      text-align: right;
-      font-weight: bold;
-      color: #333;
-    }
-  
-
-p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.company-info {
-  margin-top: 80px;
-  padding: 20px 0;
-}
-
-.company-info p {
-  font-size: 1.2rem;
-  margin: 20px 0;
-  padding-bottom: 12px;
-  border-bottom: 1px dotted #aaa;
-}
-
-
-
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-  }
-  nav li {
-    margin: 10px 0;
-  }
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-text, .hero-image {
-    max-width: 100%;
-  }
-  .message-content {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-</style>
-
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
+  </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <h1>株式会社Adory</h1>
-    </div>
+    <h1 style="color:#D41D00;">株式会社Adory</h1>
     <nav>
       <ul>
-        <li><a href="#">ホーム</a></li>
-        <li><a href="#">会社概要</a></li>
-        <li><a href="#">問い合わせ</a></li>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="#company">会社概要</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="hero" data-aos="fade-up">
-    <div class="hero-text" data-aos="fade-right">
-      <h1>多様な人が自分らしく歩めるように、<br>「人」の力でインフラを築く</h1>
-      <p data-aos="fade-up" data-aos-delay="300">
-        病気、介護、障がいを負っても安心できる世の中を実現するために、<br />
-        「復職支援」「健康予防」「コミュニティづくり」の3つの柱で支援します。<br />
-        働く人やその家族、支える人々が社会とつながりを持ち続けられるよう、<br />
-        Adoryは“人”を中心に据えたソリューションを提供します。
-      </p>
+  <section class="hero">
+    <div class="hero-text">
+      <h2>多様な人が自分らしく歩めるように、<br>「人」の力でインフラを築く</h2>
+      <p>病気、介護、障がいを負っても安心できる世の中を実現するために、<br>
+      「復職支援」「健康予防」「コミュニティづくり」の3つの柱で支援します。<br>
+      働く人やその家族、支える人々が社会とつながりを持ち続けられるよう、<br>
+      Adoryは“人”を中心に据えたソリューションを提供します。</p>
     </div>
-    <div class="hero-image" data-aos="zoom-in">
+    <div class="hero-image">
       <img src="presentation.jpg" alt="プレゼン中の人物" />
     </div>
   </section>
-
-  <section class="message-section" data-aos="fade-up">
-    <div class="message-content">
-      <div class="message-image" data-aos="fade-left">
-        <img src="https://via.placeholder.com/400x500?text=代表者写真" alt="代表者写真">
-      </div>
-      <div class="message-text" data-aos="fade-up">
-        <h2 data-aos="fade-right" data-aos-delay="100">Company Message</h2>
-        <h3 data-aos="fade-left" data-aos-delay="200">“人”の可能性を信じ、未来を支えるインフラをつくる</h3>
-        <p data-aos="fade-up" data-aos-delay="300">
-          株式会社Adoryは、病気・介護・障がいがあっても誰もが自分らしく働ける社会を目指しています。<br />
-          私たちは「復職支援」「健康予防」「コミュニティ作り」を柱に、”人”の可能性を最大限に引き出すインフラ構築に取り組みます。<br />
-          一人ひとりの人生が尊重され、誰もが未来に希望を持てる社会の実現に貢献してまいります。
-        </p>
-        <p class="ceo" data-aos="fade-up" data-aos-delay="400">代表取締役 CEO　本田 卓也</p>
-        <div class="company-info" data-aos="fade-up" style="margin-top: 40px;">
-          <h4 style="color: #D41D00; font-size: 1.1rem; margin-bottom: 10px;">会社概要</h4>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>社名：</strong>株式会社Adory</p>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>所在地：</strong>〒142-0063 東京都品川区荏原6-1-9</p>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>業種：</strong>福祉領域における復職支援、ヘルスケア領域における健康予防、福祉領域×IT事業</p>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>設立日：</strong>2025年4月14日</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="contact-btn">CONTACT</div>
-
-  <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-  </script>
-
 </body>
 </html>
