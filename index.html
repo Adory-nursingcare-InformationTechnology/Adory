@@ -3,241 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>株式会社Adory トップページ + 会社概要</title>
+  <title>株式会社Adory | トップページ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{--red:#D41D00;--orange:#FF9A3F;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Noto Sans JP', sans-serif;}
+    header{position:sticky;top:0;background:#fff;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;z-index:10;box-shadow:0 2px 6px rgba(0,0,0,.06);}
+    .logo{font-weight:700;font-size:1.4rem;color:var(--red);}
+    nav ul{display:flex;list-style:none;}
+    nav li+li{margin-left:24px;}
+    nav a{text-decoration:none;color:var(--red);font-weight:700;}
+
+    .hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:100vh;padding:100px 40px 80px;}
+    .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("32320481_l.jpg") center center / cover no-repeat;z-index:-2;}
+.hero::before{transform:translateX(-60%);animation:slideGradient 1.3s ease-out forwards .2s;content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--red),var(--orange));clip-path:polygon(0 0,50% 0,40% 100%,0 100%);opacity:.9;z-index:-1;}
+    .hero-text{z-index:1;flex:1;max-width:45%;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.55);position:relative;transform:translateX(-40px); opacity:0; animation:fadeWhiteText 1s ease-out forwards 1.6s; margin-left:60px;}
+    .hero-text h1{
+      font-size:2.2rem;  /* 少し小さめに */
+      font-weight:700;
+      line-height:1.5;
+      white-space:pre-line; /* 改行位置を明示するため */
     }
-    body {
-      font-family: 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(to right, #D41D00 0%, #FF9A3F 100%);
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo h1 {
-      color: white;
-    }
-    nav ul {
-      display: flex;
-      list-style: none;
-    }
-    nav li {
-      margin-left: 30px;
-      font-weight: bold;
-    }
-    nav a {
-      text-decoration: none;
-      color: #fff;
-    }
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 60px 40px;
-      background: linear-gradient(to right, #D41D00 0%, #FF9A3F 100%);
-      color: white;
-    
-  min-height: 100vh;
-}
-    .hero-text {
-      max-width: 50%;
-    }
-    .hero-text h1 {
-      font-size: 2.4rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .hero-text h2 {
-      font-size: 1.1rem;
-      font-weight: normal;
-      margin-bottom: 20px;
-    }
-    .hero-text p {
-      font-size: 1rem;
-    }
-    .hero-image img {
-      max-width: 500px;
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    .contact-btn {
-      position: fixed;
-      top: 40%;
-      right: 0;
-      background-color: #D41D00;
-      color: white;
-      padding: 12px 20px;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-weight: bold;
-      text-align: center;
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-      cursor: pointer;
-    }
-    .message-section {
-      background-color: #fff;
-      padding: 80px 40px;
-    
-  min-height: 100vh;
-}
-    .message-content {
-      display: flex;
-      max-width: 1100px;
-      margin: 0 auto;
-      align-items: flex-start;
-      gap: 40px;
-    }
-    .message-image img {
-      max-width: 400px;
-      width: 100%;
-      border-radius: 8px;
-    }
-    .message-text h2 {
-      color: #D41D00;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-    .message-text h3 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    .message-text p {
-      font-size: 1rem;
-      color: #444;
-      margin-bottom: 20px;
-    }
-    .message-text .ceo {
-      text-align: right;
-      font-weight: bold;
-      color: #333;
+    .hero-text p{font-size:1.05rem;margin-top:34px;}
+
+    @media(max-width:768px){
+      .hero{flex-direction:column;text-align:center;}
+      .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("32320481_l.jpg") center center / cover no-repeat;z-index:-2;}
+.hero::before{transform:translateX(-60%);animation:slideGradient 1.3s ease-out forwards .2s;clip-path:polygon(0 0,50% 0,40% 100%,0 100%);}
     }
   
+    .visual-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    
+    /* Animation keyframes */
+    @keyframes slideGradient{0%{transform:translateX(-60%);}100%{transform:translateX(0);}}
+      100%{transform:translateX(0);}
+    }
+    @keyframes fadeSlideText{0%{opacity:0;transform:translateX(-40px);}100%{opacity:1;transform:translateX(0);}}
+      100%{opacity:1;transform:translateX(0);}
+    }
 
-p {
-  font-size: 1.1rem;
-  line-height: 1.8;
+
+/* --- Override to ensure hero text is visible --- */
+.hero-text{z-index:1;
+  opacity:1 !important;
+  transform:none !important;
+  animation:none !important; margin-left:60px;}
+
+
+
+
+
+@keyframes fadeWhiteText{
+  0%{opacity:0;}
+  100%{opacity:1;}
 }
 
-.company-info {
-  margin-top: 80px;
-  padding: 20px 0;
+
+/* ---------- Company Profile Section ---------- */
+.company-profile{
+  padding: 120px 20px 140px;
+  background:#fff;
+  text-align:center;
+}
+.company-profile h2{
+  font-size:2.1rem;
+  font-weight:700;
+  color:#333;
+  margin-bottom:10px;
+}
+.company-profile .subtitle{
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+  letter-spacing:3px;
+  color:transparent;
+  -webkit-text-stroke: 1px #00c0a6;
+  text-stroke:1px #00c0a6;
+  margin-bottom:4px;
+}
+.profile-table{
+  max-width:900px;
+  margin:60px auto 0;
+  border-collapse:collapse;
+  width:100%;
+}
+.profile-table tr{
+  border-bottom:1px solid rgba(255,154,63,.3);
+}
+.profile-table th,
+.profile-table td{
+  padding:28px 18px;
+  font-size:1.05rem;
+  text-align:left;
+}
+.profile-table th{
+  width:25%;
+  color:#111;
+}
+.profile-table td{
+  color:#333;
+}
+.google-map-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:24px;
+  padding:10px 28px;
+  background:linear-gradient(90deg,#D41D00,#FF9A3F);
+  color:#fff;
+  font-weight:700;
+  border-radius:40px;
+  text-decoration:none;
+  transition:opacity .25s;
+}
+.google-map-btn:hover{opacity:.8;}
+.map-frame{
+  margin-top:70px;
+  width:100%;
+  height:400px;
+  border:none;
+  border-radius:8px;
+  box-shadow:0 4px 18px rgba(0,0,0,.1);
+}
+@media(max-width:768px){
+  .profile-table th,
+  .profile-table td{
+    padding:18px 12px;
+    font-size:1rem;
+  }
 }
 
-.company-info p {
-  font-size: 1.2rem;
-  margin: 20px 0;
-  padding-bottom: 12px;
-  border-bottom: 1px dotted #aaa;
-}
+
+.business-tabs{padding:120px 20px;background:#fff;text-align:center;}
+.business-tabs h2{font-size:2.2rem;font-weight:700;margin-bottom:40px;color:#333;}
+.coming-soon{font-size:3rem;font-weight:900;background:linear-gradient(90deg,#D41D00,#FF9A3F);-webkit-background-clip:text;color:transparent;}
 
 
+html{scroll-behavior:smooth;}
 
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    margin-top: 10px;
-  }
-  nav li {
-    margin: 10px 0;
-  }
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-text, .hero-image {
-    max-width: 100%;
-  }
-  .message-content {
-    flex-direction: column;
-    align-items: center;
-  }
-}
+/* avoid header overlap when scrolling */
+#hero, #company-profile, #business{scroll-margin-top:120px;}
 
 </style>
-
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
 </head>
 <body>
   <header>
-    <div class="logo">
-      <h1>株式会社Adory</h1>
-    </div>
+    <div class="logo">株式会社Adory</div>
     <nav>
       <ul>
-        <li><a href="#">ホーム</a></li>
-        <li><a href="#">会社概要</a></li>
-        <li><a href="#">問い合わせ</a></li>
-      <li><a href="contact.html">お問い合わせ</a></li>
-</ul>
+        <li><a href="#hero">ホーム</a></li>
+        <li><a href="#company-profile">会社概要</a></li>
+        <li><a href="#services">事業内容</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
     </nav>
   </header>
 
-  <section class="hero" data-aos="fade-up">
-    <div class="hero-text" data-aos="fade-right">
-      <h1>多様な人が自分らしく歩めるように、<br>「人」の力でインフラを築く</h1>
-      <p data-aos="fade-up" data-aos-delay="300">
-        病気、介護、障がいを負っても安心できる世の中を実現するために、<br />
-        「復職支援」「健康予防」「コミュニティづくり」の3つの柱で支援します。<br />
-        働く人やその家族、支える人々が社会とつながりを持ち続けられるよう、<br />
+  <section id="hero" class="hero">
+    <div class="hero-text">
+      <h1>
+多様な人が自分らしく歩めるように、
+「人」の力でインフラを築く
+      </h1>
+      <p>
+        病気、介護、障がいを負っても安心できる世の中を実現するために、<br>
+        「復職支援」「健康予防」「コミュニティづくり」の3つの柱で支援します。<br>
+        働く人やその家族、支える人々が社会とつながりを持ち続けられるよう、<br>
         Adoryは“人”を中心に据えたソリューションを提供します。
       </p>
     </div>
-    <div class="hero-image" data-aos="zoom-in">
-      <img src="https://via.placeholder.com/500x350?text=Adory+Image" alt="プレゼン中の人物" />
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1628890920698-f2a003ef98a5?auto=format&fit=crop&w=800&q=80" style="width:100%;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.18)" alt="">
     </div>
   </section>
 
-  <section class="message-section" data-aos="fade-up">
-    <div class="message-content">
-      <div class="message-image" data-aos="fade-left">
-        <img src="https://via.placeholder.com/400x500?text=代表者写真" alt="代表者写真">
-      </div>
-      <div class="message-text" data-aos="fade-up">
-        <h2 data-aos="fade-right" data-aos-delay="100">Company Message</h2>
-        <h3 data-aos="fade-left" data-aos-delay="200">“人”の可能性を信じ、未来を支えるインフラをつくる</h3>
-        <p data-aos="fade-up" data-aos-delay="300">
-          株式会社Adoryは、病気・介護・障がいがあっても誰もが自分らしく働ける社会を目指しています。<br />
-          私たちは「復職支援」「健康予防」「コミュニティ作り」を柱に、”人”の可能性を最大限に引き出すインフラ構築に取り組みます。<br />
-          一人ひとりの人生が尊重され、誰もが未来に希望を持てる社会の実現に貢献してまいります。
-        </p>
-        <p class="ceo" data-aos="fade-up" data-aos-delay="400">代表取締役 CEO　本田 卓也</p>
-        <div class="company-info" data-aos="fade-up" style="margin-top: 40px;">
-          <h4 style="color: #D41D00; font-size: 1.1rem; margin-bottom: 10px;">会社概要</h4>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>社名：</strong>株式会社Adory</p>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>所在地：</strong>〒142-0063 東京都品川区荏原6-1-9</p>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>業種：</strong>福祉領域における復職支援、ヘルスケア領域における健康予防、福祉領域×IT事業</p>
-          <p data-aos="fade-up" data-aos-delay="300"><strong>設立日：</strong>2025年4月14日</p>
-        </div>
+<!-- ===== Company Profile Section ===== -->
 
-      </div>
-    </div>
-  </section>
 
-  <div class="contact-btn">CONTACT</div>
 
-  <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-  </script>
 
+<section id="company-profile" class="company-profile">
+    <h2>会社概要</h2>
+
+  <table class="profile-table">
+    <tr><th>会社名</th><td>Adory株式会社</td></tr>
+    <tr><th>設立</th><td>2025年4月14日</td></tr>
+        <tr><th>代表者</th><td>代表取締役 CEO&nbsp;本田&nbsp;卓也</td></tr>
+    <tr><th>所在地</th><td>〒142-0063 東京都品川区荏原6-1-9<br>JR「目黒」駅 西口から徒歩10分</td></tr>
+  </table>
+
+  <a class="google-map-btn" href="https://maps.google.com/?q=東京都品川区荏原6-1-9" target="_blank" rel="noopener">Google map</a>
+
+  <iframe class="map-frame" src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%93%81%E5%B7%9D%E5%8C%BA%E8%8D%8F%E5%8E%9F6-1-9&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+<section id="business" class="business-tabs">
+  <h2>事業内容</h2>
+  <p class="coming-soon">COMING&nbsp;SOON</p>
+  <p style="margin-top:20px;font-size:1.1rem;color:#666;">現在準備中です。公開までしばらくお待ちください。</p>
+</section>
 </body>
 </html>
