@@ -8,7 +8,7 @@
   <style>
     :root{--red:#D41D00;--orange:#FF9A3F;}
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Noto Sans JP', sans-serif;}
+    body{overflow-x:hidden;margin:0;padding:0;}
     header{position:sticky;top:0;background:#fff;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;z-index:10;box-shadow:0 2px 6px rgba(0,0,0,.06);}
     .logo{font-weight:700;font-size:1.4rem;color:var(--red);}
     nav ul{display:flex;list-style:none;}
@@ -169,21 +169,22 @@ html{scroll-behavior:smooth;}
   .hero-text h1{font-size:1.7rem;}
 }
 
-</style>
 
-<style>
-body{
-  overflow-x:hidden;
-  margin:0;
-  padding:0;
+/* ===== Hero height tuned ===== */
+.hero{
+  min-height:420px;
+  padding:80px 20px 60px;
 }
-@media(max-width:1279px){
-  header{flex-wrap:nowrap;overflow-x:auto;}
-  nav ul{flex-wrap:nowrap;gap:20px;}
-  .hero{flex-direction:row;text-align:left;}
+.hero-image{
+  max-width:48%;
 }
-</style>
+.hero-image img{
+  width:100%;
+  max-height:350px;
+  object-fit:cover;
+}
 
+</style>
 </head>
 <body>
   <header>
@@ -277,7 +278,7 @@ body{
   const DESIGN_W = 1280;
   function scalePage(){
     const scale = Math.min(1, window.innerWidth / DESIGN_W);
-    const body  = document.body;
+    const body = document.body;
     if(scale < 1){
       body.style.transform = 'scale(' + scale + ')';
       body.style.transformOrigin = 'top left';
