@@ -171,26 +171,13 @@ html{scroll-behavior:smooth;}
 
 </style>
 
-<script>
-(function(){
-  const DESIGN_WIDTH=1280;
-  function applyScale(){
-    const scale=Math.min(1, window.innerWidth/DESIGN_WIDTH);
-    document.documentElement.style.setProperty('--scale',scale);
-  }
-  window.addEventListener('resize',applyScale);
-  applyScale();
-})();
-</script>
 <style>
 body{
-  transform:scale(var(--scale,1));
-  transform-origin:top left;
-  width:calc(1280px * var(--scale,1));
   overflow-x:hidden;
+  margin:0;
+  padding:0;
 }
-/* Force desktop layout even under 1280 */
-@media (max-width:1279px){
+@media(max-width:1279px){
   header{flex-wrap:nowrap;overflow-x:auto;}
   nav ul{flex-wrap:nowrap;gap:20px;}
   .hero{flex-direction:row;text-align:left;}
@@ -283,6 +270,25 @@ body{
 <footer class="site-footer">
   © 2025 株式会社Adory All Rights Reserved.
 </footer>
+
+
+<script>
+(function(){
+  const DESIGN_W = 1280;
+  function scalePage(){
+    const scale = Math.min(1, window.innerWidth / DESIGN_W);
+    const body  = document.body;
+    if(scale < 1){
+      body.style.transform = 'scale(' + scale + ')';
+      body.style.transformOrigin = 'top left';
+    }else{
+      body.style.transform = '';
+    }
+  }
+  window.addEventListener('resize', scalePage);
+  scalePage();
+})();
+</script>
 
 </body>
 </html>
