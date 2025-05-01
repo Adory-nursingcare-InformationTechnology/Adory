@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=1280">
   <title>株式会社Adory | トップページ</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -16,7 +16,7 @@
     nav a{text-decoration:none;color:var(--red);font-weight:700;}
 
     .hero{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:100vh;padding:100px 40px 80px;}
-    .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("images/32320481_l.jpg") center center / cover no-repeat;z-index:-2;}
+    .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("32320481_l.jpg") center center / cover no-repeat;z-index:-2;}
 .hero::before{transform:translateX(-60%);animation:slideGradient 1.3s ease-out forwards .2s;content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--red),var(--orange));clip-path:polygon(0 0,50% 0,40% 100%,0 100%);opacity:.9;z-index:-1;}
     .hero-text{z-index:1;flex:1;max-width:45%;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.55);position:relative;transform:translateX(-40px); opacity:0; animation:fadeWhiteText 1s ease-out forwards 1.6s; margin-left:60px;}
     .hero-text h1{
@@ -29,7 +29,7 @@
 
     @media(max-width:768px){
       .hero{flex-direction:column;text-align:center;}
-      .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("images/32320481_l.jpg") center center / cover no-repeat;z-index:-2;}
+      .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url("32320481_l.jpg") center center / cover no-repeat;z-index:-2;}
 .hero::before{transform:translateX(-60%);animation:slideGradient 1.3s ease-out forwards .2s;clip-path:polygon(0 0,50% 0,40% 100%,0 100%);}
     }
   
@@ -169,6 +169,15 @@ html{scroll-behavior:smooth;}
   .hero-text h1{font-size:1.7rem;}
 }
 
+
+@media (max-width: 768px){
+  body{
+    transform:scale(0.8);
+    transform-origin: top left;
+    width:125%;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -198,7 +207,7 @@ html{scroll-behavior:smooth;}
       </p>
     </div>
     <div class="hero-image">
-      <img src="images/32320481_l.jpg" style="width:100%;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.18)" alt="医療従事者とビジネスパーソンが対話する様子">
+      <img src="https://images.unsplash.com/photo-1628890920698-f2a003ef98a5?auto=format&fit=crop&w=800&q=80" style="width:100%;border-radius:10px;box-shadow:0 8px 22px rgba(0,0,0,.18)" alt="">
     </div>
   </section>
 
