@@ -219,6 +219,21 @@ html{scroll-behavior:smooth;}
   .hero-text p{font-size:0.9rem;}
 }
 
+
+/* === Override only mobile hero gradient & text size (PC untouched) === */
+@media(max-width:640px){
+  .hero::before{
+    clip-path:polygon(0 0,80% 0,80% 100%,0 100%);
+  }
+  .hero-text{
+    max-width:80%;
+    margin:0 auto;
+  }
+  .hero-text h1{
+    font-size:clamp(1.2rem,4.2vw,1.35rem);
+  }
+}
+
 </style>
 </head>
 <body>
