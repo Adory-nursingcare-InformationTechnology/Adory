@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="お問い合わせありがとうございます - 株式会社Adory">
+    <title>お問い合わせ完了 | 株式会社Adory</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            letter-spacing: 1px;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        /* メインコンテンツ */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 5%;
+        }
+        
+        .thank-you-container {
+            background: white;
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+        
+        .thank-you-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+            }
+        }
+        
+        .success-icon::after {
+            content: '✓';
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .thank-you-title {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .thank-you-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #fff5f0, #ffe8e0);
+            border: 2px solid rgba(255, 154, 63, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+        
+        .info-box h3 {
+            color: #FF9A3F;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-box h3::before {
+            content: '';
+            font-size: 1.5rem;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-box li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .info-box li::before {
+            content: '•';
+            color: #FF9A3F;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 180px;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+            color: white;
+            box-shadow: 0 8px 25px rgba(212, 29, 0, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 29, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #666;
+            border: 2px solid #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            border-color: #FF9A3F;
+            color: #FF9A3F;
+            box-shadow: 0 8px 25px rgba(255, 154, 63, 0.2);
+        }
+        
+        /* フッター */
+        footer {
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .footer-copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: 3rem 2rem;
+                margin: 1rem;
+            }
+            
+            .thank-you-title {
+                font-size: 1.8rem;
+            }
+            
+            .success-icon {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .success-icon::after {
+                font-size: 2.5rem;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .thank-you-container {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .thank-you-title {
+                font-size: 1.5rem;
+            }
+            
+            .thank-you-subtitle {
+                font-size: 1rem;
+            }
+            
+            .info-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">株式会社Adory</a>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <div class="thank-you-container">
+            <div class="success-icon"></div>
+            
+            <h1 class="thank-you-title">お問い合わせありがとうございます</h1>
+            <p class="thank-you-subtitle">
+                お問い合わせを正常に受信いたしました。<br>
+                担当者より改めてご連絡させていただきます。
+            </p>
+            
+            <div class="info-box">
+                <h3>今後の流れについて</h3>
+                <ul>
+                    <li>内容を確認の上、営業日2-3日以内に担当者よりご連絡いたします</li>
+                    <li>ご不明な点がございましたら、お気軽にお問い合わせください</li>
+                </ul>
+            </div>
+            
+            <div class="buttons-container">
+                <a href="index.html" class="btn btn-primary">
+                    ホームに戻る
+                </a>
+                <a href="service.html" class="btn btn-secondary">
+                    サービス概要を見る
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-links">
+                <a href="index.html">ホーム</a>
+                <a href="index.html#about">会社概要</a>
+                <a href="service.html">サービス概要</a>
+                <a href="useful-info.html">お役立ち情報</a>
+            </nav>
+            <p class="footer-copyright">© 2025 株式会社Adory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ページ読み込み時のアニメーション
+        window.addEventListener('load', function() {
+            // 3秒後に自動でホームページのリンクを強調
+            setTimeout(() => {
+                const homeBtn = document.querySelector('.btn-primary');
+                homeBtn.style.animation = 'pulse 1s ease-in-out 3 alternate';
+            }, 3000);
+        });
+
+        // 成功アイコンのクリック時のエフェクト
+        document.querySelector('.success-icon').addEventListener('click', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'pulse 2s infinite';
+            }, 10);
+        });
+    </script>
+</body>
+</html>

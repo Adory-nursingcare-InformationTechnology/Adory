@@ -171,7 +171,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            background-image: url('images/hero-vision.jpg');
+            background-image: url('hero-vision.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -248,7 +248,7 @@
             color: #666;
             font-size: 0.9rem;
             border: 2px solid #dee2e6;
-            background-image: url('images/ceo-profile.jpg');
+            background-image: url('ceo-profile.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -752,8 +752,8 @@
             </div>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#about">会社概要</a></li>
-                <li><a href="#services">サービス概要</a></li>
-                <li><a href="#information">お役立ち情報</a></li>
+                <li><a href="service.html">サービス概要</a></li>
+                <li><a href="useful-info.html">お役立ち情報</a></li>
             </ul>
             <a href="#contact" class="cta-button">お問い合わせ</a>
             <div class="hamburger" id="hamburger">
@@ -870,7 +870,13 @@
                 <div class="contact-content fade-in fade-in-delay-3">
                     <div class="contact-form-container">
                         <div class="contact-form-wrapper">
-                            <form class="contact-form" id="contactForm">
+                            <form class="contact-form" id="contactForm" action="https://formsubmit.co/takuya.honda@adory.co.jp" method="POST">
+                                <!-- Form Submit設定 -->
+                                <input type="hidden" name="_subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
+                                <input type="hidden" name="_next" value="https://your-github-username.github.io/your-repo-name/thank-you.html">
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_template" value="table">
+                                
                                 <div class="form-group">
                                     <label for="name">お名前 <span class="required">*</span></label>
                                     <input type="text" id="name" name="name" required placeholder="山田 太郎">
@@ -888,12 +894,12 @@
                                 
                                 <div class="form-group">
                                     <label for="subject">お問い合わせ種別 <span class="required">*</span></label>
-                                    <select id="subject" name="subject" required>
+                                    <select id="subject" name="inquiry_type" required>
                                         <option value="">選択してください</option>
-                                        <option value="healthcare">フィジカルヘルスケアについて</option>
-                                        <option value="prevention">病気予防について</option>
-                                        <option value="support">復職支援について</option>
-                                        <option value="other">その他</option>
+                                        <option value="フィジカルヘルスケアについて">フィジカルヘルスケアについて</option>
+                                        <option value="病気予防について">病気予防について</option>
+                                        <option value="復職支援について">復職支援について</option>
+                                        <option value="その他">その他</option>
                                     </select>
                                 </div>
                                 
@@ -904,7 +910,7 @@
                                 
                                 <div class="form-group checkbox-group">
                                     <label class="checkbox-label">
-                                        <input type="checkbox" id="privacy" name="privacy" required>
+                                        <input type="checkbox" id="privacy" name="privacy_agreed" required value="プライバシーポリシーに同意">
                                         <span>プライバシーポリシーに同意する <span class="required">*</span></span>
                                     </label>
                                 </div>
@@ -1011,16 +1017,10 @@
                 <h3>会社情報</h3>
                 <ul>
                     <li><a href="#about">会社概要</a></li>
-                    <li><a href="#services">サービス概要</a></li>
-                    <li><a href="#information">お役立ち情報</a></li>
+                    <li><a href="service.html">サービス概要</a></li>
+                    <li><a href="useful-info.html">お役立ち情報</a></li>
                     <li><a href="#contact">お問い合わせ</a></li>
                 </ul>
-            </div>
-            <div class="footer-section">
-                <h3>お問い合わせ</h3>
-                <p>電話: 03-1234-5678</p>
-                <p>Email: info@adory.jp</p>
-                <p>営業時間: 平日 9:00-18:00</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1043,16 +1043,50 @@
             document.getElementById('navMenu').classList.toggle('active');
         });
 
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // ナビゲーションリンクの処理を更新
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // 外部ページへのリンクの場合はそのまま遷移
+                if (href === 'service.html' || href === 'useful-info.html') {
+                    return; // デフォルトの動作（ページ遷移）を実行
+                }
+                
+                // アンカーリンクの場合はスムーススクロール
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // フッターリンクの処理を更新
+        document.querySelectorAll('.footer-section a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // 外部ページへのリンクの場合はそのまま遷移
+                if (href === 'service.html' || href === 'useful-info.html') {
+                    return; // デフォルトの動作（ページ遷移）を実行
+                }
+                
+                // アンカーリンクの場合はスムーススクロール
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
         });
@@ -1072,22 +1106,17 @@
             lastScroll = currentScroll;
         });
 
-        // フォーム送信処理
+        // フォーム送信処理（Form Submit使用）
         document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+            const submitBtn = this.querySelector('.submit-btn');
             
-            // フォームデータの取得
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
+            // 送信ボタンの状態を変更
+            submitBtn.textContent = '送信中...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
             
-            // ここで実際の送信処理を行う（API呼び出しなど）
-            console.log('フォームデータ:', data);
-            
-            // 送信完了メッセージ（実装例）
-            alert('お問い合わせありがとうございます。\n内容を確認の上、担当者よりご連絡させていただきます。');
-            
-            // フォームをリセット
-            this.reset();
+            // Form Submitが自動で処理するため、prevent defaultしない
+            // 送信後はthank-you.htmlに自動リダイレクト
         });
         
         // スクロールアニメーション
