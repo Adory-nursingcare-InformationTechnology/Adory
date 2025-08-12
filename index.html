@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adory - 多様な人が自分らしく歩めるように、「人」の力でインフラを築く">
+    <meta name="keywords" content="Adory, 企業ソリューション, ビジネス, 人材活用">
+    <title>Adory | 人の力でインフラを築く</title>
+    
+    <style>
+        /* リセットCSS & 基本設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            letter-spacing: 1px;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        .nav-menu a:hover {
+            color: #000;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .cta-button {
+            background: #000;
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* ハンバーガーメニュー */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* メインコンテンツ */
+        main {
+            margin-top: 80px;
+        }
+        
+        /* ヒーローセクション */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 5rem 5%;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-vision {
+            font-size: 2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+        
+        .hero-vision-sub {
+            font-size: 1rem;
+            color: #999;
+            margin-bottom: 2rem;
+            font-weight: normal;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #D41D00;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-image {
+            max-width: 600px;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #FF9A3F, #D41D00);
+            border-radius: 10px;
+            margin: 2rem auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background-image: url('images/hero-vision.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .hero-image-text {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(2px);
+        }
+        
+        .hero-description {
+            max-width: 800px;
+            margin: 2rem auto 0;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        
+        .hero-description p {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 代表メッセージセクション */
+        .message-section {
+            background-color: #F5F5F5;
+            padding: 4rem 5% 0;
+            text-align: center;
+        }
+        
+        .message-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 3rem;
+        }
+        
+        .message-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .message-main {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .message-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            width: 100%;
+            align-items: flex-start;
+        }
+        
+        .message-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
+            border: 2px solid #dee2e6;
+            background-image: url('images/ceo-profile.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .message-profile {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* SNSボタン */
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid;
+            min-width: 140px;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .note-btn {
+            background: #41C9B4;
+            color: white;
+            border-color: #41C9B4;
+        }
+        
+        .note-btn:hover {
+            background: #36B5A3;
+            border-color: #36B5A3;
+        }
+        
+        .x-btn {
+            background: #000000;
+            color: white;
+            border-color: #000000;
+        }
+        
+        .x-btn:hover {
+            background: #333333;
+            border-color: #333333;
+        }
+        
+        .social-icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        
+        .social-text {
+            font-size: 0.85rem;
+        }
+        
+        .message-text {
+            color: #333;
+            text-align: left;
+        }
+        
+        .message-text p {
+            margin-bottom: 0.7rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        /* 会社概要セクション */
+        .company-section {
+            padding: 4rem 5% 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .company-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+        
+        .company-info {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #E0E0E0;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #666;
+            padding: 1rem;
+            border-right: 1px solid #E0E0E0;
+            border-bottom: 1px solid #E0E0E0;
+            background-color: #F9F9F9;
+        }
+        
+        .info-value {
+            padding: 1rem;
+            border-bottom: 1px solid #E0E0E0;
+            text-align: left;
+        }
+        
+        .info-label:last-of-type,
+        .info-value:last-of-type {
+            border-bottom: none;
+        }
+        
+        /* お問い合わせセクション */
+        .contact-section {
+            padding: 4rem 5% 0;
+            background: #ffffff;
+            text-align: center;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+        
+        .contact-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        /* お問い合わせフォーム */
+        .contact-form-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+        }
+        
+        .contact-form-wrapper {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            border: 2px solid #f0f0f0;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+        
+        .required {
+            color: #D41D00;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background: #fafafa;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF9A3F;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 154, 63, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.7rem;
+            cursor: pointer;
+            accent-color: #FF9A3F;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            align-self: center;
+            min-width: 200px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 29, 0, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* 連絡先情報 */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-info-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info-item h3 {
+            color: #FF9A3F;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .contact-info-item p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-info-item strong {
+            color: #333;
+        }
+        
+        .contact-map {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* フッター */
+        footer {
+            background: linear-gradient(135deg, #D41D00, #FF9A3F);
+            color: white;
+            padding: 3rem 5% 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            opacity: 0.9;
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* アニメーション用スタイル */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-delay {
+            transition-delay: 0.2s;
+        }
+        
+        .fade-in-delay-2 {
+            transition-delay: 0.4s;
+        }
+        
+        .fade-in-delay-3 {
+            transition-delay: 0.6s;
+        }
+        
+        /* ヒーローセクションの初期表示アニメーション */
+        .hero-content {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: heroFadeIn 1.2s ease-out 0.3s forwards;
+        }
+        
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .cta-button {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #D41D00, #FF9A3F);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .message-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .message-bottom {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .message-image {
+                height: 200px;
+                margin: 0 auto;
+                max-width: 200px;
+            }
+            
+            .message-profile {
+                text-align: center;
+            }
+            
+            .social-buttons {
+                justify-content: center;
+                gap: 0.8rem;
+            }
+            
+            .social-btn {
+                flex: 1;
+                min-width: 120px;
+                max-width: 150px;
+            }
+            
+            .company-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-label {
+                background-color: #F5F5F5;
+                font-weight: bold;
+                border-right: none;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-form-container {
+                order: 1;
+            }
+            
+            .contact-info {
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .contact-form-wrapper {
+                padding: 2rem;
+            }
+            
+            .contact-section {
+                padding: 2.5rem 4%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <nav>
+            <div class="logo">
+                株式会社Adory
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">会社概要</a></li>
+                <li><a href="#services">サービス概要</a></li>
+                <li><a href="#information">お役立ち情報</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">お問い合わせ</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-vision">Vision</div>
+                <div class="hero-vision-sub">ビジョン</div>
+                <h1>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</h1>
+                <div class="hero-image">
+                    <div class="hero-image-text">ビジョンイメージ</div>
+                </div>
+                <div class="hero-description">
+                    <p>「Adory」という社名はAdvance（前進）× Story（物語）の造語で</p>
+                    <p>ビジョンとして「皆が物語りの主人公で、一歩でも人生が豊かに前進するように」</p>
+                    <p>という想いを込めてます。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 代表メッセージ -->
+        <section class="message-section">
+            <div class="hero-vision fade-in">Message</div>
+            <div class="hero-vision-sub fade-in fade-in-delay">代表メッセージ</div>
+            <div class="message-container fade-in fade-in-delay-2">
+                <div class="message-content">
+                    <div class="message-main">
+                        <h3 style="color: #D41D00; margin-bottom: 1rem; font-size: 1.3rem;">"一歩でも人生が豊かに前進する。そんな未来へ"</h3>
+                        <div class="message-text">
+                            <p>当社は2025年に創業したヘルスケアカンパニーです。</p>
+                            <p>「誰もが安心して働き続けられる社会」の実現を目指し、日々活動を続けています。</p>
+                            <p>私がAdoryを創業したきっかけは、家族の病気による復職の困難さを間近で経験したことでした。</p>
+                            <p>脳梗塞による祖父の長期入院、そして父も同じく脳梗塞で倒れたとき、父から「仕事がないよ」という言葉を聞いた瞬間、凄く胸が締めつけられました。</p>
+                            <p>病気そのものの辛さに加え、社会との繋がりを失うことが、人の心にこれほど深い影響を与えるのかと痛感いたしました。</p>
+                            <p>私はこれまで、採用支援・組織づくりの領域でキャリアを積み、働く人の成長やチームの力を引き出すことに情熱を注いできました。</p>
+                            <p>その経験を活かし、予防医療、復職支援といった領域にHRの知見を融合させることこそ、自分の使命だと考えています。</p>
+                            <p>Adoryという社名には「皆が物語の主人公で、一歩でも人生が豊かに前進するように」という願いが込められています。</p>
+                            <p>これからも、一人でも多くの方が自分らしく、前向きに働き続けることができる社会を実現するために挑戦を続けてまいります。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message-bottom">
+                        <div class="message-image">代表者写真</div>
+                        <div class="message-profile">
+                            <p style="font-weight: bold; margin-bottom: 1rem; font-size: 1.1rem; color: #D41D00;">代表 CEO 本田卓也</p>
+                            <div style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                                <p style="margin-bottom: 0.8rem;">法政大学卒業</p>
+                                <p style="margin-bottom: 0.8rem;">2017年、大手人材会社入社<br>
+                                派遣新規開拓営業、インサイドセールスの立ち上げを経験</p>
+                                <p style="margin-bottom: 0.8rem;">2022年、スタートアップ入社<br>
+                                中途採用の人事、リファラル企画・推進を担当</p>
+                                <p style="margin-bottom: 0.8rem;">2022年、パーソルキャリア株式会社入社<br>
+                                スタートアップ企業の人材紹介支援</p>
+                                <p style="margin-bottom: 1.5rem;">2025年、株式会社Adory設立</p>
+                                
+                                <!-- SNSボタン -->
+                                <div class="social-buttons">
+                                    <a href="https://note.com/taku898989" target="_blank" rel="noopener noreferrer" class="social-btn note-btn">
+                                        <span class="social-icon">📝</span>
+                                        <span class="social-text">noteを読む</span>
+                                    </a>
+                                    <a href="https://x.com/takuyanyan1216?s=21" target="_blank" rel="noopener noreferrer" class="social-btn x-btn">
+                                        <span class="social-icon">𝕏</span>
+                                        <span class="social-text">Xをフォロー</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 会社概要セクション -->
+        <section class="company-section" id="about">
+            <div class="hero-vision fade-in">Company Profile</div>
+            <div class="hero-vision-sub fade-in fade-in-delay">会社概要</div>
+            <div class="company-container fade-in fade-in-delay-2">
+                <div class="company-info">
+                    <div class="info-label">会社名</div>
+                    <div class="info-value">株式会社Adory</div>
+                    
+                    <div class="info-label">設立</div>
+                    <div class="info-value">2025年4月14日</div>
+                    
+                    <div class="info-label">代表者</div>
+                    <div class="info-value">代表取締役 CEO 本田 卓也</div>
+                    
+                    <div class="info-label">事業内容</div>
+                    <div class="info-value">フィジカルヘルスケア　病気予防　復職支援</div>
+                    
+                    <div class="info-label">所在地</div>
+                    <div class="info-value">〒142-0063 東京都品川区荏原6-1-9<br>西小山駅徒歩7分</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせセクション -->
+        <section class="contact-section" id="contact">
+            <div class="hero-vision fade-in">Contact</div>
+            <div class="hero-vision-sub fade-in fade-in-delay">お問い合わせ</div>
+            <div class="contact-container fade-in fade-in-delay-2">
+                <p class="contact-subtitle">サービスに関するご相談、お気軽にお問い合わせください</p>
+                
+                <div class="contact-content fade-in fade-in-delay-3">
+                    <div class="contact-form-container">
+                        <div class="contact-form-wrapper">
+                            <form class="contact-form" id="contactForm">
+                                <div class="form-group">
+                                    <label for="name">お名前 <span class="required">*</span></label>
+                                    <input type="text" id="name" name="name" required placeholder="山田 太郎">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">メールアドレス <span class="required">*</span></label>
+                                    <input type="email" id="email" name="email" required placeholder="info@example.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="company">会社名・施設名</label>
+                                    <input type="text" id="company" name="company" placeholder="○○介護施設">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject">お問い合わせ種別 <span class="required">*</span></label>
+                                    <select id="subject" name="subject" required>
+                                        <option value="">選択してください</option>
+                                        <option value="healthcare">フィジカルヘルスケアについて</option>
+                                        <option value="prevention">病気予防について</option>
+                                        <option value="support">復職支援について</option>
+                                        <option value="other">その他</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+                                    <textarea id="message" name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+                                </div>
+                                
+                                <div class="form-group checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="privacy" name="privacy" required>
+                                        <span>プライバシーポリシーに同意する <span class="required">*</span></span>
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn">送信する</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <h3>アクセス</h3>
+                            <p><strong>株式会社Adory</strong><br>
+                            〒142-0063<br>
+                            東京都品川区荏原6-1-9<br>
+                            東急目黒線 西小山駅 徒歩7分</p>
+                        </div>
+                        
+                        <div class="contact-map">
+                            <!-- 地図表示の優先順位: 1. Googleマップ埋め込み → 2. OpenStreetMap → 3. 静的地図 → 4. フォールバック -->
+                            <div class="map-container">
+                                <!-- 方法1: Googleマップ埋め込み（GitHub Pages用） -->
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1621.4188824266772!2d139.68268471!3d35.60945171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM2JzM0LjAiTiAxMznCsDQwJzU3LjciRQ!5e0!3m2!1sja!2sjp!4v1691234567890!5m2!1sja!2sjp"
+                                    width="100%"
+                                    height="300"
+                                    style="border:0; border-radius: 10px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    title="株式会社Adory所在地"
+                                    id="google-map"
+                                    onerror="showMapFallback()">
+                                </iframe>
+                                
+                                <!-- 方法2: OpenStreetMap (Leaflet) フォールバック -->
+                                <div class="openstreetmap-container" id="openstreetmap" style="display: none;">
+                                    <div id="leaflet-map" style="width: 100%; height: 300px; border-radius: 10px;"></div>
+                                </div>
+                                
+                                <!-- 方法3: 静的地図画像 -->
+                                <div class="static-map" id="static-map" style="display: none;">
+                                    <div style="width: 100%; height: 300px; border-radius: 10px; background: linear-gradient(45deg, #e3f2fd 25%, #bbdefb 25%, #bbdefb 50%, #e3f2fd 50%, #e3f2fd 75%, #bbdefb 75%, #bbdefb); background-size: 40px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                                        <!-- 地図風のデザイン -->
+                                        <div style="position: absolute; width: 80%; height: 60%; background: #f8f9fa; border-radius: 15px; border: 3px solid #ddd;"></div>
+                                        <div style="position: absolute; width: 20px; height: 20px; background: #FF9A3F; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 2;"></div>
+                                        <div style="position: absolute; bottom: 20px; background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 10px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 3;">
+                                            <p style="font-weight: bold; color: #FF9A3F; margin-bottom: 0.5rem;">📍 Adory 本社</p>
+                                            <p style="font-size: 0.9rem; color: #666;">品川区荏原6-1-9</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 方法4: 最終フォールバック -->
+                                <div class="map-fallback" id="map-fallback" style="display: none;">
+                                    <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; border: 2px dashed rgba(255, 154, 63, 0.3);">
+                                        <div style="font-size: 3rem; margin-bottom: 1rem;">📍</div>
+                                        <h3 style="color: #FF9A3F; margin-bottom: 1rem; font-size: 1.2rem;">アクセス情報</h3>
+                                        <p style="color: #666; margin-bottom: 0.5rem; font-weight: bold;">株式会社Adory</p>
+                                        <p style="color: #666; margin-bottom: 0.5rem;">〒142-0063</p>
+                                        <p style="color: #666; margin-bottom: 1rem;">東京都品川区荏原6-1-9</p>
+                                        <p style="color: #999; margin-bottom: 1.5rem; font-size: 0.9rem;">東急目黒線 西小山駅 徒歩7分</p>
+                                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                                            <a href="https://www.google.com/maps/place/〒142-0063+東京都品川区荏原６丁目１−９" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer"
+                                               style="display: inline-block; padding: 0.8rem 1.5rem; background: linear-gradient(135deg, #D41D00, #FF9A3F); color: white; text-decoration: none; border-radius: 20px; font-weight: bold; transition: transform 0.3s ease;">
+                                                Google Mapで開く
+                                            </a>
+                                            <a href="https://maps.apple.com/?q=35.6094517,139.6826847" 
+                                               target="_blank" 
+                                               rel="noopener noreferrer"
+                                               style="display: inline-block; padding: 0.8rem 1.5rem; background: #007AFF; color: white; text-decoration: none; border-radius: 20px; font-weight: bold; transition: transform 0.3s ease;">
+                                                Apple Mapで開く
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Adory</h3>
+                <p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p>
+                <p style="margin-top: 1rem;">© 2025 Adory Inc.</p>
+            </div>
+            <div class="footer-section">
+                <h3>事業内容</h3>
+                <ul>
+                    <li><a href="#">フィジカルヘルスケア</a></li>
+                    <li><a href="#">病気予防</a></li>
+                    <li><a href="#">復職支援</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>会社情報</h3>
+                <ul>
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#services">サービス概要</a></li>
+                    <li><a href="#information">お役立ち情報</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>お問い合わせ</h3>
+                <p>電話: 03-1234-5678</p>
+                <p>Email: info@adory.jp</p>
+                <p>営業時間: 平日 9:00-18:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>プライバシーポリシー | 利用規約 | サイトマップ</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ロゴクリックでホームに戻る
+        document.querySelector('.logo').addEventListener('click', function() {
+            document.querySelector('#home').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // ハンバーガーメニューの動作
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // スムーススクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // スクロール時のヘッダー処理
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const header = document.querySelector('header');
+            
+            if (currentScroll > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // フォーム送信処理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // フォームデータの取得
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // ここで実際の送信処理を行う（API呼び出しなど）
+            console.log('フォームデータ:', data);
+            
+            // 送信完了メッセージ（実装例）
+            alert('お問い合わせありがとうございます。\n内容を確認の上、担当者よりご連絡させていただきます。');
+            
+            // フォームをリセット
+            this.reset();
+        });
+        
+        // スクロールアニメーション
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // スクロールイベントとページ読み込み時にアニメーション実行
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+        
+        // 地図の段階的フォールバック機能
+        function showMapFallback() {
+            console.log('Googleマップの読み込みに失敗しました');
+            document.getElementById('google-map').style.display = 'none';
+            tryOpenStreetMap();
+        }
+        
+        function tryOpenStreetMap() {
+            // OpenStreetMapを試行（簡易版）
+            const osmContainer = document.getElementById('openstreetmap');
+            osmContainer.style.display = 'block';
+            
+            // 簡易的なOpenStreetMap風の表示
+            const mapDiv = document.getElementById('leaflet-map');
+            mapDiv.innerHTML = `
+                <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #e8f5e8 25%, #f0f8f0 25%, #f0f8f0 50%, #e8f5e8 50%, #e8f5e8 75%, #f0f8f0 75%, #f0f8f0); background-size: 20px 20px; position: relative; display: flex; align-items: center; justify-content: center;">
+                    <div style="position: absolute; width: 90%; height: 80%; background: #f8f9fa; border-radius: 10px; border: 2px solid #ddd; opacity: 0.8;"></div>
+                    <div style="position: absolute; width: 24px; height: 24px; background: #D41D00; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.4); z-index: 2;"></div>
+                    <div style="position: absolute; bottom: 15px; background: rgba(255,255,255,0.95); padding: 0.8rem 1.5rem; border-radius: 8px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 3;">
+                        <p style="font-weight: bold; color: #D41D00; margin-bottom: 0.3rem; font-size: 0.9rem;">📍 株式会社Adory</p>
+                        <p style="font-size: 0.8rem; color: #666;">品川区荏原6-1-9 (西小山駅徒歩7分)</p>
+                    </div>
+                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 0.5rem; border-radius: 5px; font-size: 0.7rem; color: #666;">代替地図表示</div>
+                </div>
+            `;
+            
+            // 3秒後に静的地図にフォールバック
+            setTimeout(() => {
+                osmContainer.style.display = 'none';
+                tryStaticMap();
+            }, 3000);
+        }
+        
+        function tryStaticMap() {
+            console.log('静的地図を表示します');
+            document.getElementById('static-map').style.display = 'block';
+            
+            // 5秒後に最終フォールバック
+            setTimeout(() => {
+                document.getElementById('static-map').style.display = 'none';
+                document.getElementById('map-fallback').style.display = 'block';
+            }, 5000);
+        }
+        
+        // 地図の読み込み確認
+        window.addEventListener('load', function() {
+            const iframe = document.getElementById('google-map');
+            
+            // iframe読み込み確認
+            iframe.addEventListener('load', function() {
+                console.log('Google Maps が正常に読み込まれました');
+            });
+            
+            iframe.addEventListener('error', showMapFallback);
+            
+            // 3秒後に読み込み状況をチェック
+            setTimeout(function() {
+                try {
+                    // iframe が表示されているかチェック
+                    const iframeRect = iframe.getBoundingClientRect();
+                    if (iframeRect.height === 0 || iframe.style.display === 'none') {
+                        console.log('地図が表示されていません。代替表示に切り替えます。');
+                        showMapFallback();
+                    }
+                } catch (e) {
+                    console.log('地図の状況確認中にエラーが発生しました:', e);
+                    showMapFallback();
+                }
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
