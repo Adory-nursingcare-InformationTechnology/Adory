@@ -236,7 +236,11 @@
         }
         
         .hero-image {
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect fill="%23f8f9fa" width="400" height="300" rx="15"/><g transform="translate(50,50)"><circle cx="100" cy="80" r="40" fill="%23FF9A3F" opacity="0.3"/><rect x="60" y="120" width="80" height="60" rx="8" fill="%23FF9A3F" opacity="0.2"/><circle cx="250" cy="60" r="30" fill="%23D41D00" opacity="0.4"/><rect x="220" y="90" width="60" height="80" rx="6" fill="%23D41D00" opacity="0.3"/><text x="150" y="220" text-anchor="middle" fill="%23666" font-size="16" font-family="Arial">理学療法士による専門チェック</text></g></svg>') center/cover;
+            background: linear-gradient(135deg, #FF9A3F, #D41D00);
+            background-image: url('./physiotherapist.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             height: 350px;
             border-radius: 15px;
         }
@@ -734,15 +738,15 @@
     <!-- ヘッダー -->
     <header>
         <nav>
-            <a href="../index.html" class="logo">
+            <a href="index.html" class="logo">
                 株式会社Adory
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="../index.html#about">会社概要</a></li>
+                <li><a href="index.html#about">会社概要</a></li>
                 <li><a href="#" class="active">サービス概要</a></li>
-                <li><a href="../index.html#information">お役立ち情報</a></li>
+                <li><a href="useful-info.html">お役立ち情報</a></li>
             </ul>
-            <a href="../index.html#contact" class="cta-button">お問い合わせ</a>
+            <a href="index.html#contact" class="cta-button">お問い合わせ</a>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -766,94 +770,6 @@
                     <div class="highlight-box">
                         <p>潜在的な「疾病出勤（プレゼンティーズム）」にアプローチ</p>
                     </div>
-                </div>
-                <div class="hero-image"></div>
-            </div>
-        </section>
-
-        <!-- 特徴セクション -->
-        <section class="features-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-title">Features</div>
-                    <div class="section-subtitle">サービスの特徴</div>
-                    <h2>Adoryのフィジカルチェックプログラムの特徴</h2>
-                </div>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="doctorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
-                                        <stop offset="100%" style="stop-color:#D41D00"/>
-                                    </linearGradient>
-                                </defs>
-                                <!-- 人物のシルエット -->
-                                <circle cx="30" cy="18" r="8" fill="url(#doctorGrad)"/>
-                                <path d="M15 35 Q30 30 45 35 L45 50 Q30 55 15 50 Z" fill="url(#doctorGrad)"/>
-                                <!-- 聴診器 -->
-                                <path d="M20 25 Q25 20 30 25" stroke="#FFF" stroke-width="2" fill="none"/>
-                                <circle cx="18" cy="27" r="2" fill="#FFF"/>
-                                <!-- 十字マーク -->
-                                <rect x="35" y="15" width="8" height="2" fill="#FFF"/>
-                                <rect x="38" y="12" width="2" height="8" fill="#FFF"/>
-                            </svg>
-                        </div>
-                        <h3>理学療法士による専門評価</h3>
-                        <p>国家資格を持つ理学療法士が、科学的根拠に基づいて評価を実施します</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="warningGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
-                                        <stop offset="100%" style="stop-color:#D41D00"/>
-                                    </linearGradient>
-                                </defs>
-                                <!-- 盾の形 -->
-                                <path d="M30 5 L45 12 L45 35 Q45 50 30 55 Q15 50 15 35 L15 12 Z" fill="url(#warningGrad)"/>
-                                <!-- チェックマーク -->
-                                <path d="M22 30 L27 35 L38 22" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round"/>
-                                <!-- 小さな警告サイン -->
-                                <circle cx="45" cy="15" r="6" fill="#FFF"/>
-                                <text x="45" y="19" text-anchor="middle" fill="url(#warningGrad)" font-size="8" font-weight="bold">!</text>
-                            </svg>
-                        </div>
-                        <h3>労災リスクの早期発見</h3>
-                        <p>腰痛、肩こり、首の痛みなど潜在的リスクを事前に発見・予防します</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="productivityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
-                                        <stop offset="100%" style="stop-color:#D41D00"/>
-                                    </linearGradient>
-                                </defs>
-                                <!-- グラフの背景 -->
-                                <rect x="10" y="35" width="40" height="20" fill="url(#productivityGrad)" rx="2"/>
-                                <!-- 上昇する矢印とグラフ -->
-                                <path d="M15 45 L25 35 L35 40 L45 25" stroke="#FFF" stroke-width="3" fill="none"/>
-                                <path d="M40 15 L50 25 L45 25 L45 20 Z" fill="#FFF"/>
-                                <!-- 歯車アイコン -->
-                                <circle cx="25" cy="15" r="8" fill="none" stroke="url(#productivityGrad)" stroke-width="2"/>
-                                <circle cx="25" cy="15" r="4" fill="url(#productivityGrad)"/>
-                                <g transform="translate(25,15)">
-                                    <rect x="-1" y="-10" width="2" height="4" fill="url(#productivityGrad)"/>
-                                    <rect x="-1" y="6" width="2" height="4" fill="url(#productivityGrad)"/>
-                                    <rect x="6" y="-1" width="4" height="2" fill="url(#productivityGrad)"/>
-                                    <rect x="-10" y="-1" width="4" height="2" fill="url(#productivityGrad)"/>
-                                </g>
-                            </svg>
-                        </div>
-                        <h3>生産性向上への貢献</h3>
-                        <p>従業員の健康保全により、企業の生産性向上に大きく貢献します</p>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -968,7 +884,7 @@
                 <h2>従業員の健康と企業の生産性向上を実現</h2>
                 <p>理学療法士による専門的なフィジカルチェックプログラムで、<br>
                 労災リスクを事前に発見し、働きやすい職場環境を作りませんか？</p>
-                <a href="../index.html#contact" class="cta-btn">詳しいお問い合わせはこちら</a>
+                <a href="index.html#contact" class="cta-btn">詳しいお問い合わせはこちら</a>
                 <p class="cta-note">料金やオプション内容について、お気軽にお問い合わせください</p>
             </div>
         </section>
@@ -993,17 +909,11 @@
             <div class="footer-section">
                 <h3>会社情報</h3>
                 <ul>
-                    <li><a href="../index.html#about">会社概要</a></li>
+                    <li><a href="index.html#about">会社概要</a></li>
                     <li><a href="#">サービス概要</a></li>
-                    <li><a href="../index.html#information">お役立ち情報</a></li>
-                    <li><a href="../index.html#contact">お問い合わせ</a></li>
+                    <li><a href="useful-info.html">お役立ち情報</a></li>
+                    <li><a href="index.html#contact">お問い合わせ</a></li>
                 </ul>
-            </div>
-            <div class="footer-section">
-                <h3>お問い合わせ</h3>
-                <p>電話: 03-1234-5678</p>
-                <p>Email: info@adory.jp</p>
-                <p>営業時間: 平日 9:00-18:00</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1118,4 +1028,91 @@
     </script>
 </body>
 </html>
-        
+                </div>
+                <div class="hero-image"></div>
+            </div>
+        </section>
+
+        <!-- 特徴セクション -->
+        <section class="features-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <div class="section-title">Features</div>
+                    <div class="section-subtitle">サービスの特徴</div>
+                    <h2>Adoryのフィジカルチェックプログラムの特徴</h2>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="doctorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
+                                        <stop offset="100%" style="stop-color:#D41D00"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- 人物のシルエット -->
+                                <circle cx="30" cy="18" r="8" fill="url(#doctorGrad)"/>
+                                <path d="M15 35 Q30 30 45 35 L45 50 Q30 55 15 50 Z" fill="url(#doctorGrad)"/>
+                                <!-- 聴診器 -->
+                                <path d="M20 25 Q25 20 30 25" stroke="#FFF" stroke-width="2" fill="none"/>
+                                <circle cx="18" cy="27" r="2" fill="#FFF"/>
+                                <!-- 十字マーク -->
+                                <rect x="35" y="15" width="8" height="2" fill="#FFF"/>
+                                <rect x="38" y="12" width="2" height="8" fill="#FFF"/>
+                            </svg>
+                        </div>
+                        <h3>理学療法士による専門評価</h3>
+                        <p>国家資格を持つ理学療法士が、科学的根拠に基づいて評価を実施します</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="warningGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
+                                        <stop offset="100%" style="stop-color:#D41D00"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- 盾の形 -->
+                                <path d="M30 5 L45 12 L45 35 Q45 50 30 55 Q15 50 15 35 L15 12 Z" fill="url(#warningGrad)"/>
+                                <!-- チェックマーク -->
+                                <path d="M22 30 L27 35 L38 22" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                <!-- 小さな警告サイン -->
+                                <circle cx="45" cy="15" r="6" fill="#FFF"/>
+                                <text x="45" y="19" text-anchor="middle" fill="url(#warningGrad)" font-size="8" font-weight="bold">!</text>
+                            </svg>
+                        </div>
+                        <h3>労災リスクの早期発見</h3>
+                        <p>腰痛、肩こり、首の痛みなど潜在的リスクを事前に発見・予防します</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="productivityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
+                                        <stop offset="100%" style="stop-color:#D41D00"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- グラフの背景 -->
+                                <rect x="10" y="35" width="40" height="20" fill="url(#productivityGrad)" rx="2"/>
+                                <!-- 上昇する矢印とグラフ -->
+                                <path d="M15 45 L25 35 L35 40 L45 25" stroke="#FFF" stroke-width="3" fill="none"/>
+                                <path d="M40 15 L50 25 L45 25 L45 20 Z" fill="#FFF"/>
+                                <!-- 歯車アイコン -->
+                                <circle cx="25" cy="15" r="8" fill="none" stroke="url(#productivityGrad)" stroke-width="2"/>
+                                <circle cx="25" cy="15" r="4" fill="url(#productivityGrad)"/>
+                                <g transform="translate(25,15)">
+                                    <rect x="-1" y="-10" width="2" height="4" fill="url(#productivityGrad)"/>
+                                    <rect x="-1" y="6" width="2" height="4" fill="url(#productivityGrad)"/>
+                                    <rect x="6" y="-1" width="4" height="2" fill="url(#productivityGrad)"/>
+                                    <rect x="-10" y="-1" width="4" height="2" fill="url(#productivityGrad)"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <h3>生産性向上への貢献</h3>
+                        <p>従業員の健康保全により、企業の生産性向上に大きく貢献します</p>
+                    </div>
+                </div>
