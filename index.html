@@ -1111,7 +1111,7 @@
             lastScroll = currentScroll;
         });
 
-        // フォーム送信処理（Form Submit使用）
+        // フォーム送信処理（Web3Forms使用）
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             const submitBtn = this.querySelector('.submit-btn');
             
@@ -1120,7 +1120,7 @@
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.7';
             
-            // Form Submitが自動で処理するため、prevent defaultしない
+            // Web3Formsが自動で処理するため、prevent defaultしない
             // 送信後はthank-you.htmlに自動リダイレクト
         });
         
