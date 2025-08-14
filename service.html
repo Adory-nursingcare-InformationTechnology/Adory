@@ -706,6 +706,23 @@
                 font-size: 2rem;
             }
             
+            /* スマホ表示でのハイライトボックス改行なし */
+            .highlight-box p br {
+                display: none;
+            }
+            
+            /* スマホ表示での特徴セクションタイトル改行 */
+            .features-section h2::after {
+                content: '\A';
+                white-space: pre;
+            }
+            
+            /* スマホ表示でのサービスフローセクションタイトル改行 */
+            .flow-section h2::after {
+                content: '\A';
+                white-space: pre;
+            }
+            
             .flow-steps {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
