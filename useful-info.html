@@ -1030,7 +1030,7 @@
                 const href = this.getAttribute('href');
                 
                 // 外部ページへのリンクの場合はそのまま遷移
-                if (href === 'service.html') {
+                if (href === 'service.html' || href.includes('.html')) {
                     return; // デフォルトの動作（ページ遷移）を実行
                 }
                 
@@ -1042,6 +1042,9 @@
                     // アンカーリンクの場合はメインサイトの該当セクションへ遷移
                     e.preventDefault();
                     window.location.href = 'index.html' + href;
+                } else if (href.startsWith('index.html#')) {
+                    // index.html#... の場合はそのまま遷移
+                    return;
                 }
             });
         });
@@ -1049,14 +1052,24 @@
         // ナビゲーションリンクの処理
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
                 const href = this.getAttribute('href');
+                
+                // 外部ページへのリンクの場合はそのまま遷移
+                if (href === 'service.html' || href === 'useful-info.html' || href.includes('.html')) {
+                    return; // デフォルトの動作（ページ遷移）を実行
+                }
+                
                 if (href === '#information') {
                     // 現在のページなので何もしない
+                    e.preventDefault();
                     return;
-                } else {
-                    // メインサイトの該当セクションへ遷移
+                } else if (href.startsWith('#')) {
+                    // アンカーリンクの場合はメインサイトの該当セクションへ遷移
+                    e.preventDefault();
                     window.location.href = 'index.html' + href;
+                } else if (href.startsWith('index.html#')) {
+                    // index.html#... の場合はそのまま遷移
+                    return;
                 }
             });
         });
