@@ -709,18 +709,19 @@
                 display: none;
             }
             
-            /* スマホ表示での特徴セクションタイトル改行 */
-            .features-section .section-container h2::before {
-                content: 'Adoryのフィジカルヘルスケア\A for Businessの特徴';
-                white-space: pre-line;
-                display: block;
-                font-size: 1.5rem;
-                line-height: 1.4;
+            /* スマホ表示での改行制御 */
+            .mobile-br {
+                display: none;
             }
+            
+            /* スマホ表示での特徴セクションタイトル改行 */
             .features-section .section-container h2 {
-                text-indent: -9999px;
-                overflow: hidden;
-                height: auto;
+                font-size: 1.5rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .mobile-br {
+                display: inline;
             }
             
             /* スマホ表示でのサービスフローセクションタイトル改行 */
@@ -833,7 +834,7 @@
                 <div class="section-header">
                     <div class="section-title">Features</div>
                     <div class="section-subtitle">サービスの特徴</div>
-                    <h2>Adoryのフィジカルヘルスケア for Businessの特徴</h2>
+                    <h2>Adoryのフィジカルヘルスケア<br class="mobile-br"> for Businessの特徴</h2>
                 </div>
                 
                 <div class="features-grid">
