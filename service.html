@@ -707,20 +707,35 @@
             }
             
             /* スマホ表示でのハイライトボックス改行なし */
-            .highlight-box p br {
+            .highlight-box:nth-child(2) p br {
                 display: none;
             }
             
             /* スマホ表示での特徴セクションタイトル改行 */
-            .features-section h2::after {
-                content: '\A';
-                white-space: pre;
+            .features-section .section-container h2 {
+                line-height: 1.4;
+            }
+            .features-section .section-container h2::before {
+                content: 'Adoryのフィジカルヘルスケア\A for Businessの特徴';
+                white-space: pre-line;
+                display: block;
+            }
+            .features-section .section-container h2 {
+                font-size: 0;
             }
             
             /* スマホ表示でのサービスフローセクションタイトル改行 */
-            .flow-section h2::after {
-                content: '\A';
-                white-space: pre;
+            .flow-section .section-container h2 {
+                line-height: 1.4;
+            }
+            .flow-section .section-container h2::before {
+                content: 'フィジカルヘルスケア\A for Businessの流れ';
+                white-space: pre-line;
+                display: block;
+                font-size: 1.5rem;
+            }
+            .flow-section .section-container h2 {
+                font-size: 0;
             }
             
             .flow-steps {
