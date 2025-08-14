@@ -754,6 +754,16 @@
                 padding: 2.5rem 4%;
             }
         }
+    
+        /* フォーム送信ステータス */
+        .form-status { 
+            margin-top: 0.5rem; 
+            font-weight: 600; 
+            text-align: center;
+        }
+        .form-status.success { color: #2F8F4E; }
+        .form-status.error { color: #D41D00; }
+        .botcheck { display: none; }
     </style>
 </head>
 <body>
@@ -878,52 +888,56 @@
                 <div class="contact-content fade-in fade-in-delay-3">
                     <div class="contact-form-container">
                         <div class="contact-form-wrapper">
-                            <form class="contact-form" id="contactForm" action="https://formsubmit.co/takuya.honda@gmail.com" method="POST">
-                                <!-- Form Submit設定 -->
-                                <input type="hidden" name="_subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
-                                <input type="hidden" name="_next" value="https://adory-nursingcare-informationtechnology.github.io/Adory/">
-                                <input type="hidden" name="_autoresponse" value="お問い合わせありがとうございます。内容を確認の上、担当者よりご連絡いたします。">
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_template" value="table">
-                                
-                                <div class="form-group">
-                                    <label for="name">お名前 <span class="required">*</span></label>
-                                    <input type="text" id="name" name="name" required placeholder="山田 太郎">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="email">メールアドレス <span class="required">*</span></label>
-                                    <input type="email" id="email" name="email" required placeholder="info@example.com">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="company">会社名・施設名</label>
-                                    <input type="text" id="company" name="company" placeholder="○○介護施設">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="subject">お問い合わせ種別 <span class="required">*</span></label>
-                                    <select id="subject" name="inquiry_type" required>
-                                        <option value="">選択してください</option>
-                                        <option value="フィジカルヘルスケア for Business">フィジカルヘルスケア for Business</option>
-                                        <option value="その他">その他</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="message">お問い合わせ内容 <span class="required">*</span></label>
-                                    <textarea id="message" name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
-                                </div>
-                                
-                                <div class="form-group checkbox-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="privacy" name="privacy_agreed" required value="プライバシーポリシーに同意">
-                                        <span>プライバシーポリシーに同意する <span class="required">*</span></span>
-                                    </label>
-                                </div>
-                                
-                                <button type="submit" class="submit-btn">送信する</button>
-                            </form>
+                            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+    <!-- Web3Forms Required Fields -->
+    <input type="hidden" name="access_key" value="94ed97b3-ab0a-4e28-a6d4-ff1e5732f702">
+    <input type="hidden" name="from_name" value="Adory Website">
+    <input type="hidden" name="subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
+    <!-- Honeypot (should stay empty) -->
+    <input type="text" name="botcheck" class="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+    <!-- No-JS fallback redirect (JS handles inline success by default) -->
+    <input type="hidden" name="redirect" value="https://adory.co.jp/thank-you.html">
+
+    <div class="form-group">
+        <label for="name">お名前 <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required placeholder="山田 太郎">
+    </div>
+    
+    <div class="form-group">
+        <label for="email">メールアドレス <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="info@example.com">
+    </div>
+    
+    <div class="form-group">
+        <label for="company">会社名・施設名</label>
+        <input type="text" id="company" name="company" placeholder="○○介護施設">
+    </div>
+    
+    <div class="form-group">
+        <label for="subject-select">お問い合わせ種別 <span class="required">*</span></label>
+        <select id="subject-select" name="inquiry_type" required>
+            <option value="">選択してください</option>
+            <option value="フィジカルヘルスケア for Business">フィジカルヘルスケア for Business</option>
+            <option value="その他">その他</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+        <textarea id="message" name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+    </div>
+    
+    <div class="form-group checkbox-group">
+        <label class="checkbox-label" for="privacy">
+            <input type="checkbox" id="privacy" name="privacy_agreed" required value="プライバシーポリシーに同意">
+            <span>プライバシーポリシーに同意する <span class="required">*</span></span>
+        </label>
+    </div>
+
+    <div id="form-status" class="form-status" role="status" aria-live="polite" style="min-height:1.2em;"></div>
+    
+    <button type="submit" class="submit-btn">送信する</button>
+</form>
                         </div>
                     </div>
                     
@@ -1111,18 +1125,49 @@
             lastScroll = currentScroll;
         });
 
-        // フォーム送信処理（Web3Forms使用）
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            const submitBtn = this.querySelector('.submit-btn');
-            
-            // 送信ボタンの状態を変更
-            submitBtn.textContent = '送信中...';
-            submitBtn.disabled = true;
-            submitBtn.style.opacity = '0.7';
-            
-            // Web3Formsが自動で処理するため、prevent defaultしない
-            // 送信後はthank-you.htmlに自動リダイレクト
-        });
+        // フォーム送信処理（Web3Forms使用 / AJAX送信 + インライン結果表示）
+        (function() {
+            const form = document.getElementById('contactForm');
+            const statusEl = document.getElementById('form-status');
+            const submitBtn = form.querySelector('.submit-btn');
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // 送信ボタンの状態変更
+                submitBtn.textContent = '送信中...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                statusEl.className = 'form-status';
+                statusEl.textContent = '';
+
+                try {
+                    const formData = new FormData(form);
+
+                    const res = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    const data = await res.json();
+
+                    if (res.ok && data && (data.success === true || data.message)) {
+                        window.location.href = 'https://adory.co.jp/thank-you.html';
+                        return;
+                    } else {
+                        throw new Error((data && data.message) || '送信に失敗しました。しばらくしてから再度お試しください。');
+                    }
+                } catch (err) {
+                    statusEl.classList.add('error');
+                    statusEl.textContent = err.message || '送信に失敗しました。しばらくしてから再度お試しください。';
+                } finally {
+                    submitBtn.textContent = '送信する';
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                }
+            });
+        })();
         
         // スクロールアニメーション
         function handleScrollAnimation() {
