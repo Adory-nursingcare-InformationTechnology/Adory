@@ -1027,13 +1027,20 @@
         // フッターリンクの処理
         document.querySelectorAll('.footer-nav a').forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
                 const href = this.getAttribute('href');
+                
+                // 外部ページへのリンクの場合はそのまま遷移
+                if (href === 'service.html') {
+                    return; // デフォルトの動作（ページ遷移）を実行
+                }
+                
                 if (href === '#information') {
                     // 現在のページなので何もしない
+                    e.preventDefault();
                     return;
-                } else {
-                    // メインサイトの該当セクションへ遷移
+                } else if (href.startsWith('#')) {
+                    // アンカーリンクの場合はメインサイトの該当セクションへ遷移
+                    e.preventDefault();
                     window.location.href = 'index.html' + href;
                 }
             });
