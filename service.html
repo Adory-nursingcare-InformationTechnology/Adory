@@ -710,16 +710,17 @@
             }
             
             /* スマホ表示での特徴セクションタイトル改行 */
-            .features-section .section-container h2 {
-                line-height: 1.4;
-            }
             .features-section .section-container h2::before {
                 content: 'Adoryのフィジカルヘルスケア\A for Businessの特徴';
                 white-space: pre-line;
                 display: block;
+                font-size: 1.5rem;
+                line-height: 1.4;
             }
             .features-section .section-container h2 {
-                font-size: 0;
+                text-indent: -9999px;
+                overflow: hidden;
+                height: auto;
             }
             
             /* スマホ表示でのサービスフローセクションタイトル改行 */
