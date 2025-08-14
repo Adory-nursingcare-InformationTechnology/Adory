@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src * data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; form-action 'self' https://api.web3forms.com;">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Adory - 多様な人が自分らしく歩めるように、「人」の力でインフラを築く">
@@ -755,7 +754,22 @@
                 padding: 2.5rem 4%;
             }
         }
-    </style>
+    
+        /* フォーム送信ステータス */
+        .form-status { 
+            margin-top: 0.5rem; 
+            font-weight: 600; 
+            text-align: center;
+        }
+        .form-status.success { color: #2F8F4E; }
+        .form-status.error { color: #D41D00; }
+        .botcheck { display: none; }
+    
+.fade-in.in-view {
+  opacity: 1 !important;
+  transform: none !important;
+}
+</style>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -879,52 +893,56 @@
                 <div class="contact-content fade-in fade-in-delay-3">
                     <div class="contact-form-container">
                         <div class="contact-form-wrapper">
-                            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                                <!-- Form Submit設定 -->
-                                <input type="hidden" name="_subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
-                                <input type="hidden" name="_next" value="https://adory-nursingcare-informationtechnology.github.io/Adory/">
-                                <input type="hidden" name="_autoresponse" value="お問い合わせありがとうございます。内容を確認の上、担当者よりご連絡いたします。">
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_template" value="table">
-                                
-                                <div class="form-group">
-                                    <label for="name">お名前 <span class="required">*</span></label>
-                                    <input type="text" id="name" name="name" required placeholder="山田 太郎">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="email">メールアドレス <span class="required">*</span></label>
-                                    <input type="email" id="email" name="email" required placeholder="info@example.com">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="company">会社名・施設名</label>
-                                    <input type="text" id="company" name="company" placeholder="○○介護施設">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="subject">お問い合わせ種別 <span class="required">*</span></label>
-                                    <select id="subject" name="inquiry_type" required>
-                                        <option value="">選択してください</option>
-                                        <option value="フィジカルヘルスケア for Business">フィジカルヘルスケア for Business</option>
-                                        <option value="その他">その他</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="message">お問い合わせ内容 <span class="required">*</span></label>
-                                    <textarea id="message" name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
-                                </div>
-                                
-                                <div class="form-group checkbox-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="privacy" name="privacy_agreed" required value="プライバシーポリシーに同意">
-                                        <span>プライバシーポリシーに同意する <span class="required">*</span></span>
-                                    </label>
-                                </div>
-                                
-                                <button type="submit" class="submit-btn">送信する</button>
-                            </form>
+                            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+    <!-- Web3Forms Required Fields -->
+    <input type="hidden" name="access_key" value="94ed97b3-ab0a-4e28-a6d4-ff1e5732f702">
+    <input type="hidden" name="from_name" value="Adory Website">
+    <input type="hidden" name="subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
+    <!-- Honeypot (should stay empty) -->
+    <input type="text" name="botcheck" class="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+    <!-- No-JS fallback redirect (JS handles inline success by default) -->
+    <input type="hidden" name="redirect" value="https://adory.co.jp/thank-you.html">
+
+    <div class="form-group">
+        <label for="name">お名前 <span class="required">*</span></label>
+        <input type="text" id="name" name="name" required placeholder="山田 太郎">
+    </div>
+    
+    <div class="form-group">
+        <label for="email">メールアドレス <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required placeholder="info@example.com">
+    </div>
+    
+    <div class="form-group">
+        <label for="company">会社名・施設名</label>
+        <input type="text" id="company" name="company" placeholder="○○介護施設">
+    </div>
+    
+    <div class="form-group">
+        <label for="subject-select">お問い合わせ種別 <span class="required">*</span></label>
+        <select id="subject-select" name="inquiry_type" required>
+            <option value="">選択してください</option>
+            <option value="フィジカルヘルスケア for Business">フィジカルヘルスケア for Business</option>
+            <option value="その他">その他</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+        <textarea id="message" name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea>
+    </div>
+    
+    <div class="form-group checkbox-group">
+        <label class="checkbox-label" for="privacy">
+            <input type="checkbox" id="privacy" name="privacy_agreed" required value="プライバシーポリシーに同意">
+            <span>プライバシーポリシーに同意する <span class="required">*</span></span>
+        </label>
+    </div>
+
+    <div id="form-status" class="form-status" role="status" aria-live="polite" style="min-height:1.2em;"></div>
+    
+    <button type="submit" class="submit-btn">送信する</button>
+</form>
                         </div>
                     </div>
                     
@@ -1035,186 +1053,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        // ロゴクリックでホームに戻る
-        document.querySelector('.logo').addEventListener('click', function() {
-            document.querySelector('#home').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        });
-
-        // ハンバーガーメニューの動作
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
-
-        // ナビゲーションリンクの処理を更新
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                // 外部ページへのリンクの場合はそのまま遷移
-                if (href === 'service.html' || href === 'useful-info.html') {
-                    return; // デフォルトの動作（ページ遷移）を実行
-                }
-                
-                // アンカーリンクの場合はスムーススクロール
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // フッターリンクの処理を更新
-        document.querySelectorAll('.footer-section a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                // 外部ページへのリンクの場合はそのまま遷移
-                if (href === 'service.html' || href === 'useful-info.html') {
-                    return; // デフォルトの動作（ページ遷移）を実行
-                }
-                
-                // アンカーリンクの場合はスムーススクロール
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
-        });
-
-        // スクロール時のヘッダー処理
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            const header = document.querySelector('header');
-            
-            if (currentScroll > 100) {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
-            } else {
-                header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
-            }
-            
-            lastScroll = currentScroll;
-        });
-
-        // フォーム送信処理（Web3Forms使用）
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            const submitBtn = this.querySelector('.submit-btn');
-            
-            // 送信ボタンの状態を変更
-            submitBtn.textContent = '送信中...';
-            submitBtn.disabled = true;
-            submitBtn.style.opacity = '0.7';
-            
-            // Web3Formsが自動で処理するため、prevent defaultしない
-            // 送信後はthank-you.htmlに自動リダイレクト
-        });
-        
-        // スクロールアニメーション
-        function handleScrollAnimation() {
-            const elements = document.querySelectorAll('.fade-in');
-            const windowHeight = window.innerHeight;
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-        
-        // スクロールイベントとページ読み込み時にアニメーション実行
-        window.addEventListener('scroll', handleScrollAnimation);
-        window.addEventListener('load', handleScrollAnimation);
-        
-        // 地図の段階的フォールバック機能
-        function showMapFallback() {
-            console.log('Googleマップの読み込みに失敗しました');
-            document.getElementById('google-map').style.display = 'none';
-            tryOpenStreetMap();
-        }
-        
-        function tryOpenStreetMap() {
-            // OpenStreetMapを試行（簡易版）
-            const osmContainer = document.getElementById('openstreetmap');
-            osmContainer.style.display = 'block';
-            
-            // 簡易的なOpenStreetMap風の表示
-            const mapDiv = document.getElementById('leaflet-map');
-            mapDiv.innerHTML = `
-                <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #e8f5e8 25%, #f0f8f0 25%, #f0f8f0 50%, #e8f5e8 50%, #e8f5e8 75%, #f0f8f0 75%, #f0f8f0); background-size: 20px 20px; position: relative; display: flex; align-items: center; justify-content: center;">
-                    <div style="position: absolute; width: 90%; height: 80%; background: #f8f9fa; border-radius: 10px; border: 2px solid #ddd; opacity: 0.8;"></div>
-                    <div style="position: absolute; width: 24px; height: 24px; background: #D41D00; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 8px rgba(0,0,0,0.4); z-index: 2;"></div>
-                    <div style="position: absolute; bottom: 15px; background: rgba(255,255,255,0.95); padding: 0.8rem 1.5rem; border-radius: 8px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 3;">
-                        <p style="font-weight: bold; color: #D41D00; margin-bottom: 0.3rem; font-size: 0.9rem;">📍 株式会社Adory</p>
-                        <p style="font-size: 0.8rem; color: #666;">品川区荏原6-1-9 (西小山駅徒歩7分)</p>
-                    </div>
-                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9); padding: 0.5rem; border-radius: 5px; font-size: 0.7rem; color: #666;">代替地図表示</div>
-                </div>
-            `;
-            
-            // 3秒後に静的地図にフォールバック
-            setTimeout(() => {
-                osmContainer.style.display = 'none';
-                tryStaticMap();
-            }, 3000);
-        }
-        
-        function tryStaticMap() {
-            console.log('静的地図を表示します');
-            document.getElementById('static-map').style.display = 'block';
-            
-            // 5秒後に最終フォールバック
-            setTimeout(() => {
-                document.getElementById('static-map').style.display = 'none';
-                document.getElementById('map-fallback').style.display = 'block';
-            }, 5000);
-        }
-        
-        // 地図の読み込み確認
-        window.addEventListener('load', function() {
-            const iframe = document.getElementById('google-map');
-            
-            // iframe読み込み確認
-            iframe.addEventListener('load', function() {
-                console.log('Google Maps が正常に読み込まれました');
-            });
-            
-            iframe.addEventListener('error', showMapFallback);
-            
-            // 3秒後に読み込み状況をチェック
-            setTimeout(function() {
-                try {
-                    // iframe が表示されているかチェック
-                    const iframeRect = iframe.getBoundingClientRect();
-                    if (iframeRect.height === 0 || iframe.style.display === 'none') {
-                        console.log('地図が表示されていません。代替表示に切り替えます。');
-                        showMapFallback();
-                    }
-                } catch (e) {
-                    console.log('地図の状況確認中にエラーが発生しました:', e);
-                    showMapFallback();
-                }
-            }, 3000);
-        });
-    </script>
+    
 <script>
 (function(){
   const form = document.getElementById('contactForm');
@@ -1228,6 +1067,42 @@
     }
   });
 })();
+</script>
+<script>
+(function(){
+  var form = document.getElementById('contactForm');
+  if(!form) return;
+  var btn = form.querySelector('.submit-btn');
+  form.addEventListener('submit', function(){
+    if(btn){
+      btn.textContent = '送信中...';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+    }
+    // ここでは preventDefault しないので、ブラウザがそのままWeb3Formsへ遷移します。
+  });
+})();
+</script>
+
+<script>
+// スクロールで .fade-in を順次表示（トランジション維持）
+document.addEventListener('DOMContentLoaded', function(){
+  var targets = document.querySelectorAll('.fade-in');
+  if (!('IntersectionObserver' in window)) {
+    // フォールバック：古いブラウザは即時表示
+    targets.forEach(function(el){ el.classList.add('in-view'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries, observer){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px' });
+  targets.forEach(function(el){ io.observe(el); });
+});
 </script>
 </body>
 </html>
