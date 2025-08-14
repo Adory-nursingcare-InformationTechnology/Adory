@@ -754,17 +754,16 @@
                 padding: 2.5rem 4%;
             }
         }
-    
-        /* フォーム送信ステータス */
-        .form-status { 
-            margin-top: 0.5rem; 
-            font-weight: 600; 
-            text-align: center;
-        }
-        .form-status.success { color: #2F8F4E; }
-        .form-status.error { color: #D41D00; }
-        .botcheck { display: none; }
-    </style>
+    /* フォーム送信ステータス */
+.form-status { 
+    margin-top: 0.5rem; 
+    font-weight: 600; 
+    text-align: center;
+}
+.form-status.success { color: #2F8F4E; }
+.form-status.error { color: #D41D00; }
+.botcheck { display: none; }
+</style>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -895,7 +894,7 @@
     <input type="hidden" name="subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
     <!-- Honeypot (should stay empty) -->
     <input type="text" name="botcheck" class="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-    <!-- No-JS fallback redirect (JS handles inline success by default) -->
+    <!-- No-JS fallback redirect -->
     <input type="hidden" name="redirect" value="https://adory.co.jp/thank-you.html">
 
     <div class="form-group">
@@ -937,6 +936,10 @@
     <div id="form-status" class="form-status" role="status" aria-live="polite" style="min-height:1.2em;"></div>
     
     <button type="submit" class="submit-btn">送信する</button>
+
+    <noscript>
+        <p style="margin-top:.5rem;">JavaScriptが無効の場合、送信後は自動的にサンクスページへ遷移します。</p>
+    </noscript>
 </form>
                         </div>
                     </div>
@@ -1126,50 +1129,53 @@
         });
 
         // フォーム送信処理（Web3Forms使用 / AJAX送信 + インライン結果表示）
-        (function() {
-            const form = document.getElementById('contactForm');
-            const statusEl = document.getElementById('form-status');
-            const submitBtn = form.querySelector('.submit-btn');
+(function() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+    const statusEl = document.getElementById('form-status');
+    const submitBtn = form.querySelector('.submit-btn');
 
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-                // 送信ボタンの状態変更
-                submitBtn.textContent = '送信中...';
-                submitBtn.disabled = true;
-                submitBtn.style.opacity = '0.7';
-                statusEl.className = 'form-status';
-                statusEl.textContent = '';
+        // 送信ボタンの状態変更
+        submitBtn.textContent = '送信中...';
+        submitBtn.disabled = true; // will fix to lowercase later
+        submitBtn.style.opacity = '0.7';
+        if (statusEl) {
+            statusEl.className = 'form-status';
+            statusEl.textContent = '';
+        }
 
-                try {
-                    const formData = new FormData(form);
-
-                    const res = await fetch('https://api.web3forms.com/submit', {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
-                    });
-
-                    const data = await res.json();
-
-                    if (res.ok && data && (data.success === true || data.message)) {
-                        window.location.href = 'https://adory.co.jp/thank-you.html';
-                        return;
-                    } else {
-                        throw new Error((data && data.message) || '送信に失敗しました。しばらくしてから再度お試しください。');
-                    }
-                } catch (err) {
-                    statusEl.classList.add('error');
-                    statusEl.textContent = err.message || '送信に失敗しました。しばらくしてから再度お試しください。';
-                } finally {
-                    submitBtn.textContent = '送信する';
-                    submitBtn.disabled = false;
-                    submitBtn.style.opacity = '1';
-                }
+        try {
+            const formData = new FormData(form);
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
             });
-        })();
-        
-        // スクロールアニメーション
+            const data = await res.json();
+
+            if (res.ok && data && (data.success === true || data.message)) {
+                // 成功時はサンクスページへ遷移（JS有効時）
+                window.location.href = 'https://adory.co.jp/thank-you.html';
+                return;
+            } else {
+                throw new Error((data && data.message) || '送信に失敗しました。しばらくしてから再度お試しください。');
+            }
+        } catch (err) {
+            if (statusEl) {
+                statusEl.classList.add('error');
+                statusEl.textContent = err.message || '送信に失敗しました。しばらくしてから再度お試しください。';
+            }
+        } finally {
+            submitBtn.textContent = '送信する';
+            submitBtn.disabled = false; // will fix
+            submitBtn.style.opacity = '1';
+        }
+    });
+})();
+// スクロールアニメーション
         function handleScrollAnimation() {
             const elements = document.querySelectorAll('.fade-in');
             const windowHeight = window.innerHeight;
