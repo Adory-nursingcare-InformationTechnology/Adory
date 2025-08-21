@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>イベント実施レポート | 株式会社Adory</title>
+  <meta name="description" content="企業向けフィジカルケア施策の実施レポート。現場の様子や参加者の声、アンケート結果をご紹介します。">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color:#333; background:#fff; line-height:1.7;
+    }
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #D41D00, #FF9A3F);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: fixed; width:100%; top:0; z-index:1000;
+    }
+    nav {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1rem 5%; max-width:1400px; margin:0 auto;
+    }
+    .logo { font-weight:bold; font-size:1.5rem; color:#fff; text-decoration:none; letter-spacing:1px; }
+    .nav-menu { display:flex; list-style:none; gap:2rem; }
+    .nav-menu a { color:#fff; text-decoration:none; font-weight:500; padding:.5rem 1rem; border-radius:6px; }
+    .nav-menu a:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); transition:.3s; }
+    .cta-button {
+      background:#000; color:#fff; padding:.9rem 2rem; border-radius:25px; text-decoration:none; font-weight:bold;
+      box-shadow: 0 3px 10px rgba(0,0,0,.2);
+    }
+    .hamburger { display:none; flex-direction:column; cursor:pointer; }
+    .hamburger span { width:25px; height:3px; background:#fff; margin:3px 0; }
+    /* Main */
+    main { margin-top:80px; padding:4rem 5% 3rem; max-width:1200px; margin-left:auto; margin-right:auto; }
+    .page-header {
+      text-align:center; margin-bottom:3rem; padding:2.5rem 1rem;
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      border-radius:20px; box-shadow: 0 5px 15px rgba(0,0,0,.05);
+    }
+    .page-title {
+      font-size:2.4rem; font-weight:800;
+      background: linear-gradient(135deg, #D41D00, #FF9A3F);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      margin-bottom:1rem;
+    }
+    .page-description { color:#666; max-width:900px; margin:0 auto; }
+    /* Grid */
+    .report-grid {
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap:2rem;
+    }
+    /* Card */
+    .report-card {
+      background:#fff; border-radius:16px; overflow:hidden; border:1px solid #eee;
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+      transition: transform .25s ease, box-shadow .25s ease; position:relative;
+    }
+    .report-card:hover { transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,0,0,.12); }
+    .thumbnail {
+      height:180px; background: linear-gradient(135deg, #FF9A3F, #D41D00);
+      display:flex; align-items:center; justify-content:center; padding:1rem;
+    }
+    .thumbnail img {
+      max-height:130px; max-width:100%; object-fit:contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,.15));
+      background:#fff; padding:10px; border-radius:12px;
+    }
+    .card-content { padding:1.5rem; }
+    .card-title { font-size:1.05rem; font-weight:800; line-height:1.5; margin-bottom:.6rem; }
+    .card-meta { font-size:.9rem; color:#888; display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:.8rem; }
+    .card-excerpt { font-size:.95rem; color:#555; }
+    .toggle-area {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-top:1rem; padding-top:.8rem; border-top:1px solid #f0f0f0;
+    }
+    .toggle-btn {
+      background: transparent; border:none; color:#D41D00; font-weight:700; cursor:pointer;
+      display:inline-flex; align-items:center; gap:.4rem; padding:.6rem 0;
+    }
+    .toggle-btn:focus { outline:2px solid #FF9A3F; outline-offset:2px; border-radius:6px; }
+    .chev { transition: transform .25s ease; }
+    .toggle-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+    /* Detail (collapsible) */
+    .report-detail {
+      border-top:1px solid #f5f5f5; max-height:0; overflow:hidden; transition:max-height .5s ease;
+    }
+    .report-detail-inner { padding:1.2rem 1.5rem 1.6rem; }
+    .detail-heading { font-size:1.1rem; font-weight:800; margin-bottom:.6rem; color:#D41D00; }
+    .detail-block { margin-bottom:1.2rem; }
+    .detail-block h4 { font-size:1rem; margin-bottom:.4rem; }
+    .gallery { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:.8rem; margin-top:.6rem; }
+    .gallery img { width:100%; height:160px; object-fit:cover; border-radius:10px; background:#f2f2f2; }
+    .bullet { margin-left:1em; }
+    .cta-inline {
+      margin-top:1rem; display:flex; gap:.8rem; flex-wrap:wrap;
+    }
+    .cta-link {
+      display:inline-block; padding:.7rem 1.2rem; background:linear-gradient(135deg,#D41D00,#FF9A3F);
+      color:#fff; text-decoration:none; border-radius:24px; font-weight:700;
+      box-shadow: 0 8px 20px rgba(212,29,0,.25);
+    }
+    /* Footer */
+    .page-footer {
+      margin-top:3rem; padding:2.5rem 0 2rem; text-align:center; border-top:1px solid #e0e0e0; background:#f8f9fa;
+    }
+    .footer-nav { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .footer-nav a { color:#666; text-decoration:none; font-weight:500; }
+    .footer-nav a:hover { color:#FF9A3F; }
+    .footer-copy { color:#999; font-size:.9rem; }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .logo { font-size:1.2rem; }
+      .nav-menu { display:none; position:absolute; top:100%; left:0; width:100%;
+        background: linear-gradient(135deg, #D41D00, #FF9A3F); flex-direction:column; padding:1rem; }
+      .nav-menu.active { display:flex; }
+      .hamburger { display:flex; }
+      main { padding:3rem 4% 2rem; }
+      .thumbnail { height:160px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">株式会社Adory</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#about">会社概要</a></li>
+        <li><a href="service.html">サービス概要</a></li>
+        <li><a href="useful-info.html">お役立ち情報</a></li>
+        <li><a href="event-report.html" class="active">イベント実施レポート</a></li>
+      </ul>
+      <a href="index.html#contact" class="cta-button">お問い合わせ</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <h1 class="page-title">イベント実施レポート</h1>
+      <p class="page-description">各企業様で実施したフィジカルチェックの体験イベント・導入事例をご紹介します。</p>
+    </section>
+
+    <section aria-label="レポート一覧" class="report-grid">
+
+      <!-- Report Card: 株式会社CrushOn -->
+      <article class="report-card" id="report-crushon">
+        <div class="thumbnail" aria-hidden="true">
+  <img src="thumb-crushon.png" alt="CrushOn イベントサムネイル">
+</div>
+        <div class="card-content">
+          <h3 class="card-title">【イベント体験レポート】株式会社CrushOn様にて「体力測定 &amp; 姿勢評価体験イベント」を開催！</h3>
+          <div class="card-meta">
+            <span>社名：株式会社CrushOn</span>
+            <span>業種：広告代理店</span>
+            <span>参加者：8名（20代～30代中心）</span>
+            <span>URL：<a href="https://crushon.co.jp/" target="_blank" rel="noopener">https://crushon.co.jp/</a></span>
+</div>
+          <div class="toggle-area">
+  <button class="toggle-btn" aria-expanded="false" aria-controls="detail-crushon">詳しく見る <span class="chev">▼</span></button>
+  <a class="cta-link" href="https://crushon.co.jp/" target="_blank" rel="noopener noreferrer">企業サイトへ</a>
+</div>
+        </div>
+
+        <div class="report-detail" id="detail-crushon" role="region" aria-labelledby="report-crushon">
+          <div class="report-detail-inner">
+            <div class="detail-block">
+              <div class="detail-heading">開催概要</div>
+              <p>2025年8月19日、株式会社CrushOn本社にて、従業員の皆さま向けに身体のコンディションチェックイベントを開催しました。</p>
+              <ul class="bullet">
+                <li>テーマ：「自分の身体を知る」</li>
+                <li>参加者：8名（20〜30代、デスクワーク中心）</li>
+                <li>イベント時間：2時間半</li>
+                <li>理学療法士：1名</li>
+              </ul>
+            </div>
+
+            <div class="detail-block">
+              <h4>🤸‍♂️ 体験内容</h4>
+              <p><strong>✅ 体力測定 &amp; 姿勢評価（全体実施）</strong><br>
+              日常生活や業務で偏りがちな身体の使い方や姿勢をチェック。「慢性的な腰痛」「姿勢のクセ」などの悩みに対し、専門家が1人ひとりに具体的な改善アドバイスを行いました。</p>
+              <p><strong>✅ Body Navigation（施術／3名参加）</strong><br>
+              希望者には理学療法士による約20分間の施術を実施。身体のゆがみ・可動域の改善に加えて、自宅でできるセルフケア指導も行いました。</p>
+            </div>
+
+            <div class="detail-block">
+              <h4>📸 実施の様子</h4>
+              <div class="gallery">
+                <img src="crushon-01.jpg" alt="イベント実施の様子1">
+                <img src="crushon-02.jpg" alt="イベント実施の様子2">
+                <img src="crushon-03.jpg" alt="イベント実施の様子3">
+              </div>
+            </div>
+
+            <div class="detail-block">
+              <h4>📊 体験アンケート結果</h4>
+              <ul class="bullet">
+                <li><strong>生活や運動習慣を変えてみようと思いましたか？</strong><br>→ 約75％が「ややそう思う」。</li>
+                <li><strong>Body Navigationで“身体面の気づき”はありましたか？</strong><br>→ 全員が「ややあった」。</li>
+                <li><strong>今後このような機会を定期的に実施してほしいですか？</strong><br>→ 約75％が「やや興味がある」。</li>
+              </ul>
+            </div>
+
+            <div class="detail-block">
+              <h4>🗣️ 参加者の声</h4>
+              <ul class="bullet">
+                <li>「普段の姿勢の癖が分かるとともに、今後のリスクを知れた」</li>
+                <li>「施術後、自宅でもできるセルフケアを教えてもらえたのがありがたい」</li>
+                <li>「腰痛の原因が分かり、改善のヒントが得られた」</li>
+              </ul>
+            </div>
+
+            <div class="detail-block">
+              <h4>📝 まとめと今後の展望</h4>
+              <p>本イベントでは「体を知る → 気づく → 行動が変わる」というプロセスを設計。若手社員中心ながら、全員が何らかの気づきを得ており、7割以上が“生活改善”に前向きな意識変化を感じられました。短時間でも、専門的かつ個別性の高いフィードバックによって、企業内での健康リテラシーの底上げにつながるきっかけづくりが可能です。</p>
+            </div>
+
+            <div class="detail-block">
+              <h4>🔎 このような企業様におすすめ！</h4>
+              <ul class="bullet">
+                <li>オフィスワーク中心で肩こり・腰痛が頻発</li>
+                <li>福利厚生の一環で “実感を持てる” 体験型施策を探している</li>
+                <li>月額サブスクではなく、単発で気軽に導入したい</li>
+                <li>建設・小売・介護・物流など、立ち仕事/移動が多い職種でフィジカルケアを強化したい</li>
+              </ul>
+            </div>
+
+            <div class="detail-block">
+              <h4>🚀 導入までの流れ（例）</h4>
+              <ol class="bullet">
+                <li>実施希望日・時間を調整（1日単位～相談可）</li>
+                <li>会議室などのスペースをご用意いただくだけ</li>
+                <li>専門スタッフがオフィスに出張して測定・施術を実施</li>
+                <li>結果報告・アンケートレポートのご提出も可能</li>
+                <li>オンライン相談・伴走支援で本質的な「痛み」改善も相談可能</li>
+              </ol>
+            </div>
+
+            <div class="detail-block">
+              <h4>💰 導入費用（例）</h4>
+              <p>体力測定＋姿勢評価＋施術コース：<strong>1人あたり9,000円〜</strong>（内容・人数・業界に応じて変動可能）<br>
+              個人の身体に合わせたレポートは<strong>無料</strong>です。</p>
+            </div>
+
+            <div class="detail-block">
+  <h4>📩 お問い合わせ・資料請求はこちらから</h4>
+  <div class="cta-inline">
+    <a class="cta-link" href="index.html#contact" target="_blank" rel="noopener">お問い合わせ・資料請求はこちら</a>
+  </div>
+  <p>1日からの実施・出張対応も可能です。</p>
+  <p>ご希望の企業様はお気軽にお問い合わせください！</p>
+</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 以降、カードを複製して追記可能（logo.png / テキスト差替え） -->
+
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <nav class="footer-nav">
+      <a href="index.html#about">会社概要</a>
+      <a href="service.html">サービス概要</a>
+      <a href="useful-info.html">お役立ち情報</a>
+      <a href="index.html#contact">お問い合わせ</a>
+      <a href="event-report.html">イベント実施レポート</a>
+    </nav>
+    <p class="footer-copy">© 2025 株式会社Adory. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // hamburger
+    document.getElementById('hamburger').addEventListener('click', function(){
+      document.getElementById('navMenu').classList.toggle('active');
+    });
+
+    // toggle detail
+    function setupToggles() {
+      document.querySelectorAll('.report-card').forEach(function(card){
+        var btn = card.querySelector('.toggle-btn');
+        var detail = card.querySelector('.report-detail');
+        if(!btn || !detail) return;
+
+        btn.addEventListener('click', function(){
+          var expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          if (!expanded) {
+            // open
+            detail.style.maxHeight = detail.scrollHeight + 'px';
+          } else {
+            // close
+            detail.style.maxHeight = 0;
+          }
+        });
+
+        // 初期は閉じる
+        detail.style.maxHeight = 0;
+      });
+    }
+
+    // smooth open on hash (optional future use)
+    function openByHash() {
+      var id = location.hash && location.hash.slice(1);
+      if(!id) return;
+      var card = document.getElementById(id);
+      if(!card) return;
+      var btn = card.querySelector('.toggle-btn');
+      if(btn) btn.click();
+      card.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      setupToggles();
+      openByHash();
+    });
+  </script>
+</body>
+</html>
