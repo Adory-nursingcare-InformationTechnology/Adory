@@ -60,7 +60,7 @@
     .hero-product-name ruby{ruby-align:center}
     .hero-product-name rt{font-family:var(--font-jp);font-size:.2em;font-weight:500;-webkit-text-fill-color:var(--text-muted);color:var(--text-muted);letter-spacing:0;ruby-align:center}
     .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,29,0,.08);border:1px solid rgba(212,29,0,.15);border-radius:999px;padding:.4rem 1rem;font-size:.82rem;font-weight:700;color:var(--red);margin-bottom:1.5rem;animation:fadeSlideIn .8s .2s both}
-    .hero-title{font-size:1.8rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
+    .hero-title{font-size:1.65rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
     .hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .hero-desc{font-size:1.05rem;color:var(--text-light);line-height:1.9;margin-bottom:2rem;animation:fadeSlideIn .8s .6s both}
     .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeSlideIn .8s .8s both}
@@ -79,7 +79,7 @@
 
     .problems-section{padding:6rem 5%;background:var(--bg)}
     .problems-wrap{max-width:var(--max-w);margin:0 auto}
-    .problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;row-gap:2rem}
     .problem-card-img{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative}
     .problem-card-img:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
     .problem-card-photo{width:100%;height:200px;overflow:hidden}
@@ -129,6 +129,19 @@
     .rbac-role.exec{background:rgba(212,29,0,.1);color:var(--red)}.rbac-role.hr{background:rgba(255,154,63,.15);color:#b86e00}.rbac-role.worker{background:rgba(40,167,69,.1);color:#28a745}
     .rbac-desc{font-size:.72rem;color:var(--text-light)}
 
+    .industry-section{padding:6rem 5%;background:var(--bg)}
+    .industry-wrap{max-width:var(--max-w);margin:0 auto}
+    .industry-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .industry-table{width:100%;border-collapse:collapse;font-size:.9rem;max-width:900px;margin:0 auto}
+    .industry-table thead th{background:var(--gradient);color:#fff;font-weight:700;padding:.9rem 1.2rem;white-space:nowrap;font-size:.85rem}
+    .industry-table thead th:first-child{border-radius:var(--radius-sm) 0 0 0;width:140px}
+    .industry-table thead th:last-child{border-radius:0 var(--radius-sm) 0 0}
+    .industry-table tbody td{padding:.8rem 1.2rem;border-bottom:1px solid #eee;color:var(--text)}
+    .industry-table tbody td:first-child{font-weight:700;color:var(--dark);background:rgba(212,29,0,.04);white-space:nowrap}
+    .industry-table tbody tr:hover{background:var(--bg-warm)}
+    .industry-table tbody tr:last-child td:first-child{border-radius:0 0 0 var(--radius-sm)}
+    .industry-table tbody tr:last-child td:last-child{border-radius:0 0 var(--radius-sm) 0}
+
     .pricing-section{padding:6rem 5%;background:var(--bg-section)}
     .pricing-wrap{max-width:var(--max-w);margin:0 auto}
     .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto}
@@ -149,13 +162,13 @@
 
     .dashboard-section{padding:6rem 5%;background:var(--bg)}
     .dashboard-wrap{max-width:var(--max-w);margin:0 auto}
-    .dashboard-overlap{display:flex;align-items:center;justify-content:center;margin:0 auto;max-width:1000px}
-    .dashboard-overlap-card{flex:0 0 36%;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s;position:relative;margin-left:-2%}
-    .dashboard-overlap-card:first-child{margin-left:0;z-index:3}
-    .dashboard-overlap-card:nth-child(2){z-index:2}
-    .dashboard-overlap-card:last-child{z-index:1}
+    .dashboard-overlap{position:relative;height:420px;max-width:900px;margin:0 auto}
+    .dashboard-overlap-card{position:absolute;width:55%;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
     .dashboard-overlap-card img{width:100%;display:block}
-    .dashboard-overlap-card:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 25px 60px rgba(0,0,0,.15);z-index:10}
+    .dashboard-overlap-card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 25px 60px rgba(0,0,0,.18);z-index:10}
+    .dashboard-overlap-card:nth-child(1){top:0;left:0;z-index:3}
+    .dashboard-overlap-card:nth-child(2){top:50px;left:50%;transform:translateX(-50%);z-index:2}
+    .dashboard-overlap-card:nth-child(3){top:100px;right:0;z-index:1}
 
     .pricing-table-wrap{max-width:900px;margin-left:auto;margin-right:auto}
     .pricing-table-title{text-align:center;font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:1.5rem}
@@ -215,9 +228,9 @@
       .hero{min-height:auto;padding:7rem 5% 4rem}.hero-title{font-size:1.4rem}.section-title{font-size:1.5rem}
       .hero-product-name{font-size:2.5rem}
       .br-desktop{display:none}
-      .problems-grid{grid-template-columns:1fr}.flow-steps{grid-template-columns:1fr 1fr}
-      .dashboard-overlap{flex-direction:column;gap:1.5rem}
-      .dashboard-overlap-card{flex:none;width:100%;margin-left:0}
+      .problems-grid{grid-template-columns:repeat(2,1fr)}.flow-steps{grid-template-columns:1fr 1fr}
+      .dashboard-overlap{height:auto;display:flex;flex-direction:column;gap:1.5rem}
+      .dashboard-overlap-card{position:static;width:100%;transform:none!important}
       .pricing-grid{grid-template-columns:1fr;max-width:400px}
       .footer-inner{grid-template-columns:1fr;gap:2rem;text-align:center}
     }
@@ -225,6 +238,7 @@
       .hero-title{font-size:1.2rem}.hero-actions{flex-direction:column;align-items:center}
       .hero-actions a{width:100%;text-align:center;justify-content:center}
       .flow-steps{grid-template-columns:1fr}.ux-flow{flex-direction:column}.hybrid-cards{grid-template-columns:1fr}
+      .problems-grid{grid-template-columns:1fr}
     }
 
     .page-loader{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
@@ -260,7 +274,7 @@
           <div class="hero-product-name"><ruby>Adory<rp>(</rp><rt>アドリー</rt><rp>)</rp></ruby></div>
           <div class="hero-badge">&#x1F680; 2026年3月 ローンチ予定</div>
           <h1 class="hero-title">現場の<span class="accent">離職・労災</span>を未然に防ぐ、<br class="br-desktop">現場特化の<span class="accent">痛み可視化SaaS</span></h1>
-          <p class="hero-desc">身体が資本のブルーワーカーの「痛み」をデータで可視化し、労災・離職リスクを最小化。<br class="br-desktop">週1回のLINE回答と、週1回のプロによる現場ケアを組み合わせた、<br class="br-desktop">日本唯一の現場特化型ヘルスケアSaaS「Adory（アドリー）」。</p>
+          <p class="hero-desc">身体が資本の現場（建設・物流・運送・介護・警備・小売など）で働く人の「痛み」をデータで可視化し、労災・離職リスクを最小化。<br class="br-desktop">週1回のLINE回答と、週1回のプロによる現場ケアを組み合わせた、<br class="br-desktop">日本唯一の現場特化型ヘルスケアSaaS「Adory（アドリー）」。</p>
           <div class="hero-actions">
             <a href="index.html#contact" class="btn-primary">資料請求・お問い合わせ &#8594;</a>
             <a href="#features" class="btn-outline">サービス詳細を見る</a>
@@ -278,7 +292,7 @@
       <div class="problems-wrap">
         <div class="section-header reveal">
           <div class="section-label">Problems</div>
-          <h2 class="section-title">現場の「身体」を、個人任せにしていませんか？</h2>
+          <h2 class="section-title">こんな課題、ありませんか？</h2>
         </div>
         <div class="problems-grid">
           <div class="problem-card-img reveal reveal-delay-1">
@@ -295,6 +309,21 @@
             <div class="problem-card-photo"><img src="images/problem-risk.png" alt="採用力の低下"></div>
             <h3>採用力の低下</h3>
             <p>「身体を酷使する仕事」というイメージが、若手の採用を阻んでいる。</p>
+          </div>
+          <div class="problem-card-img reveal reveal-delay-1">
+            <div class="problem-card-photo"><img src="images/problem-construction.png" alt="建設・運送の課題"></div>
+            <h3>建設・運送</h3>
+            <p>重い荷物や無理な体勢による腰痛・関節痛を、職人が隠して働いている。</p>
+          </div>
+          <div class="problem-card-img reveal reveal-delay-2">
+            <div class="problem-card-photo"><img src="images/problem-care-retail.png" alt="介護・小売の課題"></div>
+            <h3>介護・小売</h3>
+            <p>長時間の立ち仕事や移乗介助による身体の限界が、突然の離職に繋がっている。</p>
+          </div>
+          <div class="problem-card-img reveal reveal-delay-3">
+            <div class="problem-card-photo"><img src="images/problem-security.png" alt="警備の課題"></div>
+            <h3>警備</h3>
+            <p>夜勤や立ちっぱなしの疲労が、集中力低下と事故のリスクを高めている。</p>
           </div>
         </div>
       </div>
@@ -329,6 +358,32 @@
           <div class="feature-visual">
             <img src="images/feature-rbac.png" alt="RBAC権限設計の概念図" style="width:100%;border-radius:var(--radius-sm);display:block">
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="industry-section">
+      <div class="industry-wrap">
+        <div class="section-header reveal">
+          <div class="section-label">Use Cases</div>
+          <h2 class="section-title">Adoryは以下の業種の課題を解決します</h2>
+        </div>
+        <div class="industry-table-scroll reveal">
+          <table class="industry-table">
+            <thead>
+              <tr>
+                <th>業種</th>
+                <th>Adoryが解決する具体的な痛み</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>建設・建築</td><td>高所作業や重機操作に伴う事故リスク、ベテランの腰痛による引退</td></tr>
+              <tr><td>物流・運送</td><td>積み下ろしによる身体への蓄積疲労、ドライバーの健康起因事故</td></tr>
+              <tr><td>介護・医療</td><td>移乗介助による腰痛の慢性化、精神的・肉体的な疲労による離職</td></tr>
+              <tr><td>警備・清掃</td><td>深夜帯のパフォーマンス低下、慢性的な立ち仕事による下半身の不調</td></tr>
+              <tr><td>小売・製造</td><td>長時間のレジ打ち・ライン作業による腱鞘炎、スタッフの欠勤防止</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
