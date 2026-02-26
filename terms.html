@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="利用規約 - 株式会社Adory">
+  <title>利用規約 | 株式会社Adory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--red:#D41D00;--orange:#FF9A3F;--gradient:linear-gradient(135deg,#D41D00,#FF9A3F);--gradient-soft:linear-gradient(135deg,#fff5f0,#ffe8d6);--dark:#1a1a1a;--text:#333;--text-light:#666;--text-muted:#999;--bg:#fff;--bg-warm:#FFFAF7;--bg-section:#FBF8F6;--shadow-sm:0 2px 8px rgba(0,0,0,.06);--shadow-md:0 8px 30px rgba(0,0,0,.08);--shadow-lg:0 20px 60px rgba(0,0,0,.1);--shadow-glow:0 8px 40px rgba(212,29,0,.15);--radius:20px;--radius-sm:12px;--max-w:1200px;--font-jp:'Noto Sans JP',sans-serif;--font-en:'Outfit',sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    body{font-family:var(--font-jp);color:var(--text);line-height:1.8;background:var(--bg);overflow-x:hidden}
+    img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul,ol{list-style:none;padding:0}
+
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s,background .3s}
+    header.scrolled{background:rgba(255,255,255,.95);box-shadow:0 4px 30px rgba(0,0,0,.08)}
+    nav{max-width:var(--max-w);margin:0 auto;padding:.9rem 5%;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:var(--font-en);font-weight:800;font-size:1.6rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;cursor:pointer;transition:transform .3s}
+    .logo:hover{transform:scale(1.03)}
+    .nav-menu{display:flex;gap:.3rem;align-items:center}
+    .nav-menu a{font-size:.88rem;font-weight:500;color:var(--text);padding:.5rem .9rem;border-radius:999px;transition:background .3s,color .3s;white-space:nowrap}
+    .nav-menu a:hover{background:var(--gradient-soft);color:var(--red)}
+    .nav-cta{background:var(--gradient)!important;color:#fff!important;padding:.6rem 1.4rem!important;font-weight:700!important;box-shadow:var(--shadow-glow);position:relative;overflow:hidden}
+    .nav-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:navCtaShimmer 3s ease-in-out infinite}
+    @keyframes navCtaShimmer{0%,100%{left:-100%}50%{left:120%}}
+    .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 12px 40px rgba(212,29,0,.25)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1001}
+    .hamburger span{width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    .page-hero{padding:7rem 5% 3rem;text-align:center;background:var(--bg-warm);position:relative;overflow:hidden}
+    .page-hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(100px);opacity:.1;background:var(--red);top:-300px;right:-200px}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    .section-label{font-family:var(--font-en);font-size:.85rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem;position:relative;z-index:1;animation:fadeSlideIn .8s .1s both}
+    .section-title{font-size:2rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:.6rem;position:relative;z-index:1;animation:fadeSlideIn .8s .3s both}
+    .section-sub{font-size:.95rem;color:var(--text-light);position:relative;z-index:1;animation:fadeSlideIn .8s .5s both}
+
+    .legal-section{padding:4rem 5% 6rem;background:var(--bg)}
+    .legal-wrap{max-width:800px;margin:0 auto}
+    .legal-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);padding:3rem;position:relative;overflow:hidden}
+    .legal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+    .legal-updated{font-size:.85rem;color:var(--text-muted);margin-bottom:2rem;text-align:right}
+
+    .legal-card h2{font-size:1.1rem;font-weight:800;color:var(--dark);margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--bg-section);position:relative}
+    .legal-card h2::after{content:'';position:absolute;bottom:-2px;left:0;width:60px;height:2px;background:var(--gradient)}
+    .legal-card h2:first-of-type{margin-top:0}
+    .legal-card p{font-size:.9rem;color:var(--text-light);margin-bottom:.8rem}
+    .legal-card ul{margin-bottom:1rem}
+    .legal-card li{position:relative;padding-left:1.2rem;margin-bottom:.4rem;font-size:.9rem;color:var(--text-light)}
+    .legal-card li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gradient);position:absolute;left:0;top:.65rem}
+    .legal-card ol{counter-reset:legal;margin-bottom:1rem}
+    .legal-card ol li{counter-increment:legal;padding-left:1.6rem}
+    .legal-card ol li::before{content:counter(legal)'.';position:absolute;left:0;font-weight:700;color:var(--red);background:none;width:auto;height:auto;border-radius:0}
+
+    footer{background:rgba(255,255,255,.95);color:var(--text);padding:4rem 5% 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(0,0,0,.06)}
+    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+    .footer-brand .footer-logo{font-family:var(--font-en);font-size:1.5rem;font-weight:800;margin-bottom:1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .footer-brand p{font-size:.9rem;color:var(--text-light);line-height:1.8}
+    .footer-col h4{font-size:.82rem;font-family:var(--font-en);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem}
+    .footer-col a{display:block;font-size:.9rem;color:var(--text-light);padding:.3rem 0;transition:color .3s,padding-left .3s}
+    .footer-col a:hover{color:var(--red);padding-left:.3rem}
+    .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,.06);font-size:.82rem;color:var(--text-muted)}
+    .footer-bottom-links{margin-bottom:.8rem}
+    .footer-bottom-links a{color:var(--text-muted);margin:0 .8rem;transition:color .3s}
+    .footer-bottom-links a:hover{color:var(--red)}
+
+    .scroll-top{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s;z-index:999}
+    .scroll-top.show{opacity:1;transform:translateY(0)}.scroll-top:hover{transform:translateY(-4px) scale(1.1)}
+
+    body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+    @media(max-width:768px){
+      .nav-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;align-items:center;gap:.5rem;z-index:999}
+      .nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}
+      .hamburger{display:flex;z-index:1001}
+      .legal-card{padding:2rem 1.5rem}
+      .footer-inner{grid-template-columns:1fr;gap:2rem;text-align:center}
+      .section-title{font-size:1.5rem}
+    }
+  </style>
+</head>
+<body>
+  <button class="scroll-top" id="scrollTop" aria-label="Top">&#8593;</button>
+
+  <header id="header">
+    <nav>
+      <a href="index.html" class="logo">Adory</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html#about">会社概要</a></li>
+        <li><a href="service.html">サービス概要</a></li>
+        <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
+        <li><a href="event-report.html">イベント実施レポート</a></li>
+        <li><a href="index.html#contact" class="nav-cta">お問い合わせ</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="section-label">Terms of Service</div>
+      <h1 class="section-title">利用規約</h1>
+      <p class="section-sub">株式会社Adory（以下「当社」）が提供するサービスのご利用条件です。</p>
+    </section>
+
+    <section class="legal-section">
+      <div class="legal-wrap">
+        <div class="legal-card reveal">
+          <p class="legal-updated">最終更新日：2025年4月14日</p>
+
+          <h2>第1条（適用）</h2>
+          <p>本規約は、当社が提供するすべてのサービス（以下「本サービス」）の利用条件を定めるものです。利用者は、本規約に同意の上、本サービスをご利用いただくものとします。</p>
+
+          <h2>第2条（利用登録）</h2>
+          <p>本サービスの利用にあたり、当社が定める方法によって利用登録を申請し、当社がこれを承認した時点で利用登録が完了するものとします。当社は、以下の場合に利用登録を拒否することがあります。</p>
+          <ul>
+            <li>申請内容に虚偽があった場合</li>
+            <li>過去に本規約に違反したことがある場合</li>
+            <li>その他、当社が利用登録を適当でないと判断した場合</li>
+          </ul>
+
+          <h2>第3条（禁止事項）</h2>
+          <p>利用者は、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
+          <ul>
+            <li>法令または公序良俗に違反する行為</li>
+            <li>犯罪行為に関連する行為</li>
+            <li>当社のサーバーまたはネットワークの機能を妨害する行為</li>
+            <li>当社のサービスの運営を妨害するおそれのある行為</li>
+            <li>他の利用者に関する個人情報等を収集または蓄積する行為</li>
+            <li>不正アクセスをし、またはこれを試みる行為</li>
+            <li>他の利用者に成りすます行為</li>
+            <li>当社のサービスに関連して、反社会的勢力に対して直接的または間接的に利益を供与する行為</li>
+            <li>当社、本サービスの他の利用者またはその他の第三者の知的財産権、肖像権、プライバシー、名誉その他の権利または利益を侵害する行為</li>
+            <li>その他、当社が不適切と判断する行為</li>
+          </ul>
+
+          <h2>第4条（本サービスの提供の停止等）</h2>
+          <p>当社は、以下のいずれかの事由があると判断した場合、利用者に事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。</p>
+          <ul>
+            <li>本サービスにかかるコンピュータシステムの保守点検または更新を行う場合</li>
+            <li>地震、落雷、火災、停電または天災などの不可抗力により、本サービスの提供が困難となった場合</li>
+            <li>コンピュータまたは通信回線等が事故により停止した場合</li>
+            <li>その他、当社が本サービスの提供が困難と判断した場合</li>
+          </ul>
+
+          <h2>第5条（知的財産権）</h2>
+          <p>本サービスに関する知的財産権はすべて当社または当社にライセンスを許諾している者に帰属します。本規約に基づく本サービスの利用許諾は、本サービスに関する当社または当社にライセンスを許諾している者の知的財産権の使用許諾を意味するものではありません。</p>
+
+          <h2>第6条（利用制限および登録抹消）</h2>
+          <p>当社は、利用者が以下のいずれかに該当する場合、事前の通知なく本サービスの全部もしくは一部の利用を制限し、または利用者としての登録を抹消することができるものとします。</p>
+          <ul>
+            <li>本規約のいずれかの条項に違反した場合</li>
+            <li>登録事項に虚偽の事実があることが判明した場合</li>
+            <li>当社からの連絡に対し、一定期間返答がない場合</li>
+            <li>その他、当社が本サービスの利用を適当でないと判断した場合</li>
+          </ul>
+
+          <h2>第7条（免責事項）</h2>
+          <p>当社は、本サービスに事実上または法律上の瑕疵（安全性、信頼性、正確性、完全性、有効性、特定の目的への適合性、セキュリティなどに関する欠陥、エラーやバグ、権利侵害などを含みます）がないことを明示的にも黙示的にも保証しておりません。</p>
+          <p>当社は、本サービスに起因して利用者に生じたあらゆる損害について、当社の故意または重大な過失による場合を除き、一切の責任を負いません。</p>
+
+          <h2>第8条（サービス内容の変更等）</h2>
+          <p>当社は、利用者への事前の告知をもって、本サービスの内容を変更、追加または廃止することがあり、利用者はこれを承諾するものとします。</p>
+
+          <h2>第9条（利用規約の変更）</h2>
+          <p>当社は、必要と判断した場合には、利用者の個別の同意を要せず、本規約を変更することができるものとします。変更後の利用規約は、当社ウェブサイトに掲示した時点から効力を生じるものとします。</p>
+
+          <h2>第10条（準拠法・裁判管轄）</h2>
+          <p>本規約の解釈にあたっては、日本法を準拠法とします。本サービスに関して紛争が生じた場合には、東京地方裁判所を第一審の専属的合意管轄とします。</p>
+
+          <h2>第11条（お問い合わせ窓口）</h2>
+          <p>本規約に関するお問い合わせは、下記までご連絡ください。</p>
+          <p><strong>株式会社Adory</strong><br>〒142-0063 東京都品川区荏原6-1-9<br>お問い合わせ：<a href="index.html#contact" style="color:var(--red);font-weight:600">お問い合わせフォーム</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="footer-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2025 Adory Inc.</p></div>
+      <div class="footer-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">代表メッセージ</a><a href="index.html#contact">お問い合わせ</a></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-links"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2025 株式会社Adory. All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    const header=document.getElementById('header'),scrollTopBtn=document.getElementById('scrollTop');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;header.classList.toggle('scrolled',y>50);scrollTopBtn.classList.toggle('show',y>500)});
+    scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    const hamburger=document.getElementById('hamburger'),navMenu=document.getElementById('navMenu');
+    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');navMenu.classList.toggle('active')});
+    navMenu.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hamburger.classList.remove('open');navMenu.classList.remove('active')})});
+    const revealEls=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
