@@ -1,1174 +1,370 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adory フィジカルチェックプログラム - 理学療法士による専門的な身体機能チェックで労災リスクを事前発見">
-    <meta name="keywords" content="フィジカルチェック, 理学療法士, 労災予防, 健康管理, 企業向けサービス">
-    <title>サービス概要 | フィジカルチェックプログラム - Adory</title>
-    
-    <style>
-        /* リセットCSS & 基本設定 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #fff;
-        }
-        
-        /* ヘッダー */
-        header {
-            background: linear-gradient(135deg, #D41D00, #FF9A3F);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.5rem;
-            color: #fff;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            letter-spacing: 1px;
-            text-decoration: none;
-        }
-        
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-menu a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-        }
-        
-        .nav-menu a:hover {
-            color: #000;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .cta-button {
-            background: #000;
-            color: white;
-            padding: 0.9rem 2.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* ハンバーガーメニュー */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-        
-        /* メインコンテンツ */
-        main {
-            margin-top: 80px;
-        }
-        
-        /* ヒーローセクション */
-        .hero {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 5rem 5%;
-            text-align: center;
-            overflow: hidden;
-        }
-        
-        .hero-vision {
-            font-size: 2rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-            font-weight: 300;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInDown 0.8s ease forwards;
-        }
-        
-        .hero-vision-sub {
-            font-size: 1rem;
-            color: #999;
-            margin-bottom: 3rem;
-            font-weight: normal;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInDown 0.8s ease 0.2s forwards;
-        }
-        
-        @keyframes fadeInDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .hero-text {
-            text-align: left;
-        }
-        
-        .hero-text h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #D41D00, #FF9A3F);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
-            line-height: 1.3;
-        }
-        
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #555;
-            line-height: 1.8;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, #fff5f0, #ffe8e0);
-            border-left: 4px solid #FF9A3F;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 8px;
-        }
-        
-        .highlight-box p {
-            font-weight: bold;
-            color: #D41D00;
-            margin: 0;
-        }
-        
-        .hero-image {
-            height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-image: url('./physiotherapist.jpg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        .hero-image::before {
-            content: '';
-        }
-        
-        /* 特徴セクション */
-        .features-section {
-            padding: 5rem 5%;
-            background: #fff;
-        }
-        
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-            font-weight: 300;
-        }
-        
-        .section-subtitle {
-            font-size: 1rem;
-            color: #999;
-            margin-bottom: 2rem;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .feature-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(255, 154, 63, 0.2);
-        }
-        
-        .feature-icon {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #fff5f0, #ffe8e0);
-            border: 3px solid #FF9A3F;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #FF9A3F;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .feature-card:hover .feature-icon::before {
-            left: 100%;
-        }
-        
-        .feature-card:hover .feature-icon {
-            transform: rotate(360deg) scale(1.1);
-            border-color: #D41D00;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        
-        .feature-card p {
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        /* フローセクション */
-        .flow-section {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        }
-        
-        .flow-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .flow-step {
-            background: white;
-            border: 3px solid #FF9A3F;
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .flow-step.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .flow-step:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(255, 154, 63, 0.3);
-        }
-        
-        .step-number {
-            background: linear-gradient(135deg, #D41D00, #FF9A3F);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 5px 15px rgba(212, 29, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .flow-step:hover .step-number {
-            transform: rotate(360deg) scale(1.1);
-        }
-        
-        .flow-step h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #D41D00;
-        }
-        
-        .flow-step h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        
-        .flow-step p {
-            color: #666;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-        
-        /* オプションセクション */
-        .options-section {
-            padding: 5rem 5%;
-            background: #fff;
-        }
-        
-        .options-container {
-            background: linear-gradient(135deg, #e8f4f8, #f0f8ff);
-            border-radius: 20px;
-            padding: 3rem;
-            margin-top: 2rem;
-        }
-        
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .option-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-        }
-        
-        .option-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #D41D00;
-        }
-        
-        .option-card p {
-            color: #666;
-            line-height: 1.7;
-        }
-        
-        .note-box {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            text-align: center;
-        }
-        
-        .note-box strong {
-            color: #856404;
-            font-size: 1.1rem;
-        }
-        
-        .note-box p {
-            color: #856404;
-            margin-top: 0.5rem;
-        }
-        
-        /* 導入フローセクション */
-        .intro-flow-section {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        }
-        
-        .intro-flow-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .intro-step {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        
-        .intro-step::after {
-            content: '→';
-            position: absolute;
-            right: -1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            font-weight: 900;
-            color: #FF9A3F;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            stroke: #D41D00;
-            stroke-width: 3px;
-        }
-        
-        .intro-step:last-child::after {
-            display: none;
-        }
-        
-        .intro-step h4 {
-            background: linear-gradient(135deg, #D41D00, #FF9A3F);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .intro-step p {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .intro-step p strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        /* CTAセクション */
-        .cta-section {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, #D41D00, #FF9A3F);
-            text-align: center;
-            color: white;
-            margin-bottom: 3rem;
-        }
-        
-        .cta-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-        
-        .cta-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-        
-        .cta-btn {
-            background: white;
-            color: #D41D00;
-            padding: 1.2rem 3rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            display: inline-block;
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-        
-        .cta-note {
-            margin-top: 1.5rem;
-            opacity: 0.9;
-            font-size: 1rem;
-        }
-        
-        /* フッター */
-        footer {
-            background: linear-gradient(135deg, #D41D00, #FF9A3F);
-            color: white;
-            padding: 3rem 5% 1rem;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            color: #fff;
-            font-weight: bold;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-section a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-            opacity: 0.9;
-        }
-        
-        .footer-section a:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* レスポンシブデザイン */
-        @media (max-width: 1024px) {
-            .flow-steps {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-            
-            .intro-flow-steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .intro-step::after {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 1.2rem;
-            }
-            
-            .cta-button {
-                padding: 0.7rem 1.5rem;
-                font-size: 0.95rem;
-            }
-            
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: linear-gradient(135deg, #D41D00, #FF9A3F);
-                flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-            
-            .nav-menu.active {
-                display: flex;
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-            
-            .hero-text {
-                text-align: center;
-            }
-            
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            /* スマホ表示でのハイライトボックス改行なし */
-            .highlight-box:nth-child(2) p br {
-                display: none;
-            }
-            
-            /* スマホ表示での改行制御 */
-            .mobile-br {
-                display: none;
-            }
-            
-            /* スマホ表示での特徴セクションタイトル改行 */
-            .features-section .section-container h2 {
-                font-size: 1.5rem !important;
-                line-height: 1.4 !important;
-            }
-            
-            .mobile-br {
-                display: inline;
-            }
-            
-            /* スマホ表示でのサービスフローセクションタイトル改行 */
-            .flow-section .section-container h2 {
-                line-height: 1.4;
-            }
-            .flow-section .section-container h2::before {
-                content: 'フィジカルヘルスケア\A for Businessの流れ';
-                white-space: pre-line;
-                display: block;
-                font-size: 1.5rem;
-            }
-            .flow-section .section-container h2 {
-                font-size: 0;
-            }
-            
-            .flow-steps {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .intro-flow-steps {
-                grid-template-columns: 1fr;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .options-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-content h2 {
-                font-size: 1.8rem;
-            }
-            
-            .cta-content p {
-                font-size: 1.1rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 1.5rem;
-            }
-            
-            .hero-text p {
-                font-size: 1rem;
-            }
-            
-            .options-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .cta-btn {
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Adory Pain Tech - 従業員の痛みをデータで見える化し、企業の生産性損失と労災・離職リスクを削減するSaaS">
+  <title>Pain Tech | 痛みを可視化するSaaS - Adory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--red:#D41D00;--orange:#FF9A3F;--gradient:linear-gradient(135deg,#D41D00,#FF9A3F);--gradient-soft:linear-gradient(135deg,#fff5f0,#ffe8d6);--dark:#1a1a1a;--text:#333;--text-light:#666;--text-muted:#999;--bg:#fff;--bg-warm:#FFFAF7;--bg-section:#FBF8F6;--shadow-sm:0 2px 8px rgba(0,0,0,.06);--shadow-md:0 8px 30px rgba(0,0,0,.08);--shadow-lg:0 20px 60px rgba(0,0,0,.1);--shadow-glow:0 8px 40px rgba(212,29,0,.15);--radius:20px;--radius-sm:12px;--max-w:1200px;--font-jp:'Noto Sans JP',sans-serif;--font-en:'Outfit',sans-serif}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    body{font-family:var(--font-jp);color:var(--text);line-height:1.8;background:var(--bg);overflow-x:hidden}
+    img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
+
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0) scale(1) translateX(0)}
+    .reveal-delay-1{transition-delay:.12s}.reveal-delay-2{transition-delay:.24s}.reveal-delay-3{transition-delay:.36s}.reveal-delay-4{transition-delay:.48s}
+    .reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+    .reveal-left.visible{opacity:1;transform:translateX(0)}
+    .reveal-right{opacity:0;transform:translateX(60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+    .reveal-right.visible{opacity:1;transform:translateX(0)}
+    .reveal-scale{opacity:0;transform:scale(.9);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    .reveal-scale.visible{opacity:1;transform:scale(1)}
+
+    header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s,background .3s}
+    header.scrolled{background:rgba(255,255,255,.95);box-shadow:0 4px 30px rgba(0,0,0,.08)}
+    nav{max-width:var(--max-w);margin:0 auto;padding:.9rem 5%;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:var(--font-en);font-weight:800;font-size:1.6rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;cursor:pointer;transition:transform .3s}
+    .logo:hover{transform:scale(1.03)}
+    .nav-menu{display:flex;gap:.3rem;align-items:center}
+    .nav-menu a{font-size:.88rem;font-weight:500;color:var(--text);padding:.5rem .9rem;border-radius:999px;transition:background .3s,color .3s;white-space:nowrap}
+    .nav-menu a:hover{background:var(--gradient-soft);color:var(--red)}
+    .nav-cta{background:var(--gradient)!important;color:#fff!important;padding:.6rem 1.4rem!important;font-weight:700!important;box-shadow:var(--shadow-glow);position:relative;overflow:hidden}
+    .nav-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:navCtaShimmer 3s ease-in-out infinite}
+    @keyframes navCtaShimmer{0%,100%{left:-100%}50%{left:120%}}
+    .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 12px 40px rgba(212,29,0,.25)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1001}
+    .hamburger span{width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    .section-label{font-family:var(--font-en);font-size:.85rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+    .section-title{font-size:2rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:.6rem}
+    .section-sub{font-size:1rem;color:var(--text-light);max-width:640px}
+    .section-header{text-align:center;margin-bottom:3.5rem}
+    .section-header .section-sub{margin:0 auto}
+
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-warm);padding-top:80px}
+    .hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(100px);opacity:.12;background:var(--red);top:-250px;right:-200px;animation:blobFloat 20s ease-in-out infinite}
+    .hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(80px);opacity:.1;background:var(--orange);bottom:-150px;left:-100px;animation:blobFloat 20s ease-in-out infinite reverse}
+    @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
+    .hero-inner{position:relative;z-index:1;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;display:flex;align-items:center;gap:4rem}
+    .hero-text{flex:1}
+    .hero-product-name{font-family:var(--font-en);font-size:3.5rem;font-weight:800;background:linear-gradient(90deg,#D41D00,#FF9A3F,#D41D00);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:.8rem;animation:fadeSlideIn .8s .1s both,textShimmer 4s linear infinite}
+    @keyframes textShimmer{0%{background-position:0% center}100%{background-position:200% center}}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,29,0,.08);border:1px solid rgba(212,29,0,.15);border-radius:999px;padding:.4rem 1rem;font-size:.82rem;font-weight:700;color:var(--red);margin-bottom:1.5rem;animation:fadeSlideIn .8s .2s both}
+    .hero-title{font-size:2.4rem;font-weight:900;line-height:1.3;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
+    .hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-desc{font-size:1.05rem;color:var(--text-light);line-height:1.9;margin-bottom:2rem;animation:fadeSlideIn .8s .6s both}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeSlideIn .8s .8s both}
+    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--gradient);color:#fff;padding:.9rem 2rem;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow-glow);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;position:relative;overflow:hidden}
+    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:left .6s ease}
+    .btn-primary:hover::after{left:120%}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,29,0,.3)}
+    .btn-outline{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--red);padding:.9rem 2rem;border-radius:999px;font-weight:600;font-size:.95rem;border:2px solid rgba(212,29,0,.2);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s,background .35s}
+    .btn-outline:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:var(--shadow-glow);background:rgba(212,29,0,.03)}
+    .hero-visual{flex:1.2;animation:fadeSlideIn 1s .5s both;position:relative}
+    .hero-img-wrap{background:var(--bg-warm);border-radius:var(--radius);padding:1rem;display:flex;align-items:center;justify-content:center;animation:heroFloat 6s ease-in-out infinite}
+    @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    .br-desktop{display:inline}
+    .hero-img{width:100%;border-radius:var(--radius-sm);display:block;mix-blend-mode:multiply}
+
+    .problems-section{padding:6rem 5%;background:var(--bg)}
+    .problems-wrap{max-width:var(--max-w);margin:0 auto}
+    .problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .problem-card-img{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative}
+    .problem-card-img:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+    .problem-card-photo{width:100%;height:200px;overflow:hidden}
+    .problem-card-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+    .problem-card-img:hover .problem-card-photo img{transform:scale(1.06)}
+    .problem-card-img h3{font-size:1rem;font-weight:700;color:var(--dark);padding:1.2rem 1.5rem;text-align:center}
+
+    .problem-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-md);border:1px solid #f5f5f5;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
+    .problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transition:transform .5s cubic-bezier(.16,1,.3,1);transform-origin:left}
+    .problem-card:hover::before{transform:scaleX(1)}.problem-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+    .problem-icon{width:48px;height:48px;border-radius:12px;background:var(--gradient-soft);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .problem-card:hover .problem-icon{transform:scale(1.15) rotate(-5deg)}
+    .problem-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
+    .problem-card p{font-size:.88rem;color:var(--text-light)}
+
+    .solution-section{padding:6rem 5%;background:var(--bg-section)}
+    .solution-wrap{max-width:var(--max-w);margin:0 auto}
+    .solution-statement{text-align:center;margin-bottom:3rem;font-size:1.3rem;font-weight:700;color:var(--red);padding:2rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);position:relative}
+    .solution-statement::before{content:'\201C';font-family:var(--font-en);font-size:4rem;color:var(--orange);opacity:.2;position:absolute;top:.3rem;left:1.5rem;line-height:1}
+
+    .features-section{padding:6rem 5%;background:var(--bg)}
+    .features-wrap{max-width:var(--max-w);margin:0 auto}
+    .feature-row{display:flex;align-items:center;gap:4rem;margin-bottom:5rem}
+    .feature-row.reverse{flex-direction:row-reverse}
+    .feature-text{flex:1}
+    .feature-num{font-family:var(--font-en);font-size:3.5rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.5rem;opacity:.3}
+    .feature-text h3{font-size:1.4rem;font-weight:800;color:var(--dark);margin-bottom:.8rem}
+    .feature-text p{font-size:.95rem;color:var(--text-light);line-height:1.9}
+    .feature-visual{flex:1;background:var(--bg-section);border-radius:var(--radius);min-height:280px;display:flex;align-items:center;justify-content:center;padding:2rem;box-shadow:var(--shadow-md);position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+    .feature-visual:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .feature-visual img{transition:transform .6s cubic-bezier(.16,1,.3,1)}
+    .feature-visual:hover img{transform:scale(1.03)}
+    .feature-visual::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--gradient);transform:scaleX(0);transition:transform .5s cubic-bezier(.16,1,.3,1);transform-origin:left}
+    .feature-visual:hover::after{transform:scaleX(1)}
+
+    .ux-flow{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;justify-content:center}
+    .ux-step{background:#fff;border-radius:var(--radius-sm);padding:1rem 1.2rem;text-align:center;box-shadow:var(--shadow-sm);min-width:100px}
+    .ux-step .icon{font-size:1.5rem;margin-bottom:.3rem}.ux-step .label{font-size:.75rem;font-weight:700;color:var(--dark)}.ux-step .sub{font-size:.65rem;color:var(--text-muted)}
+    .ux-arrow{font-size:1.2rem;color:var(--orange);font-weight:700}
+    .hybrid-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%}
+    .hybrid-card{background:#fff;border-radius:var(--radius-sm);padding:1.2rem;box-shadow:var(--shadow-sm);text-align:center}
+    .hybrid-card .icon{font-size:2rem;margin-bottom:.4rem}.hybrid-card h4{font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:.3rem}.hybrid-card p{font-size:.72rem;color:var(--text-light)}
+    .rbac-visual{width:100%}
+    .rbac-row{display:flex;align-items:center;gap:1rem;background:#fff;border-radius:var(--radius-sm);padding:.8rem 1rem;margin-bottom:.6rem;box-shadow:var(--shadow-sm)}
+    .rbac-role{font-size:.75rem;font-weight:700;white-space:nowrap;padding:.3rem .6rem;border-radius:6px;min-width:70px;text-align:center}
+    .rbac-role.exec{background:rgba(212,29,0,.1);color:var(--red)}.rbac-role.hr{background:rgba(255,154,63,.15);color:#b86e00}.rbac-role.worker{background:rgba(40,167,69,.1);color:#28a745}
+    .rbac-desc{font-size:.72rem;color:var(--text-light)}
+
+    .pricing-section{padding:6rem 5%;background:var(--bg-section)}
+    .pricing-wrap{max-width:var(--max-w);margin:0 auto}
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto}
+    .pricing-card{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);text-align:center;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
+    .pricing-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+    .pricing-card.featured{border:2px solid var(--red)}
+    .pricing-card.featured::before{content:'人気';position:absolute;top:16px;right:-28px;background:var(--gradient);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem 2rem;transform:rotate(45deg)}
+    .pricing-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+    .pricing-price{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--dark);margin:1rem 0 .3rem}
+    .pricing-price span{font-size:.9rem;font-weight:400;color:var(--text-muted)}
+    .pricing-note{font-size:.82rem;color:var(--text-muted);margin-bottom:1.5rem}
+    .pricing-features{text-align:left;margin-bottom:2rem}
+    .pricing-features li{font-size:.88rem;padding:.4rem 0;color:var(--text);padding-left:1.5rem;position:relative}
+    .pricing-features li::before{content:'\2713';position:absolute;left:0;color:var(--orange);font-weight:700}
+
+    .flow-section{padding:6rem 5%;background:var(--bg)}
+    .flow-wrap{max-width:var(--max-w);margin:0 auto}
+    .flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+    .flow-step{text-align:center;padding:2rem 1.5rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+    .flow-step:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+    .flow-step-num{width:40px;height:40px;border-radius:50%;background:var(--gradient);color:#fff;font-family:var(--font-en);font-weight:800;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+    .flow-step:hover .flow-step-num{transform:scale(1.2)}
+    .flow-step h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
+    .flow-step p{font-size:.82rem;color:var(--text-light)}
+
+    .cta-section{padding:5rem 5%;background:var(--bg-warm);color:var(--dark);text-align:center;position:relative;overflow:hidden}
+    .cta-section::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(100px);opacity:.12;background:var(--red);top:-200px;right:-150px;animation:blobFloat 20s ease-in-out infinite}
+    .cta-section::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(80px);opacity:.1;background:var(--orange);bottom:-150px;left:-100px;animation:blobFloat 20s ease-in-out infinite reverse}
+    .cta-wrap{position:relative;z-index:1;max-width:700px;margin:0 auto}
+    .cta-section h2{font-size:1.8rem;font-weight:900;margin-bottom:1rem;color:var(--dark)}
+    .cta-section p{font-size:.95rem;color:var(--text-light);margin-bottom:2rem}
+    .cta-section .btn-primary{font-size:1.1rem;padding:1rem 2.5rem}
+    .cta-note{font-size:.78rem;color:var(--text-muted);margin-top:1rem}
+
+    footer{background:rgba(255,255,255,.95);color:var(--text);padding:4rem 5% 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(0,0,0,.06)}
+    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+    .footer-brand .footer-logo{font-family:var(--font-en);font-size:1.5rem;font-weight:800;margin-bottom:1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .footer-brand p{font-size:.9rem;color:var(--text-light);line-height:1.8}
+    .footer-col h4{font-size:.82rem;font-family:var(--font-en);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem}
+    .footer-col a{display:block;font-size:.9rem;color:var(--text-light);padding:.3rem 0;transition:color .3s,padding-left .3s}
+    .footer-col a:hover{color:var(--red);padding-left:.3rem}
+    .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,.06);font-size:.82rem;color:var(--text-muted)}
+    .footer-bottom-links{margin-bottom:.8rem}
+    .footer-bottom-links a{color:var(--text-muted);margin:0 .8rem;transition:color .3s}
+    .footer-bottom-links a:hover{color:var(--red)}
+
+    .scroll-top{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s cubic-bezier(.16,1,.3,1);z-index:999}
+    .scroll-top.show{opacity:1;transform:translateY(0)}.scroll-top:hover{transform:translateY(-4px) scale(1.1);box-shadow:0 12px 40px rgba(212,29,0,.3)}
+
+    @media(max-width:1024px){
+      .hero-inner{flex-direction:column;gap:2.5rem;text-align:center}.hero-text{max-width:600px}.hero-actions{justify-content:center}.hero-visual{max-width:500px;width:100%}.hero-title{font-size:1.9rem}
+      .feature-row,.feature-row.reverse{flex-direction:column;gap:2rem}
+    }
+    @media(max-width:768px){
+      .nav-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;align-items:center;gap:.5rem;z-index:999}
+      .nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}
+      .hamburger{display:flex;z-index:1001}
+      .hero{min-height:auto;padding:7rem 5% 4rem}.hero-title{font-size:1.6rem}.section-title{font-size:1.5rem}
+      .hero-product-name{font-size:2.5rem}
+      .br-desktop{display:none}
+      .problems-grid{grid-template-columns:1fr}.flow-steps{grid-template-columns:1fr 1fr}
+      .pricing-grid{grid-template-columns:1fr;max-width:400px}
+      .footer-inner{grid-template-columns:1fr;gap:2rem;text-align:center}
+    }
+    @media(max-width:480px){
+      .hero-title{font-size:1.35rem}.hero-actions{flex-direction:column;align-items:center}
+      .hero-actions a{width:100%;text-align:center;justify-content:center}
+      .flow-steps{grid-template-columns:1fr}.ux-flow{flex-direction:column}.hybrid-cards{grid-template-columns:1fr}
+    }
+
+    .page-loader{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
+    .page-loader.hidden{opacity:0;visibility:hidden}
+    .loader-dot{width:12px;height:12px;border-radius:50%;background:var(--gradient);margin:0 4px;animation:loaderBounce .6s ease-in-out infinite alternate}
+    .loader-dot:nth-child(2){animation-delay:.15s}.loader-dot:nth-child(3){animation-delay:.3s}
+    @keyframes loaderBounce{to{transform:translateY(-12px);opacity:.4}}
+    body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  </style>
 </head>
 <body>
-    <!-- ヘッダー -->
-    <header>
-        <nav>
-            <a href="index.html" class="logo">
-                株式会社Adory
-            </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#about">会社概要</a></li>
-                <li><a href="#" class="active">サービス概要</a></li>
-                <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
-                <li><a href="event-report.html">イベント実施レポート</a></li>
-            </ul>
-            <a href="index.html#contact" class="cta-button">お問い合わせ</a>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+  <div class="page-loader" id="pageLoader"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
+  <button class="scroll-top" id="scrollTop" aria-label="Top">&#8593;</button>
 
-    <!-- メインコンテンツ -->
-    <main>
-        <!-- ヒーローセクション -->
-        <section class="hero">
-            <div class="hero-vision">Service Overview</div>
-            <div class="hero-vision-sub">サービス概要</div>
-            
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>フィジカルヘルスケア<br>for Business</h1>
-                    <p>フィジカルヘルスケア for Businessは全ての働く人の身体ケアを支えるサービスです。理学療法士による専門プログラムで、長時間の立ち仕事・デスクワークの姿勢と運動習慣を改善し、社員の健康維持と企業の生産性向上、健康経営の推進支援を実現します。</p>
-                    
-                    <div class="highlight-box">
-                        <p><strong>転倒や無理な動作による労災リスクを低減</strong></p>
-                    </div>
-                    <div class="highlight-box">
-                        <p><strong>潜在的な「疾病出勤(プレゼンティーイズム)」の<br>可視化・生産性低下の防止</strong></p>
-                    </div>
-                </div>
-                <div class="hero-image"></div>
-            </div>
-        </section>
+  <header id="header">
+    <nav>
+      <a href="index.html" class="logo">Adory</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">会社概要</a></li>
+        <li><a href="service.html" style="color:var(--red)">サービス概要</a></li>
+        <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
+        <li><a href="event-report.html">イベント実施レポート</a></li>
+        <li><a href="index.html#contact" class="nav-cta">お問い合わせ</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+  </header>
 
-        <!-- 特徴セクション -->
-        <section class="features-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-title">Features</div>
-                    <div class="section-subtitle">サービスの特徴</div>
-                    <h2>Adoryのフィジカルヘルスケア<br class="mobile-br"> for Businessの特徴</h2>
-                </div>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="doctorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
-                                        <stop offset="100%" style="stop-color:#D41D00"/>
-                                    </linearGradient>
-                                </defs>
-                                <!-- 人物のシルエット -->
-                                <circle cx="30" cy="18" r="8" fill="url(#doctorGrad)"/>
-                                <path d="M15 35 Q30 30 45 35 L45 50 Q30 55 15 50 Z" fill="url(#doctorGrad)"/>
-                                <!-- 聴診器 -->
-                                <path d="M20 25 Q25 20 30 25" stroke="#FFF" stroke-width="2" fill="none"/>
-                                <circle cx="18" cy="27" r="2" fill="#FFF"/>
-                                <!-- 十字マーク -->
-                                <rect x="35" y="15" width="8" height="2" fill="#FFF"/>
-                                <rect x="38" y="12" width="2" height="8" fill="#FFF"/>
-                            </svg>
-                        </div>
-                        <h3>理学療法士による専門評価</h3>
-                        <p>国家資格を持つ理学療法士が、姿勢・動作・筋力などを科学的根拠に基づき評価し、個別最適な改善プランを提示します。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="warningGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
-                                        <stop offset="100%" style="stop-color:#D41D00"/>
-                                    </linearGradient>
-                                </defs>
-                                <!-- 盾の形 -->
-                                <path d="M30 5 L45 12 L45 35 Q45 50 30 55 Q15 50 15 35 L15 12 Z" fill="url(#warningGrad)"/>
-                                <!-- チェックマーク -->
-                                <path d="M22 30 L27 35 L38 22" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round"/>
-                                <!-- 小さな警告サイン -->
-                                <circle cx="45" cy="15" r="6" fill="#FFF"/>
-                                <text x="45" y="19" text-anchor="middle" fill="url(#warningGrad)" font-size="8" font-weight="bold">!</text>
-                            </svg>
-                        </div>
-                        <h3>労災リスクの早期発見</h3>
-                        <p>体力測定(筋力・バランス)、フィジカルチェックを通じて潜在的リスクを特定し、転倒やケガを未然に防ぎます。</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="productivityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#FF9A3F"/>
-                                        <stop offset="100%" style="stop-color:#D41D00"/>
-                                    </linearGradient>
-                                </defs>
-                                <!-- グラフの背景 -->
-                                <rect x="10" y="35" width="40" height="20" fill="url(#productivityGrad)" rx="2"/>
-                                <!-- 上昇する矢印とグラフ -->
-                                <path d="M15 45 L25 35 L35 40 L45 25" stroke="#FFF" stroke-width="3" fill="none"/>
-                                <path d="M40 15 L50 25 L45 25 L45 20 Z" fill="#FFF"/>
-                                <!-- 歯車アイコン -->
-                                <circle cx="25" cy="15" r="8" fill="none" stroke="url(#productivityGrad)" stroke-width="2"/>
-                                <circle cx="25" cy="15" r="4" fill="url(#productivityGrad)"/>
-                                <g transform="translate(25,15)">
-                                    <rect x="-1" y="-10" width="2" height="4" fill="url(#productivityGrad)"/>
-                                    <rect x="-1" y="6" width="2" height="4" fill="url(#productivityGrad)"/>
-                                    <rect x="6" y="-1" width="4" height="2" fill="url(#productivityGrad)"/>
-                                    <rect x="-10" y="-1" width="4" height="2" fill="url(#productivityGrad)"/>
-                                </g>
-                            </svg>
-                        </div>
-                        <h3>生産性向上への貢献</h3>
-                        <p>従業員の健康維持・向上により、集中力や作業効率を高め、企業全体の生産性向上と離職防止を実現します。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- サービスの流れ -->
-        <section class="flow-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-title">Service Flow</div>
-                    <div class="section-subtitle">サービスの流れ</div>
-                    <h2>フィジカルヘルスケア for Businessの流れ</h2>
-                    <p>国家資格を持つ理学療法士が全工程を担当し、姿勢・動作・筋力を評価。結果に基づき、従業員一人ひとりに最適な改善プランを提供します。</p>
-                </div>
-                
-                <div class="flow-steps">
-                    <div class="flow-step">
-                        <div class="step-number">1</div>
-                        <h4>STEP 1</h4>
-                        <h3>事前問診票</h3>
-                        <p>• 従業員の身体状況・業務内容を把握<br>
-                        • 最適な評価・改善計画の設計に必要な情報を収集</p>
-                    </div>
-                    <div class="flow-step">
-                        <div class="step-number">2</div>
-                        <h4>STEP 2</h4>
-                        <h3>体力測定</h3>
-                        <p>• バランス・筋力など基礎体力を測定<br>
-                        • 科学的評価で現状の身体能力を数値化</p>
-                    </div>
-                    <div class="flow-step">
-                        <div class="step-number">3</div>
-                        <h4>STEP 3</h4>
-                        <h3>姿勢評価</h3>
-                        <p>• MSI(Movement System Impairment)アプローチ<br>
-                        • 姿勢や動きのパターンを観察・評価・改善</p>
-                    </div>
-                    <div class="flow-step">
-                        <div class="step-number">4</div>
-                        <h4>STEP 4</h4>
-                        <h3>説明・リスク評価</h3>
-                        <p>• 理学療法士が結果をわかりやすく解説<br>
-                        • 個人・組織の改善ポイントと予防策をご提案</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- オプションサービス -->
-        <section class="options-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-title">Optional Services</div>
-                    <div class="section-subtitle">さらに効果を高める3つのオプション</div>
-                    <h2>さらに効果を高める3つのオプション</h2>
-                </div>
-                
-                <div class="options-container">
-                    <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem; color: #333;">基本プログラムにプラスして、課題解決を加速させるサービスをご用意しています。</p>
-                    
-                    <div class="options-grid">
-                        <div class="option-card">
-                            <h3>💡 Body Navigation</h3>
-                            <p>国家資格保有の理学療法士が、痛みや不調の根本原因を特定し、直接アプローチ。約20分のマンツーマン施術で、持続的な改善へ導きます。</p>
-                        </div>
-                        <div class="option-card">
-                            <h3>🏋 個別運動プログラム作成</h3>
-                            <p>一人ひとりに合わせた、無理なく続けられるストレッチ・運動プランを作成。</p>
-                        </div>
-                        <div class="option-card">
-                            <h3>💻 オンライン相談</h3>
-                            <p>理学療法士が週1回、オンラインで継続的に相談・改善指導を行い、目標達成まで伴走します。(3カ月プラン)</p>
-                        </div>
-                    </div>
-                    
-                    <div class="note-box">
-                        <strong>📩 料金・詳細はお気軽にお問い合わせください</strong>
-                        <p>企業の課題や目標に合わせて柔軟にカスタマイズします。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 導入の流れ -->
-        <section class="intro-flow-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <div class="section-title">Implementation Flow</div>
-                    <div class="section-subtitle">導入の流れ</div>
-                    <h2>導入までの流れ</h2>
-                </div>
-                
-                <div class="intro-flow-steps">
-                    <div class="intro-step">
-                        <h4>STEP 1</h4>
-                        <p><strong>お問い合わせ・ヒアリング</strong><br>現状や課題を詳しく伺い、最適なプラン選定の準備をします。</p>
-                    </div>
-                    <div class="intro-step">
-                        <h4>STEP 2</h4>
-                        <p><strong>プログラム内容の<br>ご提案・お見積もり</strong>目的やご予算に合わせたプランをご提案します。</p>
-                    </div>
-                    <div class="intro-step">
-                        <h4>STEP 3</h4>
-                        <p><strong>契約・実施日程の調整</strong><br>スムーズな実施に向け、日程と準備を整えます。</p>
-                    </div>
-                    <div class="intro-step">
-                        <h4>STEP 4</h4>
-                        <p><strong>サービス開始・継続サポート</strong><br>導入後も改善が定着するまでしっかり伴走します。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>従業員の健康維持と職場の快適さをサポート<br>〜軽いストレッチとケアで、毎日をもっと快適に〜</h2>
-                <p>理学療法士による優しいフィジカルチェックと、疲れにくい体づくりのためのケアプラン。<br>
-                労災リスク低減、生産性向上を目指して安心して働ける環境を整えます。</p>
-                <a href="index.html#contact" class="cta-btn">無料で相談してみる</a>
-                <p class="cta-note">料金や導入方法について、3分で簡単にお問い合わせいただけます。</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- フッター -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Adory</h3>
-                <p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p>
-                <p style="margin-top: 1rem;">© 2025 Adory Inc.</p>
-            </div>
-            <div class="footer-section">
-                <h3>事業内容</h3>
-                <ul>
-                    <li><a href="#">フィジカルヘルスケア for Business</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>会社情報</h3>
-                <ul>
-                    <li><a href="index.html#about">会社概要</a></li>
-                    <li><a href="service.html">サービス概要</a></li>
-                    <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
-                    <li><a href="index.html#contact">お問い合わせ</a></li>
-                    <li><a href="event-report.html">イベント実施レポート</a></li>
-                </ul>
-            </div>
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-product-name">Pain Tech</div>
+          <div class="hero-badge">&#x1F680; 2026年3月 ローンチ予定</div>
+          <h1 class="hero-title">従業員の<span class="accent">「痛み」</span>を<br class="br-desktop">データで見える化し、<br class="br-desktop"><span class="accent">労災・離職リスク</span>を削減</h1>
+          <p class="hero-desc">Pain Techは、身体が資本のブルーワーカーの「痛み」を週次パルスサーベイで可視化。有資格者による現場ケアと組み合わせた、ハイブリッド型ヘルスケアSaaSです。</p>
+          <div class="hero-actions">
+            <a href="index.html#contact" class="btn-primary">資料請求・お問い合わせ &#8594;</a>
+            <a href="#features" class="btn-outline">サービス詳細を見る</a>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <p>プライバシーポリシー | 利用規約 | サイトマップ</p>
+        <div class="hero-visual">
+          <div class="hero-img-wrap">
+            <img src="images/hero-dashboard.jpg" alt="Pain Tech ダッシュボード画面 - PC・スマホ対応" class="hero-img">
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- JavaScript -->
-    <script>
-        // ハンバーガーメニューの動作
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('active');
-        });
+    <section class="problems-section" id="problems">
+      <div class="problems-wrap">
+        <div class="section-header reveal">
+          <div class="section-label">Problems</div>
+          <h2 class="section-title">こんな課題、ありませんか？</h2>
+        </div>
+        <div class="problems-grid">
+          <div class="problem-card-img reveal reveal-delay-1">
+            <div class="problem-card-photo"><img src="images/problem-physical-check.jpg" alt="フィジカルチェックができていない"></div>
+            <h3>フィジカルチェックができていない</h3>
+          </div>
+          <div class="problem-card-img reveal reveal-delay-2">
+            <div class="problem-card-photo"><img src="images/problem-turnover.jpg" alt="離職が止まらず、人材が定着しない"></div>
+            <h3>離職が止まらず、人材が定着しない</h3>
+          </div>
+          <div class="problem-card-img reveal reveal-delay-3">
+            <div class="problem-card-photo"><img src="images/problem-risk.jpg" alt="労災リスクの早期発見や対策方法が分からない"></div>
+            <h3>労災リスクの早期発見や対策方法が分からない</h3>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        // スムーススクロール
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    <section class="solution-section">
+      <div class="solution-wrap">
+        <div class="solution-statement reveal-scale">従業員の『痛み』をデータで見える化し、<br>企業の生産性損失と労災・離職リスクを削減するSaaS<br><span style="font-size:.85rem;color:var(--text-light);font-weight:400;display:block;margin-top:.5rem;">&#8212; 痛みを"個人の問題"から"企業・社会の管理領域"へ転換 &#8212;</span></div>
+      </div>
+    </section>
 
-        // スクロール時のヘッダー処理
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            const header = document.querySelector('header');
-            
-            if (currentScroll > 100) {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.15)';
-            } else {
-                header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
-            }
-            
-            lastScroll = currentScroll;
-        });
+    <section class="features-section" id="features">
+      <div class="features-wrap">
+        <div class="section-header reveal"><div class="section-label">Features</div><h2 class="section-title">Pain Techが選ばれる理由</h2></div>
 
-        // ページ読み込み時のアニメーション
-        window.addEventListener('load', function() {
-            // スクロールアニメーション用のオブザーバー
-            const observerOptions = {
-                threshold: 0.2,
-                rootMargin: '0px 0px -50px 0px'
-            };
+        <div class="feature-row reveal">
+          <div class="feature-text reveal-left"><div class="feature-num">01</div><h3>LINEで2分。<br>現場に溶け込むパルスサーベイ</h3><p>毎週月曜 朝7:00にLINEで回答URLを配信。パスワード不要、2分で完了する設計で入力ハードルを極限まで下げます。疲労・疼痛・睡眠・ストレス・帰属意識・エンゲージメントを1分で定点観測。年1&#12316;2回のストレスチェックでは気づけない「小さな変化」を捕捉します。</p></div>
+          <div class="feature-visual">
+            <img src="images/feature-pulse-survey.jpg" alt="LINEパルスサーベイのUXフロー" style="width:100%;border-radius:var(--radius-sm);display:block">
+          </div>
+        </div>
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            // 初期状態を設定してからアニメーション開始
-                            entry.target.style.opacity = '0';
-                            entry.target.style.transform = 'translateY(30px)';
-                            entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                            
-                            // 少し遅れてアニメーション実行
-                            setTimeout(() => {
-                                entry.target.style.opacity = '1';
-                                entry.target.style.transform = 'translateY(0)';
-                            }, 50);
-                        }, index * 150);
-                    }
-                });
-            }, observerOptions);
+        <div class="feature-row reverse reveal">
+          <div class="feature-text reveal-right"><div class="feature-num">02</div><h3>デジタル &#215; フィジカル。<br>IT企業にも整体院にもできない領域</h3><p>ダッシュボードによる「早期発見・予兆管理」に加え、理学療法士・柔道整復師が週1回3時間、現場を訪問。ツールで可視化するだけでは身体は変わらない。データドリブンなケアと物理的なソリューションを組み合わせたハイブリッド・モデルが最大の特徴です。</p></div>
+          <div class="feature-visual">
+            <img src="images/feature-hybrid-care.jpg" alt="デジタル×フィジカルのハイブリッドケア" style="width:100%;border-radius:var(--radius-sm);display:block">
+          </div>
+        </div>
 
-            // 要素を監視対象に追加(初期状態は表示されたまま)
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => observer.observe(card));
+        <div class="feature-row reveal">
+          <div class="feature-text reveal-left"><div class="feature-num">03</div><h3>心理的安全性を担保する<br>権限設計（RBAC）</h3><p>「個人の詳細な痛み」は労務・産業医のみが閲覧可能。経営層には組織全体の生産性リスク（スコア）のみを表示。経営層には見せすぎず、現場にはプライバシーを約束することで「本音の入力」を引き出し、データの信頼性を高めます。</p></div>
+          <div class="feature-visual">
+            <img src="images/feature-rbac.jpg" alt="RBAC権限設計の概念図" style="width:100%;border-radius:var(--radius-sm);display:block">
+          </div>
+        </div>
+      </div>
+    </section>
 
-            const flowSteps = document.querySelectorAll('.flow-step');
-            flowSteps.forEach(step => observer.observe(step));
+    <section class="pricing-section" id="pricing">
+      <div class="pricing-wrap">
+        <div class="section-header reveal"><div class="section-label">Pricing</div><h2 class="section-title">料金プラン</h2><p class="section-sub">「見える化」と「現場ケア」を組み合わせて、最適なプランをご提案します</p></div>
+        <div class="pricing-grid">
+          <div class="pricing-card featured reveal reveal-delay-1">
+            <h3>Pain Tech SaaS</h3><p style="font-size:.85rem;color:var(--text-muted)">基本プラン ― 痛みデータの可視化・管理</p>
+            <div class="pricing-price">&#165;29,800<span>/月</span></div>
+            <div class="pricing-note">31名以上は1名あたり+500円/月</div>
+            <ul class="pricing-features"><li>LINE連携パルスサーベイ</li><li>Pain Techダッシュボード</li><li>部署・職種別レポート</li><li>高リスク者アラート通知</li><li>CSによる伴走サポート</li></ul>
+            <a href="index.html#contact" class="btn-primary" style="width:100%;justify-content:center">お問い合わせ</a>
+          </div>
+          <div class="pricing-card reveal reveal-delay-2">
+            <h3>+ 現場ケア</h3><p style="font-size:.85rem;color:var(--text-muted)">オプション ― 有資格者による常駐マッサージ</p>
+            <div class="pricing-price">&#165;24,980<span>/回</span></div>
+            <div class="pricing-note">3時間/回 &#215; 月4〜5回 &#65309; 約10万円/月</div>
+            <ul class="pricing-features"><li>SaaS基本プランに追加</li><li>有資格者による現場訪問ケア</li><li>理学療法士・柔道整復師が対応</li><li>個人別フィードバック</li><li>セルフケア指導付き</li></ul>
+            <a href="index.html#contact" class="btn-primary" style="width:100%;justify-content:center">お問い合わせ</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            // オプションカードは通常表示のまま
-            const optionCards = document.querySelectorAll('.option-card');
-            optionCards.forEach(card => observer.observe(card));
+    <section class="flow-section" id="flow">
+      <div class="flow-wrap">
+        <div class="section-header reveal"><div class="section-label">Implementation Flow</div><h2 class="section-title">導入の流れ</h2></div>
+        <div class="flow-steps">
+          <div class="flow-step reveal reveal-delay-1"><div class="flow-step-num">1</div><h3>お問い合わせ・ヒアリング</h3><p>現状の課題や体制を詳しく伺い、最適なプラン選定の準備をします。</p></div>
+          <div class="flow-step reveal reveal-delay-2"><div class="flow-step-num">2</div><h3>プラン提案・お見積もり</h3><p>目的やご予算に合わせたプランをご提案。デモ画面のご共有も可能です。</p></div>
+          <div class="flow-step reveal reveal-delay-3"><div class="flow-step-num">3</div><h3>契約・LINE連携セットアップ</h3><p>LINE公式アカウントの連携と従業員登録を行います。最短1週間で開始可能。</p></div>
+          <div class="flow-step reveal reveal-delay-4"><div class="flow-step-num">4</div><h3>運用開始・継続サポート</h3><p>導入後もCSが伴走。レポーティングと改善提案で定着まで支援します。</p></div>
+        </div>
+      </div>
+    </section>
 
-            // パララックス効果
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.hero-image');
-                parallaxElements.forEach(element => {
-                    const speed = 0.2;
-                    element.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            });
+    <section class="cta-section">
+      <div class="cta-wrap">
+        <h2>痛みを「個人の問題」から<br>「経営の意思決定インフラ」へ</h2>
+        <p>まずは資料請求・無料デモから。<br>従業員の健康と企業の生産性を、Pain Techで両立させませんか？</p>
+        <a href="index.html#contact" class="btn-primary">資料請求・お問い合わせ &#8594;</a>
+        <div class="cta-note">料金や導入方法について、お気軽にご相談ください</div>
+      </div>
+    </section>
+  </main>
 
-            // ホバー時の3Dエフェクト
-            const cards = document.querySelectorAll('.feature-card, .option-card');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = (y - centerY) / 10;
-                    const rotateY = (centerX - x) / 10;
-                    
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-                });
-            });
-        });
-    </script>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="footer-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2025 Adory Inc.</p></div>
+      <div class="footer-col"><h4>Services</h4><a href="service.html">Pain Tech SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">代表メッセージ</a><a href="index.html#contact">お問い合わせ</a></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-bottom-links"><a href="#">プライバシーポリシー</a><a href="#">利用規約</a></div><p>&#169; 2025 株式会社Adory. All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pageLoader').classList.add('hidden'),600)});
+    const header=document.getElementById('header'),scrollTopBtn=document.getElementById('scrollTop');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;header.classList.toggle('scrolled',y>50);scrollTopBtn.classList.toggle('show',y>500)});
+    scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    const hamburger=document.getElementById('hamburger'),navMenu=document.getElementById('navMenu');
+    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');navMenu.classList.toggle('active')});
+    navMenu.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hamburger.classList.remove('open');navMenu.classList.remove('active')})});
+    const revealEls=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(el=>observer.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{const id=link.getAttribute('href');if(id==='#')return;const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+  </script>
 </body>
 </html>
