@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Adory Pain Tech - 従業員の痛みをデータで見える化し、企業の生産性損失と労災・離職リスクを削減するSaaS">
-  <title>Pain Tech | 痛みを可視化するSaaS - Adory</title>
+  <meta name="description" content="Adory - 現場の離職・労災を未然に防ぐ、現場特化の痛み可視化SaaS">
+  <title>Adory | 現場特化の痛み可視化SaaS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -54,11 +54,13 @@
     .hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(80px);opacity:.1;background:var(--orange);bottom:-150px;left:-100px;animation:blobFloat 20s ease-in-out infinite reverse}
     @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
     .hero-inner{position:relative;z-index:1;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;display:flex;align-items:center;gap:4rem}
-    .hero-text{flex:1}
+    .hero-text{flex:1.1}
     .hero-product-name{font-family:var(--font-en);font-size:3.5rem;font-weight:800;background:linear-gradient(90deg,#D41D00,#FF9A3F,#D41D00);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:.8rem;animation:fadeSlideIn .8s .1s both,textShimmer 4s linear infinite}
     @keyframes textShimmer{0%{background-position:0% center}100%{background-position:200% center}}
+    .hero-product-name ruby{ruby-align:center}
+    .hero-product-name rt{font-family:var(--font-jp);font-size:.2em;font-weight:500;-webkit-text-fill-color:var(--text-muted);color:var(--text-muted);letter-spacing:0;ruby-align:center}
     .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,29,0,.08);border:1px solid rgba(212,29,0,.15);border-radius:999px;padding:.4rem 1rem;font-size:.82rem;font-weight:700;color:var(--red);margin-bottom:1.5rem;animation:fadeSlideIn .8s .2s both}
-    .hero-title{font-size:2.1rem;font-weight:900;line-height:1.3;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
+    .hero-title{font-size:1.8rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
     .hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .hero-desc{font-size:1.05rem;color:var(--text-light);line-height:1.9;margin-bottom:2rem;animation:fadeSlideIn .8s .6s both}
     .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeSlideIn .8s .8s both}
@@ -69,7 +71,7 @@
     .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,29,0,.3)}
     .btn-outline{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--red);padding:.9rem 2rem;border-radius:999px;font-weight:600;font-size:.95rem;border:2px solid rgba(212,29,0,.2);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s,background .35s}
     .btn-outline:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:var(--shadow-glow);background:rgba(212,29,0,.03)}
-    .hero-visual{flex:1.4;animation:fadeSlideIn 1s .5s both;position:relative}
+    .hero-visual{flex:1.1;animation:fadeSlideIn 1s .5s both;position:relative}
     .hero-img-wrap{display:flex;align-items:center;justify-content:center;animation:heroFloat 6s ease-in-out infinite}
     @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
     .br-desktop{display:inline}
@@ -83,7 +85,8 @@
     .problem-card-photo{width:100%;height:200px;overflow:hidden}
     .problem-card-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
     .problem-card-img:hover .problem-card-photo img{transform:scale(1.06)}
-    .problem-card-img h3{font-size:1rem;font-weight:700;color:var(--dark);padding:1.2rem 1.5rem;text-align:center}
+    .problem-card-img h3{font-size:1rem;font-weight:700;color:var(--dark);padding:1.2rem 1.5rem .3rem;text-align:center}
+    .problem-card-img p{font-size:.82rem;color:var(--text-light);padding:0 1.5rem 1.2rem;text-align:center;line-height:1.7}
 
     .problem-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-md);border:1px solid #f5f5f5;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
     .problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transition:transform .5s cubic-bezier(.16,1,.3,1);transform-origin:left}
@@ -177,14 +180,14 @@
     .scroll-top.show{opacity:1;transform:translateY(0)}.scroll-top:hover{transform:translateY(-4px) scale(1.1);box-shadow:0 12px 40px rgba(212,29,0,.3)}
 
     @media(max-width:1024px){
-      .hero-inner{flex-direction:column;gap:2.5rem;text-align:center}.hero-text{max-width:600px}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-img{width:100%}.hero-title{font-size:1.9rem}
+      .hero-inner{flex-direction:column;gap:2.5rem;text-align:center}.hero-text{max-width:600px}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-img{width:100%}.hero-title{font-size:1.6rem}
       .feature-row,.feature-row.reverse{flex-direction:column;gap:2rem}
     }
     @media(max-width:768px){
       .nav-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;align-items:center;gap:.5rem;z-index:999}
       .nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}
       .hamburger{display:flex;z-index:1001}
-      .hero{min-height:auto;padding:7rem 5% 4rem}.hero-title{font-size:1.6rem}.section-title{font-size:1.5rem}
+      .hero{min-height:auto;padding:7rem 5% 4rem}.hero-title{font-size:1.4rem}.section-title{font-size:1.5rem}
       .hero-product-name{font-size:2.5rem}
       .br-desktop{display:none}
       .problems-grid{grid-template-columns:1fr}.flow-steps{grid-template-columns:1fr 1fr}
@@ -192,7 +195,7 @@
       .footer-inner{grid-template-columns:1fr;gap:2rem;text-align:center}
     }
     @media(max-width:480px){
-      .hero-title{font-size:1.35rem}.hero-actions{flex-direction:column;align-items:center}
+      .hero-title{font-size:1.2rem}.hero-actions{flex-direction:column;align-items:center}
       .hero-actions a{width:100%;text-align:center;justify-content:center}
       .flow-steps{grid-template-columns:1fr}.ux-flow{flex-direction:column}.hybrid-cards{grid-template-columns:1fr}
     }
@@ -227,10 +230,10 @@
     <section class="hero" id="top">
       <div class="hero-inner">
         <div class="hero-text">
-          <div class="hero-product-name">Pain Tech</div>
+          <div class="hero-product-name"><ruby>Adory<rp>(</rp><rt>アドリー</rt><rp>)</rp></ruby></div>
           <div class="hero-badge">&#x1F680; 2026年3月 ローンチ予定</div>
-          <h1 class="hero-title">従業員の<span class="accent">「痛み」</span>を<br class="br-desktop">データで見える化し、<br class="br-desktop"><span class="accent">労災・離職リスク</span>を削減</h1>
-          <p class="hero-desc">Pain Techは、身体が資本のブルーワーカーの「痛み」を週次パルスサーベイで可視化。有資格者による現場ケアと組み合わせた、ハイブリッド型ヘルスケアSaaSです。</p>
+          <h1 class="hero-title">現場の<span class="accent">離職・労災</span>を未然に防ぐ、<br class="br-desktop">現場特化の<span class="accent">痛み可視化SaaS</span></h1>
+          <p class="hero-desc">身体が資本のブルーワーカーの「痛み」をデータで可視化し、労災・離職リスクを最小化。<br class="br-desktop">週1回のLINE回答と、週1回のプロによる現場ケアを組み合わせた、<br class="br-desktop">日本唯一の現場特化型ヘルスケアSaaS「Adory（アドリー）」。</p>
           <div class="hero-actions">
             <a href="index.html#contact" class="btn-primary">資料請求・お問い合わせ &#8594;</a>
             <a href="#features" class="btn-outline">サービス詳細を見る</a>
@@ -238,7 +241,7 @@
         </div>
         <div class="hero-visual">
           <div class="hero-img-wrap">
-            <img src="images/hero-dashboard.png" alt="Pain Tech ダッシュボード画面 - PC・スマホ対応" class="hero-img">
+            <img src="images/hero-dashboard.png" alt="Adory ダッシュボード画面 - PC・スマホ対応" class="hero-img">
           </div>
         </div>
       </div>
@@ -248,20 +251,23 @@
       <div class="problems-wrap">
         <div class="section-header reveal">
           <div class="section-label">Problems</div>
-          <h2 class="section-title">こんな課題、ありませんか？</h2>
+          <h2 class="section-title">現場の「身体」を、個人任せにしていませんか？</h2>
         </div>
         <div class="problems-grid">
           <div class="problem-card-img reveal reveal-delay-1">
-            <div class="problem-card-photo"><img src="images/problem-physical-check.png" alt="フィジカルチェックができていない"></div>
-            <h3>フィジカルチェックができていない</h3>
+            <div class="problem-card-photo"><img src="images/problem-physical-check.png" alt="見えない労災リスク"></div>
+            <h3>見えない労災リスク</h3>
+            <p>「まだ大丈夫」という従業員の我慢が、取り返しのつかない事故につながる。</p>
           </div>
           <div class="problem-card-img reveal reveal-delay-2">
-            <div class="problem-card-photo"><img src="images/problem-turnover.png" alt="離職が止まらず、人材が定着しない"></div>
-            <h3>離職が止まらず、人材が定着しない</h3>
+            <div class="problem-card-photo"><img src="images/problem-turnover.png" alt="止まらない離職"></div>
+            <h3>止まらない離職</h3>
+            <p>体力の限界を感じた熟練スタッフが、静かに現場を去っていく。</p>
           </div>
           <div class="problem-card-img reveal reveal-delay-3">
-            <div class="problem-card-photo"><img src="images/problem-risk.png" alt="労災リスクの早期発見や対策方法が分からない"></div>
-            <h3>労災リスクの早期発見や対策方法が分からない</h3>
+            <div class="problem-card-photo"><img src="images/problem-risk.png" alt="採用力の低下"></div>
+            <h3>採用力の低下</h3>
+            <p>「身体を酷使する仕事」というイメージが、若手の採用を阻んでいる。</p>
           </div>
         </div>
       </div>
@@ -275,24 +281,24 @@
 
     <section class="features-section" id="features">
       <div class="features-wrap">
-        <div class="section-header reveal"><div class="section-label">Features</div><h2 class="section-title">Pain Techが選ばれる理由</h2></div>
+        <div class="section-header reveal"><div class="section-label">Features</div><h2 class="section-title">Adoryが選ばれる理由</h2></div>
 
         <div class="feature-row reveal">
-          <div class="feature-text reveal-left"><div class="feature-num">01</div><h3>LINEで2分。<br>現場に溶け込むパルスサーベイ</h3><p>毎週月曜 朝7:00にLINEで回答URLを配信。パスワード不要、2分で完了する設計で入力ハードルを極限まで下げます。疲労・疼痛・睡眠・ストレス・帰属意識・エンゲージメントを1分で定点観測。年1&#12316;2回のストレスチェックでは気づけない「小さな変化」を捕捉します。</p></div>
+          <div class="feature-text reveal-left"><div class="feature-num">01</div><h3>LINEで2分。<br>現場に溶け込むパルスサーベイ</h3><p>毎週月曜、朝7:00にLINEで回答URLを配信。<strong style="color:var(--dark)">パスワード不要・ログイン不要</strong>の設計で、ITに不慣れな現場でも入力ハードルを極限まで低下。疲労・疼痛・睡眠・ストレス・帰属意識・エンゲージメントの2分で定点観測で、年1〜2回のストレスチェックでは捉えきれない「小さな変化」を逃しません。</p></div>
           <div class="feature-visual">
             <img src="images/feature-pulse-survey.png" alt="LINEパルスサーベイのUXフロー" style="width:100%;border-radius:var(--radius-sm);display:block">
           </div>
         </div>
 
         <div class="feature-row reverse reveal">
-          <div class="feature-text reveal-right"><div class="feature-num">02</div><h3>デジタル &#215; フィジカル。<br>IT企業にも整体院にもできない領域</h3><p>ダッシュボードによる「早期発見・予兆管理」に加え、理学療法士・柔道整復師が週1回3時間、現場を訪問。ツールで可視化するだけでは身体は変わらない。データドリブンなケアと物理的なソリューションを組み合わせたハイブリッド・モデルが最大の特徴です。</p></div>
+          <div class="feature-text reveal-right"><div class="feature-num">02</div><h3>デジタル &#215; フィジカル。<br>現場を知り尽くしたハイブリッド・モデル</h3><p>ツールでの可視化（デジタル）に加え、有資格者（理学療法士・柔道整復師等）が週1回、現場を直接訪問（フィジカル）。データに基づいた的確なコンディショニング・リラクゼーションを提供します。「ITだけ」でも「マッサージだけ」でも解決できない、身体の経営リスクを根本から管理します。</p></div>
           <div class="feature-visual">
             <img src="images/feature-hybrid-care.png" alt="デジタル×フィジカルのハイブリッドケア" style="width:100%;border-radius:var(--radius-sm);display:block">
           </div>
         </div>
 
         <div class="feature-row reveal">
-          <div class="feature-text reveal-left"><div class="feature-num">03</div><h3>心理的安全性を担保する<br>権限設計（RBAC）</h3><p>「個人の詳細な痛み」は労務・産業医のみが閲覧可能。経営層には組織全体の生産性リスク（スコア）のみを表示。経営層には見せすぎず、現場にはプライバシーを約束することで「本音の入力」を引き出し、データの信頼性を高めます。</p></div>
+          <div class="feature-text reveal-left"><div class="feature-num">03</div><h3>心理的安全性を担保する<br>権限設計（RBAC）</h3><p>「痛みを報告すると仕事から外される」という現場の不安を解消。個人の詳細データは産業医・労務担当のみが閲覧し、経営層には「組織全体の生産性リスク」のみを表示します。プライバシーを守ることで、従業員の「本音」を引き出し、データの信頼性を高めます。</p></div>
           <div class="feature-visual">
             <img src="images/feature-rbac.png" alt="RBAC権限設計の概念図" style="width:100%;border-radius:var(--radius-sm);display:block">
           </div>
@@ -305,17 +311,17 @@
         <div class="section-header reveal"><div class="section-label">Pricing</div><h2 class="section-title">料金プラン</h2><p class="section-sub">「見える化」と「現場ケア」を組み合わせて、最適なプランをご提案します</p></div>
         <div class="pricing-grid">
           <div class="pricing-card featured reveal reveal-delay-1">
-            <h3>Pain Tech SaaS</h3><p style="font-size:.85rem;color:var(--text-muted)">基本プラン ― 痛みデータの可視化・管理</p>
+            <h3>Adory SaaS</h3><p style="font-size:.85rem;color:var(--text-muted)">基本プラン ― 痛みデータの可視化・管理</p>
             <div class="pricing-price">&#165;29,800<span>/月</span></div>
             <div class="pricing-note">31名以上は1名あたり+500円/月</div>
-            <ul class="pricing-features"><li>LINE連携パルスサーベイ</li><li>Pain Techダッシュボード</li><li>部署・職種別レポート</li><li>高リスク者アラート通知</li><li>CSによる伴走サポート</li></ul>
+            <ul class="pricing-features"><li>LINE連携パルスサーベイ</li><li>Adoryダッシュボード</li><li>部署・職種別レポート</li><li>高リスク者アラート通知</li><li>CSによる伴走サポート</li></ul>
             <a href="index.html#contact" class="btn-primary" style="width:100%;justify-content:center">お問い合わせ</a>
           </div>
           <div class="pricing-card reveal reveal-delay-2">
-            <h3>+ 現場ケア</h3><p style="font-size:.85rem;color:var(--text-muted)">オプション ― 有資格者による常駐マッサージ</p>
+            <h3>+ 現場ケアオプション</h3><p style="font-size:.85rem;color:var(--text-muted)">有資格者による常駐コンディショニング</p>
             <div class="pricing-price">&#165;24,980<span>/回</span></div>
             <div class="pricing-note">3時間/回 &#215; 月4〜5回 &#65309; 約10万円/月</div>
-            <ul class="pricing-features"><li>SaaS基本プランに追加</li><li>有資格者による現場訪問ケア</li><li>理学療法士・柔道整復師が対応</li><li>個人別フィードバック</li><li>セルフケア指導付き</li></ul>
+            <ul class="pricing-features"><li>SaaS基本プランに追加</li><li>有資格者による現場訪問ケア</li><li>理学療法士・柔道整復師などが対応</li></ul>
             <a href="index.html#contact" class="btn-primary" style="width:100%;justify-content:center">お問い合わせ</a>
           </div>
         </div>
@@ -337,7 +343,7 @@
     <section class="cta-section">
       <div class="cta-wrap">
         <h2>痛みを「個人の問題」から<br>「経営の意思決定インフラ」へ</h2>
-        <p>まずは資料請求・無料デモから。<br>従業員の健康と企業の生産性を、Pain Techで両立させませんか？</p>
+        <p>まずは資料請求・無料デモから。<br>従業員の健康と企業の生産性を、Adoryで両立させませんか？</p>
         <a href="index.html#contact" class="btn-primary">資料請求・お問い合わせ &#8594;</a>
         <div class="cta-note">料金や導入方法について、お気軽にご相談ください</div>
       </div>
@@ -347,7 +353,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-brand"><div class="footer-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2025 Adory Inc.</p></div>
-      <div class="footer-col"><h4>Services</h4><a href="service.html">Pain Tech SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
+      <div class="footer-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
       <div class="footer-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">代表メッセージ</a><a href="index.html#contact">お問い合わせ</a></div>
     </div>
     <div class="footer-bottom"><div class="footer-bottom-links"><a href="#">プライバシーポリシー</a><a href="#">利用規約</a></div><p>&#169; 2025 株式会社Adory. All rights reserved.</p></div>
