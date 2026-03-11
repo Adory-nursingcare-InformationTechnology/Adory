@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adory | 現場の離職・労災を未然に防ぐ、現場特化型 予兆可視化SaaS</title>
+<meta name="description" content="痛みデータから予兆を捉える現場特化型SaaS。建設・物流・介護・警備・小売の現場を守る。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--red:#D41D00;--orange:#FF9A3F;--gradient:linear-gradient(135deg,#D41D00,#FF9A3F);--gradient-soft:linear-gradient(135deg,#fff5f0,#ffe8d6);--dark:#1a1a1a;--text:#333;--text-light:#666;--text-muted:#999;--bg:#fff;--bg-warm:#FFFAF7;--bg-section:#FBF8F6;--shadow-sm:0 2px 8px rgba(0,0,0,.06);--shadow-md:0 8px 30px rgba(0,0,0,.08);--shadow-lg:0 20px 60px rgba(0,0,0,.1);--shadow-glow:0 8px 40px rgba(212,29,0,.15);--radius:20px;--radius-sm:12px;--max-w:1200px;--font-jp:'Noto Sans JP',sans-serif;--font-en:'Outfit',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-jp);color:var(--text);line-height:1.8;background:var(--bg);overflow-x:hidden}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
+
+/* ANIMATIONS */
+.fi{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.16,1,.3,1)}.fi.v{opacity:1;transform:none}
+.fd1{transition-delay:.1s}.fd2{transition-delay:.2s}.fd3{transition-delay:.3s}.fd4{transition-delay:.4s}.fd5{transition-delay:.5s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
+@keyframes shimmer{0%,100%{left:-100%}50%{left:120%}}
+@keyframes textShimmer{0%{background-position:0% center}100%{background-position:200% center}}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 0 rgba(212,29,0,.2)}70%{box-shadow:0 0 0 12px rgba(212,29,0,0)}}
+
+/* HEADER */
+header{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
+header.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.08)}
+nav{max-width:var(--max-w);margin:0 auto;padding:.9rem 5%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--font-en);font-weight:800;font-size:1.6rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:transform .3s}.logo:hover{transform:scale(1.03)}
+.nav-l{display:flex;gap:.3rem;align-items:center}.nav-l a{font-size:.88rem;font-weight:500;color:var(--text);padding:.5rem .9rem;border-radius:999px;transition:background .3s,color .3s;white-space:nowrap}.nav-l a:hover{background:var(--gradient-soft);color:var(--red)}
+.nav-cta{background:var(--gradient)!important;color:#fff!important;padding:.6rem 1.4rem!important;font-weight:700!important;box-shadow:var(--shadow-glow);position:relative;overflow:hidden}
+.nav-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 3s ease-in-out infinite}
+.nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 12px 40px rgba(212,29,0,.25)!important}
+.hb{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1002}.hb span{width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
+.hb.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.hb.open span:nth-child(2){opacity:0}.hb.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* GLOBAL */
+section{padding:6rem 5%}.ct{max-width:var(--max-w);margin:0 auto}
+.sl{font-family:var(--font-en);font-size:.85rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+.st{font-size:2rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:.6rem}
+.ss{font-size:1rem;color:var(--text-light);max-width:640px;line-height:1.8;margin-bottom:2rem}
+.sh{text-align:center;margin-bottom:3.5rem}.sh .ss{margin:0 auto}
+.bp{display:inline-flex;align-items:center;gap:.5rem;background:var(--gradient);color:#fff;padding:.9rem 2rem;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow-glow);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;position:relative;overflow:hidden}
+.bp::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:left .6s ease}.bp:hover::after{left:120%}
+.bp:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,29,0,.3)}
+.bs{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--red);padding:.9rem 2rem;border-radius:999px;font-weight:600;font-size:.95rem;border:2px solid rgba(212,29,0,.2);transition:transform .35s,border-color .35s,box-shadow .35s}.bs:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:var(--shadow-glow)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-warm);padding-top:80px}
+.hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(100px);opacity:.12;background:var(--red);top:-250px;right:-200px;animation:blobFloat 20s ease-in-out infinite}
+.hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(80px);opacity:.1;background:var(--orange);bottom:-150px;left:-100px;animation:blobFloat 20s ease-in-out infinite reverse}
+.hero-in{position:relative;z-index:2;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;display:flex;align-items:center;gap:3rem}
+.hero-text{flex:1;min-width:380px;text-align:left}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(212,29,0,.06);border:1px solid rgba(212,29,0,.15);padding:.4rem 1rem;border-radius:999px;font-size:.82rem;font-weight:700;color:var(--red);letter-spacing:.06em;margin-bottom:1.5rem;animation:fadeIn .8s .1s both}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--red);border-radius:50%;animation:pulse-ring 2s infinite}
+.hero-name{font-family:var(--font-en);font-size:clamp(2.5rem,6vw,3.8rem);font-weight:800;background:linear-gradient(90deg,#D41D00,#FF9A3F,#D41D00);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:.8rem;animation:fadeIn .8s .15s both,textShimmer 4s linear infinite}
+h1{font-size:clamp(1.1rem,2.2vw,1.35rem);font-weight:900;line-height:1.5;color:var(--dark);margin-bottom:1.2rem;animation:fadeIn .8s .3s both}
+h1 .ac{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:.9rem;color:var(--text-light);line-height:1.9;max-width:550px;margin-bottom:2rem;animation:fadeIn .8s .5s both}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;animation:fadeIn .8s .7s both}
+.hero-stats{display:flex;gap:0;animation:fadeIn .8s .9s both;background:#fff;border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:.8rem 0;width:fit-content}
+.hero-visual{flex:1.2;animation:fadeIn 1s .5s both;min-width:0}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-visual img{width:110%;max-width:none;border-radius:var(--radius-sm);animation:heroFloat 6s ease-in-out infinite}
+.stat{text-align:center;flex-shrink:0;padding:0 1.2rem;border-right:1px solid rgba(0,0,0,.06)}.stat:last-child{border-right:none}
+.stat-n{font-family:var(--font-en);font-size:1.5rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;white-space:nowrap}.stat-n span{font-size:.78rem}
+.stat-l{font-size:.62rem;color:var(--text-muted);margin-top:.15rem;white-space:nowrap}
+
+/* PROBLEM */
+.prob{background:var(--bg)}
+.prob-g{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.pc{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-md);border:1px solid #f5f5f5;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transition:transform .5s cubic-bezier(.16,1,.3,1);transform-origin:left}.pc:hover::before{transform:scaleX(1)}.pc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.pc-num{font-family:var(--font-en);font-size:3.5rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.12;position:absolute;top:.5rem;right:1rem;line-height:1}
+.pc h3{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.5rem}.pc p{font-size:.88rem;color:var(--text-light)}
+.prob-hl{background:var(--gradient-soft);border:1.5px solid rgba(212,29,0,.12);border-radius:var(--radius);padding:1.5rem 2rem;margin-top:2rem;display:flex;align-items:center;gap:1rem}
+.prob-hl-icon{font-size:2rem;flex-shrink:0}.prob-hl-text{font-size:1rem;font-weight:700;color:var(--dark);line-height:1.6}.prob-hl-text em{color:var(--red);font-style:normal}
+
+/* SOLUTION TIMELINE */
+.sol{background:var(--bg-section)}
+.sol-tl{position:relative;margin-top:2rem;max-width:800px;margin-left:auto;margin-right:auto}
+.sol-tl::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:3px;background:var(--gradient);border-radius:2px}
+.sol-s{display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:2rem;position:relative}.sol-s:last-child{margin-bottom:0}
+.sol-d{width:56px;height:56px;flex-shrink:0;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-en);font-weight:800;font-size:1.2rem;box-shadow:0 4px 20px rgba(212,29,0,.2);position:relative;z-index:2}
+.sol-c{background:#fff;border-radius:var(--radius);padding:1.5rem 2rem;box-shadow:var(--shadow-md);flex:1;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+.sol-c:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.sol-tag{display:inline-block;font-size:.7rem;font-weight:700;color:var(--red);background:rgba(212,29,0,.06);padding:.2rem .6rem;border-radius:999px;margin-bottom:.4rem}
+.sol-c h3{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.3rem}.sol-c p{font-size:.85rem;color:var(--text-light);line-height:1.8}
+
+/* MINI CTA */
+.mc{background:var(--gradient);padding:2rem 5%;text-align:center;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);animation:shimmer 4s ease-in-out infinite}
+.mc-in{position:relative;z-index:1;max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.mc p{color:#fff;font-size:1rem;font-weight:700}
+.mc .bw{background:#fff;color:var(--red);padding:.6rem 1.5rem;border-radius:999px;font-weight:700;font-size:.88rem;transition:transform .3s,box-shadow .3s;box-shadow:0 4px 20px rgba(0,0,0,.15)}.mc .bw:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.2)}
+
+/* FEATURES */
+.feat{background:var(--bg)}
+.feat-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.fc{background:#fff;border-radius:var(--radius);padding:2.2rem 2rem;box-shadow:var(--shadow-md);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
+.fc::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gradient);opacity:0;transition:opacity .4s}.fc:hover::before{opacity:1}
+.fc::after{content:'';position:absolute;inset:0;background:var(--gradient-soft);opacity:0;transition:opacity .4s;z-index:0}.fc:hover::after{opacity:1}
+.fc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.fc>*{position:relative;z-index:1}
+.fc-num{font-family:var(--font-en);font-size:2.8rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.6rem;opacity:.18;transition:opacity .4s}.fc:hover .fc-num{opacity:.35}
+.fc h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.6rem;line-height:1.4}
+.fc p{font-size:.85rem;color:var(--text-light);line-height:1.8}
+.fc-tag{display:inline-block;font-size:.65rem;font-weight:700;color:var(--red);background:rgba(212,29,0,.06);padding:.15rem .5rem;border-radius:999px;margin-bottom:.5rem;letter-spacing:.03em}
+
+/* COMPARISON */
+.cmp{background:var(--bg-section)}
+.cmp-t{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);margin-top:2rem}
+.cmp-t th,.cmp-t td{padding:.9rem 1rem;text-align:center;font-size:.85rem}
+.cmp-t thead th{background:var(--dark);color:#fff;font-weight:700;font-size:.78rem;letter-spacing:.05em}
+.cmp-t thead th:first-child{text-align:left}
+.cmp-t thead th.ac{background:var(--red)}
+.cmp-t tbody td{background:#fff;border-bottom:1px solid #f5f5f5;color:var(--text-light)}.cmp-t tbody td:first-child{text-align:left;font-weight:600;color:var(--dark)}
+.cmp-t tbody td.ac{background:rgba(212,29,0,.03);color:var(--dark);font-weight:700}
+.cmp-t tbody tr:last-child td{border-bottom:none}.cmp-t tbody tr:hover td{background:var(--bg-warm)}.cmp-t tbody tr:hover td.ac{background:rgba(212,29,0,.06)}
+.ck{color:#22c55e;font-weight:700}.cx{color:#ccc}
+
+/* DASHBOARD */
+.db{background:var(--bg-section)}
+.db-overlap{position:relative;height:420px;max-width:900px;margin:0 auto}
+.db-overlap-card{position:absolute;width:55%;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.db-overlap-card img{width:100%;display:block}
+.db-overlap-card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 25px 60px rgba(0,0,0,.18);z-index:10}
+.db-overlap-card:nth-child(1){top:0;left:0;z-index:3}
+.db-overlap-card:nth-child(2){top:50px;left:22.5%;z-index:2}
+.db-overlap-card:nth-child(3){top:100px;left:45%;z-index:1}
+
+/* PRICING */
+.pr{background:var(--bg)}
+.pr-g{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:2rem auto 0}
+.prc{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);text-align:center;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.prc:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.prc.feat{border:2px solid var(--red)}.prc.feat::before{content:'人気';position:absolute;top:16px;right:-28px;background:var(--gradient);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem 2rem;transform:rotate(45deg)}
+.prc h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.pr-p{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--dark);margin:1rem 0 .3rem}.pr-p span{font-size:.9rem;font-weight:400;color:var(--text-muted)}
+.pr-n{font-size:.82rem;color:var(--text-muted);margin-bottom:1.5rem}
+.pfl{text-align:left;margin-bottom:2rem}.pfl li{font-size:.88rem;padding:.4rem 0;color:var(--text);padding-left:1.5rem;position:relative}.pfl li::before{content:'\2713';position:absolute;left:0;color:var(--orange);font-weight:700}
+.prc .bp{margin-top:auto;width:100%;justify-content:center}
+.ptw{max-width:900px;margin:3rem auto 0}
+.pt-title{text-align:center;font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:1.5rem}
+.pt{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius-sm);overflow:hidden;box-shadow:var(--shadow-sm);font-size:.85rem}
+.pt th{background:var(--dark);color:#fff;padding:.9rem 1rem;font-weight:600;white-space:nowrap}
+.pt td{padding:.8rem 1rem;border-bottom:1px solid #f5f5f5;background:#fff;white-space:nowrap}.pt tbody td:last-child{font-weight:700;color:var(--red)}.pt tbody tr:hover{background:var(--bg-warm)}
+
+/* FAQ */
+.fqs{background:var(--bg-section)}
+.fql{margin-top:2rem;max-width:800px;margin-left:auto;margin-right:auto}
+.fqi{background:#fff;border-radius:var(--radius);margin-bottom:.8rem;box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow .3s}.fqi:hover{box-shadow:var(--shadow-md)}
+.fqq{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem;cursor:pointer}
+.fqb{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--gradient);color:#fff;font-family:var(--font-en);font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+.fqqt{flex:1;font-size:.95rem;font-weight:700;color:var(--dark)}.fqar{font-size:.8rem;color:var(--text-muted);transition:transform .3s;flex-shrink:0}
+.fqi.open .fqar{transform:rotate(180deg)}
+.fqa{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}.fqai{padding:0 1.5rem 1.5rem;padding-left:calc(1.5rem + 28px + 1rem);font-size:.88rem;color:var(--text-light);line-height:1.9}
+
+/* FLOW */
+.flw{background:var(--bg)}
+.fl-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem}
+.flc{text-align:center;padding:2rem 1.5rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
+.flc:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.fln{width:40px;height:40px;border-radius:50%;background:var(--gradient);color:#fff;font-family:var(--font-en);font-weight:800;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;transition:transform .4s cubic-bezier(.16,1,.3,1)}.flc:hover .fln{transform:scale(1.2)}
+.flc h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}.flc p{font-size:.82rem;color:var(--text-light)}
+
+/* CTA */
+.cta-s{padding:5rem 5%;background:var(--bg-warm);text-align:center;position:relative;overflow:hidden}
+.cta-s::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(100px);opacity:.12;background:var(--red);top:-200px;right:-150px;animation:blobFloat 20s ease-in-out infinite}
+.cta-s::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(80px);opacity:.1;background:var(--orange);bottom:-150px;left:-100px;animation:blobFloat 20s ease-in-out infinite reverse}
+.cta-w{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-s h2{font-size:1.8rem;font-weight:900;margin-bottom:1rem;color:var(--dark)}
+.cta-s p{font-size:.95rem;color:var(--text-light);margin-bottom:2rem}
+.cta-s .bp{font-size:1.1rem;padding:1rem 2.5rem;animation:pulse-ring 2s ease-in-out infinite}
+.cta-note{font-size:.78rem;color:var(--text-muted);margin-top:1rem}
+
+/* FOOTER */
+footer{background:rgba(255,255,255,.95);color:var(--text);padding:4rem 5% 2rem;position:relative;border-top:1px solid rgba(0,0,0,.06)}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+.ft-in{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.ft-brand .ft-logo{font-family:var(--font-en);font-size:1.5rem;font-weight:800;margin-bottom:1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ft-brand p{font-size:.9rem;color:var(--text-light);line-height:1.8}
+.ft-col h4{font-size:.82rem;font-family:var(--font-en);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem}
+.ft-col a{display:block;font-size:.9rem;color:var(--text-light);padding:.3rem 0;transition:color .3s,padding-left .3s}.ft-col a:hover{color:var(--red);padding-left:.3rem}
+.ft-bot{text-align:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,.06);font-size:.82rem;color:var(--text-muted)}
+.ft-bot-l{margin-bottom:.8rem}.ft-bot-l a{color:var(--text-muted);margin:0 .8rem;transition:color .3s}.ft-bot-l a:hover{color:var(--red)}
+
+.stb{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s;z-index:99}.stb.show{opacity:1;transform:translateY(0)}.stb:hover{transform:translateY(-4px) scale(1.1)}
+
+/* MODAL */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);z-index:1000;align-items:center;justify-content:center;padding:20px}.mo.open{display:flex}
+.md{background:#fff;border-radius:var(--radius);padding:2.5rem;width:100%;max-width:520px;position:relative;box-shadow:var(--shadow-lg)}
+.mx{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer;line-height:1}
+.md h3{font-size:1.3rem;font-weight:900;color:var(--dark);margin-bottom:.3rem}.msb{font-size:.88rem;color:var(--text-light);margin-bottom:1.5rem}
+.fg{margin-bottom:1rem}.fl{display:block;font-size:.82rem;font-weight:600;color:var(--dark);margin-bottom:.3rem}
+.fin{width:100%;background:var(--bg-section);border:2px solid #eee;border-radius:var(--radius-sm);padding:.7rem 1rem;color:var(--text);font-size:.9rem;font-family:var(--font-jp);outline:none;transition:border-color .3s}.fin:focus{border-color:var(--orange)}.fin::placeholder{color:var(--text-muted)}
+.fsb{width:100%;background:var(--gradient);color:#fff;padding:.9rem;border:none;border-radius:999px;font-size:1rem;font-weight:700;cursor:pointer;font-family:var(--font-jp);transition:transform .3s,box-shadow .3s;margin-top:.5rem}.fsb:hover{transform:translateY(-2px);box-shadow:var(--shadow-glow)}
+
+body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.feat-g{grid-template-columns:1fr 1fr}.hero-in{flex-direction:column;gap:2rem;text-align:center}.hero-text{min-width:0;max-width:600px}.hero-cta{justify-content:center}.hero-stats{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-visual img{width:100%}}
+@media(max-width:768px){
+  .nav-l{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:.3rem;z-index:999;padding:1.5rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.06)}
+  .nav-l.active{display:flex}.nav-l a{font-size:1.1rem;padding:.8rem 1.5rem}.hb{display:flex;z-index:1002}
+  .hero{min-height:auto;padding:7rem 5% 3rem}h1{font-size:1.15rem}.st{font-size:1.5rem}
+  .prob-g,.pr-g{grid-template-columns:1fr}.feat-g{grid-template-columns:1fr}.fl-g{grid-template-columns:1fr 1fr}
+  .db-overlap{height:auto;display:flex;flex-direction:column;gap:1.5rem}.db-overlap-card{position:static;width:100%;transform:none!important}
+  .sol-s{gap:1rem}.sol-d{width:44px;height:44px;font-size:1rem}
+  .cmp-t th,.cmp-t td{padding:.6rem .4rem;font-size:.72rem}
+  .ft-in{grid-template-columns:1fr;gap:2rem;text-align:center}
+  .mc-in{flex-direction:column;gap:.8rem}
+}
+@media(max-width:480px){.fl-g{grid-template-columns:1fr}.hero-stats{width:100%;overflow-x:auto}.stat{padding:0 .8rem}.stat-n{font-size:1.2rem}.stat-n span{font-size:.65rem}.sol-tl::before{left:20px}.sol-d{width:40px;height:40px;font-size:.9rem}}
+</style>
+</head>
+<body>
+<button class="stb" id="stb" aria-label="Top">&#8593;</button>
+
+<header id="hdr"><nav>
+  <a href="index.html" class="logo">Adory</a>
+  <ul class="nav-l" id="nm">
+    <li><a href="#problem">課題</a></li>
+    <li><a href="#solution">仕組み</a></li>
+    <li><a href="#features">機能</a></li>
+    <li><a href="#pricing">料金</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="index.html">会社概要</a></li>
+    <li><a href="#" class="nav-cta" onclick="openM();return false;">無料デモを見る</a></li>
+  </ul>
+  <div class="hb" id="hb"><span></span><span></span><span></span></div>
+</nav></header>
+
+<!-- HERO -->
+<section class="hero" id="top"><div class="hero-in">
+  <div class="hero-text">
+    <div class="hero-tag">現場特化型 予兆可視化 SaaS</div>
+    <div class="hero-name">Adory</div>
+    <h1>現場の<span class="ac">離職・労災</span>を未然に防ぐ、<br>痛みデータから<span class="ac">"予兆"</span>を捉える<br>現場特化型SaaS「Adory（アドリー）」</h1>
+    <p class="hero-sub">身体が資本の現場（建設・物流・運送・介護・警備・小売など）で働く人の「痛み」をデータで可視化し、労災・離職リスクを最小化。週1回のLINE回答と、プロによる現場ケアを組み合わせた、国内初の「現場特化型 予兆可視化SaaS」。</p>
+    <div class="hero-cta"><a href="#" class="bp" onclick="openM();return false;">資料請求・無料デモ &#8594;</a><a href="#solution" class="bs">仕組みを見る</a></div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">2<span>分</span></div><div class="stat-l">回答時間</div></div>
+      <div class="stat"><div class="stat-n">LINE</div><div class="stat-l">PC不要</div></div>
+      <div class="stat"><div class="stat-n">1<span>week</span></div><div class="stat-l">最短導入</div></div>
+      <div class="stat"><div class="stat-n">¥29,800<span>〜</span></div><div class="stat-l">月額/30名</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="images/hero-dashboard.png" alt="Adory ダッシュボード画面">
+  </div>
+</div></section>
+
+<!-- PROBLEM -->
+<section class="prob" id="problem"><div class="ct"><div class="sh fi"><div class="sl">Problem</div><h2 class="st">現場の「見えていない」が、<br>企業の最大リスクになっている</h2></div>
+  <div class="prob-g">
+    <div class="pc fi fd1"><div class="pc-num">01</div><h3>見えない労災リスク</h3><p>「まだ大丈夫」という従業員の我慢が、取り返しのつかない事故につながる。法令対応はメンタルだけで、現場で命取りになる「腰痛」「慢性痛」は完全に個人任せ。</p></div>
+    <div class="pc fi fd2"><div class="pc-num">02</div><h3>止まらない離職</h3><p>体力の限界を感じた熟練スタッフが、静かに現場を去っていく。採用コスト50〜80万円をかけても、身体的限界で3年以内に離職するケースが後を絶たない。</p></div>
+    <div class="pc fi fd3"><div class="pc-num">03</div><h3>採用力の低下</h3><p>「身体を酷使する仕事」というイメージが、若手の採用を阻んでいる。健康経営を打ち出せない企業は、人材獲得競争で確実に後れを取る。</p></div>
+    <div class="pc fi fd4"><div class="pc-num">04</div><h3>現場の実態が経営者に届かない</h3><p>現場監督が「元気そうです」と報告しても、個人の身体状態は把握できていない。データのない経営判断が、リスクを見えなくさせている。</p></div>
+  </div>
+  <div class="prob-hl fi"><div class="prob-hl-icon">&#9889;</div><div class="prob-hl-text">「ぎっくり腰で明日から来られない」が、現場責任者にとっては<em>メンタルより切実な問題</em>です。</div></div>
+</div></section>
+
+<!-- SOLUTION -->
+<section class="sol" id="solution"><div class="ct"><div class="sh fi"><div class="sl">How It Works</div><h2 class="st">デジタルとフィジカルの融合で、<br>現場の「痛み」を包括的にマネジメント</h2></div>
+  <div class="sol-tl">
+    <div class="sol-s fi fd1"><div class="sol-d">1</div><div class="sol-c"><div class="sol-tag">毎週月曜 AM7:00</div><h3>LINEでパルスサーベイを配信</h3><p>従業員のスマホに直接届く。ログイン不要、2分で完了。疲労・疼痛・睡眠・ストレスなど6項目を定点観測します。</p></div></div>
+    <div class="sol-s fi fd2"><div class="sol-d">2</div><div class="sol-c"><div class="sol-tag">リアルタイム</div><h3>AIが予兆を検知・アラート</h3><p>回答データはダッシュボードにリアルタイム反映。スコアの急変・慢性的低下パターンを検知し、管理者にアラートを通知。</p></div></div>
+    <div class="sol-s fi fd3"><div class="sol-d">3</div><div class="sol-c"><div class="sol-tag">週1回（オプション）</div><h3>有資格者が現場を訪問ケア</h3><p>理学療法士・柔道整復師がデータに基づき、リスクの高い従業員を優先的にコンディショニング。セルフケア指導も実施。</p></div></div>
+    <div class="sol-s fi fd4"><div class="sol-d">4</div><div class="sol-c"><div class="sol-tag">月次</div><h3>レポートで経営判断を支援</h3><p>部署・職種別の健康リスクレポートを自動生成。労務担当・経営層がデータに基づいた意思決定を行えます。</p></div></div>
+  </div>
+</div></section>
+
+<div class="mc"><div class="mc-in"><p>まずは3分で分かる資料をダウンロード</p><a href="#" class="bw" onclick="openM();return false;">無料で資料請求 &#8594;</a></div></div>
+
+<!-- FEATURES -->
+<section class="feat" id="features"><div class="ct"><div class="sh fi"><div class="sl">Features</div><h2 class="st">Adoryが現場を変える、<br>6つの主要機能</h2></div>
+  <div class="feat-g">
+    <div class="fc fi fd1"><div class="fc-num">01</div><div class="fc-tag">可視化</div><h3>Pain Score自動算出</h3><p>身体6部位の痛みレベルを0-10で入力。Pain Scoreとして週次推移を可視化し「高リスク者」を即座にアラート表示します。</p></div>
+    <div class="fc fi fd2"><div class="fc-num">02</div><div class="fc-tag">分析</div><h3>部署別・職種別分析</h3><p>組織構造に合わせたスコア比較でリスクの所在を特定。部門間の健康格差をデータで明らかにします。</p></div>
+    <div class="fc fi fd3"><div class="fc-num">03</div><div class="fc-tag">統合管理</div><h3>メンタルヘルス統合管理</h3><p>ストレス・帰属意識・エンゲージメントをフィジカルと一元管理。法定チェックを超えた現場実態を把握。</p></div>
+    <div class="fc fi fd1"><div class="fc-num">04</div><div class="fc-tag">予防</div><h3>生活習慣スコア</h3><p>睡眠時間・疲労度を組み合わせた生活習慣スコアを自動集計。労働環境改善の根拠データとして活用できます。</p></div>
+    <div class="fc fi fd2"><div class="fc-num">05</div><div class="fc-tag">セキュリティ</div><h3>権限管理（RBAC）</h3><p>個人データは産業医・労務のみ閲覧可能。経営者には組織スコアのみを表示。プライバシーと経営活用を両立。</p></div>
+    <div class="fc fi fd3"><div class="fc-num">06</div><div class="fc-tag">UX</div><h3>LINE連携で負荷ゼロ</h3><p>個人LINEに直接URL送信。専用アプリ不要、ログイン不要。現場ワーカーの操作負担を限りなくゼロに。</p></div>
+  </div>
+</div></section>
+
+<!-- COMPARISON -->
+<section class="cmp"><div class="ct"><div class="sh fi"><div class="sl">Why Adory</div><h2 class="st">既存施策との比較</h2><p class="ss" style="margin:0 auto">年1回のストレスチェックや福利厚生では見えない「予兆」を、Adoryは週次で捉えます。</p></div>
+  <div style="overflow-x:auto" class="fi"><table class="cmp-t"><thead><tr><th></th><th class="ac">Adory</th><th>年次ストレスチェック</th><th>福利厚生マッサージ</th><th>産業医面談</th></tr></thead><tbody>
+    <tr><td>頻度</td><td class="ac">週次（毎週）</td><td>年1〜2回</td><td>月数回</td><td>月1回</td></tr>
+    <tr><td>予兆検知</td><td class="ac"><span class="ck">&#10003;</span> リアルタイム</td><td><span class="cx">&#10005;</span></td><td><span class="cx">&#10005;</span></td><td>&#9651; 面談時のみ</td></tr>
+    <tr><td>現場訪問ケア</td><td class="ac"><span class="ck">&#10003;</span> 有資格者</td><td><span class="cx">&#10005;</span></td><td><span class="ck">&#10003;</span></td><td><span class="cx">&#10005;</span></td></tr>
+    <tr><td>データ可視化</td><td class="ac"><span class="ck">&#10003;</span> ダッシュボード</td><td>&#9651; PDF</td><td><span class="cx">&#10005;</span></td><td>&#9651; 記録</td></tr>
+    <tr><td>LINE対応</td><td class="ac"><span class="ck">&#10003;</span></td><td><span class="cx">&#10005;</span></td><td>&#8212;</td><td>&#8212;</td></tr>
+    <tr><td>RBAC権限</td><td class="ac"><span class="ck">&#10003;</span></td><td><span class="cx">&#10005;</span></td><td>&#8212;</td><td>&#9651;</td></tr>
+    <tr><td>導入期間</td><td class="ac">最短1週間</td><td>1〜3ヶ月</td><td>2〜4週間</td><td>1〜2ヶ月</td></tr>
+  </tbody></table></div>
+</div></section>
+
+
+
+<!-- DASHBOARD -->
+<section class="db" id="dashboard"><div class="ct"><div class="sh fi"><div class="sl">Dashboard Preview</div><h2 class="st">リアルタイムで現場全体の<br>健康状態が把握できる</h2><p class="ss" style="margin:0 auto">疼痛管理・メンタルヘルス・生活習慣の3つの視点で現場を可視化。週次・月次レポート機能も標準搭載。</p></div>
+  <div class="db-overlap fi">
+    <div class="db-overlap-card"><img src="images/dashboard-pain.png" alt="疼痛管理ダッシュボード"></div>
+    <div class="db-overlap-card"><img src="images/dashboard-mental.png" alt="メンタルヘルスダッシュボード"></div>
+    <div class="db-overlap-card"><img src="images/dashboard-lifestyle.png" alt="生活習慣ダッシュボード"></div>
+  </div>
+</div></section>
+
+<div class="mc"><div class="mc-in"><p>導入のご相談・デモのお申し込みはお気軽に</p><a href="#" class="bw" onclick="openM();return false;">お問い合わせ &#8594;</a></div></div>
+
+<!-- PRICING -->
+<section class="pr" id="pricing"><div class="ct"><div class="sh fi"><div class="sl">Pricing</div><h2 class="st">料金プラン</h2><p class="ss" style="margin:0 auto">「見える化」と「現場ケア」を組み合わせて、最適なプランをご提案します</p></div>
+  <div class="pr-g">
+    <div class="prc feat fi fd1"><h3>Adory SaaS</h3><p style="font-size:.85rem;color:var(--text-muted)">基本プラン ― 痛みデータの可視化・管理</p><div class="pr-p">&#165;29,800<span>/月</span></div><div class="pr-n">31名以上は1名あたり+500円/月</div><ul class="pfl"><li>LINE連携パルスサーベイ</li><li>Adoryダッシュボード</li><li>部署・職種別レポート</li><li>高リスク者アラート通知</li><li>CSによる伴走サポート</li></ul><a href="#" class="bp" onclick="openM();return false;">お問い合わせ</a></div>
+    <div class="prc fi fd2"><h3>+ 現場ケアオプション</h3><p style="font-size:.85rem;color:var(--text-muted)">有資格者による常駐コンディショニング</p><div class="pr-p">&#165;24,980<span>/回</span></div><div class="pr-n">3時間/回 × 月4〜5回 ＝ 約10万円/月</div><ul class="pfl"><li>SaaS基本プランに追加</li><li>有資格者による現場訪問ケア</li><li>理学療法士・柔道整復師が対応</li><li>データ連動による重点ケア選定</li><li>月次改善レポート</li></ul><a href="#" class="bp" onclick="openM();return false;">お問い合わせ</a></div>
+  </div>
+  <div class="ptw fi" style="margin-top:3rem"><div class="pt-title">社員数規模別 参考価格表</div><div style="overflow-x:auto"><table class="pt"><thead><tr><th>規模</th><th>SaaS（月額）</th><th>現場訪問（月4回）</th><th>フルプラン合計</th></tr></thead><tbody>
+    <tr><td>〜30名</td><td>29,800円</td><td>99,920円</td><td>129,720円</td></tr><tr><td>〜50名</td><td>39,800円</td><td>99,920円</td><td>139,720円</td></tr><tr><td>〜100名</td><td>64,800円</td><td>99,920円</td><td>164,720円</td></tr><tr><td>〜200名</td><td>114,800円</td><td>99,920円</td><td>214,720円</td></tr><tr><td>〜300名</td><td>164,800円</td><td>99,920円</td><td>264,720円</td></tr><tr><td>〜500名</td><td>264,800円</td><td>99,920円</td><td>364,720円</td></tr><tr><td>〜750名</td><td>389,800円</td><td>99,920円</td><td>489,720円</td></tr><tr><td>〜1,000名</td><td>514,800円</td><td>99,920円</td><td>614,720円</td></tr>
+  </tbody></table></div><p style="text-align:center;margin-top:1.2rem;font-size:.78rem;color:var(--text-muted)">※ 料金は税別表示です。</p></div>
+</div></section>
+
+<!-- FAQ -->
+<section class="fqs" id="faq"><div class="ct"><div class="sh fi"><div class="sl">FAQ</div><h2 class="st">よくあるご質問</h2></div>
+  <div class="fql">
+    <div class="fqi fi"><div class="fqq"><span class="fqb">Q</span><span class="fqqt">導入までどのくらいかかりますか？</span><span class="fqar">&#9660;</span></div><div class="fqa"><div class="fqai">最短1週間で運用開始が可能です。従業員の方にはLINEの友だち追加をしていただくだけで、PCの支給や複雑なセットアップは不要です。</div></div></div>
+    <div class="fqi fi fd1"><div class="fqq"><span class="fqb">Q</span><span class="fqqt">個人の健康データが上司に見られませんか？</span><span class="fqar">&#9660;</span></div><div class="fqa"><div class="fqai">AdoryはRBAC（役割ベースアクセス制御）を採用。個人の詳細データは産業医・労務担当のみが閲覧可能で、経営層・上司には組織全体の傾向のみが表示されます。</div></div></div>
+    <div class="fqi fi fd2"><div class="fqq"><span class="fqb">Q</span><span class="fqqt">現場ケアオプションは必須ですか？</span><span class="fqar">&#9660;</span></div><div class="fqa"><div class="fqai">いいえ、SaaSプラン単独でもご利用いただけます。まずはデータの可視化から始めて、後からオプション追加も可能です。</div></div></div>
+  </div>
+</div></section>
+
+<!-- FLOW -->
+<section class="flw"><div class="ct"><div class="sh fi"><div class="sl">Implementation Flow</div><h2 class="st">導入の流れ</h2></div>
+  <div class="fl-g">
+    <div class="flc fi fd1"><div class="fln">1</div><h3>お問い合わせ・ヒアリング</h3><p>現状の課題や体制を詳しく伺い、最適なプラン選定の準備をします。</p></div>
+    <div class="flc fi fd2"><div class="fln">2</div><h3>プラン提案・お見積もり</h3><p>目的やご予算に合わせたプランをご提案。デモ画面のご共有も可能です。</p></div>
+    <div class="flc fi fd3"><div class="fln">3</div><h3>契約・LINEセットアップ</h3><p>従業員の方にはLINEを登録してもらうだけ。最短1週間で運用開始。</p></div>
+    <div class="flc fi fd4"><div class="fln">4</div><h3>運用開始・継続サポート</h3><p>導入後もCSが伴走。レポーティングと改善提案で定着まで支援します。</p></div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-s"><div class="cta-w fi">
+  <h2>痛みを「個人の問題」から<br>「経営の意思決定インフラ」へ</h2>
+  <p>まずは無料デモでAdoryの全機能をご覧ください</p>
+  <a href="#" class="bp" onclick="openM();return false;">無料デモを申し込む &#8594;</a>
+  <div class="cta-note">料金や導入方法について、お気軽にご相談ください</div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div style="max-width:var(--max-w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+  <a href="index.html" class="logo">Adory</a>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap"><a href="privacy.html" style="font-size:.82rem;color:var(--text-muted);transition:color .3s">プライバシーポリシー</a><a href="terms.html" style="font-size:.82rem;color:var(--text-muted);transition:color .3s">利用規約</a></div>
+  <p style="font-size:.82rem;color:var(--text-muted)">&copy; 2025 株式会社Adory. All rights reserved.</p>
+</div></footer>
+
+<!-- MODAL -->
+<div class="mo" id="modal"><div class="md"><button class="mx" onclick="closeM()">&#215;</button><h3>無料デモ・資料請求</h3><p class="msb">30分でAdoryの全機能をご説明します。現場の課題をお聞かせください。</p>
+<form action="https://formsubmit.co/takuya.honda@adory.co.jp" method="POST"><input type="hidden" name="_subject" value="【Adory LP】無料デモ・資料請求"><input type="hidden" name="_next" value="https://adory-nursingcare-informationtechnology.github.io/Adory/"><input type="hidden" name="_captcha" value="false">
+<div class="fg"><label class="fl">会社名 *</label><input class="fin" type="text" name="company" required placeholder="株式会社〇〇"></div>
+<div class="fg"><label class="fl">お名前 *</label><input class="fin" type="text" name="name" required placeholder="山田 太郎"></div>
+<div class="fg"><label class="fl">メールアドレス *</label><input class="fin" type="email" name="email" required placeholder="taro@example.com"></div>
+<div class="fg"><label class="fl">従業員規模</label><select class="fin" name="size"><option value="">選択してください</option><option>〜30名</option><option>31〜100名</option><option>101〜500名</option><option>501名以上</option></select></div>
+<div class="fg"><label class="fl">業種</label><select class="fin" name="industry"><option value="">選択してください</option><option>建設・製造</option><option>物流・運送</option><option>介護・福祉</option><option>警備・清掃</option><option>小売・飲食</option><option>その他</option></select></div>
+<button type="submit" class="fsb">デモを申し込む</button></form></div></div>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('v')})},{threshold:.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+const hdr=document.getElementById('hdr'),stb=document.getElementById('stb');
+window.addEventListener('scroll',()=>{const y=window.scrollY;hdr.classList.toggle('scrolled',y>50);stb.classList.toggle('show',y>500)});
+stb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const hb=document.getElementById('hb'),nm=document.getElementById('nm');
+hb.addEventListener('click',()=>{hb.classList.toggle('open');nm.classList.toggle('active')});
+nm.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hb.classList.remove('open');nm.classList.remove('active')})});
+function openM(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden'}
+function closeM(){document.getElementById('modal').classList.remove('open');document.body.style.overflow=''}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeM()});
+document.querySelectorAll('.fqi').forEach(item=>{const q=item.querySelector('.fqq'),a=item.querySelector('.fqa');q.addEventListener('click',()=>{const o=item.classList.contains('open');document.querySelectorAll('.fqi.open').forEach(x=>{x.classList.remove('open');x.querySelector('.fqa').style.maxHeight='0'});if(!o){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}})});
+document.querySelectorAll('a[href^="#"]').forEach(l=>{l.addEventListener('click',e=>{const id=l.getAttribute('href');if(id==='#')return;const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+</script>
+</body>
+</html>
