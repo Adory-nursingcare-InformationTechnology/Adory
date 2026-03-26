@@ -79,20 +79,19 @@
     .message-photo{width:100%;height:320px;border-radius:var(--radius);background:var(--bg-section);border:1px solid #eee;background-image:url('./ceo-profile.jpg');background-size:cover;background-position:center}
     .message-profile h4{font-size:1.05rem;font-weight:800;color:var(--red);margin-bottom:.8rem}
     .message-profile p{font-size:.85rem;color:var(--text-light);line-height:1.7;margin-bottom:.5rem}
-    .social-buttons{display:flex;gap:.8rem;margin-top:1.2rem;flex-wrap:wrap}
-    .social-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.2rem;border-radius:999px;font-size:.82rem;font-weight:600;transition:transform .3s,box-shadow .3s;border:2px solid}
-    .social-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
-    .note-btn{background:#41C9B4;color:#fff;border-color:#41C9B4}
-    .x-btn{background:#000;color:#fff;border-color:#000}
+    .social-links{display:flex;gap:.6rem;margin-top:1.5rem}
+    .social-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;color:var(--text-muted);padding:.4rem .9rem;border-radius:999px;border:1px solid rgba(0,0,0,.08);transition:all .3s;background:transparent;letter-spacing:.02em}
+    .social-link:hover{color:#fff;border-color:var(--red);background:var(--gradient);transform:translateY(-2px);box-shadow:var(--shadow-glow)}
+    .social-link-icon{font-family:var(--font-en);font-weight:800;font-size:.85rem}
 
     /* ===== COMPANY ===== */
     .company-section{padding:6rem 5%;background:var(--bg)}
     .company-wrap{max-width:var(--max-w);margin:0 auto}
-    .company-table{max-width:800px;margin:0 auto;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
-    .company-row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid #f0f0f0}
-    .company-row:last-child{border-bottom:none}
-    .company-label{font-size:.88rem;font-weight:700;color:var(--dark);padding:1rem 1.5rem;background:rgba(212,29,0,.03)}
-    .company-value{font-size:.88rem;color:var(--text);padding:1rem 1.5rem;background:#fff}
+    .company-table{max-width:800px;margin:0 auto;border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow-md)}
+    .company-row{display:grid;grid-template-columns:140px 1fr;align-items:center}
+    .company-row:not(:last-child){border-bottom:1px solid rgba(0,0,0,.04)}
+    .company-label{font-size:.82rem;font-weight:700;letter-spacing:.05em;color:var(--red);padding:1.2rem 1.5rem;background:rgba(212,29,0,.02)}
+    .company-value{font-size:.88rem;color:var(--text);padding:1.2rem 1.5rem;line-height:1.7}
 
     /* ===== CONTACT ===== */
     .contact-section{padding:6rem 5%;background:var(--bg-section)}
@@ -147,7 +146,7 @@
       .contact-grid{grid-template-columns:1fr}
       .company-row{grid-template-columns:1fr}.company-label{border-bottom:none}
       .footer-inner{grid-template-columns:1fr;gap:2rem;text-align:center}
-      .social-buttons{justify-content:center}
+      .social-links{justify-content:center}
     }
     @media(max-width:480px){
       .hero-title{font-size:1.3rem}
@@ -192,40 +191,48 @@
       </div>
     </section>
 
-    <!-- 代表メッセージ -->
+    <!-- Mission -->
+    <section class="hero" style="min-height:auto;padding:5rem 5%;background:var(--bg-section)">
+      <div class="hero-inner" style="text-align:center">
+        <div class="hero-label" style="animation:none">Mission</div>
+        <h1 class="hero-title" style="animation:none;font-size:clamp(1.4rem,3vw,2rem)">痛みを抱えても、<span class="accent">前進できる社会</span>へ</h1>
+        <p class="hero-desc" style="animation:none">私たちは身体・心・社会に存在するあらゆる痛みをデータ化し、<br>ケアや支援につなげる仕組みを構築します。<br>働く人と組織の持続可能性を高め、安心して働き続けられる社会を実現します。</p>
+      </div>
+    </section>
+
+    <!-- 創業の想い -->
     <section class="message-section" id="message">
       <div class="message-wrap">
         <div class="section-header reveal">
-          <div class="section-label">Message</div>
-          <h2 class="section-title">代表メッセージ</h2>
+          <div class="section-label">Founder's Story</div>
+          <h2 class="section-title">創業の想い</h2>
         </div>
 
-        <div class="message-quote reveal-scale">"一歩でも人生が豊かに前進する。そんな未来へ"</div>
+        <div class="reveal" style="text-align:center;margin-bottom:3rem;max-width:800px;margin-left:auto;margin-right:auto">
+          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">私の父も、現場仕事で働いていました。</p>
+          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">ブルーワーカーの人にとって、<span style="color:var(--red)">身体が資本</span>です。</p>
+          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">身体が動かなくなった瞬間、仕事も、仲間も、居場所も失われる。</p>
+          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)"><span style="color:var(--red)">「壊れたら終わり」</span> ——それがこの国の現実です。</p>
+        </div>
 
-        <div class="message-body reveal">
-          <p>当社は2025年に創業したヘルスケアカンパニーです。</p>
-          <p>「誰もが安心して働き続けられる社会」の実現を目指し、日々活動を続けています。</p>
-          <p>私がAdoryを創業したきっかけは、家族の病気による復職の困難さを間近で経験したことでした。</p>
-          <p>脳梗塞による祖父の長期入院、そして父も同じく脳梗塞で倒れたとき、父から「仕事がないよ」という言葉を聞いた瞬間、凄く胸が締めつけられました。</p>
-          <p>病気そのものの辛さに加えて、社会との繋がりを失うことが、人の心にこれほど深い影響を与えるのかと痛感いたしました。</p>
-          <p>私はこれまで、採用支援・組織づくりの領域でキャリアを積み、働く人の成長やチームの力を引き出すことに情熱を注いできました。</p>
-          <p>その経験を活かし、予防医療、復職支援といった領域にHRの知見を融合させることこそ、自分の使命だと考えています。</p>
-          <p>Adoryという社名には、「皆が物語の主人公で、一歩でも人生が豊かに前進するように」という願いが込められています。</p>
-          <p>これからも、一人でも多くの方が自分らしく、前向きに働き続けることができる社会を実現するために挑戦を続けてまいります。</p>
+        <div class="reveal" style="text-align:center;margin-bottom:3rem;max-width:700px;margin-left:auto;margin-right:auto">
+          <p style="font-size:.9rem;color:var(--text-light);line-height:2">現場仕事の父が脳梗塞を患い、離職に至った経験からこの会社を設立しました。</p>
+          <p style="font-size:.9rem;color:var(--text-light);line-height:2">「壊れてからでは遅い」という課題意識から、予防と復職という軸で事業を展開していきます。</p>
+          <p style="font-size:.9rem;color:var(--text-light);line-height:2">間接的にでも、日本を支える現場産業の未来に貢献したいと考えています。</p>
         </div>
 
         <div class="message-bottom reveal">
           <div class="message-photo"></div>
           <div class="message-profile">
-            <h4>代表 CEO 本田卓也</h4>
+            <h4>代表取締役CEO 本田卓也</h4>
             <p>法政大学卒業</p>
             <p>2017年、大手人材会社で新規開拓営業、インサイドセールスの立ち上げメンバーを経験</p>
             <p>2022年、スタートアップ企業で中途採用の人事を担当</p>
             <p>2022年、パーソルキャリア株式会社でスタートアップ企業の人材紹介支援</p>
             <p>2025年、株式会社Adory創業</p>
-            <div class="social-buttons">
-              <a href="https://note.com/taku898989" target="_blank" rel="noopener noreferrer" class="social-btn note-btn">&#x1F4DD; noteを読む</a>
-              <a href="https://x.com/takuyanyan1216?s=21" target="_blank" rel="noopener noreferrer" class="social-btn x-btn">&#x1D54F; Xをフォロー</a>
+            <div class="social-links">
+              <a href="https://note.com/taku898989" target="_blank" rel="noopener noreferrer" class="social-link"><span class="social-link-icon">N</span>note</a>
+              <a href="https://x.com/takuyanyan1216?s=21" target="_blank" rel="noopener noreferrer" class="social-link"><span class="social-link-icon">&#x1D54F;</span>X</a>
             </div>
           </div>
         </div>
@@ -240,10 +247,10 @@
           <h2 class="section-title">会社概要</h2>
         </div>
         <div class="company-table reveal">
-          <div class="company-row"><div class="company-label">会社名</div><div class="company-value">株式会社Adory</div></div>
+          <div class="company-row"><div class="company-label">会社名</div><div class="company-value">株式会社Adory（アドリー）</div></div>
           <div class="company-row"><div class="company-label">設立</div><div class="company-value">2025年4月14日</div></div>
-          <div class="company-row"><div class="company-label">代表者</div><div class="company-value">代表取締役 CEO 本田 卓也</div></div>
-          <div class="company-row"><div class="company-label">事業内容</div><div class="company-value">フィジカルヘルスケア、病気予防、復職支援</div></div>
+          <div class="company-row"><div class="company-label">代表者</div><div class="company-value">代表取締役CEO 本田 卓也</div></div>
+          <div class="company-row"><div class="company-label">事業内容</div><div class="company-value">現場特化型コンディショニングSaaS事業<br>建設・運送・物流・介護などの現場仕事に特化</div></div>
           <div class="company-row"><div class="company-label">所在地</div><div class="company-value">〒142-0063 東京都品川区荏原6-1-9<br>西小山駅徒歩7分</div></div>
         </div>
       </div>
