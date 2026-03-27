@@ -3,517 +3,523 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Adory - 現場の離職・労災を未然に防ぐ、痛みデータから予兆を捉える現場特化型SaaS">
-  <title>Adory | 現場特化型 予兆可視化SaaS</title>
+  <meta name="description" content="Adory - 「痛み」を見える化し、労災と離職を未然に防ぐ現場特化型コンディショニングSaaS">
+  <title>Adory | 現場特化型コンディショニングSaaS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{--red:#D41D00;--orange:#FF9A3F;--gradient:linear-gradient(135deg,#D41D00,#FF9A3F);--gradient-soft:linear-gradient(135deg,#fff5f0,#ffe8d6);--dark:#1a1a1a;--text:#333;--text-light:#666;--text-muted:#999;--bg:#fff;--bg-warm:#FFFAF7;--bg-section:#FBF8F6;--shadow-sm:0 2px 8px rgba(0,0,0,.06);--shadow-md:0 8px 30px rgba(0,0,0,.08);--shadow-lg:0 20px 60px rgba(0,0,0,.1);--shadow-glow:0 8px 40px rgba(212,29,0,.15);--radius:20px;--radius-sm:12px;--max-w:1200px;--font-jp:'Noto Sans JP',sans-serif;--font-en:'Outfit',sans-serif}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:80px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:80px}
     body{font-family:var(--font-jp);color:var(--text);line-height:1.8;background:var(--bg);overflow-x:hidden}
     img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
+    .rv{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}.rv.v{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}.d5{transition-delay:.6s}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
+    @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes shimmer{0%,100%{left:-100%}50%{left:120%}}
 
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-    .reveal.visible{opacity:1;transform:translateY(0) scale(1) translateX(0)}
-    .reveal-delay-1{transition-delay:.12s}.reveal-delay-2{transition-delay:.24s}.reveal-delay-3{transition-delay:.36s}.reveal-delay-4{transition-delay:.48s}
-    .reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-    .reveal-left.visible{opacity:1;transform:translateX(0)}
-    .reveal-right{opacity:0;transform:translateX(60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-    .reveal-right.visible{opacity:1;transform:translateX(0)}
-    .reveal-scale{opacity:0;transform:scale(.9);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-    .reveal-scale.visible{opacity:1;transform:scale(1)}
-
-    header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s,background .3s}
-    header.scrolled{background:rgba(255,255,255,.95);box-shadow:0 4px 30px rgba(0,0,0,.08)}
+    /* HEADER */
+    header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
+    header.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.08)}
     nav{max-width:var(--max-w);margin:0 auto;padding:.9rem 5%;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-family:var(--font-en);font-weight:800;font-size:1.6rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;cursor:pointer;transition:transform .3s}
-    .logo:hover{transform:scale(1.03)}
+    .logo{font-family:var(--font-en);font-weight:800;font-size:1.6rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:transform .3s}.logo:hover{transform:scale(1.03)}
     .nav-menu{display:flex;gap:.3rem;align-items:center}
-    .nav-menu a{font-size:.88rem;font-weight:500;color:var(--text);padding:.5rem .9rem;border-radius:999px;transition:background .3s,color .3s;white-space:nowrap}
-    .nav-menu a:hover{background:var(--gradient-soft);color:var(--red)}
+    .nav-menu a{font-size:.88rem;font-weight:500;color:var(--text);padding:.5rem .9rem;border-radius:999px;transition:background .3s,color .3s;white-space:nowrap}.nav-menu a:hover{background:var(--gradient-soft);color:var(--red)}
     .nav-cta{background:var(--gradient)!important;color:#fff!important;padding:.6rem 1.4rem!important;font-weight:700!important;box-shadow:var(--shadow-glow);position:relative;overflow:hidden}
-    .nav-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:navCtaShimmer 3s ease-in-out infinite}
-    @keyframes navCtaShimmer{0%,100%{left:-100%}50%{left:120%}}
-    .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 12px 40px rgba(212,29,0,.25)!important}
+    .nav-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 3s ease-in-out infinite}
     .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1002}
     .hamburger span{width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
-    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-    .hamburger.open span:nth-child(2){opacity:0}
-    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-    .section-label{font-family:var(--font-en);font-size:.85rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
-    .section-title{font-size:2rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:.6rem}
-    .section-sub{font-size:1rem;color:var(--text-light);max-width:640px}
-    .section-header{text-align:center;margin-bottom:3.5rem}
-    .section-header .section-sub{margin:0 auto}
+    /* GLOBAL */
+    section{padding:6rem 5%}.ct{max-width:var(--max-w);margin:0 auto}
+    .sl{font-family:var(--font-en);font-size:.85rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+    .st{font-size:2rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:.6rem}
+    .ss{font-size:1rem;color:var(--text-light);max-width:640px;line-height:1.8}
+    .sh{text-align:center;margin-bottom:3rem}.sh .ss{margin:0 auto}
+    .bp{display:inline-flex;align-items:center;gap:.5rem;background:var(--gradient);color:#fff;padding:.9rem 2rem;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow-glow);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;position:relative;overflow:hidden}
+    .bp::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:left .6s ease}.bp:hover::after{left:120%}.bp:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,29,0,.3)}
+    .bo{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--red);padding:.9rem 2rem;border-radius:999px;font-weight:600;font-size:.95rem;border:2px solid rgba(212,29,0,.2);transition:all .35s}.bo:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:var(--shadow-glow)}
 
+    /* HERO */
     .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-warm);padding-top:80px}
-    .hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(100px);opacity:.12;background:var(--red);top:-250px;right:-200px;animation:blobFloat 20s ease-in-out infinite}
-    .hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(80px);opacity:.1;background:var(--orange);bottom:-150px;left:-100px;animation:blobFloat 20s ease-in-out infinite reverse}
-    @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
-    .hero-inner{position:relative;z-index:1;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;display:flex;align-items:center;gap:4rem}
-    .hero-text{flex:1;min-width:420px}
-    .hero-product-name{font-family:var(--font-en);font-size:3.5rem;font-weight:800;background:linear-gradient(90deg,#D41D00,#FF9A3F,#D41D00);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1;margin-bottom:.8rem;animation:fadeSlideIn .8s .1s both,textShimmer 4s linear infinite}
-    @keyframes textShimmer{0%{background-position:0% center}100%{background-position:200% center}}
-    .hero-product-name ruby{ruby-align:center}
-    .hero-product-name rt{font-family:var(--font-jp);font-size:.2em;font-weight:500;-webkit-text-fill-color:var(--text-muted);color:var(--text-muted);letter-spacing:0;ruby-align:center}
-    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,29,0,.08);border:1px solid rgba(212,29,0,.15);border-radius:999px;padding:.4rem 1rem;font-size:.82rem;font-weight:700;color:var(--red);margin-bottom:1.5rem;animation:fadeSlideIn .8s .2s both}
-    .hero-title{font-size:1.35rem;font-weight:900;line-height:1.5;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
-    .hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-desc{font-size:1.05rem;color:var(--text-light);line-height:1.9;margin-bottom:2rem;animation:fadeSlideIn .8s .6s both}
-    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeSlideIn .8s .8s both}
-    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-    .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--gradient);color:#fff;padding:.9rem 2rem;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow-glow);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;position:relative;overflow:hidden}
-    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:left .6s ease}
-    .btn-primary:hover::after{left:120%}
-    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,29,0,.3)}
-    .btn-outline{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--red);padding:.9rem 2rem;border-radius:999px;font-weight:600;font-size:.95rem;border:2px solid rgba(212,29,0,.2);transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s,background .35s}
-    .btn-outline:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:var(--shadow-glow);background:rgba(212,29,0,.03)}
-    .hero-visual{flex:1.3;animation:fadeSlideIn 1s .5s both;position:relative;min-width:0}
-    .hero-img-wrap{display:flex;align-items:center;justify-content:center;animation:heroFloat 6s ease-in-out infinite}
-    @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-    .br-desktop{display:inline}
-    .hero-img{width:110%;max-width:none;border-radius:var(--radius-sm);display:block}
+    .hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(100px);opacity:.1;background:var(--red);top:-250px;right:-200px;animation:blobFloat 20s ease-in-out infinite}
+    .hero-in{position:relative;z-index:2;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;display:flex;align-items:center;gap:3rem}
+    .hero-text{flex:1;min-width:400px}
+    .hero-logo{max-width:320px;margin-bottom:1.5rem;animation:fadeIn .8s .1s both}
+    .hero-sub1{font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:.3rem;animation:fadeIn .8s .3s both}
+    .hero-sub2{font-size:clamp(1rem,2.2vw,1.3rem);font-weight:900;color:var(--dark);margin-bottom:1rem;animation:fadeIn .8s .4s both;white-space:nowrap}
+    .hero-sub2 u{text-decoration:none;border-bottom:3px solid;border-image:var(--gradient) 1;padding-bottom:2px}
+    .hero-tagline{font-size:.88rem;color:var(--orange);margin-bottom:2rem;animation:fadeIn .8s .5s both}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeIn .8s .6s both}
+    .hero-visual{flex:1;animation:fadeIn 1s .4s both;min-width:0}
+    .hero-visual img{width:100%;animation:heroFloat 6s ease-in-out infinite;border-radius:var(--radius-sm)}
 
-    .problems-section{padding:6rem 5%;background:var(--bg)}
-    .problems-wrap{max-width:var(--max-w);margin:0 auto}
-    .problems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;row-gap:2rem}
-    .problem-card-img{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative}
-    .problem-card-img:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-    .problem-card-photo{width:100%;height:200px;overflow:hidden}
-    .problem-card-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-    .problem-card-img:hover .problem-card-photo img{transform:scale(1.06)}
-    .problem-card-img h3{font-size:1rem;font-weight:700;color:var(--dark);padding:1.2rem 1.5rem .3rem;text-align:center}
-    .problem-card-img p{font-size:.82rem;color:var(--text-light);padding:0 1.5rem 1.2rem;text-align:center;line-height:1.7}
+    /* PROBLEM */
+    .prob{background:var(--bg)}
+    .persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+    .persona-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}.persona-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .persona-header{padding:.8rem 1.2rem;font-size:.88rem;font-weight:800;color:#fff}
+    .persona-header.mgr{background:var(--dark)}.persona-header.exec{background:var(--red)}.persona-header.hr{background:var(--orange)}
+    .persona-body{padding:1.2rem}
+    .persona-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.8rem;font-size:.82rem;color:var(--text-light);line-height:1.6}
+    .persona-item::before{content:'!';flex-shrink:0;width:22px;height:22px;border-radius:50%;border:2px solid var(--orange);color:var(--orange);font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+    .prob-bottom{text-align:center;margin-top:2rem;font-size:1.1rem;font-weight:800;color:var(--red)}
 
-    .problem-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-md);border:1px solid #f5f5f5;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
-    .problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transition:transform .5s cubic-bezier(.16,1,.3,1);transform-origin:left}
-    .problem-card:hover::before{transform:scaleX(1)}.problem-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-    .problem-icon{width:48px;height:48px;border-radius:12px;background:var(--gradient-soft);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;transition:transform .4s cubic-bezier(.16,1,.3,1)}
-    .problem-card:hover .problem-icon{transform:scale(1.15) rotate(-5deg)}
-    .problem-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
-    .problem-card p{font-size:.88rem;color:var(--text-light)}
+    /* LOSS */
+    .loss{background:var(--bg-section)}
+    .loss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0}
+    .loss-card{background:#fff;border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-sm);text-align:center;border-top:3px solid var(--orange)}
+    .loss-label{font-size:.78rem;color:var(--text-muted);margin-bottom:.3rem}
+    .loss-num{font-family:var(--font-en);font-size:2rem;font-weight:800;color:var(--red)}.loss-num span{font-size:.9rem;color:var(--text-light)}
+    .loss-highlight{background:var(--gradient-soft);border-radius:var(--radius);padding:1.5rem 2rem;text-align:center}
+    .loss-highlight .big{font-size:1.5rem;font-weight:900;color:var(--red);margin-bottom:.3rem}
 
-    .solution-section{padding:6rem 5%;background:var(--bg-section)}
-    .solution-wrap{max-width:var(--max-w);margin:0 auto}
-    .solution-statement{text-align:center;margin-bottom:3rem;font-size:1.3rem;font-weight:700;color:var(--red);padding:2rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm);position:relative}
-    .solution-statement::before{content:'\201C';font-family:var(--font-en);font-size:4rem;color:var(--orange);opacity:.2;position:absolute;top:.3rem;left:1.5rem;line-height:1}
+    /* TIMELINE DIAGRAM - PDF p.4 faithful reproduction */
+    .indicator{background:var(--bg)}
+    .timeline-diagram{position:relative;margin:2.5rem auto 0;max-width:900px;padding:0 1rem}
+    .tl-row{display:flex;align-items:center;justify-content:space-between;position:relative}
+    .tl-col{flex:1;text-align:center;position:relative;z-index:2}
+    .tl-col .top{font-size:.72rem;font-weight:700;color:var(--text-light);margin-bottom:.5rem;min-height:1.2em}
+    .tl-col .dot{width:30px;height:30px;border-radius:50%;margin:0 auto;position:relative;z-index:3}
+    .tl-col .dot.d1{background:#FF9A3F}.tl-col .dot.d2{background:#F97316}.tl-col .dot.d3{background:#EA580C}.tl-col .dot.d4{background:#DC2626}.tl-col .dot.d5{background:#999}
+    .tl-col .bot{font-size:.6rem;color:var(--text-muted);line-height:1.4;margin-top:.5rem;min-height:2em}
+    /* The connecting line - spans all 5 dots */
+    .tl-line{position:absolute;top:50%;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange) 80%,#bbb);z-index:1;transform:translateY(-50%)}
+    /* Dashed zone overlay - covers first 4 columns only */
+    .tl-zone-wrap{position:relative}
+    .tl-zone-box{position:absolute;top:-12px;left:-8px;width:calc(80% - 20px);height:calc(100% + 24px);border:2px dashed var(--orange);border-radius:var(--radius-sm);z-index:0;pointer-events:none}
+    .tl-zone-label{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 .6rem;font-size:.72rem;font-weight:700;color:var(--red);white-space:nowrap;z-index:4}
+    .ind-compare{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+    .ind-card{border-radius:var(--radius);padding:2rem}
+    .ind-card.old{background:rgba(200,200,200,.06);border:1px solid #e0e0e0}
+    .ind-card.new{background:rgba(212,29,0,.03);border:2px solid var(--red)}
+    .ind-card h3{font-size:1rem;font-weight:800;margin-bottom:1rem}.ind-card.old h3{color:var(--text-muted)}.ind-card.new h3{color:var(--red)}
+    .ind-item{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.6rem;font-size:.85rem;color:var(--text-light)}
+    .ind-item .x{color:#ccc;font-weight:700;flex-shrink:0}.ind-item .o{color:#22c55e;font-weight:700;flex-shrink:0}
 
-    .features-section{padding:6rem 5%;background:var(--bg)}
-    .features-wrap{max-width:var(--max-w);margin:0 auto}
-    .feature-row{display:flex;align-items:center;gap:4rem;margin-bottom:5rem}
-    .feature-row.reverse{flex-direction:row-reverse}
-    .feature-text{flex:1}
-    .feature-num{font-family:var(--font-en);font-size:3.5rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:.5rem;opacity:.3}
-    .feature-text h3{font-size:1.4rem;font-weight:800;color:var(--dark);margin-bottom:.8rem}
-    .feature-text p{font-size:.95rem;color:var(--text-light);line-height:1.9}
-    .feature-visual{flex:1;background:var(--bg-section);border-radius:var(--radius);min-height:280px;display:flex;align-items:center;justify-content:center;padding:2rem;box-shadow:var(--shadow-md);position:relative;overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
-    .feature-visual:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
-    .feature-visual img{transition:transform .6s cubic-bezier(.16,1,.3,1)}
-    .feature-visual:hover img{transform:scale(1.03)}
-    .feature-visual::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--gradient);transform:scaleX(0);transition:transform .5s cubic-bezier(.16,1,.3,1);transform-origin:left}
-    .feature-visual:hover::after{transform:scaleX(1)}
+    /* SOLUTION */
+    .solution{background:var(--bg-section)}
+    .sol-statement{text-align:center;font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:.3rem;line-height:1.5}
+    .sol-sub{text-align:center;font-size:.9rem;color:var(--text-muted);margin-bottom:2.5rem}
+    .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .sol-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-md);text-align:center;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden}
+    .sol-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .sol-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
+    .sol-num{font-family:var(--font-en);font-size:2.5rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
+    .sol-card h3{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.2rem}
+    .sol-card .sub{font-size:.78rem;color:var(--text-muted);margin-bottom:1rem}
+    .sol-card .illust{width:120px;height:120px;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center}
+    .sol-card .illust img{max-width:100%;max-height:100%}
+    .sol-card p{font-size:.82rem;color:var(--text-light);text-align:left;line-height:1.8}
 
-    .ux-flow{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;justify-content:center}
-    .ux-step{background:#fff;border-radius:var(--radius-sm);padding:1rem 1.2rem;text-align:center;box-shadow:var(--shadow-sm);min-width:100px}
-    .ux-step .icon{font-size:1.5rem;margin-bottom:.3rem}.ux-step .label{font-size:.75rem;font-weight:700;color:var(--dark)}.ux-step .sub{font-size:.65rem;color:var(--text-muted)}
-    .ux-arrow{font-size:1.2rem;color:var(--orange);font-weight:700}
-    .hybrid-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;width:100%}
-    .hybrid-card{background:#fff;border-radius:var(--radius-sm);padding:1.2rem;box-shadow:var(--shadow-sm);text-align:center}
-    .hybrid-card .icon{font-size:2rem;margin-bottom:.4rem}.hybrid-card h4{font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:.3rem}.hybrid-card p{font-size:.72rem;color:var(--text-light)}
-    .rbac-visual{width:100%}
-    .rbac-row{display:flex;align-items:center;gap:1rem;background:#fff;border-radius:var(--radius-sm);padding:.8rem 1rem;margin-bottom:.6rem;box-shadow:var(--shadow-sm)}
-    .rbac-role{font-size:.75rem;font-weight:700;white-space:nowrap;padding:.3rem .6rem;border-radius:6px;min-width:70px;text-align:center}
-    .rbac-role.exec{background:rgba(212,29,0,.1);color:var(--red)}.rbac-role.hr{background:rgba(255,154,63,.15);color:#b86e00}.rbac-role.worker{background:rgba(40,167,69,.1);color:#28a745}
-    .rbac-desc{font-size:.72rem;color:var(--text-light)}
+    /* FEATURES - PDF p.8-12 style */
+    .feat{background:var(--bg)}
+    .step-row{display:flex;align-items:center;gap:3rem;margin-bottom:4rem}.step-row.rev{flex-direction:row-reverse}
+    .step-text{flex:1}
+    .step-label{font-family:var(--font-en);font-size:.78rem;font-weight:700;color:var(--red);letter-spacing:.1em;margin-bottom:.3rem}
+    .step-text h3{font-size:1.3rem;font-weight:900;color:var(--dark);margin-bottom:.8rem;line-height:1.4}
+    .step-text p{font-size:.9rem;color:var(--text-light);line-height:1.9}
+    .step-visual{flex:1;background:var(--bg-section);border-radius:var(--radius);min-height:280px;display:flex;align-items:center;justify-content:center;padding:2rem;box-shadow:var(--shadow-md);overflow:hidden;transition:transform .5s,box-shadow .5s}
+    .step-visual:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+    .step-visual img{width:100%;border-radius:var(--radius-sm)}
+    /* Step02 feature grid */
+    .feat-grid-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+    .feat-mini{background:#fff;border-radius:var(--radius-sm);padding:1rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange);position:relative}
+    .feat-mini.important::after{content:'重要';position:absolute;top:.5rem;right:.5rem;background:var(--red);color:#fff;font-size:.6rem;font-weight:700;padding:.15rem .4rem;border-radius:4px}
+    .feat-mini h4{font-size:.82rem;font-weight:800;color:var(--dark);margin-bottom:.3rem}
+    .feat-mini p{font-size:.72rem;color:var(--text-light);line-height:1.6}
 
-    .industry-section{padding:6rem 5%;background:var(--bg)}
-    .industry-wrap{max-width:var(--max-w);margin:0 auto}
-    .industry-scroll{display:flex;gap:1.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:1rem;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--orange) transparent}
-    .industry-scroll::-webkit-scrollbar{height:6px}
-    .industry-scroll::-webkit-scrollbar-track{background:transparent}
-    .industry-scroll::-webkit-scrollbar-thumb{background:var(--gradient);border-radius:3px}
-    .industry-card{flex:0 0 240px;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);scroll-snap-align:start;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden;text-align:center}
-    .industry-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gradient);transform:scaleX(0);transition:transform .4s cubic-bezier(.16,1,.3,1);transform-origin:left}
-    .industry-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-    .industry-card:hover::after{transform:scaleX(1)}
-    .industry-card-img{width:100%;height:150px;overflow:hidden}
-    .industry-card-img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .6s cubic-bezier(.16,1,.3,1)}
-    .industry-card:hover .industry-card-img img{transform:scale(1.06)}
-    .industry-card h3{font-size:.95rem;font-weight:800;color:var(--dark);padding:.8rem 1rem .3rem}
-    .industry-card p{font-size:.8rem;color:var(--text-light);line-height:1.7;padding:0 1rem 1.2rem}
+    /* DASHBOARD */
+    .dashboard{background:var(--bg-section)}
+    .db-overlap{position:relative;height:420px;max-width:900px;margin:0 auto}
+    .db-card{position:absolute;width:55%;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+    .db-card img{width:100%;display:block}
+    .db-card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 25px 60px rgba(0,0,0,.18);z-index:10}
+    .db-card:nth-child(1){top:0;left:0;z-index:3}.db-card:nth-child(2){top:50px;left:22.5%;z-index:2}.db-card:nth-child(3){top:100px;left:45%;z-index:1}
 
-    .pricing-section{padding:6rem 5%;background:var(--bg-section)}
-    .pricing-wrap{max-width:var(--max-w);margin:0 auto}
-    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto}
-    .pricing-card{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);text-align:center;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden;display:flex;flex-direction:column}
-    .pricing-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-    .pricing-card .btn-primary{margin-top:auto}
-    .pricing-card.featured{border:2px solid var(--red)}
-    .pricing-card.featured::before{content:'人気';position:absolute;top:16px;right:-28px;background:var(--gradient);color:#fff;font-size:.7rem;font-weight:700;padding:.2rem 2rem;transform:rotate(45deg)}
-    .pricing-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
-    .pricing-price{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--dark);margin:1rem 0 .3rem}
-    .pricing-price span{font-size:.9rem;font-weight:400;color:var(--text-muted)}
-    .pricing-note{font-size:.82rem;color:var(--text-muted);margin-bottom:1.5rem}
-    .pricing-features{text-align:left;margin-bottom:2rem}
-    .pricing-features li{font-size:.88rem;padding:.4rem 0;color:var(--text);padding-left:1.5rem;position:relative}
-    .pricing-features li::before{content:'\2713';position:absolute;left:0;color:var(--orange);font-weight:700}
+    /* ROI / BENEFIT */
+    .roi{background:var(--bg)}
+    .roi-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem;margin-top:2rem;align-items:start}
+    .roi-cost{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);text-align:center;border:2px solid var(--red);position:relative;overflow:hidden}
+    .roi-cost::before{content:'';position:absolute;top:0;left:0;right:0;height:50px;background:var(--gradient);opacity:.08}
+    .roi-cost .label{font-size:.88rem;font-weight:800;color:#fff;margin-bottom:.8rem;background:var(--gradient);display:inline-block;padding:.4rem 1.2rem;border-radius:999px}
+    .roi-cost .price{font-family:var(--font-en);font-size:3.5rem;font-weight:800;color:var(--red)}
+    .roi-cost .price span{font-size:1rem;font-weight:400;color:var(--text-muted)}
+    .roi-cost .annual{font-size:.95rem;color:var(--text);margin-top:.5rem;padding-bottom:.5rem;border-bottom:2px solid var(--orange);display:inline-block}
+    .roi-cost .detail{font-size:.78rem;color:var(--text-muted);margin-top:.8rem;line-height:1.8}
+    .roi-right h3{font-size:1.05rem;font-weight:800;color:var(--red);margin-bottom:1rem}
+    .roi-items{display:flex;flex-direction:column;gap:.8rem}
+    .roi-item{background:#fff;border-radius:var(--radius-sm);padding:1rem 1.2rem;box-shadow:var(--shadow-sm);display:flex;justify-content:space-between;align-items:center;transition:transform .3s}.roi-item:hover{transform:translateX(4px)}
+    .roi-item .name{font-size:.88rem;font-weight:700;color:var(--dark)}.roi-item .sub{font-size:.72rem;color:var(--text-muted)}
+    .roi-item .mult{font-family:var(--font-en);font-size:.82rem;font-weight:800;color:#fff;background:var(--gradient);padding:.3rem .8rem;border-radius:999px;white-space:nowrap}
+    .roi-note{text-align:center;margin-top:1.5rem;font-size:.85rem;font-weight:700;color:var(--red)}
 
-    .flow-section{padding:6rem 5%;background:var(--bg)}
+    /* PRICING */
+    .pricing{background:var(--bg-section)}
+    .pr-subtitle{text-align:center;font-size:1rem;color:var(--text-light);margin-bottom:2rem}
+    .pr-badges{display:flex;gap:.8rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+    .pr-badge{padding:.4rem 1rem;border-radius:999px;font-size:.78rem;font-weight:700}
+    .pr-badge.b1{background:var(--gradient);color:#fff}.pr-badge.b2{background:var(--dark);color:#fff}.pr-badge.b3{background:#22c55e;color:#fff}
+    .pr-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:1.5rem;max-width:900px;margin:0 auto;align-items:start}
+    .prc{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);position:relative;overflow:hidden;display:flex;flex-direction:column}
+    .prc.main{border:2px solid var(--red)}
+    .prc h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+    .pr-price{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--dark);margin:1rem 0 .3rem}.pr-price span{font-size:.9rem;font-weight:400;color:var(--text-muted)}
+    .pr-note{font-size:.78rem;color:var(--text-muted);margin-bottom:1.5rem}
+    .pfl li{font-size:.85rem;padding:.4rem 0;color:var(--text);padding-left:1.5rem;position:relative}.pfl li::before{content:'\2713';position:absolute;left:0;color:var(--orange);font-weight:700}
+    .prc .bp{margin-top:auto;width:100%;justify-content:center}
+    .prc-small{font-size:.72rem;color:var(--red);margin-top:.8rem;text-align:center}
+    .prc-option{font-size:.78rem;color:var(--text-light);margin-top:1rem;padding:1rem;background:var(--gradient-soft);border-radius:var(--radius-sm);line-height:1.7}
+    .pr-price-sm{font-family:var(--font-en);font-size:2rem;font-weight:800;color:var(--dark);margin:1rem 0 .3rem}.pr-price-sm span{font-size:.85rem;font-weight:400;color:var(--text-muted)}
 
-    .dashboard-section{padding:6rem 5%;background:var(--bg)}
-    .dashboard-wrap{max-width:var(--max-w);margin:0 auto}
-    .dashboard-overlap{position:relative;height:420px;max-width:900px;margin:0 auto}
-    .dashboard-overlap-card{position:absolute;width:55%;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
-    .dashboard-overlap-card img{width:100%;display:block}
-    .dashboard-overlap-card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 25px 60px rgba(0,0,0,.18);z-index:10}
-    .dashboard-overlap-card:nth-child(1){top:0;left:0;z-index:3}
-    .dashboard-overlap-card:nth-child(2){top:50px;left:22.5%;z-index:2}
-    .dashboard-overlap-card:nth-child(3){top:100px;left:45%;z-index:1}
+    /* FLOW - connected line */
+    .flow{background:var(--bg)}
+    .flow-track{display:flex;align-items:flex-start;gap:0;margin-top:2rem;position:relative}
+    .flow-track::before{content:'';position:absolute;top:22px;left:22px;right:22px;height:3px;background:var(--gradient);z-index:0}
+    .flow-step{flex:1;text-align:center;position:relative;z-index:1}
+    .flow-num{width:44px;height:44px;border-radius:50%;background:var(--gradient);color:#fff;font-family:var(--font-en);font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .8rem;box-shadow:0 4px 16px rgba(212,29,0,.2);position:relative;z-index:2}
+    .flow-step h4{font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:.2rem}.flow-step p{font-size:.68rem;color:var(--text-muted);line-height:1.5}
+    .flow-step .time{font-size:.7rem;font-weight:700;color:var(--red);margin-top:.3rem}
+    .poc-box{background:var(--gradient);border-radius:var(--radius);padding:2rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .poc-box .poc-text{color:#fff}.poc-box .poc-text h3{font-size:1.2rem;font-weight:900;margin-bottom:.3rem}
+    .poc-box .poc-text p{font-size:.82rem;opacity:.8}
+    .poc-box .poc-cta{background:#fff;color:var(--red);padding:.8rem 2rem;border-radius:999px;font-weight:800;font-size:.9rem;transition:transform .3s,box-shadow .3s;white-space:nowrap}
+    .poc-box .poc-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
 
-    .pricing-table-wrap{max-width:900px;margin-left:auto;margin-right:auto}
-    .pricing-table-title{text-align:center;font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:1.5rem}
-    .pricing-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .pricing-table{width:100%;border-collapse:collapse;font-size:.88rem}
-    .pricing-table thead th{background:var(--gradient);color:#fff;font-weight:700;padding:.8rem 1rem;white-space:nowrap;font-size:.82rem}
-    .pricing-table thead th:first-child{border-radius:var(--radius-sm) 0 0 0}
-    .pricing-table thead th:last-child{border-radius:0 var(--radius-sm) 0 0}
-    .pricing-table tbody td{padding:.7rem 1rem;text-align:center;border-bottom:1px solid #f0f0f0;color:var(--text)}
-    .pricing-table tbody td:first-child{font-weight:700;color:var(--dark);background:rgba(212,29,0,.04)}
-    .pricing-table tbody td:last-child{font-weight:700;color:var(--red)}
-    .pricing-table tbody tr:hover{background:var(--bg-warm)}
-    .pricing-table tbody tr:last-child td:first-child{border-radius:0 0 0 var(--radius-sm)}
-    .pricing-table tbody tr:last-child td:last-child{border-radius:0 0 var(--radius-sm) 0}
-    .flow-wrap{max-width:var(--max-w);margin:0 auto}
-    .flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-    .flow-step{text-align:center;padding:2rem 1.5rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
-    .flow-step:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-    .flow-step-num{width:40px;height:40px;border-radius:50%;background:var(--gradient);color:#fff;font-family:var(--font-en);font-weight:800;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;transition:transform .4s cubic-bezier(.16,1,.3,1)}
-    .flow-step:hover .flow-step-num{transform:scale(1.2)}
-    .flow-step h3{font-size:.95rem;font-weight:700;margin-bottom:.5rem;color:var(--dark)}
-    .flow-step p{font-size:.82rem;color:var(--text-light)}
+    /* FAQ accordion */
+    .faq{background:var(--bg-section)}
+    .faq-list{max-width:800px;margin:2rem auto 0}
+    .faq-item{background:#fff;border-radius:var(--radius);margin-bottom:.8rem;box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow .3s}.faq-item:hover{box-shadow:var(--shadow-md)}
+    .faq-q{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem;cursor:pointer}
+    .faq-badge{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--gradient);color:#fff;font-family:var(--font-en);font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center}
+    .faq-q-text{flex:1;font-size:.95rem;font-weight:700;color:var(--dark)}.faq-arrow{font-size:.8rem;color:var(--text-muted);transition:transform .3s;flex-shrink:0}
+    .faq-item.open .faq-arrow{transform:rotate(180deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}.faq-a-inner{padding:0 1.5rem 1.5rem;padding-left:calc(1.5rem + 28px + 1rem);font-size:.88rem;color:var(--text-light);line-height:1.9}
 
-    .cta-section{padding:5rem 5%;background:var(--bg-warm);color:var(--dark);text-align:center;position:relative;overflow:hidden}
-    .cta-section::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(100px);opacity:.12;background:var(--red);top:-200px;right:-150px;animation:blobFloat 20s ease-in-out infinite}
-    .cta-section::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(80px);opacity:.1;background:var(--orange);bottom:-150px;left:-100px;animation:blobFloat 20s ease-in-out infinite reverse}
-    .cta-wrap{position:relative;z-index:1;max-width:700px;margin:0 auto}
-    .cta-section h2{font-size:1.8rem;font-weight:900;margin-bottom:1rem;color:var(--dark)}
-    .cta-section p{font-size:.95rem;color:var(--text-light);margin-bottom:2rem}
-    .cta-section .btn-primary{font-size:1.1rem;padding:1rem 2.5rem}
+    /* CTA */
+    .cta{padding:5rem 5%;background:var(--bg-warm);text-align:center;position:relative;overflow:hidden}
+    .cta::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(100px);opacity:.1;background:var(--red);top:-200px;right:-150px}
+    .cta-w{position:relative;z-index:1;max-width:700px;margin:0 auto}
+    .cta h2{font-size:1.8rem;font-weight:900;margin-bottom:1rem;color:var(--dark)}.cta p{font-size:.95rem;color:var(--text-light);margin-bottom:2rem}
     .cta-note{font-size:.78rem;color:var(--text-muted);margin-top:1rem}
 
-    footer{background:rgba(255,255,255,.95);color:var(--text);padding:4rem 5% 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(0,0,0,.06)}
+    /* FOOTER */
+    footer{background:rgba(255,255,255,.95);color:var(--text);padding:4rem 5% 2rem;position:relative;border-top:1px solid rgba(0,0,0,.06)}
     footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
-    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-    .footer-brand .footer-logo{font-family:var(--font-en);font-size:1.5rem;font-weight:800;margin-bottom:1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .footer-brand p{font-size:.9rem;color:var(--text-light);line-height:1.8}
-    .footer-col h4{font-size:.82rem;font-family:var(--font-en);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem}
-    .footer-col a{display:block;font-size:.9rem;color:var(--text-light);padding:.3rem 0;transition:color .3s,padding-left .3s}
-    .footer-col a:hover{color:var(--red);padding-left:.3rem}
-    .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,.06);font-size:.82rem;color:var(--text-muted)}
-    .footer-bottom-links{margin-bottom:.8rem}
-    .footer-bottom-links a{color:var(--text-muted);margin:0 .8rem;transition:color .3s}
-    .footer-bottom-links a:hover{color:var(--red)}
+    .ft-in{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+    .ft-brand .ft-logo{font-family:var(--font-en);font-size:1.5rem;font-weight:800;margin-bottom:1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .ft-brand p{font-size:.9rem;color:var(--text-light);line-height:1.8}
+    .ft-col h4{font-size:.82rem;font-family:var(--font-en);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem}
+    .ft-col a{display:block;font-size:.9rem;color:var(--text-light);padding:.3rem 0;transition:color .3s}.ft-col a:hover{color:var(--red)}
+    .ft-bot{text-align:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,.06);font-size:.82rem;color:var(--text-muted)}
+    .ft-bot-l{margin-bottom:.8rem}.ft-bot-l a{color:var(--text-muted);margin:0 .8rem}.ft-bot-l a:hover{color:var(--red)}
 
-    .scroll-top{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s cubic-bezier(.16,1,.3,1);z-index:999}
-    .scroll-top.show{opacity:1;transform:translateY(0)}.scroll-top:hover{transform:translateY(-4px) scale(1.1);box-shadow:0 12px 40px rgba(212,29,0,.3)}
-
-    @media(max-width:1024px){
-      .hero-inner{flex-direction:column;gap:2.5rem;text-align:center}.hero-text{max-width:600px;min-width:0}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-img{width:100%}.hero-title{font-size:1.6rem}
-      .feature-row,.feature-row.reverse{flex-direction:column;gap:2rem}
-    }
-    @media(max-width:768px){
-      .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:.3rem;z-index:999;padding:1.5rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.06)}
-      .nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}
-      .hamburger{display:flex;z-index:1002}
-      .hero{min-height:auto;padding:7rem 5% 4rem}.hero-title{font-size:1.4rem}.section-title{font-size:1.5rem}
-      .hero-product-name{font-size:2.5rem}
-      .br-desktop{display:none}
-      .problems-grid{grid-template-columns:repeat(2,1fr)}.flow-steps{grid-template-columns:1fr 1fr}
-      .dashboard-overlap{height:auto;display:flex;flex-direction:column;gap:1.5rem}
-      .dashboard-overlap-card{position:static;width:100%;transform:none!important}
-      .pricing-grid{grid-template-columns:1fr;max-width:400px}
-      .footer-inner{grid-template-columns:1fr;gap:2rem;text-align:center}
-    }
-    @media(max-width:480px){
-      .hero-title{font-size:1.2rem}.hero-actions{flex-direction:column;align-items:center}
-      .hero-actions a{width:100%;text-align:center;justify-content:center}
-      .flow-steps{grid-template-columns:1fr}.ux-flow{flex-direction:column}.hybrid-cards{grid-template-columns:1fr}
-      .problems-grid{grid-template-columns:1fr}
-    }
-
-    .page-loader{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
-    .page-loader.hidden{opacity:0;visibility:hidden}
-    .loader-dot{width:12px;height:12px;border-radius:50%;background:var(--gradient);margin:0 4px;animation:loaderBounce .6s ease-in-out infinite alternate}
-    .loader-dot:nth-child(2){animation-delay:.15s}.loader-dot:nth-child(3){animation-delay:.3s}
+    .stb{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s;z-index:999}.stb.show{opacity:1;transform:translateY(0)}.stb:hover{transform:translateY(-4px) scale(1.1)}
+    .page-loader{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}.page-loader.hidden{opacity:0;visibility:hidden}
+    .loader-dot{width:12px;height:12px;border-radius:50%;background:var(--gradient);margin:0 4px;animation:loaderBounce .6s ease-in-out infinite alternate}.loader-dot:nth-child(2){animation-delay:.15s}.loader-dot:nth-child(3){animation-delay:.3s}
     @keyframes loaderBounce{to{transform:translateY(-12px);opacity:.4}}
     body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+    @media(max-width:1024px){.hero-in{flex-direction:column;gap:2rem;text-align:center}.hero-text{min-width:0;max-width:600px}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-visual img{width:100%}.step-row,.step-row.rev{flex-direction:column;gap:2rem}.sol-grid{grid-template-columns:1fr}.roi-grid{grid-template-columns:1fr}}
+    @media(max-width:768px){
+      .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:.3rem;z-index:999;padding:1.5rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.1)}.nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}.hamburger{display:flex;z-index:1002}
+      .hero{min-height:auto;padding:7rem 5% 3rem}.st{font-size:1.5rem}.hero-sub2{white-space:normal}
+      .persona-grid,.pr-layout,.ind-compare{grid-template-columns:1fr}
+      .flow-track{flex-direction:column;align-items:center;gap:0}.flow-track::before{display:none}.flow-step{width:100%;display:flex;align-items:center;gap:1rem;text-align:left;padding:.8rem 0;border-left:3px solid var(--orange);padding-left:1.5rem;margin-left:22px}.flow-num{margin:0;flex-shrink:0}
+      .db-overlap{height:auto;display:flex;flex-direction:column;gap:1.5rem}.db-card{position:static;width:100%;transform:none!important}
+      .feat-grid-inner{grid-template-columns:1fr}
+      .ft-in{grid-template-columns:1fr;gap:2rem;text-align:center}
+      .poc-box{flex-direction:column;text-align:center}
+      .timeline-bar{overflow-x:auto;padding-bottom:1rem}
+    }
+    @media(max-width:480px){.hero-actions{flex-direction:column;align-items:center}.hero-actions a{width:100%;text-align:center;justify-content:center}.loss-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="page-loader" id="pageLoader"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
-  <button class="scroll-top" id="scrollTop" aria-label="Top">&#8593;</button>
+  <button class="stb" id="stb" aria-label="Top">&#8593;</button>
 
-  <header id="header">
-    <nav>
-      <a href="index.html" class="logo">Adory</a>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="index.html">会社概要</a></li>
-        <li><a href="service.html" style="color:var(--red)">サービス概要</a></li>
-        <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
-        <li><a href="event-report.html">イベント実施レポート</a></li>
-        <li><a href="index.html#contact" class="nav-cta">お問い合わせ</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-    </nav>
-  </header>
+  <header id="hdr"><nav>
+    <a href="index.html" class="logo">Adory</a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html">会社概要</a></li>
+      <li><a href="service.html" style="color:var(--red)">サービス概要</a></li>
+      <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
+      <li><a href="event-report.html">イベント実施レポート</a></li>
+      <li><a href="index.html#contact" class="nav-cta">お問い合わせ</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav></header>
 
   <main>
-    <section class="hero" id="top">
-      <div class="hero-inner">
-        <div class="hero-text">
-          <div class="hero-product-name"><ruby>Adory<rp>(</rp><rt>アドリー</rt><rp>)</rp></ruby></div>
-          <div class="hero-badge">&#x1F680; 2026年3月 ローンチ予定</div>
-          <h1 class="hero-title">現場の<span class="accent">離職・労災</span>を未然に防ぐ、<br class="br-desktop">痛みデータから<span class="accent">"予兆"</span>を捉える<br class="br-desktop">現場特化型SaaS「Adory（アドリー）」</h1>
-          <p class="hero-desc">身体が資本の現場（建設・物流・運送・介護・警備・小売など）で働く人の「痛み」をデータで可視化し、労災・離職リスクを最小化。<br class="br-desktop">週1回のLINE回答と、週1回のプロによる現場ケアを組み合わせた、<br class="br-desktop">国内初の「現場特化型 予兆可視化SaaS」Adory（アドリー）。</p>
-          <div class="hero-actions">
-            <a href="index.html#contact" class="btn-primary">資料請求・お問い合わせ &#8594;</a>
-            <a href="#features" class="btn-outline">サービス詳細を見る</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="hero-img-wrap">
-            <img src="images/hero-dashboard.png" alt="Adory ダッシュボード画面 - PC・スマホ対応" class="hero-img">
+    <!-- HERO -->
+    <section class="hero" id="top"><div class="hero-in">
+      <div class="hero-text">
+        <img src="images/adory-logo.png" alt="Adory" class="hero-logo">
+        <p class="hero-sub1">「痛み」を見える化し、労災と離職を未然に防ぐ</p>
+        <p class="hero-sub2"><u>現場特化型コンディショニングSaaS「Adory（アドリー）」</u></p>
+        <p class="hero-tagline">労災・離職・採用難 —— その根っこは、"見えない痛み"です</p>
+        <div class="hero-actions"><a href="index.html#contact" class="bp">資料請求・お問い合わせ &#8594;</a><a href="#solution" class="bo">サービス詳細を見る</a></div>
+      </div>
+      <div class="hero-visual"><img src="images/hero-dashboard.png" alt="Adory ダッシュボード"></div>
+    </div></section>
+
+    <!-- PROBLEM -->
+    <section class="prob" id="problem"><div class="ct">
+      <div class="sh rv"><div class="sl">Problem</div><h2 class="st">こんな状況、思い当たりませんか？</h2></div>
+      <div class="persona-grid">
+        <div class="persona-card rv d1"><div class="persona-header mgr">現場マネージャー</div><div style="padding:1rem 1.2rem .5rem;text-align:center"><img src="images/persona-manager.png" alt="現場マネージャー" style="max-height:120px;margin:0 auto"></div><div class="persona-body"><div class="persona-item">部下が「大丈夫です」と言うが、明らかに顔色が悪い</div><div class="persona-item">ある日突然「腰が限界で辞めます」と言われた</div><div class="persona-item">何を基準に「危ない人」を判断すればいいか分からない</div></div></div>
+        <div class="persona-card rv d2"><div class="persona-header exec">経営者・総務労務</div><div style="padding:1rem 1.2rem .5rem;text-align:center"><img src="images/persona-executive.png" alt="経営者・総務労務" style="max-height:120px;margin:0 auto"></div><div class="persona-body"><div class="persona-item">労災が起きてから「なぜ気付かなかったのか」と責められた</div><div class="persona-item">年1回の健康診断・サーベイをしているが、翌月離職した</div><div class="persona-item">ストレスチェックはやっているが、現場のリスクが全然見えない</div></div></div>
+        <div class="persona-card rv d3"><div class="persona-header hr">採用担当</div><div style="padding:1rem 1.2rem .5rem;text-align:center"><img src="images/persona-hr.png" alt="採用担当" style="max-height:120px;margin:0 auto"></div><div class="persona-body"><div class="persona-item">「きつそう」「身体壊しそう」で応募が全然集まらない</div><div class="persona-item">折角採用した人が半年以内に辞めていく</div><div class="persona-item">「従業員を大切にしない会社」と口コミが広がっている</div></div></div>
+      </div>
+      <div class="prob-bottom rv">これらは全て「現場の痛みが見えていない」ことから始まっています。</div>
+    </div></section>
+
+    <!-- LOSS -->
+    <section class="loss" style="padding-bottom:0"><div class="ct">
+      <div class="sh rv"><div class="sl">Hidden Cost</div><h2 class="st">現場の"我慢"は、会社の損失になる</h2></div>
+    </div>
+    <div class="rv" style="margin-top:1rem"><img src="images/loss-infographic.png" alt="見えない痛みは大きな損失に変わる" style="width:100%;display:block"></div>
+    </section>
+
+    <!-- LEADING INDICATOR - with timeline diagram -->
+    <section class="indicator"><div class="ct">
+      <div class="sh rv"><div class="sl">Leading Indicator</div><h2 class="st">今の対策は、遅すぎる</h2></div>
+
+      <!-- Timeline diagram -->
+      <div class="timeline-diagram rv">
+        <div class="tl-zone-wrap">
+          <div class="tl-zone-box"><div class="tl-zone-label">最も重要なのに、誰も把握できていない「管理の空白地帯」</div></div>
+          <div class="tl-row">
+            <div class="tl-line"></div>
+            <div class="tl-col"><div class="top">痛みの発生・蓄積</div><div class="dot d1"></div><div class="bot">日々の痛みを<br>我慢・放置</div></div>
+            <div class="tl-col"><div class="top">悪化</div><div class="dot d2"></div><div class="bot">パフォーマンス低下<br>ミス・集中力↓</div></div>
+            <div class="tl-col"><div class="top">限界</div><div class="dot d3"></div><div class="bot">突然の欠勤<br>休職・離職</div></div>
+            <div class="tl-col"><div class="top">発覚</div><div class="dot d4"></div><div class="bot">労災・訴訟<br>採用難</div></div>
+            <div class="tl-col"><div class="top" style="color:var(--text-muted)">既存の対策</div><div class="dot d5"></div><div class="bot">年1回健診<br>ストレスチェック</div></div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="problems-section" id="problems">
-      <div class="problems-wrap">
-        <div class="section-header reveal">
-          <div class="section-label">Problems</div>
-          <h2 class="section-title">こんな課題、ありませんか？</h2>
-        </div>
-        <div class="problems-grid">
-          <div class="problem-card-img reveal reveal-delay-1">
-            <div class="problem-card-photo"><img src="images/problem-physical-check.png" alt="見えない労災リスク"></div>
-            <h3>見えない労災リスク</h3>
-            <p>「まだ大丈夫」という従業員の我慢が、取り返しのつかない事故につながる。</p>
-          </div>
-          <div class="problem-card-img reveal reveal-delay-2">
-            <div class="problem-card-photo"><img src="images/problem-turnover.png" alt="止まらない離職"></div>
-            <h3>止まらない離職</h3>
-            <p>体力の限界を感じた熟練スタッフが、静かに現場を去っていく。</p>
-          </div>
-          <div class="problem-card-img reveal reveal-delay-3">
-            <div class="problem-card-photo"><img src="images/problem-risk.png" alt="採用力の低下"></div>
-            <h3>採用力の低下</h3>
-            <p>「身体を酷使する仕事」というイメージが、若手の採用を阻んでいる。</p>
-          </div>
-          <div class="problem-card-img reveal reveal-delay-1">
-            <div class="problem-card-photo"><img src="images/problem-construction.png" alt="建設・運送の課題"></div>
-            <h3>建設・運送</h3>
-            <p>重い荷物や無理な体勢による腰痛・関節痛を、職人が隠して働いている。</p>
-          </div>
-          <div class="problem-card-img reveal reveal-delay-2">
-            <div class="problem-card-photo"><img src="images/problem-care-retail.png" alt="介護・小売の課題"></div>
-            <h3>介護・小売</h3>
-            <p>長時間の立ち仕事や移乗介助による身体の限界が、突然の離職に繋がっている。</p>
-          </div>
-          <div class="problem-card-img reveal reveal-delay-3">
-            <div class="problem-card-photo"><img src="images/problem-security.png" alt="警備の課題"></div>
-            <h3>警備</h3>
-            <p>夜勤や立ちっぱなしの疲労が、集中力低下と事故のリスクを高めている。</p>
+      <div class="ind-compare rv" style="margin-top:2.5rem">
+        <div class="ind-card old"><h3>年1回の健診・ストレスチェックの限界</h3><div class="ind-item"><span class="x">&#10005;</span>発覚した時点ですでに深刻な状態</div><div class="ind-item"><span class="x">&#10005;</span>「結果指標」なので予防には使えない</div><div class="ind-item"><span class="x">&#10005;</span>身体の痛みは対象外のケースが多い</div></div>
+        <div class="ind-card new"><h3>Adoryは「先行指標」で現場を可視化する</h3><div class="ind-item"><span class="o">&#10003;</span>週次で痛みの蓄積を継続的に把握</div><div class="ind-item"><span class="o">&#10003;</span>悪化傾向が出た段階で即アラート</div><div class="ind-item"><span class="o">&#10003;</span>データが対処の証跡として機能する</div></div>
+      </div>
+    </div></section>
+
+    <!-- SOLUTION -->
+    <section class="solution" id="solution"><div class="ct">
+      <div class="sh rv"><div class="sl">Solution</div></div>
+      <div class="sol-statement rv">現場の「痛み」を週次でデータ化し<br>管理者が先手を打てる仕組みをつくる</div>
+      <div class="sol-sub rv">Adory（アドリー）とは —— 一言でいうと</div>
+      <div class="sol-grid">
+        <div class="sol-card rv d1"><div class="sol-num">01</div><h3>現場に負担をかけない設計</h3><div class="sub">PC不要 / LINEで2分で完結</div><div class="illust"><img src="images/illust-line.png" alt="LINE完結"></div><p>アプリDLやPCは一切不要。普段使いのスマートフォンで完結。ログイン・パスワード無しで、直感的に入力可能。</p></div>
+        <div class="sol-card rv d2"><div class="sol-num">02</div><h3>ダッシュボードで即確認</h3><div class="sub">どこに介入すべきか一目で分かる</div><div class="illust"><img src="images/illust-dashboard.png" alt="ダッシュボード"></div><p>部署別、職種別に可視化。管理者が高リスク者リスト、部署別スコアからどこに介入すべきか一目で分かる。</p></div>
+        <div class="sol-card rv d3"><div class="sol-num">03</div><h3>データが証拠になる</h3><div class="sub">労災・離職リスクから会社を守る</div><div class="illust"><img src="images/illust-shield.png" alt="証拠化"></div><p>週次記録が安全配慮義務の履行証拠。労災・損害賠償リスクから会社を守る。従業員の予兆も管理。</p></div>
+      </div>
+    </div></section>
+
+    <!-- FEATURES Step01-03 - PDF layout -->
+    <section class="feat" id="features"><div class="ct">
+      <div class="sh rv"><div class="sl">Features</div><h2 class="st">Adory SaaS の詳細機能</h2></div>
+
+      <!-- Step 01 -->
+      <div class="rv" style="margin-bottom:4rem">
+        <div class="step-label">Step 01</div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:.3rem">LINEだけで"現場の状態"が見える</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:2rem">アプリDL, PC, パスワード不要。普段使いのLINEだけで完結の設計</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+          <div style="background:var(--bg-section);border-radius:var(--radius);padding:2rem;min-height:300px;display:flex;align-items:center;justify-content:center"><img src="images/feature-pulse-survey.png" alt="LINEパルスサーベイ" style="max-width:100%;border-radius:var(--radius-sm)"></div>
+          <div>
+            <p style="font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:1rem">選び抜かれた6問の設問設計</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem">
+              <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q1 疲労度</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">5段階</div><div style="font-size:.6rem;color:var(--text-muted)">慢性的な疲労の蓄積を可視化</div></div>
+              <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q2 痛み部位</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">複数選択</div><div style="font-size:.6rem;color:var(--text-muted)">負担が集中する部位を特定</div></div>
+              <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q3 痛みの強度</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">11段階</div><div style="font-size:.6rem;color:var(--text-muted)">リスクの深刻度を定量化</div></div>
+              <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q4 睡眠時間</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">4段階</div><div style="font-size:.6rem;color:var(--text-muted)">回復不足の兆候を検知</div></div>
+              <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q5 ストレス度</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">5段階</div><div style="font-size:.6rem;color:var(--text-muted)">心理的負荷の変化を把握</div></div>
+              <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q6 心理状況</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">5段階</div><div style="font-size:.6rem;color:var(--text-muted)">離職・メンタル不調の予兆検知</div></div>
+            </div>
+            <p style="font-size:.78rem;color:var(--text-muted);margin-top:1rem;text-align:center">この6問で、疼痛・メンタル・生活習慣の3領域を毎週先行把握できる</p>
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="solution-section">
-      <div class="solution-wrap">
-        <div class="solution-statement reveal-scale">従業員の『痛み』をデータで見える化し、<br>企業の生産性損失と労災・離職リスクを削減するSaaS<br><span style="font-size:.85rem;color:var(--text-light);font-weight:400;display:block;margin-top:.5rem;">&#8212; 痛みを"個人の問題"から"企業・社会の管理領域"へ転換 &#8212;</span></div>
-      </div>
-    </section>
-
-    <section class="features-section" id="features">
-      <div class="features-wrap">
-        <div class="section-header reveal"><div class="section-label">Features</div><h2 class="section-title">Adoryが選ばれる理由</h2></div>
-
-        <div class="feature-row reveal">
-          <div class="feature-text reveal-left"><div class="feature-num">01</div><h3>PC不要。個人のLINEで2分。<br>現場に溶け込むパルスサーベイ</h3><p>毎週月曜、朝7:00にLINEで回答URLを直接配信。専用デバイスやPCの準備は一切不要。普段使いのスマートフォンから、<strong style="color:var(--dark)">ログイン・パスワードなし</strong>で即座に回答できるため、現場の負担を最小限に抑えます。疲労・疼痛・睡眠・ストレス・帰属意識・エンゲージメントの2分の定点観測で、年1〜2回のストレスチェックでは捉えきれない「小さな変化」を逃しません。</p></div>
-          <div class="feature-visual">
-            <img src="images/feature-pulse-survey.png" alt="LINEパルスサーベイのUXフロー" style="width:100%;border-radius:var(--radius-sm);display:block">
-          </div>
-        </div>
-
-        <div class="feature-row reverse reveal">
-          <div class="feature-text reveal-right"><div class="feature-num">02</div><h3>デジタル &#215; フィジカル。<br>現場を知り尽くしたハイブリッド・モデル</h3><p>ツールでの可視化（デジタル）に加え、有資格者（理学療法士・柔道整復師等）が週1回、現場を直接訪問（フィジカル）。データに基づいた的確なコンディショニング・リラクゼーションを提供します。「ITだけ」でも「マッサージだけ」でも解決できない、身体の経営リスクを根本から管理します。</p></div>
-          <div class="feature-visual">
-            <img src="images/feature-hybrid-care.png" alt="デジタル×フィジカルのハイブリッドケア" style="width:100%;border-radius:var(--radius-sm);display:block">
-          </div>
-        </div>
-
-        <div class="feature-row reveal">
-          <div class="feature-text reveal-left"><div class="feature-num">03</div><h3>心理的安全性を担保する<br>権限設計（RBAC）</h3><p>「痛みを報告すると仕事から外される」という現場の不安を解消。個人の詳細データは産業医・労務担当のみが閲覧し、経営層には「組織全体の生産性リスク」のみを表示します。プライバシーを守ることで、従業員の「本音」を引き出し、データの信頼性を高めます。</p></div>
-          <div class="feature-visual">
-            <img src="images/feature-rbac.png" alt="RBAC権限設計の概念図" style="width:100%;border-radius:var(--radius-sm);display:block">
-          </div>
+      <!-- Step 02 -->
+      <div class="rv" style="margin-bottom:4rem">
+        <div class="step-label">Step 02</div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:.3rem">管理者が「労災・離職リスク」に先回りで介入できる</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:2rem">高リスク者・部署別スコア・時系列推移。感覚ではなく「データ」で動ける管理者になる。</p>
+        <div class="feat-grid-inner">
+          <div class="feat-mini important"><h4>高リスク者管理</h4><p>一定の閾値以上、スコア低下など条件に合致した人を自動アラート。労災・離職リスクに即時対応できる</p></div>
+          <div class="feat-mini"><h4>痛み部位ヒートマップ</h4><p>腰・肩・膝などの部位別の分布を棒グラフで可視化。負担が集中する業務を特定できる</p></div>
+          <div class="feat-mini"><h4>時系列スコア推移</h4><p>個人・チーム単位でスコア変化のトレンドを追跡。悪化する前に介入できる</p></div>
+          <div class="feat-mini"><h4>未回答者管理</h4><p>誰が未回答かを即確認。形骸化を防ぐ管理者リマインド。運用設計を一緒にサポート</p></div>
+          <div class="feat-mini"><h4>部署別・職種別比較</h4><p>どの部署・職種のリスクが高いかを比較分析。配置転換・業務軽減の意思決定ができる</p></div>
+          <div class="feat-mini important"><h4>権限設定（RBAC）</h4><p>経営・現場には全体スコア。管理者には個別でスコア表示。現場と経営で適切な意思決定ができる</p></div>
         </div>
       </div>
-    </section>
 
-    <section class="industry-section">
-      <div class="industry-wrap">
-        <div class="section-header reveal">
-          <div class="section-label">Use Cases</div>
-          <h2 class="section-title">Adoryは以下の業種の課題を解決します</h2>
-        </div>
-        <div class="industry-scroll reveal">
-          <div class="industry-card">
-            <div class="industry-card-img"><img src="images/industry-construction.png" alt="建設・建築"></div>
-            <h3>建設・建築</h3>
-            <p>高所作業や重機操作に伴う事故リスク、ベテランの腰痛による引退</p>
+      <!-- Step 02 intervention actions - PDF p.11 layout -->
+      <div class="rv" style="margin-bottom:4rem">
+        <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:1.5rem">具体的な介入アクション（1画面例）</h3>
+        <div style="display:grid;grid-template-columns:1.8fr 1fr;gap:2rem;align-items:start">
+          <div style="background:var(--bg-section);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-md)">
+            <img src="images/feature-hybrid-care.png" alt="ダッシュボード介入例" style="width:100%;border-radius:var(--radius-sm)">
           </div>
-          <div class="industry-card">
-            <div class="industry-card-img"><img src="images/industry-logistics.png" alt="物流・運送"></div>
-            <h3>物流・運送</h3>
-            <p>積み下ろしによる身体への蓄積疲労、ドライバーの健康起因事故</p>
-          </div>
-          <div class="industry-card">
-            <div class="industry-card-img"><img src="images/industry-care.png" alt="介護・医療"></div>
-            <h3>介護・医療</h3>
-            <p>移乗介助による腰痛の慢性化、精神的・肉体的な疲労による離職</p>
-          </div>
-          <div class="industry-card">
-            <div class="industry-card-img"><img src="images/industry-security.png" alt="警備・清掃"></div>
-            <h3>警備・清掃</h3>
-            <p>深夜帯のパフォーマンス低下、慢性的な立ち仕事による下半身の不調</p>
-          </div>
-          <div class="industry-card">
-            <div class="industry-card-img"><img src="images/industry-retail.png" alt="小売・製造"></div>
-            <h3>小売・製造</h3>
-            <p>長時間のレジ打ち・ライン作業による腱鞘炎、スタッフの欠勤防止</p>
+          <div style="display:flex;flex-direction:column;gap:1.5rem">
+            <div style="background:#fff;border-radius:var(--radius-sm);padding:1.2rem 1.5rem;box-shadow:var(--shadow-sm);border-left:4px solid var(--red)">
+              <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem"><div style="width:10px;height:10px;border-radius:2px;background:var(--red);flex-shrink:0"></div><h4 style="font-size:.95rem;font-weight:800;color:var(--dark)">高リスク者に即時介入できる</h4></div>
+              <p style="font-size:.78rem;color:var(--text-light);line-height:1.7;padding-left:calc(10px + .5rem)">・高リスク者に個別ヒアリング（上司・管理者）<br>・業務負荷の一時軽減・シフト調整<br>・専門家（医療機関/産業医など）への連携</p>
+            </div>
+            <div style="background:#fff;border-radius:var(--radius-sm);padding:1.2rem 1.5rem;box-shadow:var(--shadow-sm);border-left:4px solid var(--orange)">
+              <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem"><div style="width:10px;height:10px;border-radius:2px;background:var(--orange);flex-shrink:0"></div><h4 style="font-size:.95rem;font-weight:800;color:var(--dark)">現場の負担構造を改善できる</h4></div>
+              <p style="font-size:.78rem;color:var(--text-light);line-height:1.7;padding-left:calc(10px + .5rem)">・負担が集中している作業の特定<br>・作業工程の見直し（持ち方・姿勢）<br>・ストレッチ・体操導入 or 刷新</p>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="pricing-section" id="pricing">
-      <div class="pricing-wrap">
-        <div class="section-header reveal"><div class="section-label">Pricing</div><h2 class="section-title">料金プラン</h2><p class="section-sub">「見える化」と「現場ケア」を組み合わせて、最適なプランをご提案します</p></div>
-        <div class="pricing-grid">
-          <div class="pricing-card featured reveal reveal-delay-1">
-            <h3>Adory SaaS</h3><p style="font-size:.85rem;color:var(--text-muted)">基本プラン ― 痛みデータの可視化・管理</p>
-            <div class="pricing-price">&#165;29,800<span>/月</span></div>
-            <div class="pricing-note">31名以上は1名あたり+500円/月</div>
-            <ul class="pricing-features"><li>LINE連携パルスサーベイ</li><li>Adoryダッシュボード</li><li>部署・職種別レポート</li><li>高リスク者アラート通知</li><li>CSによる伴走サポート</li></ul>
-            <a href="index.html#contact" class="btn-primary" style="width:100%;justify-content:center">お問い合わせ</a>
-          </div>
-          <div class="pricing-card reveal reveal-delay-2">
-            <h3>+ 現場ケアオプション</h3><p style="font-size:.85rem;color:var(--text-muted)">有資格者による常駐コンディショニング</p>
-            <div class="pricing-price">&#165;24,980<span>/回</span></div>
-            <div class="pricing-note">3時間/回 &#215; 月4〜5回 &#65309; 約10万円/月</div>
-            <ul class="pricing-features"><li>SaaS基本プランに追加</li><li>有資格者による現場訪問ケア</li><li>理学療法士・柔道整復師などが対応</li></ul>
-            <a href="index.html#contact" class="btn-primary" style="width:100%;justify-content:center">お問い合わせ</a>
-          </div>
+      <!-- Step 03 -->
+      <div class="rv">
+        <div class="step-label">Step 03</div>
+        <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:.5rem">会社を"法的リスク"から守る証拠が残る</h3>
+        <p style="font-size:.88rem;font-weight:700;color:var(--red);margin-bottom:2rem">「知らなかった」より「知っていて対処した証拠がある」会社の方が、万が一の際に法的に守られます。</p>
+
+        <!-- 労働安全衛生法 box -->
+        <div style="text-align:center;margin-bottom:.5rem">
+          <div style="display:inline-block;background:var(--bg-section);border:2px solid #999;border-radius:var(--radius-sm);padding:.8rem 2rem;font-size:.9rem;font-weight:800;color:var(--dark)">労働安全衛生法<br><span style="font-size:.78rem;font-weight:400;color:var(--text-muted)">（安全配慮義務）</span></div>
+        </div>
+        <div style="text-align:center;font-size:1.5rem;color:var(--text-muted);margin-bottom:1rem">&#8595;</div>
+
+        <!-- 3 columns - border only, centered text -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:1.5rem">
+          <div style="background:#fff;border-radius:var(--radius-sm);padding:1.5rem;border:2px solid #4494d0;text-align:center"><h4 style="font-size:.88rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;border-bottom:2px solid #4494d0;padding-bottom:.4rem">企業の法定義務</h4><p style="font-size:.75rem;color:var(--text-light);line-height:1.8;text-align:left">・年1回の健康診断・ストレスチェック<br>・安全衛生委員会<br>・作業管理・安全教育</p></div>
+          <div style="background:#fff;border-radius:var(--radius-sm);padding:1.5rem;border:2px solid #4caf50;text-align:center"><h4 style="font-size:.88rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;border-bottom:2px solid #4caf50;padding-bottom:.4rem">社労士のサポート</h4><p style="font-size:.75rem;color:var(--text-light);line-height:1.8;text-align:left">・義務手続きの代行<br>・就業規則の整備<br>・離職・労災発生時の初期相談</p></div>
+          <div style="background:#fff;border-radius:var(--radius-sm);padding:1.5rem;border:3px solid var(--red);text-align:center"><h4 style="font-size:.88rem;font-weight:800;color:var(--red);margin-bottom:.5rem;border-bottom:2px solid var(--red);padding-bottom:.4rem">管理の空白地帯</h4><p style="font-size:.75rem;color:var(--text-light);line-height:1.8;text-align:left">・日々の身体の痛み<br>・疼痛・疲労の蓄積<br>・離職直前のサイン</p><p style="font-size:.72rem;font-weight:700;color:var(--red);margin-top:.5rem">管理者不在！放置が事故・離職に繋がる</p></div>
         </div>
 
-        <div class="pricing-table-wrap reveal" style="margin-top:3.5rem">
-          <h3 class="pricing-table-title">社員数規模別 参考価格表</h3>
-          <div class="pricing-table-scroll">
-            <table class="pricing-table">
-              <thead>
-                <tr>
-                  <th>利用ユーザー規模</th>
-                  <th>SaaSプラン（月額）</th>
-                  <th>現場訪問プラン（月4回目安）</th>
-                  <th>フルプラン合計（月額）</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>〜30名</td><td>29,800円</td><td>99,920円</td><td>129,720円</td></tr>
-                <tr><td>〜50名</td><td>39,800円</td><td>99,920円</td><td>139,720円</td></tr>
-                <tr><td>〜100名</td><td>64,800円</td><td>99,920円</td><td>164,720円</td></tr>
-                <tr><td>〜200名</td><td>114,800円</td><td>99,920円</td><td>214,720円</td></tr>
-                <tr><td>〜300名</td><td>164,800円</td><td>99,920円</td><td>264,720円</td></tr>
-                <tr><td>〜500名</td><td>264,800円</td><td>99,920円</td><td>364,720円</td></tr>
-                <tr><td>〜750名</td><td>389,800円</td><td>99,920円</td><td>489,720円</td></tr>
-                <tr><td>〜1,000名</td><td>514,800円</td><td>99,920円</td><td>614,720円</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
+        <div style="background:var(--gradient);border-radius:var(--radius-sm);padding:1rem 2rem;text-align:center;color:#fff;font-size:.88rem;font-weight:700">Adoryが埋める「管理の空白」：週次記録 → 予見可能性の証拠 ＋ 対処履歴の根拠 を一緒に作成</div>
       </div>
-    </section>
+    </div></section>
 
-    <section class="dashboard-section" id="dashboard">
-      <div class="dashboard-wrap">
-        <div class="section-header reveal">
-          <div class="section-label">Dashboard</div>
-          <h2 class="section-title">豊富なダッシュボード機能</h2>
-          <p class="section-sub">疼痛管理・メンタルヘルス・生活習慣の3つの視点で現場を可視化。週次・月次レポート機能も標準搭載。</p>
+    <!-- DASHBOARD -->
+    <section class="dashboard"><div class="ct">
+      <div class="sh rv"><div class="sl">Dashboard</div><h2 class="st">リアルタイムで現場全体の<br>健康状態が把握できる</h2></div>
+      <div class="db-overlap rv"><div class="db-card"><img src="images/dashboard-pain.png" alt="疼痛管理"></div><div class="db-card"><img src="images/dashboard-mental.png" alt="メンタルヘルス"></div><div class="db-card"><img src="images/dashboard-lifestyle.png" alt="生活習慣"></div></div>
+    </div></section>
+
+    <!-- BENEFIT / ROI -->
+    <section class="roi"><div class="ct">
+      <div class="sh rv"><div class="sl">Benefit</div><h2 class="st">導入メリット</h2></div>
+      <div class="roi-grid rv">
+        <div class="roi-cost">
+          <div class="label">Adory月額コスト</div>
+          <div class="price">&#165;29,800<span>/月</span></div>
+          <div class="annual">年間 357,600円</div>
+          <div class="detail">初期費用：¥0<br>サポート費用：¥0<br>最短：翌週から運用開始<br>31名以上：+500円/名</div>
         </div>
-        <div class="dashboard-overlap reveal">
-          <div class="dashboard-overlap-card">
-            <img src="images/dashboard-pain.png" alt="疼痛管理ダッシュボード">
-          </div>
-          <div class="dashboard-overlap-card">
-            <img src="images/dashboard-mental.png" alt="メンタルヘルスダッシュボード">
-          </div>
-          <div class="dashboard-overlap-card">
-            <img src="images/dashboard-lifestyle.png" alt="生活習慣ダッシュボード">
+        <div class="roi-right">
+          <h3>防げるリスクの大きさ（vs Adory年間コスト）</h3>
+          <p style="font-size:.82rem;color:var(--text-light);margin-bottom:1rem">熟練工が1名辞めずに済めば、Adoryの年間コストは約140倍のROIになります。</p>
+          <div class="roi-items">
+            <div class="roi-item"><div><div class="name">ベテラン1名の離職</div><div class="sub">500〜1,000万円</div></div><div class="mult">140〜280倍</div></div>
+            <div class="roi-item"><div><div class="name">労災1件の補償・賠償</div><div class="sub">数百万〜数千万円</div></div><div class="mult">10倍以上</div></div>
+            <div class="roi-item"><div><div class="name">採用コスト（1名）</div><div class="sub">100〜200万円</div></div><div class="mult">28〜56倍</div></div>
+            <div class="roi-item"><div><div class="name">年間生産性損失（100名）</div><div class="sub">1,542万円</div></div><div class="mult">43倍</div></div>
           </div>
         </div>
       </div>
-    </section>
+      <p class="roi-note rv">※1件でも防げばROIは数十倍</p>
+    </div></section>
 
-    <section class="flow-section" id="flow">
-      <div class="flow-wrap">
-        <div class="section-header reveal"><div class="section-label">Implementation Flow</div><h2 class="section-title">導入の流れ</h2></div>
-        <div class="flow-steps">
-          <div class="flow-step reveal reveal-delay-1"><div class="flow-step-num">1</div><h3>お問い合わせ・ヒアリング</h3><p>現状の課題や体制を詳しく伺い、最適なプラン選定の準備をします。</p></div>
-          <div class="flow-step reveal reveal-delay-2"><div class="flow-step-num">2</div><h3>プラン提案・お見積もり</h3><p>目的やご予算に合わせたプランをご提案。デモ画面のご共有も可能です。</p></div>
-          <div class="flow-step reveal reveal-delay-3"><div class="flow-step-num">3</div><h3>契約・LINE連携セットアップ</h3><p>従業員の方には専用LINEを登録してもらうだけ。PCの支給や、複雑な操作説明会を行う必要はありません。最短1週間で運用を開始できます。</p></div>
-          <div class="flow-step reveal reveal-delay-4"><div class="flow-step-num">4</div><h3>運用開始・継続サポート</h3><p>導入後もCSが伴走。レポーティングと改善提案で定着まで支援します。</p></div>
+    <!-- PRICING -->
+    <section class="pricing" id="pricing"><div class="ct">
+      <div class="sh rv"><div class="sl">Pricing</div><h2 class="st">料金プラン</h2></div>
+      <div class="pr-subtitle rv">初期費用0円・最短翌週から運用開始</div>
+      <div class="pr-badges rv"><div class="pr-badge b1">初期費用 0円</div><div class="pr-badge b2">最短即日導入</div><div class="pr-badge b3">サポート費用 無料</div></div>
+      <div class="pr-layout">
+        <div class="prc main rv d1">
+          <h3>Adory SaaS 基本プラン</h3>
+          <div class="pr-price">&#165;29,800<span>/月</span></div>
+          <div class="pr-note">利用ユーザー31名以上は1名あたり+500円/月</div>
+          <ul class="pfl"><li>週1回・6問で現場の「痛み・疲労」を可視化</li><li>高リスク者を自動検知（労災・離職予防）</li><li>部署別・職種別ダッシュボード提供</li><li>安全配慮義務の履行証拠データを自動蓄積</li><li>CSによる伴走サポート</li></ul>
+          <a href="index.html#contact" class="bp">お問い合わせ</a>
+          <div class="prc-small">※継続利用により効果最大化（推奨6カ月〜）</div>
+        </div>
+        <div class="prc rv d2">
+          <h3>＋ 現場ケアオプション</h3>
+          <div class="pr-price-sm">&#165;24,980<span>/回</span></div>
+          <div class="pr-note">月4回：99,920円</div>
+          <ul class="pfl"><li>理学療法士・柔道整復師等の有資格者が対応</li><li>データに基づいた的確なケアを提供</li><li>要望に合わせて時間・回数はカスタマイズ可</li></ul>
+          <div class="prc-small">※まずはSaaS利用で、入力継続に不安がある場合に推奨</div>
+          <div class="prc-option">スタッフマッサージのオプションやLINEでのクーポン発行・セルフケア指南書など、各種オプションもご相談いただけます。カスタマーサクセスが最適なプランを伴走してご提案します。</div>
         </div>
       </div>
-    </section>
+    </div></section>
 
-    <section class="cta-section">
-      <div class="cta-wrap">
-        <h2>痛みを「個人の問題」から<br>「経営の意思決定インフラ」へ</h2>
-        <p>まずは資料請求・無料デモから。<br>従業員の健康と企業の生産性を、Adoryで両立させませんか？</p>
-        <a href="index.html#contact" class="btn-primary">資料請求・お問い合わせ &#8594;</a>
-        <div class="cta-note">料金や導入方法について、お気軽にご相談ください</div>
+    <!-- FLOW - connected line -->
+    <section class="flow"><div class="ct">
+      <div class="sh rv"><div class="sl">Implementation Flow</div><h2 class="st">最短1週間でサーベイ配信スタート</h2></div>
+      <div class="flow-track rv">
+        <div class="flow-step"><div class="flow-num">01</div><h4>お問い合わせ</h4><p>Webまたは担当者にご連絡</p><div class="time">即日</div></div>
+        <div class="flow-step"><div class="flow-num">02</div><h4>ヒアリング</h4><p>課題・現場規模・目的をお聞きします</p><div class="time">1〜2日</div></div>
+        <div class="flow-step"><div class="flow-num">03</div><h4>設定</h4><p>LINE連携・従業員情報の登録</p><div class="time">3〜5日</div></div>
+        <div class="flow-step"><div class="flow-num">04</div><h4>オンボーディング</h4><p>管理者・従業員への操作説明</p><div class="time">半日</div></div>
+        <div class="flow-step"><div class="flow-num">05</div><h4>運用スタート</h4><p>週次サーベイ配信開始</p><div class="time">翌週〜</div></div>
       </div>
-    </section>
+      <div class="poc-box rv">
+        <div class="poc-text"><h3>まずはPoC（3ヶ月）から始めませんか？</h3><p>初期費用0円・最短1週間で開始・解約期間要相談。「効果を見てから」導入判断可能。</p></div>
+        <a href="index.html#contact" class="poc-cta">今すぐ無料相談する &#8594;</a>
+      </div>
+    </div></section>
+
+    <!-- FAQ accordion -->
+    <section class="faq" id="faq"><div class="ct">
+      <div class="sh rv"><div class="sl">FAQ</div><h2 class="st">よくある質問</h2></div>
+      <div class="faq-list">
+        <div class="faq-item rv"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">現場社員がLINEで正直に答えてくれるか不安</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">個人データは経営者・現場に見せない設計です。「組織全体のスコア」のみ提供するため、本音が出やすくなります。回答率の維持は弊社がオンボーディング時に運用設計ごとサポートします。</div></div></div>
+        <div class="faq-item rv d1"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">安全配慮義務：知っていて何もしない方がリスクでは？</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">逆です。「知って対処した記録がある」方が法的には有利です。Adoryは対処の記録も一緒に伴走します。</div></div></div>
+        <div class="faq-item rv d2"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">ITが苦手な従業員でも使えますか？</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">LINEのメッセージに返答するだけ。アプリDL・ログイン・パスワードは一切不要です。必要に応じて、初回オンボーディングで30分のレクチャーも提供します。</div></div></div>
+        <div class="faq-item rv d3"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">データの正確性は？</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">自己申告の限界は把握しており、「傾向や変化を捉える」設計になっています。今後「環境データ」「構造データ」を掛け合わせ、主観データに客観性を持たせる設計も開発予定です。</div></div></div>
+      </div>
+    </div></section>
+
+    <!-- CTA -->
+    <section class="cta"><div class="cta-w rv">
+      <h2>「壊れる前に守る」、<br>あなたの会社から始めませんか。</h2>
+      <p>苦労して採用した若手やベテラン社員1名が辞めずに済む、その1回分のコストを考えてください。<br>Adoryの年間費用は35.8万円。1名分の採用費の約4分の1です。</p>
+      <a href="index.html#contact" class="bp">まずは無料相談から &#8594;</a>
+      <div class="cta-note">お見積りや無料トライアルなども柔軟にご相談いただけます</div>
+    </div></section>
   </main>
 
   <footer>
-    <div class="footer-inner">
-      <div class="footer-brand"><div class="footer-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2025 Adory Inc.</p></div>
-      <div class="footer-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">代表メッセージ</a><a href="index.html#contact">お問い合わせ</a></div>
+    <div class="ft-in">
+      <div class="ft-brand"><div class="ft-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2025 Adory Inc.</p></div>
+      <div class="ft-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
+      <div class="ft-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">創業の想い</a><a href="index.html#contact">お問い合わせ</a></div>
     </div>
-    <div class="footer-bottom"><div class="footer-bottom-links"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2025 株式会社Adory. All rights reserved.</p></div>
+    <div class="ft-bot"><div class="ft-bot-l"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2025 株式会社Adory. All rights reserved.</p></div>
   </footer>
 
   <script>
     window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pageLoader').classList.add('hidden'),600)});
-    const header=document.getElementById('header'),scrollTopBtn=document.getElementById('scrollTop');
-    window.addEventListener('scroll',()=>{const y=window.scrollY;header.classList.toggle('scrolled',y>50);scrollTopBtn.classList.toggle('show',y>500)});
-    scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    const hdr=document.getElementById('hdr'),stb=document.getElementById('stb');
+    window.addEventListener('scroll',()=>{const y=window.scrollY;hdr.classList.toggle('scrolled',y>50);stb.classList.toggle('show',y>500)});
+    stb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     const hamburger=document.getElementById('hamburger'),navMenu=document.getElementById('navMenu');
     hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');navMenu.classList.toggle('active')});
     navMenu.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hamburger.classList.remove('open');navMenu.classList.remove('active')})});
-    const revealEls=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
-    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-    revealEls.forEach(el=>observer.observe(el));
+    const rvEls=document.querySelectorAll('.rv');
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+    rvEls.forEach(el=>obs.observe(el));
     document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{const id=link.getAttribute('href');if(id==='#')return;const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item=>{const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');q.addEventListener('click',()=>{const o=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight='0'});if(!o){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}})});
   </script>
 </body>
 </html>
