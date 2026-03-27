@@ -47,12 +47,12 @@
     .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-warm);padding-top:80px}
     .hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(100px);opacity:.1;background:var(--red);top:-250px;right:-200px;animation:blobFloat 20s ease-in-out infinite}
     .hero-in{position:relative;z-index:2;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;display:flex;align-items:center;gap:3rem}
-    .hero-text{flex:1;min-width:400px}
-    .hero-logo{max-width:320px;margin-bottom:1.5rem;animation:fadeIn .8s .1s both}
-    .hero-sub1{font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:.3rem;animation:fadeIn .8s .3s both}
-    .hero-sub2{font-size:clamp(1rem,2.2vw,1.3rem);font-weight:900;color:var(--dark);margin-bottom:1rem;animation:fadeIn .8s .4s both;white-space:nowrap}
+    .hero-text{flex:1;min-width:0}
+    .hero-logo{max-width:280px;margin-bottom:1.5rem;animation:fadeIn .8s .1s both}
+    .hero-sub1{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;animation:fadeIn .8s .3s both;line-height:1.6}
+    .hero-sub2{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:900;color:var(--dark);margin-bottom:1rem;animation:fadeIn .8s .4s both;line-height:1.8}
     .hero-sub2 u{text-decoration:none;border-bottom:3px solid;border-image:var(--gradient) 1;padding-bottom:2px}
-    .hero-tagline{font-size:.88rem;color:var(--orange);margin-bottom:2rem;animation:fadeIn .8s .5s both}
+    .hero-tagline{font-size:.85rem;color:var(--orange);margin-bottom:2rem;animation:fadeIn .8s .5s both}
     .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeIn .8s .6s both}
     .hero-visual{flex:1;animation:fadeIn 1s .4s both;min-width:0}
     .hero-visual img{width:100%;animation:heroFloat 6s ease-in-out infinite;border-radius:var(--radius-sm)}
@@ -163,7 +163,7 @@
     .pr-badges{display:flex;gap:.8rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
     .pr-badge{padding:.4rem 1rem;border-radius:999px;font-size:.78rem;font-weight:700}
     .pr-badge.b1{background:var(--gradient);color:#fff}.pr-badge.b2{background:var(--dark);color:#fff}.pr-badge.b3{background:#22c55e;color:#fff}
-    .pr-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:1.5rem;max-width:900px;margin:0 auto;align-items:start}
+    .pr-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:1.5rem;max-width:900px;margin:0 auto;align-items:stretch}
     .prc{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);position:relative;overflow:hidden;display:flex;flex-direction:column}
     .prc.main{border:2px solid var(--red)}
     .prc h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
@@ -171,7 +171,7 @@
     .pr-note{font-size:.78rem;color:var(--text-muted);margin-bottom:1.5rem}
     .pfl li{font-size:.85rem;padding:.4rem 0;color:var(--text);padding-left:1.5rem;position:relative}.pfl li::before{content:'\2713';position:absolute;left:0;color:var(--orange);font-weight:700}
     .prc .bp{margin-top:auto;width:100%;justify-content:center}
-    .prc-small{font-size:.72rem;color:var(--red);margin-top:.8rem;text-align:center}
+    .prc-small{font-size:.68rem;color:var(--red);margin-top:.8rem;text-align:center;white-space:nowrap}
     .prc-option{font-size:.78rem;color:var(--text-light);margin-top:1rem;padding:1rem;background:var(--gradient-soft);border-radius:var(--radius-sm);line-height:1.7}
     .pr-price-sm{font-family:var(--font-en);font-size:2rem;font-weight:800;color:var(--dark);margin:1rem 0 .3rem}.pr-price-sm span{font-size:.85rem;font-weight:400;color:var(--text-muted)}
 
@@ -223,19 +223,44 @@
     @keyframes loaderBounce{to{transform:translateY(-12px);opacity:.4}}
     body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-    @media(max-width:1024px){.hero-in{flex-direction:column;gap:2rem;text-align:center}.hero-text{min-width:0;max-width:600px}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-visual img{width:100%}.step-row,.step-row.rev{flex-direction:column;gap:2rem}.sol-grid{grid-template-columns:1fr}.roi-grid{grid-template-columns:1fr}}
+    @media(max-width:1024px){
+      .hero-in{flex-direction:column;gap:2rem;text-align:center}.hero-text{min-width:0;max-width:600px}.hero-logo{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-visual img{width:100%}
+      .sol-grid{grid-template-columns:1fr}.roi-grid{grid-template-columns:1fr}
+    }
     @media(max-width:768px){
       .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:.3rem;z-index:999;padding:1.5rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.1)}.nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}.hamburger{display:flex;z-index:1002}
-      .hero{min-height:auto;padding:7rem 5% 3rem}.st{font-size:1.5rem}.hero-sub2{white-space:normal}
-      .persona-grid,.pr-layout,.ind-compare{grid-template-columns:1fr}
-      .flow-track{flex-direction:column;align-items:center;gap:0}.flow-track::before{display:none}.flow-step{width:100%;display:flex;align-items:center;gap:1rem;text-align:left;padding:.8rem 0;border-left:3px solid var(--orange);padding-left:1.5rem;margin-left:22px}.flow-num{margin:0;flex-shrink:0}
+      .hero{min-height:auto;padding:7rem 5% 3rem}.st{font-size:1.5rem}
+      .persona-grid{grid-template-columns:1fr}
+      .pr-layout{grid-template-columns:1fr}
+      .ind-compare{grid-template-columns:1fr}
+      .feat-grid-inner{grid-template-columns:1fr 1fr}
+      /* Step01 2-col to stack */
+      .feat section div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+      /* Step02 intervention 2-col to stack */
+      div[style*="grid-template-columns:1.8fr"]{grid-template-columns:1fr!important}
+      /* Step03 3-col to stack */
+      div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
+      /* Q cards 3x2 to 2x3 */
+      div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr 1fr!important}
+      .flow-track{flex-direction:column;align-items:stretch;gap:0}.flow-track::before{display:none}
+      .flow-step{width:100%;display:flex;align-items:center;gap:1rem;text-align:left;padding:.8rem 0;border-left:3px solid var(--orange);padding-left:1.5rem}.flow-num{margin:0;flex-shrink:0}
       .db-overlap{height:auto;display:flex;flex-direction:column;gap:1.5rem}.db-card{position:static;width:100%;transform:none!important}
-      .feat-grid-inner{grid-template-columns:1fr}
       .ft-in{grid-template-columns:1fr;gap:2rem;text-align:center}
       .poc-box{flex-direction:column;text-align:center}
-      .timeline-bar{overflow-x:auto;padding-bottom:1rem}
+      /* Timeline mobile */
+      .tl-zone-wrap{overflow-x:auto;padding-bottom:.5rem}
+      .tl-row{min-width:600px}
+      .tl-zone-box{width:calc(80% - 20px)}
     }
-    @media(max-width:480px){.hero-actions{flex-direction:column;align-items:center}.hero-actions a{width:100%;text-align:center;justify-content:center}.loss-grid{grid-template-columns:1fr}}
+    @media(max-width:480px){
+      .hero-actions{flex-direction:column;align-items:center}.hero-actions a{width:100%;text-align:center;justify-content:center}
+      .hero-sub2{font-size:1rem}
+      .bp{font-size:.85rem;padding:.8rem 1.5rem}.bo{font-size:.85rem;padding:.8rem 1.5rem}
+      .feat-grid-inner{grid-template-columns:1fr}
+      div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important}
+      .flow-step{margin-left:0}
+      .pr-badges{flex-direction:column;align-items:center}
+    }
   </style>
 </head>
 <body>
@@ -260,7 +285,7 @@
       <div class="hero-text">
         <img src="images/adory-logo.png" alt="Adory" class="hero-logo">
         <p class="hero-sub1">「痛み」を見える化し、労災と離職を未然に防ぐ</p>
-        <p class="hero-sub2"><u>現場特化型コンディショニングSaaS「Adory（アドリー）」</u></p>
+        <p class="hero-sub2"><u>現場特化型コンディショニングSaaS<br>「Adory（アドリー）」</u></p>
         <p class="hero-tagline">労災・離職・採用難 —— その根っこは、"見えない痛み"です</p>
         <div class="hero-actions"><a href="index.html#contact" class="bp">資料請求・お問い合わせ &#8594;</a><a href="#solution" class="bo">サービス詳細を見る</a></div>
       </div>
@@ -282,7 +307,7 @@
     <section class="loss" style="padding-bottom:0"><div class="ct">
       <div class="sh rv"><div class="sl">Hidden Cost</div><h2 class="st">現場の"我慢"は、会社の損失になる</h2></div>
     </div>
-    <div class="rv" style="margin-top:1rem"><img src="images/loss-infographic.png" alt="見えない痛みは大きな損失に変わる" style="width:100%;display:block"></div>
+    <div class="rv" style="margin-top:1rem;max-width:var(--max-w);margin-left:auto;margin-right:auto;padding:0 5%"><img src="images/loss-infographic.png" alt="見えない痛みは大きな損失に変わる" style="width:100%;display:block;border-radius:var(--radius-sm)"></div>
     </section>
 
     <!-- LEADING INDICATOR - with timeline diagram -->
@@ -348,6 +373,8 @@
         </div>
       </div>
 
+      <div style="text-align:center;margin-bottom:2rem"><div style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--gradient);color:#fff;font-size:1.2rem;box-shadow:var(--shadow-glow)">&#8595;</div></div>
+
       <!-- Step 02 -->
       <div class="rv" style="margin-bottom:4rem">
         <div class="step-label">Step 02</div>
@@ -366,11 +393,11 @@
       <!-- Step 02 intervention actions - PDF p.11 layout -->
       <div class="rv" style="margin-bottom:4rem">
         <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:1.5rem">具体的な介入アクション（1画面例）</h3>
-        <div style="display:grid;grid-template-columns:1.8fr 1fr;gap:2rem;align-items:start">
-          <div style="background:var(--bg-section);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-md)">
+        <div style="display:grid;grid-template-columns:1.8fr 1fr;gap:2rem;align-items:stretch">
+          <div style="background:var(--bg-section);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-md);display:flex;align-items:center">
             <img src="images/feature-hybrid-care.png" alt="ダッシュボード介入例" style="width:100%;border-radius:var(--radius-sm)">
           </div>
-          <div style="display:flex;flex-direction:column;gap:1.5rem">
+          <div style="display:flex;flex-direction:column;gap:1.5rem;justify-content:center">
             <div style="background:#fff;border-radius:var(--radius-sm);padding:1.2rem 1.5rem;box-shadow:var(--shadow-sm);border-left:4px solid var(--red)">
               <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem"><div style="width:10px;height:10px;border-radius:2px;background:var(--red);flex-shrink:0"></div><h4 style="font-size:.95rem;font-weight:800;color:var(--dark)">高リスク者に即時介入できる</h4></div>
               <p style="font-size:.78rem;color:var(--text-light);line-height:1.7;padding-left:calc(10px + .5rem)">・高リスク者に個別ヒアリング（上司・管理者）<br>・業務負荷の一時軽減・シフト調整<br>・専門家（医療機関/産業医など）への連携</p>
@@ -382,6 +409,8 @@
           </div>
         </div>
       </div>
+
+      <div style="text-align:center;margin-bottom:2rem"><div style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--gradient);color:#fff;font-size:1.2rem;box-shadow:var(--shadow-glow)">&#8595;</div></div>
 
       <!-- Step 03 -->
       <div class="rv">
