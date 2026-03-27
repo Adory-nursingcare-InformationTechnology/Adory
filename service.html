@@ -48,7 +48,7 @@
     .hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(100px);opacity:.1;background:var(--red);top:-250px;right:-200px;animation:blobFloat 20s ease-in-out infinite}
     .hero-in{position:relative;z-index:2;max-width:var(--max-w);width:100%;margin:0 auto;padding:2rem 5%;display:flex;align-items:center;gap:3rem}
     .hero-text{flex:1;min-width:0}
-    .hero-logo{max-width:280px;margin-bottom:.6rem;margin-left:1.5rem;animation:fadeIn .8s .1s both}
+    .hero-logo{max-width:280px;margin-bottom:.6rem;margin-left:3.5rem;animation:fadeIn .8s .1s both}
     .hero-sub1{font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;animation:fadeIn .8s .3s both;line-height:1.6}
     .hero-sub2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:900;color:var(--dark);margin-bottom:1rem;animation:fadeIn .8s .4s both;line-height:1.8}
     .hero-sub2 u{text-decoration:none;border-bottom:3px solid;border-image:var(--gradient) 1;padding-bottom:2px}
@@ -224,7 +224,10 @@
     body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
     @media(max-width:1024px){
-      .hero-in{flex-direction:column;gap:2rem;text-align:center}.hero-text{min-width:0;max-width:600px}.hero-logo{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-visual img{width:100%}      .sol-grid{grid-template-columns:1fr}.roi-grid{grid-template-columns:1fr}
+      .hero-in{flex-direction:column;gap:2rem;text-align:center}.hero-text{min-width:0;max-width:600px}.hero-logo{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{max-width:550px;width:100%}.hero-visual img{width:100%}
+      .sol-grid{grid-template-columns:1fr}.roi-grid{grid-template-columns:1fr}
+      .step01-grid{grid-template-columns:1fr!important}
+      .intervention-grid{grid-template-columns:1fr!important}
     }
     @media(max-width:768px){
       .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:.3rem;z-index:999;padding:1.5rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.1)}.nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}.hamburger{display:flex;z-index:1002}
@@ -232,31 +235,24 @@
       .persona-grid{grid-template-columns:1fr}
       .pr-layout{grid-template-columns:1fr}
       .ind-compare{grid-template-columns:1fr}
+      .q-card-grid{grid-template-columns:1fr 1fr!important}
       .feat-grid-inner{grid-template-columns:1fr 1fr}
-      /* Step01 2-col to stack */
-      .feat section div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
-      /* Step02 intervention 2-col to stack */
-      div[style*="grid-template-columns:1.8fr"]{grid-template-columns:1fr!important}
-      /* Step03 3-col to stack */
-      div[style*="grid-template-columns:repeat(3,1fr)"]{grid-template-columns:1fr!important}
-      /* Q cards 3x2 to 2x3 */
-      div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr 1fr!important}
+      .legal-grid{grid-template-columns:1fr!important}
       .flow-track{flex-direction:column;align-items:stretch;gap:0}.flow-track::before{display:none}
       .flow-step{width:100%;display:flex;align-items:center;gap:1rem;text-align:left;padding:.8rem 0;border-left:3px solid var(--orange);padding-left:1.5rem}.flow-num{margin:0;flex-shrink:0}
       .db-overlap{height:auto;display:flex;flex-direction:column;gap:1.5rem}.db-card{position:static;width:100%;transform:none!important}
       .ft-in{grid-template-columns:1fr;gap:2rem;text-align:center}
       .poc-box{flex-direction:column;text-align:center}
-      /* Timeline mobile */
       .tl-zone-wrap{overflow-x:auto;padding-bottom:.5rem}
-      .tl-row{min-width:600px}
-      .tl-zone-box{width:calc(80% - 20px)}
+      .tl-row{min-width:600px}.tl-zone-box{width:calc(80% - 20px)}
+      .prc-small{white-space:normal;font-size:.65rem}
     }
     @media(max-width:480px){
       .hero-actions{flex-direction:column;align-items:center}.hero-actions a{width:100%;text-align:center;justify-content:center}
-      .hero-sub2{font-size:1rem}
+      .hero-sub2{font-size:1.1rem}
       .bp{font-size:.85rem;padding:.8rem 1.5rem}.bo{font-size:.85rem;padding:.8rem 1.5rem}
+      .q-card-grid{grid-template-columns:1fr!important}
       .feat-grid-inner{grid-template-columns:1fr}
-      div[style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr!important}
       .flow-step{margin-left:0}
       .pr-badges{flex-direction:column;align-items:center}
     }
@@ -355,11 +351,11 @@
         <div class="step-label">Step 01</div>
         <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:.3rem">LINEだけで"現場の状態"が見える</h3>
         <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:2rem">アプリDL, PC, パスワード不要。普段使いのLINEだけで完結の設計</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
+        <div class="step01-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
           <div style="background:var(--bg-section);border-radius:var(--radius);padding:.5rem;display:flex;align-items:center;justify-content:center"><img src="images/feature-pulse-survey.png" alt="LINEパルスサーベイ" style="max-width:100%;border-radius:var(--radius-sm)"></div>
           <div>
             <p style="font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:1rem">選び抜かれた6問の設問設計</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem">
+            <div class="q-card-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem">
               <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q1 疲労度</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">5段階</div><div style="font-size:.6rem;color:var(--text-muted)">慢性的な疲労の蓄積を可視化</div></div>
               <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q2 痛み部位</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">複数選択</div><div style="font-size:.6rem;color:var(--text-muted)">負担が集中する部位を特定</div></div>
               <div style="background:#fff;border-radius:var(--radius-sm);padding:.8rem;box-shadow:var(--shadow-sm);border:2px solid var(--orange)"><div style="font-size:.75rem;font-weight:800;color:var(--red)">Q3 痛みの強度</div><div style="font-size:.65rem;color:var(--orange);margin:.2rem 0">11段階</div><div style="font-size:.6rem;color:var(--text-muted)">リスクの深刻度を定量化</div></div>
@@ -392,7 +388,7 @@
       <!-- Step 02 intervention actions - PDF p.11 layout -->
       <div class="rv" style="margin-bottom:4rem">
         <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:1.5rem">具体的な介入アクション（1画面例）</h3>
-        <div style="display:grid;grid-template-columns:1.8fr 1fr;gap:2rem;align-items:stretch">
+        <div class="intervention-grid" style="display:grid;grid-template-columns:1.8fr 1fr;gap:2rem;align-items:stretch">
           <div style="background:var(--bg-section);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow-md);display:flex;align-items:center">
             <img src="images/feature-hybrid-care.png" alt="ダッシュボード介入例" style="width:100%;border-radius:var(--radius-sm)">
           </div>
@@ -424,7 +420,7 @@
         <div style="text-align:center;font-size:1.5rem;color:var(--text-muted);margin-bottom:1rem">&#8595;</div>
 
         <!-- 3 columns - border only, centered text -->
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:1.5rem">
+        <div class="legal-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:1.5rem">
           <div style="background:#fff;border-radius:var(--radius-sm);padding:1.5rem;border:2px solid #4494d0;text-align:center"><h4 style="font-size:.88rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;border-bottom:2px solid #4494d0;padding-bottom:.4rem">企業の法定義務</h4><p style="font-size:.75rem;color:var(--text-light);line-height:1.8;text-align:left">・年1回の健康診断・ストレスチェック<br>・安全衛生委員会<br>・作業管理・安全教育</p></div>
           <div style="background:#fff;border-radius:var(--radius-sm);padding:1.5rem;border:2px solid #4caf50;text-align:center"><h4 style="font-size:.88rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;border-bottom:2px solid #4caf50;padding-bottom:.4rem">社労士のサポート</h4><p style="font-size:.75rem;color:var(--text-light);line-height:1.8;text-align:left">・義務手続きの代行<br>・就業規則の整備<br>・離職・労災発生時の初期相談</p></div>
           <div style="background:#fff;border-radius:var(--radius-sm);padding:1.5rem;border:3px solid var(--red);text-align:center"><h4 style="font-size:.88rem;font-weight:800;color:var(--red);margin-bottom:.5rem;border-bottom:2px solid var(--red);padding-bottom:.4rem">管理の空白地帯</h4><p style="font-size:.75rem;color:var(--text-light);line-height:1.8;text-align:left">・日々の身体の痛み<br>・疼痛・疲労の蓄積<br>・離職直前のサイン</p><p style="font-size:.72rem;font-weight:700;color:var(--red);margin-top:.5rem">管理者不在！放置が事故・離職に繋がる</p></div>
