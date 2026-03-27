@@ -44,15 +44,15 @@
     .bo{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:var(--red);padding:.9rem 2rem;border-radius:999px;font-weight:600;font-size:.95rem;border:2px solid rgba(212,29,0,.2);transition:all .35s}.bo:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:var(--shadow-glow)}
 
     /* HERO */
-    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-warm);padding-top:80px}
+    .hero{min-height:auto;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-warm);padding-top:80px;padding-bottom:2rem}
     .hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;filter:blur(100px);opacity:.1;background:var(--red);top:-250px;right:-200px;animation:blobFloat 20s ease-in-out infinite}
-    .hero-in{position:relative;z-index:2;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;display:flex;align-items:center;gap:3rem}
+    .hero-in{position:relative;z-index:2;max-width:var(--max-w);width:100%;margin:0 auto;padding:2rem 5%;display:flex;align-items:center;gap:3rem}
     .hero-text{flex:1;min-width:0}
-    .hero-logo{max-width:280px;margin-bottom:1.5rem;animation:fadeIn .8s .1s both}
-    .hero-sub1{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;animation:fadeIn .8s .3s both;line-height:1.6}
-    .hero-sub2{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:900;color:var(--dark);margin-bottom:1rem;animation:fadeIn .8s .4s both;line-height:1.8}
+    .hero-logo{max-width:280px;margin-bottom:1.2rem;animation:fadeIn .8s .1s both}
+    .hero-sub1{font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;animation:fadeIn .8s .3s both;line-height:1.6}
+    .hero-sub2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:900;color:var(--dark);margin-bottom:1rem;animation:fadeIn .8s .4s both;line-height:1.8}
     .hero-sub2 u{text-decoration:none;border-bottom:3px solid;border-image:var(--gradient) 1;padding-bottom:2px}
-    .hero-tagline{font-size:.85rem;color:var(--orange);margin-bottom:2rem;animation:fadeIn .8s .5s both}
+    .hero-tagline{font-size:.95rem;color:var(--orange);margin-bottom:1.5rem;animation:fadeIn .8s .5s both}
     .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeIn .8s .6s both}
     .hero-visual{flex:1;animation:fadeIn 1s .4s both;min-width:0}
     .hero-visual img{width:100%;animation:heroFloat 6s ease-in-out infinite;border-radius:var(--radius-sm)}
@@ -357,7 +357,7 @@
         <h3 style="font-size:1.4rem;font-weight:900;color:var(--dark);margin-bottom:.3rem">LINEだけで"現場の状態"が見える</h3>
         <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:2rem">アプリDL, PC, パスワード不要。普段使いのLINEだけで完結の設計</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
-          <div style="background:var(--bg-section);border-radius:var(--radius);padding:2rem;min-height:300px;display:flex;align-items:center;justify-content:center"><img src="images/feature-pulse-survey.png" alt="LINEパルスサーベイ" style="max-width:100%;border-radius:var(--radius-sm)"></div>
+          <div style="background:var(--bg-section);border-radius:var(--radius);padding:.5rem;display:flex;align-items:center;justify-content:center"><img src="images/feature-pulse-survey.png" alt="LINEパルスサーベイ" style="max-width:100%;border-radius:var(--radius-sm)"></div>
           <div>
             <p style="font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:1rem">選び抜かれた6問の設問設計</p>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem">
