@@ -69,7 +69,7 @@
     .prob-body{padding:1.2rem 1.5rem 1.5rem}
     .prob-body p{font-size:.88rem;color:var(--text-light);line-height:1.8;margin-bottom:.5rem;padding-left:1rem;position:relative}
     .prob-body p::before{content:'';position:absolute;left:0;top:.6rem;width:5px;height:5px;border-radius:50%;background:var(--orange)}
-    .prob-bottom{text-align:center;margin-top:2rem;font-size:1.05rem;font-weight:800;color:var(--red)}
+    .prob-bottom{text-align:center;margin-top:2rem;font-size:1.05rem;font-weight:800;color:var(--dark)}
 
     /* INDICATOR */
     .indicator{background:var(--bg-section)}
@@ -148,7 +148,7 @@
     /* Step01 survey items */
     .survey-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
     .survey-item{background:#fff;border-radius:var(--radius);padding:1.2rem 1.5rem;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.03);transition:transform .3s,box-shadow .3s;text-align:center}.survey-item:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.1),0 2px 6px rgba(0,0,0,.05)}
-    .survey-item h4{font-size:1.1rem;font-weight:800;color:#5B3A29;margin-bottom:.4rem;display:inline-block;padding-bottom:.3rem;border-bottom:2px solid var(--orange)}
+    .survey-item h4{font-size:1.1rem;font-weight:800;color:#5B3A29;margin-bottom:.4rem;display:inline-block}
     .survey-item::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
     .survey-item p{font-size:.75rem;color:var(--text-muted);line-height:1.5}
 
@@ -287,12 +287,12 @@
         <div class="prob-card rv d2"><div class="prob-tag b">経営者・総務労務</div><div class="prob-img"><img src="images/persona-executive.png" alt="経営者"></div><div class="prob-body"><p>労災が起きてから<span style="color:var(--red);font-weight:700">「なぜ気付かなかったのか」</span>と責められた</p><p>年1回の健康診断では<span style="color:var(--red);font-weight:700">翌月離職を防げなかった</span></p><p>ストレスチェックだけでは<span style="color:var(--red);font-weight:700">現場のリスクが見えない</span></p></div></div>
         <div class="prob-card rv d3"><div class="prob-tag c">採用担当</div><div class="prob-img"><img src="images/persona-hr.png" alt="採用担当"></div><div class="prob-body"><p><span style="color:var(--red);font-weight:700">「きつそう」「身体壊しそう」</span>で応募が集まらない</p><p>採用した人が<span style="color:var(--red);font-weight:700">半年以内に辞めていく</span></p><p style="margin-top:1.8rem"><span style="color:var(--red);font-weight:700">「従業員を大切にしない会社」</span>と口コミが広がっている</p></div></div>
       </div>
-      <div class="prob-bottom rv">これらは全て「現場の痛みが見えていない」ことから始まっています。</div>
+      <div class="prob-bottom rv">これらは全て<span style="color:var(--red)">「現場の痛みが見えていない」</span>ことから始まっています。</div>
     </div></section>
 
     <!-- ROOT CAUSE -->
     <section class="indicator"><div class="ct">
-      <div class="sh rv"><div class="sl">Root Cause</div><h2 class="st">今の対策は、<em>遅すぎる</em></h2><p class="ss" style="margin:0 auto;max-width:none">現場では、<strong style="color:var(--red)">「痛みや不調が蓄積→我慢→限界→突然の離職・労災」</strong>という構造が繰り返されています。<br>年1回の健診・ストレスチェックは<strong style="color:var(--red)">「結果指標」</strong>であり、この空白を埋めることができません。</p></div>
+      <div class="sh rv"><div class="sl">Root Cause</div><h2 class="st">今の対策は、<em>遅すぎる</em></h2><p class="ss" style="margin:0 auto;max-width:none">現場では、<strong style="color:var(--orange)">「痛みや不調が蓄積→我慢→限界→突然の離職・労災」</strong>という構造が繰り返されています。<br>年1回の健診・ストレスチェックは<strong style="color:var(--orange)">「結果指標」</strong>であり、この空白を埋めることができません。</p></div>
 
       <!-- Animated circle diagram -->
       <div class="rv" style="margin-bottom:2rem">
@@ -371,10 +371,10 @@
         <div style="background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);text-align:center">
           <div style="display:inline-block;font-size:.82rem;font-weight:800;color:#7c3aed;background:rgba(124,58,237,.06);padding:.4rem 1.2rem;border-radius:999px;margin-bottom:1.2rem">年1回の健診・ストレスチェック</div>
           <div style="text-align:left">
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#c4b5fd;font-weight:800;font-size:1rem;flex-shrink:0">&#10005;</span> 発覚した時点ですでに深刻な状態</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#c4b5fd;font-weight:800;font-size:1rem;flex-shrink:0">&#10005;</span> 「結果指標」なので予防には使えない</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#c4b5fd;font-weight:800;font-size:1rem;flex-shrink:0">&#10005;</span> 身体の不調は対象外のケースが多い</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;font-size:.85rem;color:var(--text-light)"><span style="color:#c4b5fd;font-weight:800;font-size:1rem;flex-shrink:0">&#10005;</span> 点での指標になり、線での指標で追えない</div>
+            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 発覚した時点ですでに深刻な状態</div>
+            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 「結果指標」なので予防には使えない</div>
+            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 身体の不調は対象外のケースが多い</div>
+            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 点での指標になり、線での指標で追えない</div>
           </div>
         </div>
         <div style="background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:3px solid var(--red);text-align:center">
