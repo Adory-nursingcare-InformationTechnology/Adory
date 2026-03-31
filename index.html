@@ -55,9 +55,9 @@
     .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,29,0,.3)}
 
     /* ===== HERO ===== */
-    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-section);padding-top:80px}
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-section);padding-top:70px}
     @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
-    .hero-inner{position:relative;z-index:1;max-width:var(--max-w);width:100%;margin:0 auto;padding:3rem 5%;text-align:center}
+    .hero-inner{position:relative;z-index:1;max-width:var(--max-w);width:100%;margin:0 auto;padding:1.5rem 5%;text-align:center}
     @keyframes fadeSlideIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
     .hero-label{font-family:var(--font-en);font-size:1.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;animation:fadeSlideIn .8s .2s both}
     .hero-title{font-size:2.4rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
@@ -67,7 +67,7 @@
     .hero-img-area img{width:100%;border-radius:var(--radius-sm)}
 
     /* ===== MESSAGE ===== */
-    .message-section{padding:6rem 5%;background:var(--bg-section);position:relative}
+    .message-section{padding:3rem 5%;background:var(--bg-section);position:relative}
     .message-section::before{content:'';position:absolute;top:-80px;left:0;right:0;height:160px;background:linear-gradient(to bottom,transparent,var(--bg-section));pointer-events:none}
     .message-wrap{max-width:var(--max-w);margin:0 auto}
     .message-quote{text-align:center;font-size:1.2rem;font-weight:700;color:var(--red);margin-bottom:3rem;position:relative;padding:2rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
@@ -76,7 +76,7 @@
     .message-body p{margin-bottom:.8rem}
     .message-bottom{display:grid;grid-template-columns:280px 1fr;gap:3rem;align-items:start;max-width:800px;margin:0 auto}
     .message-photo{width:100%;height:320px;border-radius:var(--radius);background:var(--bg-section);border:1px solid #eee;background-image:url('./ceo-profile.jpg');background-size:cover;background-position:center}
-    .message-profile h4{font-size:1.05rem;font-weight:800;color:#5B3A29;margin-bottom:.8rem}
+    .message-profile h4{font-size:1.05rem;font-weight:800;color:var(--orange);margin-bottom:.8rem}
     .message-profile p{font-size:.85rem;color:var(--text-light);line-height:1.7;margin-bottom:.5rem}
     .social-links{display:flex;gap:.6rem;margin-top:1.5rem}
     .social-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;color:var(--text-muted);padding:.4rem .9rem;border-radius:999px;border:1px solid rgba(0,0,0,.08);transition:all .3s;background:transparent;letter-spacing:.02em}
@@ -193,7 +193,7 @@
     </section>
 
     <!-- Mission -->
-    <section class="hero" style="min-height:auto;padding:5rem 5%">
+    <section class="hero" style="min-height:auto;padding:2rem 5%">
       <div class="hero-inner" style="text-align:center">
         <div class="hero-label" style="animation:none">Mission</div>
         <h1 class="hero-title" style="animation:none">痛みを抱えても、<span class="accent">前進できる社会</span>へ</h1>
@@ -211,9 +211,9 @@
 
         <div class="reveal" style="text-align:center;margin-bottom:3rem;max-width:800px;margin-left:auto;margin-right:auto">
           <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">私の父も、現場仕事で働いていました。</p>
-          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">ブルーワーカーの人にとって、<span style="color:#5B3A29">身体が資本</span>です。</p>
+          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">ブルーワーカーの人にとって、<span style="color:var(--orange)">身体が資本</span>です。</p>
           <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">身体が動かなくなった瞬間、仕事も、仲間も、居場所も失われる。</p>
-          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)"><span style="color:#5B3A29">「壊れたら終わり」</span> ——それがこの国の現実です。</p>
+          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)"><span style="color:var(--orange)">「壊れたら終わり」</span> ——それがこの国の現実です。</p>
         </div>
 
         <div class="reveal" style="text-align:center;margin-bottom:3rem;max-width:700px;margin-left:auto;margin-right:auto">
@@ -305,11 +305,11 @@
 
   <footer>
     <div class="footer-inner">
-      <div class="footer-brand"><div class="footer-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2025 Adory Inc.</p></div>
+      <div class="footer-brand"><div class="footer-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2026 Adory Inc.</p></div>
       <div class="footer-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
       <div class="footer-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">代表メッセージ</a><a href="index.html#contact">お問い合わせ</a></div>
     </div>
-    <div class="footer-bottom"><div class="footer-bottom-links"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2025 株式会社Adory. All rights reserved.</p></div>
+    <div class="footer-bottom"><div class="footer-bottom-links"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2026 株式会社Adory. All rights reserved.</p></div>
   </footer>
 
   <script>
