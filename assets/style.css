@@ -67,8 +67,8 @@ section{padding:6rem 5%}.ct{max-width:var(--max-w);margin:0 auto}
 .hero-strip span{font-size:.78rem;font-weight:700;color:#fff;padding:.2rem .9rem;border-left:1px solid rgba(255,255,255,.3);white-space:nowrap}.hero-strip span:first-child{border-left:none;padding-left:0}
 .hero-tagline{font-size:.9rem;color:rgba(255,255,255,.8);margin-top:1.6rem;animation:fadeIn .6s .55s both;line-height:1.9;width:165%;max-width:none;position:relative;z-index:3}
 .hero-note{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.5rem;animation:fadeIn .6s .65s both}
-.hero-visual{flex:1;min-width:0;animation:fadeIn .8s .3s both;margin-right:-13%;display:flex;align-items:flex-start;justify-content:flex-end;margin-top:1.6rem;padding-left:3rem}
-.hero-mock{width:100%;max-width:700px;height:auto;display:block;filter:drop-shadow(0 30px 50px rgba(0,0,0,.35))}
+.hero-visual{flex:1;min-width:0;animation:fadeIn .8s .3s both;margin-right:-1%;display:flex;align-items:flex-start;justify-content:flex-end;margin-top:1.6rem;padding-left:2.5rem}
+.hero-mock{width:100%;max-width:680px;height:auto;display:block;filter:drop-shadow(0 30px 50px rgba(0,0,0,.35))}
 
 /* 週次サーベイから対応順位まで（5ステップ帯） */
 .steps5{background:var(--bg);padding:2.5rem 5%}
