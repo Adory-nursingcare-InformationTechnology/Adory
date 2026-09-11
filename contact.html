@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ・資料ダウンロード | 株式会社Adory</title>
+  <meta name="description" content="Adory SaaSに関するご相談、資料のご請求、お見積り、デモのお申し込みはこちらから。営業日2〜3日以内にご返信します。">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=1789131641">
+</head>
+<body class="page-contact">
+<button class="stb" id="stb" aria-label="Top">&#8593;</button>
+<header id="hdr"><nav><a href="index.html" class="logo"><img src="images/logo.png" alt="Adory"></a><ul class="nav-menu" id="navMenu"><li><a href="service.html">サービス概要</a></li><li><a href="supervisor.html">監修者</a></li><li><a href="pricing.html">料金・導入</a></li><li><a href="company.html">会社概要</a></li><li class="nav-actions"><a href="contact.html?type=doc" class="nav-sub">資料ダウンロード</a><a href="contact.html" class="nav-cta">お問い合わせ</a></li></ul><div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
+<main>
+<section class="page-hero"><div class="crumb"><a href="index.html">ホーム</a>　›　お問い合わせ</div><div class="sl">Contact</div><h1 class="st">お問い合わせ・資料ダウンロード</h1><p class="ss">サービスに関するご相談、お気軽にお問い合わせください。<br>ご相談・お見積り・無料トライアルについて柔軟にご相談いただけます。</p></section>
+<section class="contact-section" id="contact"><div class="ct">
+  <div class="contact-grid rv">
+    <div class="contact-form-card">
+      <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="94ed97b3-ab0a-4e28-a6d4-ff1e5732f702">
+        <input type="hidden" name="subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
+        <input type="hidden" name="from_name" value="Adory お問い合わせフォーム">
+        <input type="hidden" name="redirect" value="https://adory.co.jp/thanks.html?type=contact">
+        <!-- スパムbotよけ（人間には見えない隠しフィールド。触らないでください） -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+        <div class="form-group"><label for="inquiry_type">お問い合わせ種別 <span class="required">*</span></label><select id="inquiry_type" name="inquiry_type" required><option value="">選択してください</option><option value="資料請求">資料請求</option><option value="無料相談・デモを希望">無料相談・デモを希望</option><option value="Adory SaaS について">Adory SaaS について</option><option value="お見積りの依頼">お見積りの依頼</option><option value="取材・その他">取材・その他</option></select></div>
+        <div class="form-group"><label for="company">会社名・施設名 <span class="required">*</span></label><input type="text" id="company" name="company" required placeholder="◯◯株式会社"></div>
+        <div class="form-group"><label for="name">お名前 <span class="required">*</span></label><input type="text" id="name" name="name" required placeholder="山田 太郎"></div>
+        <div class="form-row">
+          <div class="form-group"><label for="email">メールアドレス <span class="required">*</span></label><input type="email" id="email" name="email" required placeholder="info@example.com"></div>
+          <div class="form-group"><label for="tel">電話番号<span class="optional">任意</span></label><input type="tel" id="tel" name="tel" placeholder="090-0000-0000"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="employees">従業員数 <span class="required">*</span></label><select id="employees" name="employees" required><option value="">選択してください</option><option value="30名以下">30名以下</option><option value="31〜50名">31〜50名</option><option value="51〜100名">51〜100名</option><option value="101〜300名">101〜300名</option><option value="301〜1,000名">301〜1,000名</option><option value="1,001名以上">1,001名以上</option></select></div>
+          <div class="form-group"><label for="industry">主な業種 <span class="required">*</span></label><select id="industry" name="industry" required><option value="">選択してください</option><option value="建設">建設</option><option value="運送・物流">運送・物流</option><option value="タクシー">タクシー</option><option value="介護">介護</option><option value="製造">製造</option><option value="小売">小売</option><option value="その他">その他</option></select></div>
+        </div>
+        <div class="form-group"><label for="sites">拠点・現場の数<span class="optional">任意</span></label><input type="text" id="sites" name="sites" placeholder="例：3拠点"><div class="form-help">複数拠点をお持ちの場合、ご記入いただくとご提案の精度が上がります。</div></div>
+        <div class="form-group"><label for="message">お問い合わせ内容<span class="optional">任意</span></label><textarea id="message" name="message" placeholder="お問い合わせ内容をご記入ください"></textarea></div>
+        <div class="form-group"><label class="checkbox-label"><input type="checkbox" id="privacy" name="privacy_agreed" required value="プライバシーポリシーに同意"><span><a href="privacy.html" target="_blank" style="color:var(--red);font-weight:600">プライバシーポリシー</a>に同意する <span class="required">*</span></span></label></div>
+        <button type="submit" class="submit-btn">送信する</button>
+        <p class="form-after">営業日2〜3日以内にご返信します。</p>
+      </form>
+    </div>
+    <div class="contact-info-col">
+      <div class="contact-info-card"><h3>資料の内容</h3><ul><li>サービス概要と6問の設問設計</li><li>ダッシュボードの画面例</li><li>料金プランと導入フロー</li><li>導入前後の変化と費用対効果の試算</li><li>よくあるご質問</li></ul></div>
+      <div class="contact-info-card"><h3>アクセス</h3><p><strong>株式会社Adory</strong><br>〒142-0063<br>東京都品川区荏原6-1-9<br>東急目黒線 西小山駅 徒歩7分</p></div>
+      <div class="contact-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1621.4188824266772!2d139.68268471!3d35.60945171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM2JzM0LjAiTiAxMznCsDQwJzU3LjciRQ!5e0!3m2!1sja!2sjp!4v1691234567890!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="株式会社Adory所在地"></iframe></div>
+    </div>
+  </div>
+</div></section>
+</main>
+<footer>
+  <div class="ft-in">
+    <div class="ft-brand"><div class="ft-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:.8rem;font-size:.78rem">&#169; 2026 Adory Inc.</p></div>
+    <div class="ft-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="supervisor.html">監修者紹介</a></div>
+    <div class="ft-col"><h4>Price</h4><a href="pricing.html">料金プラン</a><a href="pricing.html#flow">導入フロー</a><a href="pricing.html#faq">よくある質問</a></div>
+    <div class="ft-col"><h4>Company</h4><a href="company.html#about">会社概要</a><a href="company.html#message">創業の想い</a><a href="contact.html">お問い合わせ</a><a href="contact.html?type=doc">資料ダウンロード</a></div>
+  </div>
+  <div class="ft-bot"><div class="ft-bot-l"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2026 株式会社Adory. All rights reserved.</p></div>
+</footer>
+<script src="assets/site.js?v=1789131641"></script>
+</body>
+</html>

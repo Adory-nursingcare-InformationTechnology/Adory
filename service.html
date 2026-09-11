@@ -3,635 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Adory - 「痛み」を見える化し、労災と離職を未然に防ぐ現場特化型コンディショニングSaaS">
-  <title>Adory | 現場特化型コンディショニングSaaS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--red:#D41D00;--orange:#FF9A3F;--gradient:linear-gradient(135deg,#D41D00,#FF9A3F);--gradient-soft:linear-gradient(135deg,#fff5f0,#ffe8d6);--dark:#1a1a1a;--text:#333;--text-light:#666;--text-muted:#999;--bg:#fff;--bg-warm:#FFFAF7;--bg-section:#FBF8F6;--shadow-sm:0 2px 8px rgba(0,0,0,.05);--shadow-md:0 8px 30px rgba(0,0,0,.07);--shadow-lg:0 20px 60px rgba(0,0,0,.1);--shadow-glow:0 8px 40px rgba(212,29,0,.12);--radius:16px;--radius-sm:10px;--max-w:1100px;--font-jp:'Noto Sans JP',sans-serif;--font-en:'Outfit',sans-serif}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:80px}
-    body{font-family:var(--font-jp);color:var(--text);line-height:1.8;background:var(--bg);overflow-x:hidden}
-    img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
-    .rv{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}.rv.v{opacity:1;transform:none}
-    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-    @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    @keyframes shimmer{0%,100%{left:-100%}50%{left:120%}}
-    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-    @keyframes ringPulse1{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.08);opacity:1}}
-    @keyframes ringPulse2{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:.9}}
-    @keyframes ringPulse3{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.12);opacity:.8}}
-    @keyframes ringPulse4{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.15);opacity:.7}}
-
-    /* HEADER */
-    header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.05);transition:box-shadow .3s}
-    header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
-    nav{max-width:var(--max-w);margin:0 auto;padding:.8rem 5%;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-family:var(--font-en);font-weight:800;font-size:1.5rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .nav-menu{display:flex;gap:.2rem;align-items:center}.nav-menu a{font-size:.85rem;font-weight:500;color:var(--text);padding:.45rem .8rem;border-radius:8px;transition:background .2s,color .2s;white-space:nowrap}.nav-menu a:hover{background:var(--bg-section);color:var(--red)}
-    .nav-cta{background:var(--gradient)!important;color:#fff!important;padding:.5rem 1.2rem!important;font-weight:700!important;border-radius:8px!important;box-shadow:var(--shadow-glow)}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1002}.hamburger span{width:22px;height:2px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
-    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-
-    /* GLOBALS */
-    section{padding:5rem 5%}.ct{max-width:var(--max-w);margin:0 auto}
-    .sl{font-family:var(--font-en);font-size:1.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.4rem}
-    .st{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;line-height:1.35;color:var(--dark);margin-bottom:.5rem}
-    .st em{font-style:normal;color:var(--red)}
-    .ss{font-size:1.05rem;color:var(--text-light);max-width:600px;line-height:1.9;font-weight:600}
-    .sh{text-align:center;margin-bottom:3rem}.sh .ss{margin:0 auto}
-    .btn-p{display:inline-flex;align-items:center;gap:.4rem;background:var(--gradient);color:#fff;padding:.75rem 1.8rem;border-radius:10px;font-weight:700;font-size:.9rem;box-shadow:var(--shadow-glow);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
-    .btn-p::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s}.btn-p:hover::after{left:120%}.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(212,29,0,.25)}
-    .btn-s{display:inline-flex;align-items:center;gap:.4rem;background:#fff;color:var(--red);padding:.75rem 1.8rem;border-radius:10px;font-weight:600;font-size:.9rem;border:1.5px solid rgba(212,29,0,.15);transition:all .3s}.btn-s:hover{border-color:var(--red);box-shadow:var(--shadow-glow);transform:translateY(-2px)}
-
-    /* HERO */
-    .hero{min-height:auto;display:flex;align-items:center;background:var(--bg-section);padding-top:80px;padding-bottom:2rem;position:relative;overflow:hidden}
-    .hero-in{position:relative;z-index:2;max-width:var(--max-w);width:100%;margin:0 auto;padding:2rem 5%;display:flex;align-items:center;gap:3rem}
-    .hero-text{flex:1;min-width:0}
-    .hero-logo{max-width:280px;margin-bottom:.6rem;margin-left:3.5rem;animation:fadeIn .6s .1s both}
-    .hero-sub1{font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:.5rem;animation:fadeIn .6s .2s both;line-height:1.6}
-    .hero-sub2{font-size:clamp(1.2rem,2.6vw,1.5rem);font-weight:900;color:var(--dark);margin-bottom:1rem;animation:fadeIn .6s .3s both;line-height:1.8}
-    .hero-sub2 u{text-decoration:none;border-bottom:3px solid;border-image:var(--gradient) 1;padding-bottom:2px}
-    .hero-industry{font-size:.82rem;color:var(--text);margin-bottom:.6rem;animation:fadeIn .6s .35s both}
-    .hero-tagline{font-size:.95rem;color:var(--orange);margin-bottom:1.5rem;animation:fadeIn .6s .4s both;line-height:1.7}
-    .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;animation:fadeIn .6s .5s both}
-    .hero-visual{flex:1;animation:fadeIn .8s .3s both;min-width:0}
-    .hero-visual img{width:100%;border-radius:var(--radius-sm)}
-
-    /* PROBLEM */
-    .prob{background:var(--bg)}
-    .prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-    .prob-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;border:1px solid rgba(0,0,0,.04)}.prob-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-    .prob-tag{display:inline-block;font-size:.75rem;font-weight:700;color:#fff;padding:.35rem 1rem;border-radius:0 0 var(--radius-sm) 0}
-    .prob-tag.a{background:var(--dark)}.prob-tag.b{background:var(--red)}.prob-tag.c{background:var(--orange)}
-    .prob-img{padding:1.5rem 1.5rem .5rem;text-align:center}.prob-img img{max-height:160px;margin:0 auto}
-    .prob-body{padding:1.2rem 1.5rem 1.5rem}
-    .prob-body p{font-size:.88rem;color:var(--text-light);line-height:1.8;margin-bottom:.5rem;padding-left:1rem;position:relative}
-    .prob-body p::before{content:'';position:absolute;left:0;top:.6rem;width:5px;height:5px;border-radius:50%;background:var(--orange)}
-    .prob-bottom{text-align:center;margin-top:2rem;font-size:1.05rem;font-weight:800;color:var(--dark)}
-
-    /* INDICATOR */
-    .indicator{background:var(--bg-section)}
-    .ind-flow{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);margin-bottom:2.5rem;position:relative;overflow:hidden;border:1px solid rgba(0,0,0,.04)}
-    .ind-flow::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient)}
-    .ind-flow-label{text-align:center;font-size:.78rem;font-weight:700;color:var(--red);margin-bottom:1.5rem}
-    .ind-flow-row{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
-    .ind-node{text-align:center;min-width:110px;padding:0 .3rem}
-    .ind-node .label{font-size:.78rem;font-weight:700;margin-bottom:.4rem}
-    .ind-node .circle{width:36px;height:36px;border-radius:50%;margin:0 auto}
-    .ind-node .desc{font-size:.68rem;color:var(--text-muted);margin-top:.4rem;line-height:1.4}
-    .ind-arrow{flex-shrink:0;width:32px;height:2px;background:var(--gradient)}
-    .ind-arrow.gray{background:#ddd;width:40px;margin:0 .3rem}
-    .ind-node.faded{opacity:.4}
-    .ind-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-    .ind-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.04)}
-    .ind-card.highlight{border:2px solid var(--red);box-shadow:var(--shadow-md)}
-    .ind-card h3{font-size:1.05rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:.4rem}
-    .ind-card .row{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.88rem;color:var(--text-light)}
-    .ind-card.highlight .row{background:rgba(212,29,0,.03)}
-    .ind-card .icon{font-weight:800;font-size:1rem;flex-shrink:0}
-
-    /* SOLUTION */
-    .solution{background:var(--bg-section)}
-    .sol-statement{text-align:center;font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;color:var(--dark);margin-bottom:.2rem;line-height:1.5}
-    .sol-sub{text-align:center;font-size:1.05rem;color:var(--text-light);font-weight:600;margin-bottom:2.5rem}
-    .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-    .sol-card{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow-sm);text-align:center;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;border:1px solid rgba(0,0,0,.04)}.sol-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
-    .sol-num{font-family:var(--font-en);font-size:2.2rem;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
-    .sol-card h3{font-size:1.15rem;font-weight:800;color:#5B3A29;margin-bottom:.2rem}
-    .sol-card .sub{font-size:.78rem;color:var(--text-muted);margin-bottom:1rem}
-    .sol-card .illust{width:200px;height:200px;margin:0 auto 1rem}.sol-card .illust img{max-width:100%;max-height:100%}
-    .sol-card p{font-size:.73rem;color:var(--text-light);text-align:center;line-height:1.8}
-
-    /* DIFFERENTIATION - light section */
-    .diff{background:var(--bg-section);padding:5rem 5%;position:relative;overflow:hidden}
-    .diff .ct{position:relative;z-index:1}
-    .diff .st em{font-style:normal;color:var(--red)}
-    .diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
-    .diff-card{background:#fff;border:1px solid rgba(0,0,0,.04);border-radius:var(--radius);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;text-align:center}.diff-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
-    .diff-card .dc-icon{width:180px;height:180px;margin:0 auto 1rem}
-    .diff-card .dc-icon img{width:100%;height:100%;object-fit:contain}
-    .diff-card h3{font-size:1.1rem;font-weight:800;color:#5B3A29;margin-bottom:.8rem}
-    .diff-card p{font-size:.82rem;color:var(--text-light);line-height:1.9}
-    .diff-card p strong{color:var(--red);font-weight:700}
-
-    /* ACTION FRAMEWORK */
-    .action{background:var(--bg)}
-    .action .st em{font-style:normal;color:var(--red)}
-    .act-flow{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:2.5rem;flex-wrap:wrap}
-    .act-pill{font-size:1.1rem;font-weight:800;color:#fff;background:var(--gradient);padding:.6rem 2rem;border-radius:10px;box-shadow:var(--shadow-glow)}
-    .act-arrow{color:var(--orange);font-size:1.3rem;font-weight:800;animation:arrowPulse 1.5s ease-in-out infinite}
-    @keyframes arrowPulse{0%,100%{transform:translateX(0);opacity:.6}50%{transform:translateX(5px);opacity:1}}
-    .act-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
-    .act-card{background:#fff;border-radius:var(--radius);padding:1.5rem 1.2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);transition:transform .3s;text-align:left}.act-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.1)}
-    .act-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:800;color:#fff;padding:.3rem .8rem;border-radius:8px;margin-bottom:.7rem}
-    .act-badge.red{background:#DC2626}.act-badge.amber{background:#F59E0B}.act-badge.green{background:#22c55e}.act-badge.blue{background:#3b82f6}.act-badge.dark{background:var(--dark)}
-    .act-badge .bdot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.4}
-    .act-card h4{font-size:.88rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
-    .act-card .act-item{font-size:.72rem;color:var(--text-light);line-height:1.7;margin-bottom:.15rem;text-align:left;padding-left:.8rem;position:relative}
-    .act-card .act-item::before{content:'';position:absolute;left:0;top:.45rem;width:5px;height:5px;border-radius:50%;background:var(--orange)}
-
-    /* FEATURES */
-    .feat{background:var(--bg)}
-    .step-tag{font-family:var(--font-en);font-size:.72rem;font-weight:700;color:#fff;background:var(--gradient);padding:.2rem .7rem;border-radius:6px;display:inline-block;margin-bottom:.5rem}
-    /* Step02 features - modern layout */
-    .feat-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.5rem}
-    .feat-card{background:#fff;border-radius:var(--radius);padding:0;box-shadow:0 4px 20px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.03);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;overflow:hidden;display:flex;align-items:stretch}
-    .feat-card:hover{transform:translateY(-4px);box-shadow:0 10px 35px rgba(0,0,0,.1)}
-    .feat-card .fc-accent{width:4px;flex-shrink:0;background:var(--gradient)}
-    .feat-card.important .fc-accent{background:var(--red)}
-    .feat-card .fc-body{padding:1.3rem 1.5rem;flex:1;display:flex;flex-direction:column;min-height:120px}
-    .feat-card h4{font-size:.95rem;font-weight:800;color:var(--dark);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
-    .feat-card.important h4::after{content:'重要';font-size:.6rem;font-weight:700;color:#fff;background:var(--red);padding:.15rem .45rem;border-radius:999px;flex-shrink:0;line-height:1}
-    .feat-card p{font-size:.8rem;color:var(--text-light);line-height:1.7;margin-top:auto}
-    /* Step01 survey items */
-    .survey-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-    .survey-item{background:#fff;border-radius:var(--radius);padding:1.2rem 1.5rem;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.03);transition:transform .3s,box-shadow .3s;text-align:center}.survey-item:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.1),0 2px 6px rgba(0,0,0,.05)}
-    .survey-item h4{font-size:1.1rem;font-weight:800;color:#5B3A29;margin-bottom:.4rem;display:inline-block}
-    .survey-item::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
-    .survey-item p{font-size:.75rem;color:var(--text-muted);line-height:1.5}
-
-    /* DASHBOARD */
-    .dashboard{background:var(--bg-section)}
-    .db-overlap{position:relative;height:400px;max-width:850px;margin:0 auto}
-    .db-card{position:absolute;width:55%;border-radius:var(--radius);box-shadow:var(--shadow-lg);overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
-    .db-card img{width:100%;display:block}
-    .db-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 25px 60px rgba(0,0,0,.15);z-index:10}
-    .db-card:nth-child(1){top:0;left:0;z-index:3}.db-card:nth-child(2){top:45px;left:22%;z-index:2}.db-card:nth-child(3){top:90px;left:44%;z-index:1}
-
-    /* ROI - balance scale design */
-    .roi{background:var(--bg)}
-    .roi-balance{max-width:950px;margin:0 auto}
-    .roi-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch}
-    .roi-left{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:2px solid var(--red);text-align:center;display:flex;flex-direction:column;align-items:center}
-    .roi-left .rl-label{font-size:.85rem;font-weight:800;color:#fff;background:var(--gradient);padding:.35rem 1rem;border-radius:8px;margin-bottom:1rem}
-    .roi-left .rl-price{font-family:var(--font-en);font-size:3rem;font-weight:800;color:var(--red)}.roi-left .rl-price span{font-size:.9rem;font-weight:400;color:var(--text-muted)}
-    .roi-left .rl-annual{font-family:var(--font-en);font-size:1.5rem;font-weight:800;color:var(--red);margin-top:.2rem;margin-bottom:1rem}.roi-left .rl-annual span{font-size:.8rem;font-weight:400;color:var(--text-muted)}
-    .roi-pills{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
-    .roi-pill{font-size:.72rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.08);padding:.35rem .8rem;border-radius:999px;white-space:nowrap}
-    .roi-right-col{display:flex;flex-direction:column;gap:.8rem}
-    .roi-card{background:#fff;border-radius:var(--radius);padding:1rem 1.3rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid rgba(88,28,135,.08);display:flex;justify-content:space-between;align-items:center;transition:transform .3s}.roi-card:hover{transform:translateX(3px);box-shadow:0 6px 25px rgba(88,28,135,.1)}
-    .roi-card .rc-info .name{font-size:.88rem;font-weight:700;color:var(--dark)}.roi-card .rc-info .sub{font-size:.7rem;color:var(--text-muted)}
-    .roi-card .rc-mult{font-family:var(--font-en);font-size:.78rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#7c3aed,#a855f7);padding:.25rem .7rem;border-radius:6px;white-space:nowrap}
-
-    /* PRICING */
-    .pricing{background:var(--bg-section)}
-    .pr-subtitle{text-align:center;font-size:.95rem;color:var(--text-light);margin-bottom:1.5rem}
-    .pr-badges{display:flex;gap:1rem;justify-content:center;margin-bottom:2.5rem;flex-wrap:wrap}
-    .pr-badge{padding:.7rem 1.5rem;border-radius:10px;font-size:.95rem;font-weight:800;letter-spacing:.02em}
-    .pr-badge.b1{background:var(--gradient);color:#fff}.pr-badge.b2{background:var(--dark);color:#fff}.pr-badge.b3{background:#22c55e;color:#fff}
-    .pr-main{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md);border:2px solid var(--red);max-width:600px;margin:0 auto 2rem}
-    .pr-main h3{font-size:1.1rem;font-weight:800;margin-bottom:.5rem}
-    .pr-price{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--dark);margin:.8rem 0 .2rem}.pr-price span{font-size:.85rem;font-weight:400;color:var(--text-muted)}
-    .pr-note{font-size:.75rem;color:var(--text-muted);margin-bottom:1.2rem}
-    .pfl{margin-bottom:1.5rem}.pfl li{font-size:.85rem;padding:.35rem 0;color:var(--text);padding-left:1.3rem;position:relative}.pfl li::before{content:'\2713';position:absolute;left:0;color:var(--orange);font-weight:700;font-size:.8rem}
-    .pr-main .btn-p{width:100%;justify-content:center}
-    .pr-small-note{font-size:.68rem;color:var(--red);margin-top:.6rem;text-align:center}
-    /* Option section */
-    .pr-option{max-width:800px;margin:0 auto}
-    .pr-option h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.3rem;text-align:center}
-    .pr-option .sub{font-size:.82rem;color:var(--text-muted);text-align:center;margin-bottom:1.5rem}
-    .pr-option-price{text-align:center;margin-bottom:1.5rem}
-    .pr-option-price .val{font-family:var(--font-en);font-size:1.8rem;font-weight:800;color:var(--dark)}.pr-option-price .val span{font-size:.8rem;font-weight:400;color:var(--text-muted)}
-    .pr-option-price .note{font-size:.72rem;color:var(--text-muted)}
-    .asset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
-    .asset-card{background:#fff;border-radius:var(--radius);padding:1.5rem 1rem;box-shadow:var(--shadow-sm);text-align:center;border:1px solid rgba(0,0,0,.04);transition:transform .3s}.asset-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-    .asset-card .asset-icon{font-size:1.8rem;margin-bottom:.5rem}
-    .asset-card h4{font-size:.85rem;font-weight:700;color:var(--dark);margin-bottom:.3rem}
-    .asset-card p{font-size:.7rem;color:var(--text-muted);line-height:1.5}
-    .pr-option-note{text-align:center;font-size:.78rem;color:var(--text-light);background:var(--bg-section);padding:1rem;border-radius:var(--radius-sm)}
-
-    /* FLOW */
-    .flow{background:var(--bg)}
-    .flow-track{display:flex;align-items:flex-start;gap:0;margin-top:2rem;position:relative}
-    .flow-track::before{content:'';position:absolute;top:20px;left:20px;right:20px;height:2px;background:var(--gradient);z-index:0}
-    .flow-step{flex:1;text-align:center;position:relative;z-index:1}
-    .flow-num{width:40px;height:40px;border-radius:50%;background:var(--gradient);color:#fff;font-family:var(--font-en);font-weight:800;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .6rem;box-shadow:0 4px 12px rgba(212,29,0,.15)}
-    .flow-step h4{font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:.15rem}.flow-step p{font-size:.65rem;color:var(--text-muted);line-height:1.4}
-    .flow-step .time{font-size:.68rem;font-weight:700;color:var(--red);margin-top:.2rem}
-    .poc-box{background:var(--gradient);border-radius:var(--radius);padding:2rem;margin-top:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
-    .poc-box .poc-text{color:#fff}.poc-box .poc-text h3{font-size:1.1rem;font-weight:900;margin-bottom:.2rem}.poc-box .poc-text p{font-size:.8rem;opacity:.8}
-    .poc-box .poc-cta{background:#fff;color:var(--red);padding:.7rem 1.8rem;border-radius:10px;font-weight:800;font-size:.85rem;transition:transform .3s;white-space:nowrap}.poc-box .poc-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
-
-    /* FAQ */
-    .faq{background:var(--bg-section)}
-    .faq-list{max-width:750px;margin:2rem auto 0}
-    .faq-item{background:#fff;border-radius:var(--radius);margin-bottom:.6rem;box-shadow:var(--shadow-sm);overflow:hidden;border:1px solid rgba(0,0,0,.04);transition:box-shadow .3s}.faq-item:hover{box-shadow:var(--shadow-md)}
-    .faq-q{display:flex;align-items:center;gap:.8rem;padding:1rem 1.3rem;cursor:pointer}
-    .faq-badge{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--gradient);color:#fff;font-family:var(--font-en);font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center}
-    .faq-q-text{flex:1;font-size:.9rem;font-weight:700;color:var(--dark)}.faq-arrow{font-size:.75rem;color:var(--text-muted);transition:transform .3s;flex-shrink:0}
-    .faq-item.open .faq-arrow{transform:rotate(180deg)}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.16,1,.3,1)}.faq-a-inner{padding:0 1.3rem 1.3rem;padding-left:calc(1.3rem + 26px + .8rem);font-size:.85rem;color:var(--text-light);line-height:1.9}
-
-    /* CTA */
-    .cta{padding:5rem 5%;background:var(--bg-warm);text-align:center;position:relative;overflow:hidden}
-    .cta::before{content:'';position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(100px);opacity:.08;background:var(--red);top:-150px;right:-100px}
-    .cta-w{position:relative;z-index:1;max-width:650px;margin:0 auto}
-    .cta h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:900;margin-bottom:.8rem;color:var(--dark)}.cta p{font-size:.9rem;color:var(--text-light);margin-bottom:1.5rem}
-    .cta-note{font-size:.75rem;color:var(--text-muted);margin-top:.8rem}
-
-    footer{background:#fff;color:var(--text);padding:3rem 5% 1.5rem;border-top:1px solid rgba(0,0,0,.05)}
-    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
-    .ft-in{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2.5rem;margin-bottom:2rem;position:relative}
-    .ft-brand .ft-logo{font-family:var(--font-en);font-size:1.4rem;font-weight:800;margin-bottom:.8rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .ft-brand p{font-size:.85rem;color:var(--text-light);line-height:1.8}
-    .ft-col h4{font-size:.78rem;font-family:var(--font-en);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
-    .ft-col a{display:block;font-size:.85rem;color:var(--text-light);padding:.25rem 0;transition:color .3s}.ft-col a:hover{color:var(--red)}
-    .ft-bot{text-align:center;padding-top:1.5rem;border-top:1px solid rgba(0,0,0,.04);font-size:.78rem;color:var(--text-muted)}
-    .ft-bot-l{margin-bottom:.5rem}.ft-bot-l a{color:var(--text-muted);margin:0 .6rem}.ft-bot-l a:hover{color:var(--red)}
-
-    .stb{position:fixed;bottom:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:12px;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s;z-index:999}.stb.show{opacity:1;transform:none}.stb:hover{transform:translateY(-3px) scale(1.05)}
-
-    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.015;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-
-    @media(max-width:1024px){.hero-in{flex-direction:column;gap:2rem;text-align:center}.hero-text{max-width:600px}.hero-logo{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-visual{max-width:500px;width:100%}.prob-grid,.sol-grid,.diff-grid{grid-template-columns:1fr}.roi-cols{grid-template-columns:1fr}.asset-grid{grid-template-columns:1fr 1fr}.act-grid{grid-template-columns:repeat(3,1fr)}.roi-left{margin-bottom:1rem}}
-    @media(max-width:768px){.nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);flex-direction:column;align-items:center;gap:.2rem;z-index:999;padding:1rem;box-shadow:0 8px 30px rgba(0,0,0,.08)}.nav-menu.active{display:flex}.hamburger{display:flex;z-index:1002}.hero{padding:6rem 5% 2rem}.st{font-size:1.4rem}.sl{font-size:1.2rem}.ind-cards{grid-template-columns:1fr}.feat-cards{grid-template-columns:1fr}.survey-grid{grid-template-columns:1fr}.pr-layout,.pr-main{max-width:100%}.pr-badges{flex-direction:column!important}.pr-badges .pr-badge{width:100%}.flow-track{flex-direction:column;align-items:stretch}.flow-track::before{display:none}.flow-step{display:flex;align-items:center;gap:.8rem;text-align:left;padding:.6rem 0;border-left:2px solid var(--orange);padding-left:1rem}.flow-num{margin:0;flex-shrink:0}.db-overlap{height:auto;display:flex;flex-direction:column;gap:1rem}.db-card{position:static;width:100%;transform:none!important}.ft-in{grid-template-columns:1fr;text-align:center;gap:1.5rem}.poc-box{flex-direction:column;text-align:center}.legal-grid{grid-template-columns:1fr!important}.act-grid{grid-template-columns:1fr 1fr}.step01-grid{grid-template-columns:1fr!important}.ind-flow-row{overflow-x:auto;-webkit-overflow-scrolling:touch;justify-content:flex-start!important}.roi-card{flex-direction:column;gap:.5rem;align-items:flex-start}.roi-card .rc-mult{align-self:flex-end}}
-    @media(max-width:480px){.hero-actions{flex-direction:column;align-items:center}.hero-actions a{width:100%;text-align:center;justify-content:center}.hero-sub2{font-size:1.1rem}.asset-grid{grid-template-columns:1fr}.pr-badges{flex-direction:column;align-items:center}.act-grid{grid-template-columns:1fr}.prob-grid{gap:1rem}.act-flow{gap:.3rem}.act-pill{font-size:.85rem;padding:.4rem 1rem}.diff-card .dc-icon{width:120px;height:120px}.sol-card .illust{width:140px;height:140px}}
-  </style>
+  <title>Adory SaaS サービス詳細｜現場の痛みを週次で可視化</title>
+  <meta name="description" content="LINEで週1回6問・約2分。痛み・疲労・睡眠・ストレスをスコア化し、総合／フィジカル／メンタル／エンゲージメントの4ダッシュボードで可視化します。対応記録は証跡として保存され、安全配慮義務の観点から対応の経緯を残せます。">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=1789131641">
 </head>
-<body>
-  <button class="stb" id="stb" aria-label="Top">&#8593;</button>
-
-  <header id="hdr"><nav>
-    <a href="index.html" class="logo">Adory</a>
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="index.html">会社概要</a></li>
-      <li><a href="service.html" style="color:var(--red)">サービス概要</a></li>
-      <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
-      <li><a href="event-report.html">イベント実施レポート</a></li>
-      <li><a href="index.html#contact" class="nav-cta">お問い合わせ</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-  </nav></header>
-
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="top"><div class="hero-in">
-      <div class="hero-text">
-        <img src="images/adory-logo.png" alt="Adory" class="hero-logo">
-        <p class="hero-sub1">「痛み」を見える化し、労災と離職を未然に防ぐ</p>
-        <p class="hero-sub2"><u>現場特化型コンディショニングSaaS<br>「Adory（アドリー）」</u></p>
-        <p class="hero-industry" style="font-size:.95rem;color:var(--text-light);font-weight:600">建設・物流・運送・介護・警備・小売など、身体が資本の現場へ</p>
-        <p class="hero-tagline">AdoryはLINEで週1回・6問で現場の不調を早期データ化し、<br>離職・労災が起きる前に、予兆を掴む仕組みを提供します。</p>
-        <div class="hero-actions"><a href="index.html#contact" class="btn-p">資料請求・お問い合わせ &#8594;</a><a href="#problem" class="btn-s">サービス詳細を見る</a></div>
+<body class="page-service">
+<button class="stb" id="stb" aria-label="Top">&#8593;</button>
+<header id="hdr"><nav><a href="index.html" class="logo"><img src="images/logo.png" alt="Adory"></a><ul class="nav-menu" id="navMenu"><li><a href="service.html" class="active">サービス概要</a></li><li><a href="supervisor.html">監修者</a></li><li><a href="pricing.html">料金・導入</a></li><li><a href="company.html">会社概要</a></li><li class="nav-actions"><a href="contact.html?type=doc" class="nav-sub">資料ダウンロード</a><a href="contact.html" class="nav-cta">お問い合わせ</a></li></ul><div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
+<main>
+<section class="page-hero"><div class="crumb"><a href="index.html">ホーム</a>　›　サービス</div><div class="sl">Service</div><h1 class="st">Adory SaaS</h1><p class="ss">現場の「痛み」を週次でデータ化し、管理者が先手を打てる仕組みをつくります。</p></section>
+<section class="feat" id="step01"><div class="ct">
+  <div class="step-block rv">
+    <div class="step-tag">Step 01</div>
+    <h3 class="step-h3"><span class="ph">LINEだけで、</span><span class="ph">現場の状態が見える</span></h3>
+    <p class="step-p">アプリのダウンロード・PC・パスワードは不要。普段使いのLINEだけで完結する設計です。</p>
+    <div class="step01-grid">
+      <div class="mini-steps">
+        <div class="mini-step"><div class="ms-n">①</div><div><h4>通知が届く</h4><p>デフォルトは毎週月曜7時。頻度・曜日・時間は企業ごとに設定できます。</p></div></div>
+        <div class="mini-step"><div class="ms-n">②</div><div><h4>6問に回答</h4><p>約2分。選択式のみで、自由記入は任意です。</p></div></div>
+        <div class="mini-step"><div class="ms-n">③</div><div><h4>データ化</h4><p>スコア化して部署別・職種別に集計します。</p></div></div>
+        <div class="mini-step"><div class="ms-n">④</div><div><h4>変化を検知</h4><p>閾値超過や前週比の悪化を自動で抽出します。</p></div></div>
       </div>
-      <div class="hero-visual"><img src="images/hero-dashboard.png" alt="Adory ダッシュボード"></div>
-    </div></section>
-
-    <!-- PROBLEM -->
-    <section class="prob" id="problem"><div class="ct">
-      <div class="sh rv"><div class="sl">Problem</div><h2 class="st">こんな課題、<em>ありませんか？</em></h2><p class="ss" style="margin:0 auto">現場の「見えない痛み」が、企業の最大リスクになっています</p></div>
-      <div class="prob-grid">
-        <div class="prob-card rv d1"><div class="prob-tag a">現場マネージャー</div><div class="prob-img"><img src="images/persona-manager.png" alt="現場マネージャー"></div><div class="prob-body"><p>部下が<span style="color:var(--red);font-weight:700">「大丈夫です」</span>と言うが、明らかに顔色が悪い</p><p>ある日突然<span style="color:var(--red);font-weight:700">「腰が限界で辞めます」</span>と言われた</p><p>何を基準に<span style="color:var(--red);font-weight:700">「危ない人」を判断</span>すればいいか分からない</p></div></div>
-        <div class="prob-card rv d2"><div class="prob-tag b">経営者・総務労務</div><div class="prob-img"><img src="images/persona-executive.png" alt="経営者"></div><div class="prob-body"><p>労災が起きてから<span style="color:var(--red);font-weight:700">「なぜ気付かなかったのか」</span>と責められた</p><p>年1回の健康診断では<span style="color:var(--red);font-weight:700">翌月離職を防げなかった</span></p><p>ストレスチェックだけでは<span style="color:var(--red);font-weight:700">現場のリスクが見えない</span></p></div></div>
-        <div class="prob-card rv d3"><div class="prob-tag c">採用担当</div><div class="prob-img"><img src="images/persona-hr.png" alt="採用担当"></div><div class="prob-body"><p><span style="color:var(--red);font-weight:700">「きつそう」「身体壊しそう」</span>で応募が集まらない</p><p>採用した人が<span style="color:var(--red);font-weight:700">半年以内に辞めていく</span></p><p style="margin-top:1.8rem"><span style="color:var(--red);font-weight:700">「従業員を大切にしない会社」</span>と口コミが広がっている</p></div></div>
-      </div>
-      <div class="prob-bottom rv">これらは全て<span style="color:var(--red)">「現場の痛みが見えていない」</span>ことから始まっています。</div>
-    </div></section>
-
-    <!-- ROOT CAUSE -->
-    <section class="indicator"><div class="ct">
-      <div class="sh rv"><div class="sl">Root Cause</div><h2 class="st">今の対策は、<em>遅すぎる</em></h2><p class="ss" style="margin:0 auto;max-width:none">現場では、<strong style="color:var(--orange)">「痛みや不調が蓄積→我慢→限界→突然の離職・労災」</strong>という構造が繰り返されています。<br>年1回の健診・ストレスチェックは<strong style="color:var(--orange)">「結果指標」</strong>であり、この空白を埋めることができません。</p></div>
-
-      <!-- Animated circle diagram -->
-      <div class="rv" style="margin-bottom:2rem">
-        <div style="display:flex;align-items:flex-start;justify-content:center;gap:0;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:1rem 0">
-          <!-- Dashed box around pain to discovery -->
-          <div style="position:relative;border:2px dashed var(--orange);border-radius:var(--radius);padding:2rem 1rem 1rem;display:flex;align-items:flex-start;gap:0">
-            <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--bg-section);padding:0 .8rem;font-size:.75rem;font-weight:800;color:var(--red);white-space:nowrap">管理の空白地帯</div>
-          <!-- 痛みの発生 - 1 ring -->
-          <div style="text-align:center;min-width:130px">
-            <div style="font-size:.82rem;font-weight:800;color:var(--dark);height:1.5em;display:flex;align-items:center;justify-content:center">痛みの発生</div>
-            <div style="height:100px;display:flex;align-items:center;justify-content:center">
-              <div style="position:relative;width:60px;height:60px">
-                <div style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(255,154,63,.2);animation:ringPulse1 3s ease-in-out infinite"></div>
-                <div style="position:absolute;inset:8px;border-radius:50%;background:var(--orange)"></div>
-              </div>
-            </div>
-            <div style="font-size:.72rem;color:var(--text-muted);margin-top:.5rem;line-height:1.4;height:2.5em;display:flex;align-items:flex-start;justify-content:center">日々の不調を<br>我慢・放置</div>
-          </div>
-          <div style="flex-shrink:0;width:40px;height:2px;background:var(--gradient);margin-top:calc(1.5em + 50px)"></div>
-          <!-- 悪化 - 2 rings -->
-          <div style="text-align:center;min-width:140px">
-            <div style="font-size:.82rem;font-weight:800;color:var(--dark);height:1.5em;display:flex;align-items:center;justify-content:center">悪化</div>
-            <div style="height:100px;display:flex;align-items:center;justify-content:center">
-              <div style="position:relative;width:72px;height:72px">
-                <div style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(249,115,22,.15);animation:ringPulse2 3s ease-in-out infinite"></div>
-                <div style="position:absolute;inset:8px;border-radius:50%;border:3px solid rgba(249,115,22,.3);animation:ringPulse1 3s ease-in-out infinite .3s"></div>
-                <div style="position:absolute;inset:16px;border-radius:50%;background:#F97316"></div>
-              </div>
-            </div>
-            <div style="font-size:.72rem;color:var(--text-muted);margin-top:.5rem;line-height:1.4;height:2.5em;display:flex;align-items:flex-start;justify-content:center">パフォーマンス低下<br>ミス・集中力↓</div>
-          </div>
-          <div style="flex-shrink:0;width:40px;height:2px;background:var(--gradient);margin-top:calc(1.5em + 50px)"></div>
-          <!-- 限界 - 3 rings -->
-          <div style="text-align:center;min-width:150px">
-            <div style="font-size:.82rem;font-weight:800;color:var(--dark);height:1.5em;display:flex;align-items:center;justify-content:center">限界</div>
-            <div style="height:100px;display:flex;align-items:center;justify-content:center">
-              <div style="position:relative;width:84px;height:84px">
-                <div style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(234,88,12,.1);animation:ringPulse3 3s ease-in-out infinite"></div>
-                <div style="position:absolute;inset:8px;border-radius:50%;border:3px solid rgba(234,88,12,.2);animation:ringPulse2 3s ease-in-out infinite .2s"></div>
-                <div style="position:absolute;inset:16px;border-radius:50%;border:3px solid rgba(234,88,12,.35);animation:ringPulse1 3s ease-in-out infinite .4s"></div>
-                <div style="position:absolute;inset:24px;border-radius:50%;background:#EA580C"></div>
-              </div>
-            </div>
-            <div style="font-size:.72rem;color:var(--text-muted);margin-top:.5rem;line-height:1.4;height:2.5em;display:flex;align-items:flex-start;justify-content:center">突然の欠勤<br>休職・離職</div>
-          </div>
-          <div style="flex-shrink:0;width:40px;height:2px;background:var(--gradient);margin-top:calc(1.5em + 50px)"></div>
-          <!-- 発覚 - 4 rings -->
-          <div style="text-align:center;min-width:160px">
-            <div style="font-size:.82rem;font-weight:800;color:var(--red);height:1.5em;display:flex;align-items:center;justify-content:center">発覚</div>
-            <div style="height:100px;display:flex;align-items:center;justify-content:center">
-              <div style="position:relative;width:96px;height:96px">
-                <div style="position:absolute;inset:0;border-radius:50%;border:3px solid rgba(212,29,0,.08);animation:ringPulse4 3s ease-in-out infinite"></div>
-                <div style="position:absolute;inset:8px;border-radius:50%;border:3px solid rgba(212,29,0,.15);animation:ringPulse3 3s ease-in-out infinite .15s"></div>
-                <div style="position:absolute;inset:16px;border-radius:50%;border:3px solid rgba(212,29,0,.25);animation:ringPulse2 3s ease-in-out infinite .3s"></div>
-                <div style="position:absolute;inset:24px;border-radius:50%;border:3px solid rgba(212,29,0,.4);animation:ringPulse1 3s ease-in-out infinite .45s"></div>
-                <div style="position:absolute;inset:32px;border-radius:50%;background:var(--red)"></div>
-              </div>
-            </div>
-            <div style="font-size:.72rem;color:var(--text-muted);margin-top:.5rem;line-height:1.4;height:2.5em;display:flex;align-items:flex-start;justify-content:center">労災・訴訟<br>採用難</div>
-          </div>
-          </div><!-- end dashed box -->
-          <div style="flex-shrink:0;width:40px;height:2px;background:#c4b5fd;margin-top:calc(1.5em + 50px + 2rem);margin-left:1rem"></div>
-          <!-- 既存の対策 - purple -->
-          <div style="text-align:center;min-width:130px;padding-top:2rem">
-            <div style="font-size:.82rem;font-weight:800;color:#7c3aed;height:1.5em;display:flex;align-items:center;justify-content:center">既存の対策</div>
-            <div style="height:100px;display:flex;align-items:center;justify-content:center">
-              <div style="width:48px;height:48px;border-radius:50%;background:#7c3aed"></div>
-            </div>
-            <div style="font-size:.72rem;color:var(--text-muted);margin-top:.5rem;line-height:1.4;height:2.5em;display:flex;align-items:flex-start;justify-content:center">年1回健診<br>ストレスチェック</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Comparison cards -->
-      <div class="ind-cards rv" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
-        <div style="background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);text-align:center">
-          <div style="display:inline-block;font-size:.82rem;font-weight:800;color:#7c3aed;background:rgba(124,58,237,.06);padding:.4rem 1.2rem;border-radius:999px;margin-bottom:1.2rem">年1回の健診・ストレスチェック</div>
-          <div style="text-align:left">
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 発覚した時点ですでに深刻な状態</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 「結果指標」なので予防には使えない</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 身体の不調は対象外のケースが多い</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:var(--bg-section);border-radius:8px;font-size:.85rem;color:var(--text-light)"><span style="color:#7c3aed;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 点での指標になり、線での指標で追えない</div>
-          </div>
-        </div>
-        <div style="background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:3px solid var(--red);text-align:center">
-          <div style="display:inline-block;font-size:.82rem;font-weight:800;color:#fff;background:var(--gradient);padding:.4rem 1.2rem;border-radius:999px;margin-bottom:1.2rem">Adoryの「先行指標」アプローチ</div>
-          <div style="text-align:left">
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:rgba(212,29,0,.03);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text)"><span style="color:#22c55e;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 週次で痛みの蓄積を継続的に把握</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:rgba(212,29,0,.03);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text)"><span style="color:#22c55e;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 悪化傾向が出た段階で即アラート</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:rgba(212,29,0,.03);border-radius:8px;margin-bottom:.5rem;font-size:.85rem;color:var(--text)"><span style="color:#22c55e;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> 疼痛・メンタル・生活習慣を3領域カバー</div>
-            <div style="display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;background:rgba(212,29,0,.03);border-radius:8px;font-size:.85rem;color:var(--text)"><span style="color:#22c55e;font-weight:800;font-size:1rem;flex-shrink:0">&#10003;</span> データが安全配慮義務の履行証拠になる</div>
-          </div>
-        </div>
-      </div>
-    </div></section>
-
-    <!-- SOLUTION -->
-    <section class="solution" id="solution"><div class="ct">
-      <div class="sh rv"><div class="sl">Solution</div><h2 class="st">現場の「痛み」を週次でデータ化し、<br>管理者が先手を打てる仕組み</h2><p class="ss" style="margin:0 auto">Adory（アドリー）とは —— 一言でいうと</p></div>
-      <div class="sol-grid">
-        <div class="sol-card rv d1"><div class="sol-num">01</div><h3>現場に負担をかけない設計</h3><div class="sub">PC不要 / LINEで2分で完結</div><div class="illust"><img src="images/illust-line.png" alt="LINE完結"></div><p>アプリDLやPCは一切不要。<br>普段使いのスマートフォンで完結。<br>ログイン・パスワード無しで、直感的に入力可能。</p></div>
-        <div class="sol-card rv d2"><div class="sol-num">02</div><h3>ダッシュボードで即確認</h3><div class="sub">どこに介入すべきか一目で分かる</div><div class="illust"><img src="images/illust-dashboard.png" alt="ダッシュボード"></div><p>部署別、職種別に可視化。<br>高リスク者リスト、部署別スコアから<br>どこに介入すべきか一目で分かる。</p></div>
-        <div class="sol-card rv d3"><div class="sol-num">03</div><h3>データが証拠になる</h3><div class="sub">労災・離職リスクから会社を守る</div><div class="illust"><img src="images/illust-shield.png" alt="証拠化"></div><p>週次記録が安全配慮義務の履行証拠。<br>労災・損害賠償リスクから会社を守る。<br>従業員の予兆も管理。</p></div>
-      </div>
-    </div></section>
-
-    <!-- DIFFERENTIATION -->
-    <section class="diff"><div class="ct">
-      <div class="sh rv"><div class="sl">Differentiation</div><h2 class="st">他のサーベイと<em>何が違うのか</em></h2><p class="ss" style="margin:0 auto">3つの軸で、既存ツールとは根本的に異なるアプローチです。</p></div>
-      <div class="diff-grid">
-        <div class="diff-card rv d1"><div class="dc-icon"><img src="images/diff-time.png" alt="時間軸"></div><h3>① 時間軸 —— 先行指標</h3><div style="display:flex;flex-direction:column;gap:.4rem;align-items:center;margin-top:1rem"><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">年1回ではなく「週次」で取得</div><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">蓄積中の痛みを捉える設計</div><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">Adoryは結果指標ではなく、先行指標を取得</div></div></div>
-        <div class="diff-card rv d2"><div class="dc-icon"><img src="images/diff-theme.png" alt="テーマ"></div><h3>② テーマ —— 痛み・身体負荷</h3><div style="display:flex;flex-direction:column;gap:.4rem;align-items:center;margin-top:1rem"><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">疼痛・疲労・睡眠を数値化</div><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">メンタルだけでなく身体の実態</div><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">ブルーワーカー特化の設問設計</div></div></div>
-        <div class="diff-card rv d3"><div class="dc-icon"><img src="images/diff-action.png" alt="動くデータ"></div><h3>③ 役割 —— 経営が動くデータ</h3><div style="display:flex;flex-direction:column;gap:.4rem;align-items:center;margin-top:1rem"><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">痛み・疲労・睡眠は即アクションに直結</div><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">現場の異変が翌週には経営に届く</div><div style="font-size:.75rem;font-weight:700;color:var(--dark);background:var(--bg-section);border:1px solid rgba(0,0,0,.06);padding:.4rem 1.2rem;border-radius:999px;min-width:300px;text-align:center;display:inline-block">検知→判断→介入→改善まで一気通貫</div></div></div>
-      </div>
-    </div></section>
-
-    <!-- ACTION FRAMEWORK -->
-    <section class="action"><div class="ct">
-      <div class="sh rv"><div class="sl">Action</div><h2 class="st">ダッシュボードの先に、<em>具体的なアクション</em>がある</h2><p class="ss" style="margin:0 auto">Adoryはデータを見せるだけではありません。<br>リスクに応じた推奨アクションを管理者・経営層それぞれに届けます。</p></div>
-      <div class="act-flow rv">
-        <div class="act-pill">検知</div><div class="act-arrow">→</div>
-        <div class="act-pill">判断</div><div class="act-arrow">→</div>
-        <div class="act-pill">介入</div><div class="act-arrow">→</div>
-        <div class="act-pill">改善</div>
-      </div>
-      <div class="act-grid rv">
-        <div class="act-card"><div class="act-badge red">高リスク</div><h4>即時介入</h4><p class="act-item">上長による個別ヒアリング</p><p class="act-item">業務調整・配置転換</p><p class="act-item">負荷軽減・休養推奨</p><p class="act-item">必要なら外部ケア連携</p></div>
-        <div class="act-card"><div class="act-badge amber">中リスク</div><h4>定期フォロー</h4><p class="act-item">週次でのフォロー継続</p><p class="act-item">業務負荷の見直し</p><p class="act-item">チーム単位での改善</p><p class="act-item">無料対策メニュー配信</p></div>
-        <div class="act-card"><div class="act-badge green">低リスク</div><h4>状態維持</h4><p class="act-item">良好状態の維持管理</p><p class="act-item">エンゲージメント向上施策</p><p class="act-item">継続モニタリング</p><p class="act-item">予防コンテンツ配信</p></div>
-        <div class="act-card"><div class="act-badge blue">部署単位</div><h4>組織改善</h4><p class="act-item">部署別リスク比較</p><p class="act-item">人員配置の最適化</p><p class="act-item">マネジメント改善</p><p class="act-item">業務工程の見直し</p></div>
-        <div class="act-card"><div class="act-badge dark">経営</div><h4>経営判断</h4><p class="act-item">投資判断（人・環境）</p><p class="act-item">リスク管理体制整備</p><p class="act-item">採用戦略への反映</p><p class="act-item">安全配慮義務の証跡</p></div>
-      </div>
-    </div></section>
-
-    <!-- FEATURES -->
-    <section class="feat" id="features"><div class="ct">
-      <div class="sh rv"><div class="sl">Features</div><h2 class="st">Adory SaaS の詳細機能</h2></div>
-
-      <!-- Step01 -->
-      <div class="rv" style="margin-bottom:4rem">
-        <div class="step-tag">Step 01</div>
-        <h3 style="font-size:1.45rem;font-weight:900;color:var(--dark);margin-bottom:.3rem">LINEだけで"現場の状態"が見える</h3>
-        <p style="font-size:1.05rem;color:var(--text-light);font-weight:600;margin-bottom:2rem">週1回 たった6問 2分 —— 現場が使いやすい最小設計</p>
-        <div class="step01-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
-          <div style="background:var(--bg);border-radius:var(--radius);padding:.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,.04)"><img src="images/feature-pulse-survey.png" alt="LINEパルスサーベイ" style="max-width:100%;border-radius:var(--radius-sm)"></div>
-          <div>
-            <div class="survey-grid">
-              <div class="survey-item"><h4>疲労度</h4><p>慢性的な疲労の蓄積を可視化</p></div>
-              <div class="survey-item"><h4>痛み部位</h4><p>負担が集中する部位を特定</p></div>
-              <div class="survey-item"><h4>痛みの強度</h4><p>リスクの深刻度を定量化</p></div>
-              <div class="survey-item"><h4>睡眠時間</h4><p>回復不足の兆候を検知</p></div>
-              <div class="survey-item"><h4>ストレス度</h4><p>心理的負荷の変化を把握</p></div>
-              <div class="survey-item"><h4>心理状況</h4><p>離職・メンタル不調の予兆検知</p></div>
-            </div>
-            <p style="font-size:.8rem;color:var(--text-muted);margin-top:1rem;text-align:center">疼痛・メンタル・生活習慣の3領域を毎週先行把握</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Step02 -->
-      <div class="rv" style="margin-bottom:4rem">
-        <div class="step-tag">Step 02</div>
-        <h3 style="font-size:1.45rem;font-weight:900;color:var(--dark);margin-bottom:.3rem">管理者が「労災・離職リスク」に先回りで介入できる</h3>
-        <p style="font-size:1.05rem;color:var(--text-light);font-weight:600;margin-bottom:1.5rem">高リスク者・部署別スコア・時系列推移。感覚ではなく「データ」で動ける管理者になる。</p>
-        <div class="feat-cards">
-          <div class="feat-card important"><div class="fc-accent"></div><div class="fc-body"><h4>高リスク者管理</h4><p>一定の閾値以上、スコア低下など条件に合致した人を自動アラート<br>労災・離職リスクに即時対応できる</p></div></div>
-          <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>痛み部位ヒートマップ</h4><p>腰・肩・膝などの部位別の分布を棒グラフで可視化<br>負担が集中する業務を特定できる</p></div></div>
-          <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>時系列スコア推移</h4><p>個人・チーム単位でスコア変化のトレンドを追跡<br>悪化する前に介入できる</p></div></div>
-          <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>未回答者管理</h4><p>誰が未回答かを即確認し、形骸化を防ぐ管理者リマインド<br>運用設計を一緒にサポート</p></div></div>
-          <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>部署別・職種別比較</h4><p>どの部署・職種のリスクが高いかを比較分析<br>配置転換・業務軽減の意思決定ができる</p></div></div>
-          <div class="feat-card important"><div class="fc-accent"></div><div class="fc-body"><h4>権限設定</h4><p>経営・現場には全体スコア、管理者には個別でスコア表示<br>現場と経営で適切な意思決定ができる</p></div></div>
-        </div>
-      </div>
-
-      <!-- Step03 -->
-      <div class="rv">
-        <div class="step-tag">Step 03</div>
-        <h3 style="font-size:1.45rem;font-weight:900;color:var(--dark);margin-bottom:.3rem">会社を"法的リスク"から守る証拠が残る</h3>
-        <p style="font-size:1.05rem;color:var(--text-light);font-weight:600;margin-bottom:2.5rem">「知らなかった」より「知っていて対処した証拠がある」会社の方が、万が一の際に法的に守られます</p>
-
-        <!-- 労働安全衛生法 card -->
-        <div style="background:#fff;border-radius:var(--radius);padding:1.2rem 2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:2px solid #ddd;text-align:center;margin-bottom:1.5rem">
-          <div style="font-size:1.05rem;font-weight:800;color:var(--dark)">労働安全衛生法</div>
-          <div style="font-size:.78rem;color:var(--text-muted)">（安全配慮義務）── 企業が負う法的責任</div>
-        </div>
-
-        <!-- 3 independent cards -->
-        <div class="legal-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:1.5rem">
-          <div style="background:#fff;border-radius:var(--radius);padding:1.8rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:2px solid #4494d0">
-            <div style="display:inline-block;font-size:.78rem;font-weight:800;color:#4494d0;background:rgba(68,148,208,.06);padding:.3rem 1rem;border-radius:999px;margin-bottom:1rem">企業の法定義務</div>
-            <div style="font-size:.78rem;color:var(--text-light);line-height:2;text-align:left"><div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem"><span style="width:6px;height:6px;border-radius:50%;background:#4494d0;flex-shrink:0;margin-top:.45rem"></span>年1回の健康診断・ストレスチェック</div><div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem"><span style="width:6px;height:6px;border-radius:50%;background:#4494d0;flex-shrink:0;margin-top:.45rem"></span>安全衛生委員会の運営</div><div style="display:flex;align-items:flex-start;gap:.5rem"><span style="width:6px;height:6px;border-radius:50%;background:#4494d0;flex-shrink:0;margin-top:.45rem"></span>作業管理・安全教育の実施</div></div>
-            <div style="margin-top:1.2rem;font-size:.88rem;color:#4494d0;font-weight:800;background:rgba(68,148,208,.08);padding:.5rem 1rem;border-radius:8px;text-align:center">対応済み</div>
-          </div>
-          <div style="background:#fff;border-radius:var(--radius);padding:1.8rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:2px solid #4caf50">
-            <div style="display:inline-block;font-size:.78rem;font-weight:800;color:#4caf50;background:rgba(76,175,80,.06);padding:.3rem 1rem;border-radius:999px;margin-bottom:1rem">社労士のサポート</div>
-            <div style="font-size:.78rem;color:var(--text-light);line-height:2;text-align:left"><div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem"><span style="width:6px;height:6px;border-radius:50%;background:#4caf50;flex-shrink:0;margin-top:.45rem"></span>義務手続きの代行</div><div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem"><span style="width:6px;height:6px;border-radius:50%;background:#4caf50;flex-shrink:0;margin-top:.45rem"></span>就業規則の整備</div><div style="display:flex;align-items:flex-start;gap:.5rem"><span style="width:6px;height:6px;border-radius:50%;background:#4caf50;flex-shrink:0;margin-top:.45rem"></span>離職・労災発生時の初期相談</div></div>
-            <div style="margin-top:1.2rem;font-size:.88rem;color:#4caf50;font-weight:800;background:rgba(76,175,80,.08);padding:.5rem 1rem;border-radius:8px;text-align:center">対応済み</div>
-          </div>
-          <div style="background:#fff;border-radius:var(--radius);padding:1.8rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:4px solid var(--red)">
-            <div style="display:inline-block;font-size:.78rem;font-weight:800;color:#fff;background:var(--red);padding:.3rem 1rem;border-radius:999px;margin-bottom:1rem">管理の空白地帯</div>
-            <div style="font-size:.78rem;color:var(--text-light);line-height:2;text-align:left"><div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem"><span style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:.45rem"></span>日々の身体の痛み</div><div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem"><span style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:.45rem"></span>疼痛・疲労の蓄積</div><div style="display:flex;align-items:flex-start;gap:.5rem"><span style="width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:.45rem"></span>離職直前のサイン</div></div>
-            <div style="margin-top:1.2rem;font-size:.88rem;color:var(--red);font-weight:800;background:rgba(212,29,0,.06);padding:.5rem 1rem;border-radius:8px;text-align:center">誰も管理していない</div>
-          </div>
-        </div>
-
-        <!-- Arrow -->
-        <div style="text-align:center;margin-bottom:1.5rem"><div style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--gradient);color:#fff;font-size:1.2rem;box-shadow:var(--shadow-glow)">&#8595;</div></div>
-
-        <!-- Adory solution card - larger -->
-        <div style="background:#fff;border-radius:var(--radius);padding:3rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:3px solid var(--red);text-align:center">
-          <div style="font-size:1.8rem;font-weight:900;color:var(--red);margin-bottom:1rem">Adoryが「管理の空白」を埋める</div>
-          <div style="font-size:1.3rem;font-weight:700;color:var(--dark);line-height:1.7">週次記録が予見可能性の証拠＋対処履歴の根拠になる</div>
-        </div>
-      </div>
-    </div></section>
-
-    <!-- DASHBOARD -->
-    <section class="dashboard"><div class="ct">
-      <div class="sh rv"><div class="sl">Dashboard</div><h2 class="st">リアルタイムで現場全体の<br>健康状態が把握できる</h2></div>
-      <div class="db-overlap rv"><div class="db-card"><img src="images/dashboard-pain.png" alt="疼痛管理"></div><div class="db-card"><img src="images/dashboard-mental.png" alt="メンタルヘルス"></div><div class="db-card"><img src="images/dashboard-lifestyle.png" alt="生活習慣"></div></div>
-    </div></section>
-
-    <!-- ROI -->
-    <section class="roi"><div class="ct">
-      <div class="sh rv"><div class="sl">Benefit</div><h2 class="st">導入メリット</h2><p class="ss" style="margin:0 auto">月29,800円で、数百万円のリスクを回避しませんか？</p></div>
-      <div class="roi-balance rv">
-        <div class="roi-cols">
-          <div class="roi-left">
-            <div class="rl-label">Adory月額コスト</div>
-            <div class="rl-price">&#165;29,800<span>/月</span></div>
-            <div class="rl-annual">&#165;357,600<span>/年</span></div>
-            <div class="roi-pills">
-              <div class="roi-pill">初期費用：¥0</div>
-              <div class="roi-pill">サポート費用：¥0</div>
-            </div>
-            <div class="roi-pills" style="margin-top:.4rem">
-              <div class="roi-pill">最短：翌週から運用開始</div>
-              <div class="roi-pill">31名以上：+500円/名</div>
-            </div>
-          </div>
-          <div class="roi-right-col">
-            <div class="roi-card" style="border-left:4px solid #E8607C;padding:1.5rem 1.8rem"><div class="rc-info"><div class="name" style="font-size:1.15rem">ベテラン1名の離職</div><div class="sub" style="font-size:1.05rem">500〜1,000万円</div></div><div class="rc-mult" style="font-size:.95rem;padding:.4rem 1rem;background:#E8607C;color:#fff">140〜280倍</div></div>
-            <div class="roi-card" style="border-left:4px solid var(--orange);padding:1.5rem 1.8rem"><div class="rc-info"><div class="name" style="font-size:1.15rem">労災1件の補償・賠償</div><div class="sub" style="font-size:1.05rem">数百万〜数千万円</div></div><div class="rc-mult" style="font-size:.95rem;padding:.4rem 1rem;background:var(--orange);color:#fff">10倍以上</div></div>
-            <div class="roi-card" style="border-left:4px solid #5B3A29;padding:1.5rem 1.8rem"><div class="rc-info"><div class="name" style="font-size:1.15rem">採用コスト（1名）</div><div class="sub" style="font-size:1.05rem">100〜200万円</div></div><div class="rc-mult" style="font-size:.95rem;padding:.4rem 1rem;background:#5B3A29;color:#fff">28〜56倍</div></div>
-          </div>
-        </div>
-      </div>
-    </div></section>
-
-    <!-- PRICING -->
-    <section class="pricing" id="pricing"><div class="ct">
-      <div class="sh rv"><div class="sl">Pricing</div><h2 class="st">料金プラン</h2></div>
-      <div class="pr-badges rv" style="max-width:600px;margin:0 auto 2rem"><div class="pr-badge b1" style="flex:1;text-align:center;padding:.8rem;font-size:1.05rem">初期費用 0円</div><div class="pr-badge b2" style="flex:1;text-align:center;padding:.8rem;font-size:1.05rem">最短即日導入</div><div class="pr-badge b3" style="flex:1;text-align:center;padding:.8rem;font-size:1.05rem">サポート費用 無料</div></div>
-
-      <div class="pr-main rv">
-        <h3>Adory SaaS 基本プラン</h3>
-        <div class="pr-price">&#165;29,800<span>/月</span></div>
-        <div class="pr-note">利用ユーザー31名以上は1名あたり+500円/月</div>
-        <ul class="pfl"><li>週1回・6問で現場の「痛み・疲労」を可視化</li><li>高リスク者を自動検知（労災・離職予防）</li><li>部署別・職種別ダッシュボード提供</li><li>安全配慮義務の履行証拠データを自動蓄積</li><li>CSによる伴走サポート</li></ul>
-        <a href="index.html#contact" class="btn-p">お問い合わせ</a>
-        <div class="pr-small-note">※継続利用により効果最大化（推奨6カ月〜）</div>
-      </div>
-
-      <!-- Option row: card left + examples right -->
-      <div class="rv" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:600px;margin:0 auto;align-items:stretch">
-        <div style="background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);display:flex;flex-direction:column;text-align:center">
-          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.5rem">＋ 現場ケアオプション</h3>
-          <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:.8rem">入力継続率を高めるケア施策</div>
-          <div style="font-family:var(--font-en);font-size:1.8rem;font-weight:800;color:var(--dark)">&#165;24,980<span style="font-size:.8rem;font-weight:400;color:var(--text-muted)">/回</span></div>
-          <div style="font-size:.72rem;color:var(--text-muted);margin-top:.2rem;margin-bottom:1rem">月4回：99,920円</div>
-          <ul class="pfl" style="text-align:left;flex:1;font-size:.78rem"><li style="font-size:.78rem">理学療法士・柔道整復師等が対応</li><li style="font-size:.78rem">データに基づいた的確なケア</li><li style="font-size:.78rem">時間・回数はカスタマイズ可</li></ul>
-          <div style="font-size:.6rem;color:var(--red);margin-top:auto;white-space:nowrap">※SaaS利用で、入力継続に不安がある場合に推奨</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:.6rem;justify-content:space-between">
-          <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--bg-section);border-radius:var(--radius-sm);padding:.8rem 1.2rem;border:1px solid rgba(0,0,0,.04)"><div style="font-size:1rem;font-weight:800;color:var(--dark)">管理者へのアドバイス通知</div></div>
-          <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--bg-section);border-radius:var(--radius-sm);padding:.8rem 1.2rem;border:1px solid rgba(0,0,0,.04)"><div style="font-size:1rem;font-weight:800;color:var(--dark)">業種別ベンチマーク情報</div></div>
-          <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--bg-section);border-radius:var(--radius-sm);padding:.8rem 1.2rem;border:1px solid rgba(0,0,0,.04)"><div style="font-size:1rem;font-weight:800;color:var(--dark)">近隣ケア施設のクーポン発行</div></div>
-          <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--bg-section);border-radius:var(--radius-sm);padding:.8rem 1.2rem;border:1px solid rgba(0,0,0,.04)"><div style="font-size:1rem;font-weight:800;color:var(--dark)">ストレッチ・体操動画の自動配信</div></div>
-          <div style="text-align:center;font-size:.72rem;color:var(--text-muted);padding-top:.3rem">上記は一例です。企業様に合わせてカスタマイズ可能</div>
-        </div>
-      </div>
-    </div></section>
-
-    <!-- FLOW -->
-    <section class="flow"><div class="ct">
-      <div class="sh rv"><div class="sl">Implementation Flow</div><h2 class="st">最短1週間でサーベイ配信スタート</h2></div>
-      <div class="flow-track rv">
-        <div class="flow-step"><div class="flow-num">01</div><h4>お問い合わせ</h4><p>Webまたは担当者にご連絡</p><div class="time" style="color:var(--orange)">即日</div></div>
-        <div class="flow-step"><div class="flow-num">02</div><h4>ヒアリング</h4><p>課題・現場規模・目的をお聞きします</p><div class="time" style="color:var(--orange)">1〜2日</div></div>
-        <div class="flow-step"><div class="flow-num">03</div><h4>設定</h4><p>LINE連携・従業員情報の登録</p><div class="time" style="color:var(--orange)">3〜5日</div></div>
-        <div class="flow-step"><div class="flow-num">04</div><h4>オンボーディング</h4><p>管理者・従業員への操作説明</p><div class="time" style="color:var(--orange)">半日</div><div style="font-size:.6rem;color:var(--red);font-weight:700;margin-top:.2rem">※IT知識不要・LINEで完結</div></div>
-        <div class="flow-step"><div class="flow-num">05</div><h4>運用スタート</h4><p>週次サーベイ配信開始</p><div class="time" style="color:var(--orange)">翌週〜</div></div>
-      </div>
-      <div class="poc-box rv">
-        <div class="poc-text"><h3>まずはPoC（3ヶ月）から始めませんか？</h3><p>初期費用0円・最短1週間で開始・解約期間要相談。<strong style="color:var(--dark);font-size:.95rem">「効果を見てから」</strong>導入判断可能。</p></div>
-        <a href="index.html#contact" class="poc-cta">今すぐ無料相談する &#8594;</a>
-      </div>
-    </div></section>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq"><div class="ct">
-      <div class="sh rv"><div class="sl">FAQ</div><h2 class="st">よくある質問</h2></div>
-      <div class="faq-list">
-        <div class="faq-item rv"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">現場社員がLINEで正直に答えてくれるか不安</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">個人データは経営者・現場に見せない設計です。「組織全体のスコア」のみ提供するため、本音が出やすくなります。回答率の維持は弊社がオンボーディング時に運用設計ごとサポートします。</div></div></div>
-        <div class="faq-item rv d1"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">安全配慮義務：知っていて何もしない方がリスクでは？</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">逆です。「知って対処した記録がある」方が法的には有利です。Adoryは対処の記録も一緒に伴走します。</div></div></div>
-        <div class="faq-item rv d2"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">ITが苦手な従業員でも使えますか？</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">LINEのメッセージに返答するだけ。アプリDL・ログイン・パスワードは一切不要です。必要に応じて、初回オンボーディングで30分のレクチャーも提供します。</div></div></div>
-        <div class="faq-item rv d3"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">データの正確性は？</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">自己申告の限界は把握しており、「傾向や変化を捉える」設計になっています。今後「環境データ」「構造データ」を掛け合わせ、主観データに客観性を持たせる設計も開発予定です。</div></div></div>
-      </div>
-    </div></section>
-
-    <!-- CTA -->
-    <section class="cta"><div class="cta-w rv">
-      <h2>「壊れる前に守る」、<br>あなたの会社から始めませんか。</h2>
-      <p>苦労して採用した若手やベテラン社員1名が辞めずに済む、その1回分のコストを考えてください。<br>Adoryの年間費用は35.8万円。1名分の採用費の約4分の1です。</p>
-      <a href="index.html#contact" class="btn-p">まずは無料相談から &#8594;</a>
-      <div class="cta-note">お見積りや無料トライアルなども柔軟にご相談いただけます</div>
-    </div></section>
-  </main>
-
-  <footer>
-    <div class="ft-in">
-      <div class="ft-brand"><div class="ft-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:.8rem;font-size:.78rem">&#169; 2026 Adory Inc.</p></div>
-      <div class="ft-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
-      <div class="ft-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">創業の想い</a><a href="index.html#contact">お問い合わせ</a></div>
+      <div><img src="images/survey-phones.png" alt="LINEの週次サーベイ回答画面と送信完了画面" style="width:100%;display:block"><p class="survey-caption">実際の回答画面。設問は簡略化して掲載しています。</p></div>
     </div>
-    <div class="ft-bot"><div class="ft-bot-l"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2026 株式会社Adory. All rights reserved.</p></div>
-  </footer>
+  </div>
 
-  <script>
-    const hdr=document.getElementById('hdr'),stb=document.getElementById('stb');
-    window.addEventListener('scroll',()=>{const y=window.scrollY;hdr.classList.toggle('scrolled',y>50);stb.classList.toggle('show',y>400)});
-    stb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    const hamburger=document.getElementById('hamburger'),navMenu=document.getElementById('navMenu');
-    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');navMenu.classList.toggle('active')});
-    navMenu.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hamburger.classList.remove('open');navMenu.classList.remove('active')})});
-    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
-    document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
-    document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{const id=link.getAttribute('href');if(id==='#')return;const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-    document.querySelectorAll('.faq-item').forEach(item=>{const q=item.querySelector('.faq-q'),a=item.querySelector('.faq-a');q.addEventListener('click',()=>{const o=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight='0'});if(!o){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}})});
-  </script>
+  <div class="step-block rv" id="survey-design">
+    <div class="sl" style="font-size:1.2rem">Survey design</div>
+    <h3 class="step-h3"><span class="ph">6問の設問設計</span><span class="ph">（理学療法士監修）</span></h3>
+    <p class="step-p">フィジカルを主軸に、メンタルとエンゲージメントを補助指標として測定します。設問・スコアロジック・アラートロジックのすべてが監修対象です。</p>
+    <div class="survey-grid three"><div class="survey-item"><span class="qn">Q1 ／ 5段階</span><h4>疲労度</h4><p>慢性的な疲労の蓄積を可視化</p><div class="q">この1週間、仕事の翌日に身体の疲労が残ることはありましたか？</div></div><div class="survey-item"><span class="qn">Q2 ／ 部位別 0-10</span><h4>痛み</h4><p>負担部位と深刻度を同時に把握</p><div class="q">今の身体の各部位の痛みレベルを選択してください</div></div><div class="survey-item"><span class="qn">Q3 ／ 5段階</span><h4>睡眠時間</h4><p>回復不足の兆候を検知</p><div class="q">直近1週間の睡眠時間は平均何時間でしたか？</div></div><div class="survey-item"><span class="qn">Q4 ／ 5段階</span><h4>ストレス</h4><p>心理的負荷の変化を把握</p><div class="q">先週1週間でストレスを感じることはありましたか？</div></div><div class="survey-item"><span class="qn">Q5 ／ 5段階</span><h4>帰属意識</h4><p>組織への帰属感を把握</p><div class="q">職場に自分の居場所があると感じますか？</div></div><div class="survey-item"><span class="qn">Q6 ／ 5段階</span><h4>やりがい</h4><p>エンゲージメントの変化を検知</p><div class="q">今の仕事にやりがいを感じますか？</div></div></div>
+    <div class="ind-cards" style="margin-top:2rem">
+      <div class="ind-card" style="text-align:left"><h3 style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.5rem">配信設定はカスタマイズできます</h3><p style="font-size:.85rem;color:var(--text-light);line-height:1.9">デフォルトは毎週月曜7時。企業ごとに頻度（週次・隔週・月次）、曜日、時間を設定できます。シフト勤務や隔日勤務の現場に合わせた配信が可能です。変化を捉える観点から週次を推奨しています。</p></div>
+      <div class="ind-card" style="text-align:left"><h3 style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.5rem">匿名性の設計</h3><p style="font-size:.85rem;color:var(--text-light);line-height:1.9">企業側にお渡しするのは組織全体・部署単位のスコアです。個人が特定される形での回答内容の開示は行いません。現場から外されるといった不安を抱えずに回答いただくための設計です。人数が少ない単位では表示しない仕様にしています。</p></div>
+    </div>
+  </div>
+
+  <div class="step-block rv" id="step02">
+    <div class="step-tag">Step 02</div>
+    <h3 class="step-h3"><span class="ph">管理者が、</span><span class="ph">感覚ではなくデータで動ける</span></h3>
+    <p class="step-p">回答結果から、総合・フィジカル・メンタル・エンゲージメントの4つのダッシュボードが生成されます。</p>
+    <div class="feat-cards">
+      <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>総合ダッシュボード</h4><p>今週対応が必要な人数をファーストビューに表示。緑から赤の4段階でリスクを色分けします。詳細はタップで開く設計です。</p></div></div>
+      <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>フィジカル</h4><p>Pain Score平均と8以上の該当人数を最初に表示。部位別分布（腰・首肩・手腕・膝・足首ふくらはぎ・その他）、直近12週間の推移、疲労と睡眠の相関係数を自動算出します。</p></div></div>
+      <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>メンタル</h4><p>ストレス平均を週次で数値化し、直近12週間の推移を目標値と比較。部署別・職種別のランキングで、緊急・高リスク・要注意・正常の4段階に分類します。</p></div></div>
+      <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>エンゲージメント</h4><p>帰属意識とやりがいを週次で数値化。5段階の分布で組織全体のばらつきを把握し、どの部署で低下しているかを横断的に比較できます。</p></div></div>
+    </div>
+    <h4 class="sub-h" style="margin-top:2.5rem">部位・部署・職種ごとに、的を絞った対策を検討できます</h4>
+    <div class="ind-cards" style="margin-top:1rem">
+      <div class="ind-card" style="text-align:left"><h3 style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.5rem">フィジカルの打ち手の例</h3><ul class="pfl" style="margin:0"><li>腰の負担が多い部署では、リフト機材の導入や重量物のペア作業化を検討</li><li>首・肩が多い場合は、作業姿勢や環境の見直し</li><li>緊急・高リスク判定の部署から優先的にヒアリング</li><li>職種別データで、特定作業に負荷が偏っていないかを確認</li></ul></div>
+      <div class="ind-card" style="text-align:left"><h3 style="font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.5rem">睡眠・疲労の打ち手の例</h3><ul class="pfl" style="margin:0"><li>睡眠不足層が多い部署・拠点から優先的に対策を検討</li><li>勤務シフト・休憩時間の見直し</li><li>産業医面談や外部相談窓口（EAP等）の案内</li><li>相関が強い場合、睡眠改善を施策の優先順位づけに使う</li></ul></div>
+    </div>
+    <p class="note-sm" style="text-align:center;margin-top:1rem">一般的に検討される対策の例です。実際の施策は各社の状況に応じてご判断ください。</p>
+    <div class="db-stack" aria-label="4つのダッシュボード画面">
+      <div class="db-item"><img src="images/dash-engagement.png" alt="エンゲージメントダッシュボード"></div>
+      <div class="db-item"><img src="images/dash-mental.png" alt="メンタルダッシュボード"></div>
+      <div class="db-item"><img src="images/dash-physical.png" alt="フィジカルダッシュボード"></div>
+      <div class="db-item"><img src="images/dash-overview.png" alt="総合ダッシュボード"></div>
+    </div>
+    <p class="note-sm" style="text-align:center;margin-top:1rem">総合・フィジカル・メンタル・エンゲージメントの4画面。掲載データはすべてダミーです。</p>
+  </div>
+</div></section>
+<section class="feat" id="step03" style="background:var(--bg-section)"><div class="ct">
+  <div class="rv">
+    <div class="step-tag">Step 03</div>
+    <h3 class="step-h3"><span class="ph">対応の経緯を、</span><span class="ph">説明できる状態にする</span></h3>
+    <p class="step-p">「知らなかった」より「気付いて対応した記録がある」状態の方が、万が一の際に説明できます。結果として会社を守ることにつながります。</p>
+    <div class="feat-cards three">
+      <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>アラート管理</h4><p>週次データから自動抽出されたアラートを一覧表示。優先度（緊急・高・中）別に色分けし、未対応のみで絞り込めます。</p></div></div>
+      <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>対応記録</h4><p>声かけ・産業医相談などの対応履歴をアラートと紐づけて記録。対応漏れを防ぎます。</p></div></div>
+      <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>証跡として保存</h4><p>閲覧のみで編集・削除ができない仕様。安全配慮義務の観点から、対応の経緯を残せます。</p></div></div>
+    </div>
+    <div class="sv-note" style="max-width:none">企業の法定義務（年1回の健診・ストレスチェック、安全衛生委員会、作業管理）と、社労士のサポート（義務手続きの代行、就業規則の整備）の間に<br>日々の身体の痛み・疲労の蓄積・離職直前のサインという管理の空白が残っています。Adoryはここを週次の記録で埋めます。</div>
+  </div>
+</div></section>
+<section class="cta"><div class="cta-w rv">
+  <h2>実際の画面を見ながらご説明します。</h2><p>ダッシュボードのデモをオンラインでご覧いただけます。所要30分程度です。</p>
+  <div class="btn-row"><a href="contact.html?type=demo" class="btn-p">デモを申し込む &#8594;</a><a href="contact.html?type=doc" class="btn-s">資料をダウンロード</a></div>
+  
+</div></section>
+</main>
+<footer>
+  <div class="ft-in">
+    <div class="ft-brand"><div class="ft-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:.8rem;font-size:.78rem">&#169; 2026 Adory Inc.</p></div>
+    <div class="ft-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="supervisor.html">監修者紹介</a></div>
+    <div class="ft-col"><h4>Price</h4><a href="pricing.html">料金プラン</a><a href="pricing.html#flow">導入フロー</a><a href="pricing.html#faq">よくある質問</a></div>
+    <div class="ft-col"><h4>Company</h4><a href="company.html#about">会社概要</a><a href="company.html#message">創業の想い</a><a href="contact.html">お問い合わせ</a><a href="contact.html?type=doc">資料ダウンロード</a></div>
+  </div>
+  <div class="ft-bot"><div class="ft-bot-l"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2026 株式会社Adory. All rights reserved.</p></div>
+</footer>
+<script src="assets/site.js?v=1789131641"></script>
 </body>
 </html>

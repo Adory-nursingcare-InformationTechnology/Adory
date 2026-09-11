@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adory.co.jp/sitemap.xml

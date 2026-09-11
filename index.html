@@ -3,329 +3,213 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Adory - 皆が物語の主人公で、一歩でも人生が豊かに前進するように">
-  <title>Adory | 人の力でインフラを築く</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--red:#D41D00;--orange:#FF9A3F;--gradient:linear-gradient(135deg,#D41D00,#FF9A3F);--gradient-soft:linear-gradient(135deg,#fff5f0,#ffe8d6);--dark:#1a1a1a;--text:#333;--text-light:#666;--text-muted:#999;--bg:#fff;--bg-warm:#FFFAF7;--bg-section:#FBF8F6;--shadow-sm:0 2px 8px rgba(0,0,0,.06);--shadow-md:0 8px 30px rgba(0,0,0,.08);--shadow-lg:0 20px 60px rgba(0,0,0,.1);--shadow-glow:0 8px 40px rgba(212,29,0,.15);--radius:20px;--radius-sm:12px;--max-w:1200px;--font-jp:'Noto Sans JP',sans-serif;--font-en:'Outfit',sans-serif}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:80px}
-    body{font-family:var(--font-jp);color:var(--text);line-height:1.8;background:var(--bg-section);overflow-x:hidden}
-    img{max-width:100%;display:block}a{text-decoration:none;color:inherit}ul{list-style:none}
-
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-    .reveal.visible{opacity:1;transform:translateY(0) scale(1) translateX(0)}
-    .reveal-delay-1{transition-delay:.12s}.reveal-delay-2{transition-delay:.24s}.reveal-delay-3{transition-delay:.36s}.reveal-delay-4{transition-delay:.48s}
-    .reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-    .reveal-left.visible{opacity:1;transform:translateX(0)}
-    .reveal-right{opacity:0;transform:translateX(60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-    .reveal-right.visible{opacity:1;transform:translateX(0)}
-    .reveal-scale{opacity:0;transform:scale(.9);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-    .reveal-scale.visible{opacity:1;transform:scale(1)}
-
-    header{position:fixed;top:0;width:100%;z-index:1000;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s,background .3s}
-    header.scrolled{background:rgba(255,255,255,.95);box-shadow:0 4px 30px rgba(0,0,0,.08)}
-    nav{max-width:var(--max-w);margin:0 auto;padding:.9rem 5%;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-family:var(--font-en);font-weight:800;font-size:1.6rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;cursor:pointer;transition:transform .3s}
-    .logo:hover{transform:scale(1.03)}
-    .nav-menu{display:flex;gap:.3rem;align-items:center}
-    .nav-menu a{font-size:.88rem;font-weight:500;color:var(--text);padding:.5rem .9rem;border-radius:999px;transition:background .3s,color .3s;white-space:nowrap}
-    .nav-menu a:hover{background:var(--gradient-soft);color:var(--red)}
-    .nav-cta{background:var(--gradient)!important;color:#fff!important;padding:.6rem 1.4rem!important;font-weight:700!important;box-shadow:var(--shadow-glow);position:relative;overflow:hidden}
-    .nav-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:navCtaShimmer 3s ease-in-out infinite}
-    @keyframes navCtaShimmer{0%,100%{left:-100%}50%{left:120%}}
-    .nav-cta:hover{transform:translateY(-2px)!important;box-shadow:0 12px 40px rgba(212,29,0,.25)!important}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;z-index:1002}
-    .hamburger span{width:24px;height:2.5px;background:var(--dark);border-radius:2px;transition:transform .3s,opacity .3s}
-    .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-    .hamburger.open span:nth-child(2){opacity:0}
-    .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-
-    .section-label{font-family:var(--font-en);font-size:1.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.3rem}
-    .section-title{font-size:2rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:.6rem}
-    .section-sub{font-size:1rem;color:var(--text-light);max-width:640px}
-    .section-header{text-align:center;margin-bottom:3.5rem}
-    .section-header .section-sub{margin:0 auto}
-
-    .btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--gradient);color:#fff;padding:.9rem 2rem;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow-glow);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s;position:relative;overflow:hidden}
-    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:left .6s ease}
-    .btn-primary:hover::after{left:120%}
-    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,29,0,.3)}
-
-    /* ===== HERO ===== */
-    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--bg-section);padding-top:70px}
-    @keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
-    .hero-inner{position:relative;z-index:1;max-width:var(--max-w);width:100%;margin:0 auto;padding:1.5rem 5%;text-align:center}
-    @keyframes fadeSlideIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-    .hero-label{font-family:var(--font-en);font-size:1.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;animation:fadeSlideIn .8s .2s both}
-    .hero-title{font-size:2.4rem;font-weight:900;line-height:1.4;color:var(--dark);margin-bottom:1rem;animation:fadeSlideIn .8s .4s both}
-    .hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-desc{font-size:1rem;color:var(--text-light);line-height:1.9;max-width:700px;margin:0 auto 1.5rem;animation:fadeSlideIn .8s .6s both}
-    .hero-img-area{max-width:370px;margin:0 auto;animation:fadeSlideIn .8s .8s both}
-    .hero-img-area img{width:100%;border-radius:var(--radius-sm)}
-
-    /* ===== MESSAGE ===== */
-    .message-section{padding:3rem 5%;background:var(--bg-section);position:relative}
-    .message-section::before{content:'';position:absolute;top:-80px;left:0;right:0;height:160px;background:linear-gradient(to bottom,transparent,var(--bg-section));pointer-events:none}
-    .message-wrap{max-width:var(--max-w);margin:0 auto}
-    .message-quote{text-align:center;font-size:1.2rem;font-weight:700;color:var(--red);margin-bottom:3rem;position:relative;padding:2rem;background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
-    .message-quote::before{content:'\201C';font-family:var(--font-en);font-size:4rem;color:var(--orange);opacity:.2;position:absolute;top:.3rem;left:1.5rem;line-height:1}
-    .message-body{font-size:.95rem;color:var(--text);line-height:2;max-width:800px;margin:0 auto 3rem;text-align:left}
-    .message-body p{margin-bottom:.8rem}
-    .message-bottom{display:grid;grid-template-columns:280px 1fr;gap:3rem;align-items:start;max-width:800px;margin:0 auto}
-    .message-photo{width:100%;height:320px;border-radius:var(--radius);background:var(--bg-section);border:1px solid #eee;background-image:url('./ceo-profile.jpg');background-size:cover;background-position:center}
-    .message-profile h4{font-size:1.05rem;font-weight:800;color:var(--orange);margin-bottom:.8rem}
-    .message-profile p{font-size:.85rem;color:var(--text-light);line-height:1.7;margin-bottom:.5rem}
-    .social-links{display:flex;gap:.6rem;margin-top:1.5rem}
-    .social-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;color:var(--text-muted);padding:.4rem .9rem;border-radius:999px;border:1px solid rgba(0,0,0,.08);transition:all .3s;background:transparent;letter-spacing:.02em}
-    .social-link:hover{color:#fff;border-color:var(--red);background:var(--gradient);transform:translateY(-2px);box-shadow:var(--shadow-glow)}
-    .social-link-icon{font-family:var(--font-en);font-weight:800;font-size:.85rem}
-
-    /* ===== COMPANY ===== */
-    .company-section{padding:6rem 5%;background:var(--bg-section);position:relative}
-    .company-section::before{content:'';position:absolute;top:-80px;left:0;right:0;height:160px;background:linear-gradient(to bottom,transparent,var(--bg-section));pointer-events:none}
-    .company-wrap{max-width:var(--max-w);margin:0 auto}
-    .company-table{max-width:800px;margin:0 auto;border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow-md)}
-    .company-row{display:grid;grid-template-columns:140px 1fr;align-items:center}
-    .company-row:not(:last-child){border-bottom:1px solid rgba(0,0,0,.04)}
-    .company-label{font-size:.82rem;font-weight:700;letter-spacing:.05em;color:var(--red);padding:1.2rem 1.5rem;background:rgba(212,29,0,.02)}
-    .company-value{font-size:.88rem;color:var(--text);padding:1.2rem 1.5rem;line-height:1.7}
-
-    /* ===== CONTACT ===== */
-    .contact-section{padding:6rem 5%;background:var(--bg-section);position:relative}
-    .contact-section::before{content:'';position:absolute;top:-80px;left:0;right:0;height:160px;background:linear-gradient(to bottom,transparent,var(--bg-section));pointer-events:none}
-    .contact-wrap{max-width:var(--max-w);margin:0 auto}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1000px;margin:0 auto}
-    .contact-form-card{background:#fff;border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-md)}
-    .contact-form{display:flex;flex-direction:column;gap:1.2rem}
-    .form-group{display:flex;flex-direction:column}
-    .form-group label{font-size:.85rem;font-weight:600;color:var(--dark);margin-bottom:.4rem}
-    .required{color:var(--red)}
-    .form-group input,.form-group select,.form-group textarea{padding:.8rem 1rem;border:2px solid #eee;border-radius:var(--radius-sm);font-size:.9rem;font-family:var(--font-jp);transition:border-color .3s,box-shadow .3s;background:#fafafa}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--orange);background:#fff;box-shadow:0 0 0 3px rgba(255,154,63,.1)}
-    .form-group textarea{resize:vertical;min-height:120px}
-    .checkbox-label{display:flex;align-items:center;gap:.5rem;font-size:.85rem;cursor:pointer}
-    .checkbox-label input[type="checkbox"]{width:18px;height:18px;accent-color:var(--orange)}
-    .submit-btn{background:var(--gradient);color:#fff;padding:1rem 2rem;border:none;border-radius:999px;font-size:1rem;font-weight:700;cursor:pointer;transition:transform .3s,box-shadow .3s;align-self:center;min-width:200px;font-family:var(--font-jp)}
-    .submit-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-glow)}
-    .contact-info-col{display:flex;flex-direction:column;gap:1.5rem}
-    .contact-info-card{background:#fff;border-radius:var(--radius);padding:1.8rem;box-shadow:var(--shadow-md)}
-    .contact-info-card h3{font-size:1rem;font-weight:800;color:var(--red);margin-bottom:.8rem}
-    .contact-info-card p{font-size:.88rem;color:var(--text-light);line-height:1.8}
-    .contact-map{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md)}
-    .contact-map iframe{display:block;width:100%;height:280px;border:none}
-
-    /* ===== FOOTER ===== */
-    footer{background:var(--bg-section);color:var(--text);padding:4rem 5% 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(0,0,0,.06)}
-    footer::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient)}
-    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-    .footer-brand .footer-logo{font-family:var(--font-en);font-size:1.5rem;font-weight:800;margin-bottom:1rem;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .footer-brand p{font-size:.9rem;color:var(--text-light);line-height:1.8}
-    .footer-col h4{font-size:.82rem;font-family:var(--font-en);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem}
-    .footer-col a{display:block;font-size:.9rem;color:var(--text-light);padding:.3rem 0;transition:color .3s,padding-left .3s}
-    .footer-col a:hover{color:var(--red);padding-left:.3rem}
-    .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(0,0,0,.06);font-size:.82rem;color:var(--text-muted)}
-    .footer-bottom-links{margin-bottom:.8rem}
-    .footer-bottom-links a{color:var(--text-muted);margin:0 .8rem;transition:color .3s}
-    .footer-bottom-links a:hover{color:var(--red)}
-
-    .scroll-top{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--gradient);color:#fff;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-glow);opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s cubic-bezier(.16,1,.3,1);z-index:999}
-    .scroll-top.show{opacity:1;transform:translateY(0)}.scroll-top:hover{transform:translateY(-4px) scale(1.1);box-shadow:0 12px 40px rgba(212,29,0,.3)}
-
-    @media(max-width:1024px){
-      .hero-title{font-size:1.9rem}
-      .message-bottom{grid-template-columns:1fr;text-align:center}
-      .message-photo{max-width:280px;height:280px;margin:0 auto}
-    }
-    @media(max-width:768px){
-      .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:.3rem;z-index:999;padding:1.5rem 1rem;box-shadow:0 8px 30px rgba(0,0,0,.1);border-bottom:1px solid rgba(0,0,0,.06)}
-      .nav-menu.active{display:flex}.nav-menu a{font-size:1.1rem;padding:.8rem 1.5rem}
-      .hamburger{display:flex;z-index:1002}
-      .hero{min-height:auto;padding:7rem 5% 4rem}.hero-title{font-size:1.6rem}.section-title{font-size:1.5rem}
-      .contact-grid{grid-template-columns:1fr}
-      .company-row{grid-template-columns:1fr}.company-label{border-bottom:none}
-      .footer-inner{grid-template-columns:1fr;gap:2rem;text-align:center}
-      .social-links{justify-content:center}
-    }
-    @media(max-width:480px){
-      .hero-title{font-size:1.3rem}
-    }
-
-    .page-loader{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
-    .page-loader.hidden{opacity:0;visibility:hidden}
-    .loader-dot{width:12px;height:12px;border-radius:50%;background:var(--gradient);margin:0 4px;animation:loaderBounce .6s ease-in-out infinite alternate}
-    .loader-dot:nth-child(2){animation-delay:.15s}.loader-dot:nth-child(3){animation-delay:.3s}
-    @keyframes loaderBounce{to{transform:translateY(-12px);opacity:.4}}
-    body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:9998;opacity:.02;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  </style>
+  <title>Adory | 安全管理型SaaS</title>
+  <meta name="description" content="現場の「痛み」を週1回2分でデータ化。労災・離職の予兆を、早期に把握する安全管理型SaaS「Adory（アドリー）」。建設・運送・物流・介護・製造の現場に特化。">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=1789131641">
 </head>
-<body>
-  <div class="page-loader" id="pageLoader"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
-  <button class="scroll-top" id="scrollTop" aria-label="Top">&#8593;</button>
-
-  <header id="header">
-    <nav>
-      <a href="index.html" class="logo">Adory</a>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="index.html" style="color:var(--red)">会社概要</a></li>
-        <li><a href="service.html">サービス概要</a></li>
-        <li><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></li>
-        <li><a href="event-report.html">イベント実施レポート</a></li>
-        <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-    </nav>
-  </header>
-
-  <main>
-    <!-- ヒーロー：Vision -->
-    <section class="hero" id="home">
-      <div class="hero-inner">
-        <div class="hero-label">Vision</div>
-        <h1 class="hero-title">皆が物語の主人公で<br>一歩でも人生が<span class="accent">豊かに前進</span>するように</h1>
-        <p class="hero-desc">「Adory」という社名は Advance（前進）× Story（物語）の造語。<br>「皆が物語の主人公で、一歩でも人生が豊かに前進するように」という想いを込めています。</p>
-        <div class="hero-img-area">
-          <img src="hero-vision.png" alt="Adory ビジョンイメージ">
-        </div>
-      </div>
-    </section>
-
-    <!-- Mission -->
-    <section class="hero" style="min-height:auto;padding:2rem 5%">
-      <div class="hero-inner" style="text-align:center">
-        <div class="hero-label" style="animation:none">Mission</div>
-        <h1 class="hero-title" style="animation:none">痛みを抱えても、<span class="accent">前進できる社会</span>へ</h1>
-        <p class="hero-desc" style="animation:none">私たちは身体・心・社会に存在するあらゆる痛みをデータ化し、<br>ケアや支援につなげる仕組みを構築します。<br>働く人と組織の持続可能性を高め、安心して働き続けられる社会を実現します。</p>
-      </div>
-    </section>
-
-    <!-- 創業の想い -->
-    <section class="message-section" id="message">
-      <div class="message-wrap">
-        <div class="section-header reveal">
-          <div class="section-label">Founder's Story</div>
-          <h2 class="section-title">創業の想い</h2>
-        </div>
-
-        <div class="reveal" style="text-align:center;margin-bottom:3rem;max-width:800px;margin-left:auto;margin-right:auto">
-          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">私の父も、現場仕事で働いていました。</p>
-          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">ブルーワーカーの人にとって、<span style="color:var(--orange)">身体が資本</span>です。</p>
-          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)">身体が動かなくなった瞬間、仕事も、仲間も、居場所も失われる。</p>
-          <p style="font-size:clamp(1.05rem,2.2vw,1.3rem);font-weight:700;line-height:2.2;color:var(--dark)"><span style="color:var(--orange)">「壊れたら終わり」</span> ——それがこの国の現実です。</p>
-        </div>
-
-        <div class="reveal" style="text-align:center;margin-bottom:3rem;max-width:700px;margin-left:auto;margin-right:auto">
-          <p style="font-size:.9rem;color:var(--text-light);line-height:2">現場仕事の父が脳梗塞を患い、離職に至った経験からこの会社を設立しました。</p>
-          <p style="font-size:.9rem;color:var(--text-light);line-height:2">「壊れてからでは遅い」という課題意識から、予防と復職という軸で事業を展開していきます。</p>
-          <p style="font-size:.9rem;color:var(--text-light);line-height:2">間接的にでも、日本を支える現場産業の未来に貢献したいと考えています。</p>
-        </div>
-
-        <div class="message-bottom reveal">
-          <div class="message-photo"></div>
-          <div class="message-profile">
-            <h4>代表取締役CEO 本田卓也</h4>
-            <p>法政大学卒業</p>
-            <p>2017年、大手人材会社で新規開拓営業、インサイドセールスの立ち上げメンバーを経験</p>
-            <p>2022年、スタートアップ企業で中途採用の人事を担当</p>
-            <p>2022年、パーソルキャリア株式会社でスタートアップ企業の人材紹介支援</p>
-            <p>2025年、株式会社Adory創業</p>
-            <div class="social-links">
-              <a href="https://note.com/taku898989" target="_blank" rel="noopener noreferrer" class="social-link"><span class="social-link-icon">N</span>note</a>
-              <a href="https://x.com/takuyanyan1216?s=21" target="_blank" rel="noopener noreferrer" class="social-link"><span class="social-link-icon">&#x1D54F;</span>X</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 会社概要 -->
-    <section class="company-section" id="about">
-      <div class="company-wrap">
-        <div class="section-header reveal">
-          <div class="section-label">Company Profile</div>
-          <h2 class="section-title">会社概要</h2>
-        </div>
-        <div class="company-table reveal">
-          <div class="company-row"><div class="company-label">会社名</div><div class="company-value">株式会社Adory（アドリー）</div></div>
-          <div class="company-row"><div class="company-label">設立</div><div class="company-value">2025年4月14日</div></div>
-          <div class="company-row"><div class="company-label">代表者</div><div class="company-value">代表取締役CEO 本田 卓也</div></div>
-          <div class="company-row"><div class="company-label">事業内容</div><div class="company-value">現場特化型コンディショニングSaaS事業<br>建設・運送・物流・介護などの現場仕事に特化</div></div>
-          <div class="company-row"><div class="company-label">所在地</div><div class="company-value">〒142-0063 東京都品川区荏原6-1-9<br>西小山駅徒歩7分</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- お問い合わせ -->
-    <section class="contact-section" id="contact">
-      <div class="contact-wrap">
-        <div class="section-header reveal">
-          <div class="section-label">Contact</div>
-          <h2 class="section-title">お問い合わせ</h2>
-          <p class="section-sub">サービスに関するご相談、お気軽にお問い合わせください</p>
-        </div>
-        <div class="contact-grid reveal">
-          <div class="contact-form-card">
-            <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-              <input type="hidden" name="access_key" value="94ed97b3-ab0a-4e28-a6d4-ff1e5732f702">
-              <input type="hidden" name="subject" value="【Adoryお問い合わせ】新しいお問い合わせが届きました">
-              <input type="hidden" name="from_name" value="Adory お問い合わせフォーム">
-              <input type="hidden" name="redirect" value="https://adory.co.jp/thank-you.html">
-              <!-- スパムbotよけ（人間には見えない隠しフィールド。触らないでください） -->
-              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-              <div class="form-group"><label for="name">お名前 <span class="required">*</span></label><input type="text" id="name" name="name" required placeholder="山田 太郎"></div>
-              <div class="form-group"><label for="email">メールアドレス <span class="required">*</span></label><input type="email" id="email" name="email" required placeholder="info@example.com"></div>
-              <div class="form-group"><label for="company">会社名・施設名</label><input type="text" id="company" name="company" placeholder="◯◯株式会社"></div>
-              <div class="form-group"><label for="subject">お問い合わせ種別 <span class="required">*</span></label>
-                <select id="subject" name="inquiry_type" required>
-                  <option value="">選択してください</option>
-                  <option value="Adory SaaS">Adory SaaS について</option>
-                  <option value="現場ケアオプション">現場ケアオプションについて</option>
-                  <option value="その他">その他</option>
-                </select>
-              </div>
-              <div class="form-group"><label for="message">お問い合わせ内容 <span class="required">*</span></label><textarea id="message" name="message" required placeholder="お問い合わせ内容をご記入ください"></textarea></div>
-              <div class="form-group"><label class="checkbox-label"><input type="checkbox" id="privacy" name="privacy_agreed" required value="プライバシーポリシーに同意"><span>プライバシーポリシーに同意する <span class="required">*</span></span></label></div>
-              <button type="submit" class="submit-btn">送信する</button>
-            </form>
-          </div>
-          <div class="contact-info-col">
-            <div class="contact-info-card">
-              <h3>アクセス</h3>
-              <p><strong>株式会社Adory</strong><br>〒142-0063<br>東京都品川区荏原6-1-9<br>東急目黒線 西小山駅 徒歩7分</p>
-            </div>
-            <div class="contact-map">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1621.4188824266772!2d139.68268471!3d35.60945171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM2JzM0LjAiTiAxMznCsDQwJzU3LjciRQ!5e0!3m2!1sja!2sjp!4v1691234567890!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="株式会社Adory所在地"></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand"><div class="footer-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:1rem;font-size:.82rem">&#169; 2026 Adory Inc.</p></div>
-      <div class="footer-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="event-report.html">イベント実施レポート</a><a href="https://adory-media.studio.site" target="_blank" rel="noopener noreferrer">お役立ち情報</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="index.html#about">会社概要</a><a href="index.html#message">代表メッセージ</a><a href="index.html#contact">お問い合わせ</a></div>
+<body class="page-index">
+<button class="stb" id="stb" aria-label="Top">&#8593;</button>
+<header id="hdr"><nav><a href="index.html" class="logo"><img src="images/logo.png" alt="Adory"></a><ul class="nav-menu" id="navMenu"><li><a href="service.html">サービス概要</a></li><li><a href="supervisor.html">監修者</a></li><li><a href="pricing.html">料金・導入</a></li><li><a href="company.html">会社概要</a></li><li class="nav-actions"><a href="contact.html?type=doc" class="nav-sub">資料ダウンロード</a><a href="contact.html" class="nav-cta">お問い合わせ</a></li></ul><div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav></header>
+<main>
+<section class="hero" id="top"><div class="hero-in">
+  <div class="hero-text">
+    <p class="hero-sub2"><span class="ph lbl">安全管理型SaaS</span><span class="ph"><b>Adory</b></span></p>
+    <h1 class="hero-sub1"><span class="line"><span class="ph">現場の「痛み」を</span><span class="ph">週1回2分でデータ化。</span></span><span class="line"><span class="ph"><u class="ul">労災・離職の予兆</u>を、</span><span class="ph">早期に把握する。</span></span></h1>
+    <p class="hero-industry"><span class="ph">建設・運送・物流・介護・製造の</span><span class="ph">現場に特化。</span></p>
+    <div class="hero-actions"><a href="contact.html?type=doc" class="btn-p"><span class="full">3分でわかる資料をダウンロード &#8594;</span><span class="short">資料ダウンロード</span></a><a href="contact.html?type=demo" class="btn-s"><span class="full">無料相談を申し込む</span><span class="short">無料相談</span></a></div>
+    <div class="hero-strip"><span>初期費用0円</span><span>月額29,800円（30名まで）</span><span>最短1週間で配信開始</span></div>
+    <p class="hero-tagline"><span class="ph">LINEで週1回6問に答えるだけで、</span><span class="ph">身体の痛み・疲労・睡眠・ストレスの変化をスコア化し、</span><br class="pc"><span class="ph">管理者が動くべき部署と人数を可視化します。</span><span class="ph">設問・スコアロジック・アラートロジックは理学療法士監修。</span></p>
+    <p class="hero-note">アプリのダウンロード・PC・パスワードは不要です。</p>
+  </div>
+  <div class="hero-visual"><img class="hero-mock" src="images/hero-mock.png" alt="Adoryの管理ダッシュボードとLINEの週次サーベイ画面"></div>
+</div></section>
+<section class="prob" id="problem"><div class="ct">
+  <div class="sh rv"><div class="sl">Problem</div><h2 class="st">こんな課題、<em>ありませんか？</em></h2><p class="ss">現場の「見えない痛み」が、企業の最大リスクになっています</p></div>
+  <div class="prob-grid">
+    <div class="prob-card rv d1"><div class="prob-fig"><img src="images/persona-manager-2.png" alt="現場マネージャー"></div><div class="prob-role">現場マネージャー</div><ul class="prob-list"><li>部下が<span class="hl">「大丈夫です」</span>と言うが、明らかに顔色が悪い</li><li>ある日突然<span class="hl">「腰が限界で辞めます」</span>と言われた</li><li>何を基準に<span class="hl">危ない人を判断</span>すればいいか分からない</li></ul></div>
+    <div class="prob-card rv d2"><div class="prob-fig"><img src="images/persona-executive-2.png" alt="経営者・総務労務"></div><div class="prob-role">経営者・総務労務</div><ul class="prob-list"><li>労災が起きてから<span class="hl">「なぜ気付かなかったのか」</span>と問われた</li><li>年1回の健診をしているが、<span class="hl">翌月に離職した</span></li><li>ストレスチェックはやっているが、<span class="hl">現場のリスクが見えない</span></li></ul></div>
+    <div class="prob-card rv d3"><div class="prob-fig"><img src="images/persona-hr-2.png" alt="採用担当"></div><div class="prob-role">採用担当</div><ul class="prob-list"><li><span class="hl">「きつそう」「身体を壊しそう」</span>で応募が集まらない</li><li>せっかく採用した人が<span class="hl">半年以内に辞めていく</span></li><li><span class="hl">「従業員を大切にしない会社」</span>という口コミが広がる</li></ul></div>
+  </div>
+  <div class="prob-bottom rv">これらは全て<span>「現場の痛みが見えていない」</span>ことから始まっています。</div>
+</div></section>
+<section class="indicator" id="whynow"><div class="ct">
+  <div class="sh rv"><div class="sl">Why now</div><h2 class="st"><span class="ph">今の対策は「結果指標」</span><br><span class="ph">最も重要な期間が、</span><span class="ph"><em>管理の空白地帯</em>に</span><span class="ph">なっています</span></h2><p class="ss" style="max-width:none"><span class="ph">現場では、</span><span class="ph"><strong>「痛みや不調が蓄積→我慢→限界→突然の離職・労災」</strong></span><span class="ph">という構造が繰り返されています。</span><br><span class="ph">年1回の健診・ストレスチェックは</span><span class="ph"><strong>「結果指標」</strong>であり、</span><span class="ph">この空白を埋めることができません。</span></p></div>
+  <div class="rv" style="margin-bottom:2rem"><div class="ring-wrap">
+    <div class="ring-box"><div class="ring-box-label">管理の空白地帯</div>
+      <div class="ring-node" style="min-width:120px"><div class="t" style="">痛みの発生</div><div class="c"><div style="position:relative;width:60px;height:60px"><div style="position:absolute;inset:0px;border-radius:50%;border:3px solid rgba(255,154,63,.2);animation:ringPulse1 3s ease-in-out infinite "></div><div style="position:absolute;inset:8px;border-radius:50%;background:var(--orange)"></div></div></div><div class="d">日々の不調を<br>我慢・放置</div></div>
+      <div class="ring-line"></div>
+      <div class="ring-node" style="min-width:130px"><div class="t" style="">悪化</div><div class="c"><div style="position:relative;width:72px;height:72px"><div style="position:absolute;inset:0px;border-radius:50%;border:3px solid rgba(249,115,22,.15);animation:ringPulse2 3s ease-in-out infinite "></div><div style="position:absolute;inset:8px;border-radius:50%;border:3px solid rgba(249,115,22,.3);animation:ringPulse1 3s ease-in-out infinite .3s"></div><div style="position:absolute;inset:16px;border-radius:50%;background:#F97316"></div></div></div><div class="d">パフォーマンス低下<br>ミス・集中力↓</div></div>
+      <div class="ring-line"></div>
+      <div class="ring-node" style="min-width:140px"><div class="t" style="">限界</div><div class="c"><div style="position:relative;width:84px;height:84px"><div style="position:absolute;inset:0px;border-radius:50%;border:3px solid rgba(234,88,12,.1);animation:ringPulse3 3s ease-in-out infinite "></div><div style="position:absolute;inset:8px;border-radius:50%;border:3px solid rgba(234,88,12,.2);animation:ringPulse2 3s ease-in-out infinite .2s"></div><div style="position:absolute;inset:16px;border-radius:50%;border:3px solid rgba(234,88,12,.35);animation:ringPulse1 3s ease-in-out infinite .4s"></div><div style="position:absolute;inset:24px;border-radius:50%;background:#EA580C"></div></div></div><div class="d">突然の欠勤<br>休職・離職</div></div>
+      <div class="ring-line"></div>
+      <div class="ring-node" style="min-width:150px"><div class="t" style="color:var(--red)">発覚</div><div class="c"><div style="position:relative;width:96px;height:96px"><div style="position:absolute;inset:0px;border-radius:50%;border:3px solid rgba(212,29,0,.08);animation:ringPulse4 3s ease-in-out infinite "></div><div style="position:absolute;inset:8px;border-radius:50%;border:3px solid rgba(212,29,0,.15);animation:ringPulse3 3s ease-in-out infinite .15s"></div><div style="position:absolute;inset:16px;border-radius:50%;border:3px solid rgba(212,29,0,.25);animation:ringPulse2 3s ease-in-out infinite .3s"></div><div style="position:absolute;inset:24px;border-radius:50%;border:3px solid rgba(212,29,0,.4);animation:ringPulse1 3s ease-in-out infinite .45s"></div><div style="position:absolute;inset:32px;border-radius:50%;background:var(--red)"></div></div></div><div class="d">労災・訴訟<br>採用難</div></div>
     </div>
-    <div class="footer-bottom"><div class="footer-bottom-links"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2026 株式会社Adory. All rights reserved.</p></div>
-  </footer>
-
-  <script>
-    window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pageLoader').classList.add('hidden'),600)});
-    const header=document.getElementById('header'),scrollTopBtn=document.getElementById('scrollTop');
-    window.addEventListener('scroll',()=>{const y=window.scrollY;header.classList.toggle('scrolled',y>50);scrollTopBtn.classList.toggle('show',y>500)});
-    scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    const hamburger=document.getElementById('hamburger'),navMenu=document.getElementById('navMenu');
-    hamburger.addEventListener('click',()=>{hamburger.classList.toggle('open');navMenu.classList.toggle('active')});
-    navMenu.querySelectorAll('a').forEach(a=>{a.addEventListener('click',()=>{hamburger.classList.remove('open');navMenu.classList.remove('active')})});
-    const revealEls=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale');
-    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-    revealEls.forEach(el=>observer.observe(el));
-    document.querySelectorAll('a[href^="#"]').forEach(link=>{link.addEventListener('click',e=>{const id=link.getAttribute('href');if(id==='#')return;const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-    document.getElementById('contactForm').addEventListener('submit',function(){const btn=this.querySelector('.submit-btn');btn.textContent='送信中...';btn.disabled=true;btn.style.opacity='.7'});
-  </script>
+    <div class="ring-line" style="margin-top:calc(1.5em + 50px + 2rem);margin-left:1rem"></div>
+    <div class="ring-node" style="padding-top:2rem"><div class="t" style="color:var(--text-muted)">既存の対策</div><div class="c"><div style="width:48px;height:48px;border-radius:50%;background:#B9BEC7"></div></div><div class="d">年1回健診<br>ストレスチェック</div></div>
+  </div></div>
+  <div class="ind-cards rv">
+    <div class="ind-card"><div class="ind-badge">既存の対策の限界</div><div class="rows">
+      <div class="row"><span class="icon">&#10005;</span> 発覚した時点で、すでに深刻な状態になっている</div>
+      <div class="row"><span class="icon">&#10005;</span> 結果指標なので、早期の対応判断には使いにくい</div>
+      <div class="row"><span class="icon">&#10005;</span> 身体の痛みが対象外のケースが多い</div></div></div>
+    <div class="ind-card highlight"><div class="ind-badge">Adoryが担う範囲</div><div class="rows">
+      <div class="row"><span class="icon">&#10003;</span> 週次で痛み・疲労・ストレスの変化を継続的に把握</div>
+      <div class="row"><span class="icon">&#10003;</span> 悪化の傾向が出た段階でアラートを表示</div>
+      <div class="row"><span class="icon">&#10003;</span> 対応した記録が証跡として残る</div></div></div>
+  </div>
+</div></section>
+<section class="solution" id="solution"><div class="ct">
+  <div class="sh rv"><div class="sl">Solution</div><h2 class="st"><span class="ph">Adory（アドリー）とは</span><span class="ph"><span class="dash">&nbsp;——&nbsp;</span>一言でいうと</span></h2><p class="ss" style="max-width:720px">現場の「痛み」を週次でデータ化し、管理者が先手を打てる仕組みをつくるSaaSです。</p></div>
+  <div class="sol-grid">
+    <div class="sol-card rv d1"><div class="sol-num">01</div><h3>現場に負担をかけない設計</h3><div class="sub">PC不要 ／ LINEで約2分</div><div class="illust"><img src="images/illust-line.png" alt="LINE完結"></div><p>アプリのダウンロード・PC・ログイン・パスワードは一切不要。普段使いのLINEで、週1回・6問・約2分で完結します。IT操作に不慣れな方でも回答できます。</p></div>
+    <div class="sol-card rv d2"><div class="sol-num">02</div><h3>ダッシュボードで即確認</h3><div class="sub">どこに介入すべきか一目で分かる</div><div class="illust"><img src="images/illust-dashboard.png" alt="ダッシュボード"></div><p>総合・フィジカル・メンタル・エンゲージメントの4画面。部署別・職種別のスコアと高リスク者数を表示し、どこに介入すべきかが一目で分かります。</p></div>
+    <div class="sol-card rv d3"><div class="sol-num">03</div><h3>対応の記録が残る</h3><div class="sub">経緯を説明できる状態を保つ</div><div class="illust"><img src="images/illust-shield.png" alt="対応記録が証跡として残る"></div><p>声かけ・産業医相談などの対応履歴をアラートと紐づけて記録。閲覧のみで編集・削除ができないため、対応した経緯を説明できる状態を維持できます。</p></div>
+  </div>
+</div></section>
+<section class="concept" id="concept"><div class="ct">
+  <div class="sh rv"><div class="sl">Concept</div><h2 class="st"><span class="ph">「痛み」は<em>3種類ある</em></span><span class="ph">という考え方</span></h2><p class="ss" style="max-width:720px">フィジカルを軸にしながら、心と社会的な側面も補助指標として測定し、多角的に状態を把握します。現場では、職場の孤立から帰属意識の低下、慢性痛の悪化へつながる経路も想定しています。</p></div>
+  <div class="venn-wrap rv">
+    <div class="venn" aria-hidden="true">
+      <div class="venn-c body"><span>身体の<br>痛み</span></div>
+      <div class="venn-c mind"><span>心の<br>痛み</span></div>
+      <div class="venn-c social"><span>社会的な<br>痛み</span></div>
+      <div class="venn-core">Adory</div>
+    </div>
+    <div class="venn-legend">
+      <div class="venn-item body"><div class="dot"></div><div><h3>① 身体の痛み</h3><p>疼痛・疲労・睡眠。Adoryの主軸となる領域です。</p></div></div>
+      <div class="venn-item mind"><div class="dot"></div><div><h3>② 心の痛み</h3><p>ストレス。心理的負荷の変化を補助指標として把握します。</p></div></div>
+      <div class="venn-item social"><div class="dot"></div><div><h3>③ 社会的な痛み</h3><p>帰属感・やりがい。職場での居場所の変化を捉えます。</p></div></div>
+      <p class="venn-note">3つの痛みは互いに影響し合います。Adoryは重なり合う領域まで含めて、このような考え方で痛みをとらえています。<br><span>※設問・スコアロジック・アラートロジックは理学療法士監修</span></p>
+    </div>
+  </div>
+</div></section>
+<section class="feat" id="survey"><div class="ct">
+  <div class="sh rv"><div class="sl">Survey</div><h2 class="st"><span class="ph">選び抜かれた6問</span><span class="ph"><em>すべて理学療法士監修</em></span></h2><p class="ss" style="max-width:760px">設問設計だけでなく、スコアロジックとアラートロジックまで理学療法士の監修を受けています。この6問で、フィジカル・メンタル・エンゲージメントの3領域を毎週把握します。</p></div>
+  <div class="step01-grid rv">
+    <div class="survey-fig"><img src="images/survey-worker.png" alt="LINEで週次サーベイに回答する現場の従業員"></div>
+    <div><div class="survey-grid"><div class="survey-item"><span class="qn">Q1 ／ 5段階</span><h4>疲労度</h4><p>慢性的な疲労の蓄積を可視化</p></div><div class="survey-item"><span class="qn">Q2 ／ 部位別 0-10</span><h4>痛み</h4><p>負担部位と深刻度を同時に把握</p></div><div class="survey-item"><span class="qn">Q3 ／ 5段階</span><h4>睡眠時間</h4><p>回復不足の兆候を検知</p></div><div class="survey-item"><span class="qn">Q4 ／ 5段階</span><h4>ストレス</h4><p>心理的負荷の変化を把握</p></div><div class="survey-item"><span class="qn">Q5 ／ 5段階</span><h4>帰属意識</h4><p>組織への帰属感を把握</p></div><div class="survey-item"><span class="qn">Q6 ／ 5段階</span><h4>やりがい</h4><p>エンゲージメントの変化を検知</p></div></div></div>
+  </div>
+  <p class="survey-caption rv" style="margin-top:1.5rem">配信はデフォルトで毎週月曜7時。企業ごとに頻度（週次・隔週・月次）、曜日、時間を設定できます。変化を捉える観点から週次を推奨しています。</p>
+</div></section>
+<section class="dashboard" id="dashboard"><div class="ct">
+  <div class="sh rv"><div class="sl">Dashboard</div><h2 class="st"><span class="ph">今週対応が必要な</span><span class="ph">人数と部署が、</span><span class="ph"><em>最初に出ます</em></span></h2><p class="ss" style="max-width:760px">現場はダッシュボードをじっくり見る時間がありません。ファーストビューで見落としが出ないよう、対応が必要な件数を先に表示し、詳細はタップで開く設計にしています。</p></div>
+  <div class="app-frame app-frame-lg rv"><img src="images/app-scores.png" alt="部署別スコア・職種別スコア（対応優先度順）"></div>
+  <div class="rv"><div class="feat-cards">
+  <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>高リスク者管理</h4><p>閾値以上・スコア低下など条件に合致した方を自動でアラート表示。管理者が確認と対応を検討できます。</p></div></div>
+  <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>痛み部位ヒートマップ</h4><p>腰・首肩・手腕・膝・足首などの部位別分布。負担が集中している業務を特定できます。</p></div></div>
+  <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>時系列スコア推移</h4><p>直近12週間の推移を部署・拠点単位で追跡。悪化と改善のトレンドが分かります。</p></div></div>
+  <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>疲労と睡眠の相関</h4><p>散布図と相関係数を自動算出。生活習慣起因かどうかの当たりをつけられます。</p></div></div>
+  <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>部署別・職種別比較</h4><p>緊急・高リスク・要注意・正常の4段階で、配置転換や業務軽減の判断材料になります。</p></div></div>
+  <div class="feat-card"><div class="fc-accent"></div><div class="fc-body"><h4>未回答者管理・権限設定</h4><p>未回答者を即確認。経営・現場には全体スコア、管理者には個別スコアと権限を分けられます。</p></div></div>
+</div></div>
+  <div class="rv" style="text-align:center;margin-top:2.5rem"><a href="service.html" class="btn-s">機能の詳細を見る &#8594;</a></div>
+</div></section>
+<section class="diff" id="difference"><div class="ct">
+  <div class="sh rv"><div class="sl">Difference</div><h2 class="st"><span class="ph">置き換えではなく、</span><span class="ph"><em>補完する</em>プロダクトです</span></h2><p class="ss" style="max-width:760px">健診・ストレスチェック・毎日の点呼をやめる必要はありません。Adoryはそれらが担えていない時間軸を埋めます。</p></div>
+  <div class="cmp-wrap rv"><table class="cmp">
+  <thead><tr><th></th><th class="adory"><span class="cmp-logo">Adory</span></th><th>エンゲージメント<br>サーベイ</th><th>健診・<br>ストレスチェック</th><th>毎日の点呼</th></tr></thead>
+  <tbody>
+    <tr><td>対象</td><td class="adory"><b>現場職に特化</b><small>建設・運送・介護・製造など</small></td><td>オフィスワーカー中心</td><td>全従業員（法定義務）</td><td>現場全員</td></tr>
+    <tr><td>頻度</td><td class="adory"><b>週1回</b><small>隔週・月次も設定可</small></td><td>月次</td><td>年1回</td><td>毎日</td></tr>
+    <tr><td>時間軸</td><td class="adory"><b>先行指標</b></td><td>結果指標</td><td>結果指標</td><td>その日の可否</td></tr>
+    <tr><td>計測内容</td><td class="adory"><b>フィジカル特化</b><small>＋メンタル・エンゲージメント</small></td><td>メンタル・組織</td><td>身体の痛みは対象外が多い</td><td>感覚・定性のみ</td></tr>
+    <tr><td>入力手段</td><td class="adory"><b>LINE（アプリ不要）</b></td><td>メール → Web</td><td>紙・Web</td><td>口頭・紙</td></tr>
+    <tr><td>記録</td><td class="adory"><b>全データが証跡として保存</b></td><td>回答データのみ</td><td>結果票</td><td>残らないケースが多い</td></tr>
+  </tbody></table></div>
+<p class="cmp-note rv">点呼は「今日、動けるか」を確認するもの。Adoryは「数週間から数か月後の変化を今つかむ」もので、時間軸が根本的に異なります。</p>
+</div></section>
+<section class="industry" id="industry"><div class="ct">
+  <div class="sh rv"><div class="sl">Industry</div><h2 class="st"><span class="ph">現場が分散し、</span><span class="ph"><em>人が売上に直結する業界</em>ほど</span><span class="ph">効きます</span></h2><p class="ss" style="max-width:720px">労働集約型のビジネスでは、売上は稼働数で決まります。1人の欠勤・休職が、そのまま売上のトップラインに影響します。</p></div>
+  <div class="ind-grid">
+    <div class="indu-card rv d1"><h3>建設</h3><p>墜落・転落が死亡災害の33%。2024年問題で工期と人件費の圧迫が続き、人手不足倒産も最多水準です。ゼネコン・サブコン・工務店・土木で身体負荷の性質が異なります。</p></div>
+    <div class="indu-card rv d2"><h3>運送・物流</h3><p>車両にドライバーが乗って初めて売上が立つ構造。運輸交通業の腰痛発生率は12.9%。タクシーは健康起因事故の約33%が交通事故に至っています。</p></div>
+    <div class="indu-card rv d3"><h3>介護</h3><p>移乗・入浴・排泄の直接介助で腰痛リスクが高く、労働災害発生率は全産業平均の約1.6倍。夜勤者の急な欠勤が即人員不足に直結します。</p></div>
+    <div class="indu-card rv d4"><h3>製造</h3><p>労働災害死傷者数は全業種トップの26,676人（令和6年）。反復動作・重量物の取り扱い・長時間の同一姿勢が累積負荷になります。</p></div>
+  </div>
+  <p class="src rv">出典：厚生労働省「令和6年 労働災害発生状況」「国民生活基礎調査」、帝国データバンク、総務省「令和4年就業構造基本調査」ほかを基に当社作成。</p>
+</div></section>
+<section class="roi" id="cost"><div class="ct">
+  <div class="sh rv"><div class="sl">Cost</div><h2 class="st"><span class="ph">見えない痛みは、</span><span class="ph"><em>そのまま損失</em>になります</span></h2><p class="ss" style="max-width:760px">従業員100名規模で年間約1,500万円超の損失という試算があります。欠勤の穴埋め、採用費、労災の補償、生産性の低下が積み上がった結果です。</p></div>
+  <div class="loss-grid rv">
+    <div class="loss-card"><div class="n">腰痛</div><div class="v">6.5<span>万円</span></div><div class="u">／人・年</div></div>
+    <div class="loss-card"><div class="n">肩・首</div><div class="v">4.6<span>万円</span></div><div class="u">／人・年</div></div>
+    <div class="loss-card"><div class="n">メンタル</div><div class="v">4.3<span>万円</span></div><div class="u">／人・年</div></div>
+    <div class="loss-card total"><div class="n">合計</div><div class="v">15.4<span>万円</span></div><div class="u">／人・年</div></div>
+  </div>
+  <div class="cost-cols rv">
+    <div class="loss-list"><h3>さらに積み上がる、見えないコスト</h3><ul>
+      <li>欠勤・休職による穴埋めコスト（残業代・派遣費）</li><li>離職にともなう採用費・教育費（1名あたり100〜200万円）</li><li>労災認定時の補償・賠償・保険料率の上昇</li><li>ミスの増加による生産性の低下</li><li>「きつい会社」という評判による採用難</li></ul></div>
+    <div class="cost-adory">
+      <div class="ca-label">Adoryの費用は</div>
+      <div class="ca-price">年間 <b>35.8</b>万円</div>
+      <p>採用コスト1名分の約4分の1です。苦労して採用した若手やベテラン1名が辞めずに済めば、それだけで費用を上回る計算になります。</p>
+      <a href="pricing.html" class="ca-btn">料金プランを見る &#8594;</a>
+      <div class="ca-note">※ 30名までの基本プランで試算。抑制できるリスクの大きさは業種・規模・状況により異なります。</div>
+    </div>
+  </div>
+  <p class="src rv">出典：昭和医科大学プレスリリース「日本人労働者3人に1人が仕事に支障をきたす健康問題を抱えながら出勤」（2025年6月26日）を基に当社作成。</p>
+</div></section>
+<section class="supervisor" id="supervisor"><div class="ct">
+  <div class="sh rv"><div class="sl">Supervisor</div><h2 class="st"><span class="ph">設問・スコア・アラートの</span><span class="ph">すべてを、</span><span class="ph"><em>理学療法士が監修</em></span></h2></div>
+  <div class="sv-card rv">
+    <div class="sv-photo"><img src="images/supervisor.jpg" alt="監修者 三橋彩乃さん"></div>
+    <div>
+      <div class="sv-name">三橋 彩乃</div><div class="sv-en">MITSUHASHI AYANO　／　理学療法士・看護師</div>
+      <div class="sv-tags"><span>理学療法士（2015年取得）</span><span>看護師（2025年取得）</span><span>健康経営アドバイザー</span><span>累計4万人以上のリハビリテーション従事</span></div>
+      <p class="sv-body">整形外科で運動器疾患・スポーツ障害・高齢者のリハビリテーションに累計4万人以上従事。腰痛・腰椎分離症・体幹をテーマに、国内学術大会での発表と論文執筆（筆頭2本、共著多数）を重ねてきました。現在はフリーランスの理学療法士・看護師として、企業・自治体・学校の健診業務や、働く人の障害予防・疾病予防にも関わっています。</p>
+      <div class="sv-quote"><div class="qt">監修を引き受けた理由</div><p>以前から代表の本田さんの背景や信念に共感していました。この度監修のお話をいただき、私の医療従事者としての知識や経験が、働くみなさんの心身の健康やお仕事の継続にお役に立てればと思い、喜んで引き受けさせていただきました。</p></div>
+      <div style="margin-top:1.2rem"><a href="supervisor.html" class="btn-s">監修範囲と経歴の詳細 &#8594;</a></div>
+    </div>
+  </div>
+</div></section>
+<section class="pricing" id="pricing"><div class="ct">
+  <div class="sh rv"><div class="sl">Price</div><h2 class="st">料金プラン</h2></div>
+  <div class="pr-badges rv"><div class="pr-badge b1">初期費用 0円</div><div class="pr-badge b2">最短1週間で開始</div></div>
+  <div class="pr-main rv">
+    <h3>Adory SaaS 基本プラン</h3>
+    <div class="pr-price">&#165;29,800<span>／月（税別）</span></div>
+    <div class="pr-note">30名まで。31名以上は1名あたり＋500円／月</div>
+    <ul class="pfl"><li>週1回・6問で痛みと疲労の変化を可視化</li><li>状態変化を検知して管理者に通知</li><li>部署別・職種別ダッシュボード</li><li>対応記録の自動蓄積</li><li>配信の頻度・曜日・時間をカスタマイズ</li></ul>
+    <a href="contact.html?type=demo" class="btn-p">このプランを相談する</a>
+    <div class="pr-small-note">継続してご利用いただくことで効果が出やすくなります。6ヶ月以上を推奨しています。</div>
+  </div>
+  <div class="rv" style="text-align:center;margin-top:2rem"><a href="pricing.html" class="btn-s">料金と導入フローの詳細 &#8594;</a></div>
+</div></section>
+<section class="flow" id="flow"><div class="ct">
+  <div class="sh rv"><div class="sl">Flow</div><h2 class="st"><span class="ph">お問い合わせから、</span><span class="ph"><em>最短1週間</em>で</span><span class="ph">配信スタート</span></h2><p class="ss">IT知識は不要です。設定は弊社がサポートします。</p></div>
+  <div class="flow-track rv">
+    <div class="flow-step"><div class="flow-num">01</div><div><h4>お問い合わせ</h4><p>Webフォームまたは担当者へご連絡</p><div class="time">即日</div></div></div>
+    <div class="flow-step"><div class="flow-num">02</div><div><h4>ヒアリング</h4><p>課題・現場規模・目的を確認</p><div class="time">1〜2日</div></div></div>
+    <div class="flow-step"><div class="flow-num">03</div><div><h4>設定</h4><p>LINE連携・従業員情報の登録（サポートあり）</p><div class="time">3〜5日</div></div></div>
+    <div class="flow-step"><div class="flow-num">04</div><div><h4>オンボーディング</h4><p>管理者・従業員への操作説明（30分）</p><div class="time">半日</div><div class="tiny">※IT知識不要・LINEで完結</div></div></div>
+    <div class="flow-step"><div class="flow-num">05</div><div><h4>運用スタート</h4><p>週次サーベイ配信・ダッシュボード利用開始</p><div class="time">翌週〜</div></div></div>
+  </div>
+  <div class="poc-box rv">
+    <div class="poc-text"><h3>まずはPoC（3ヶ月）から始めていただけます</h3><p>初期費用0円・解約期間は要相談。<strong>効果を見てから</strong>導入をご判断いただけます。</p></div>
+    <a href="contact.html?type=demo" class="poc-cta">今すぐ無料相談する &#8594;</a>
+  </div>
+</div></section>
+<section class="faq" id="faq"><div class="ct">
+  <div class="sh rv"><div class="sl">FAQ</div><h2 class="st">よくある質問</h2></div>
+  <div class="faq-list"><div class="faq-item rv"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">現場の社員がLINEで正直に答えてくれるか不安です</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">個人のデータは経営者・現場管理者に開示しない設計です。企業側にお渡しするのは組織全体のスコアのみのため、本音が出やすくなります。回答率の維持については、オンボーディング時に運用設計ごと弊社がサポートします。</div></div></div><div class="faq-item rv d1"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">ITが苦手な従業員でも使えますか</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">LINEに届いたメッセージに答えるだけです。アプリのダウンロード・ログイン・パスワードは一切不要です。必要に応じて初回オンボーディングで30分のレクチャーも提供しています。</div></div></div><div class="faq-item rv d2"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">安全配慮義務の観点で、知っていて何もしない方がリスクではないですか</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">逆になります。「気付いて対応した記録がある」状態の方が、万が一の際に経緯を説明できます。Adoryは対応の記録づくりも一緒に伴走します。</div></div></div><div class="faq-item rv d3"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">自己申告のデータは正確ですか</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">自己申告の限界は把握しており、傾向や変化を捉える設計にしています。今後は環境データ・構造データを掛け合わせ、主観データに客観性を持たせる設計も開発予定です。</div></div></div><div class="faq-item rv d3"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">週次以外の配信もできますか</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">できます。デフォルトは毎週月曜7時ですが、頻度（週次・隔週・月次）、曜日、時間を企業ごとに設定できます。変化を捉える観点から週次を推奨しています。</div></div></div><div class="faq-item rv d3"><div class="faq-q"><span class="faq-badge">Q</span><span class="faq-q-text">まず試してから判断したいのですが</span><span class="faq-arrow">&#9660;</span></div><div class="faq-a"><div class="faq-a-inner">3ヶ月のPoCからお試しいただけます。初期費用0円で、解約期間はご相談のうえ決めさせていただきます。効果を見てから導入をご判断いただけます。</div></div></div></div>
+</div></section>
+<section class="cta"><div class="cta-w rv">
+  <h2><span class="ph">「壊れる前に気付ける仕組み」を、</span><br><span class="ph">あなたの会社から</span><span class="ph">始めませんか。</span></h2><p><span class="ph">まずは3ヶ月のPoCから。</span><span class="ph">初期費用0円、</span><span class="ph">最短1週間で配信を開始できます。</span><br><span class="ph">資料のダウンロードだけでも</span><span class="ph">構いません。</span></p>
+  <div class="btn-row"><a href="contact.html?type=doc" class="btn-p">資料をダウンロード &#8594;</a><a href="contact.html?type=demo" class="btn-s">無料相談を申し込む</a></div>
+  
+</div></section>
+</main>
+<footer>
+  <div class="ft-in">
+    <div class="ft-brand"><div class="ft-logo">Adory</div><p>皆が物語の主人公で<br>一歩でも人生が豊かに前進するように</p><p style="margin-top:.8rem;font-size:.78rem">&#169; 2026 Adory Inc.</p></div>
+    <div class="ft-col"><h4>Services</h4><a href="service.html">Adory SaaS</a><a href="supervisor.html">監修者紹介</a></div>
+    <div class="ft-col"><h4>Price</h4><a href="pricing.html">料金プラン</a><a href="pricing.html#flow">導入フロー</a><a href="pricing.html#faq">よくある質問</a></div>
+    <div class="ft-col"><h4>Company</h4><a href="company.html#about">会社概要</a><a href="company.html#message">創業の想い</a><a href="contact.html">お問い合わせ</a><a href="contact.html?type=doc">資料ダウンロード</a></div>
+  </div>
+  <div class="ft-bot"><div class="ft-bot-l"><a href="privacy.html">プライバシーポリシー</a><a href="terms.html">利用規約</a></div><p>&#169; 2026 株式会社Adory. All rights reserved.</p></div>
+</footer>
+<script src="assets/site.js?v=1789131641"></script>
 </body>
 </html>
