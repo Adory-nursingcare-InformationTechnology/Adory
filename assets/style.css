@@ -570,9 +570,42 @@ footer::before{display:none}
   .contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.company-row{grid-template-columns:1fr}.company-label{padding-bottom:.3rem}.company-value{padding-top:0}
   .legal-card{padding:2rem 1.5rem}.thank-card{padding:2.5rem 1.8rem}.thank-title{font-size:1.4rem}
   .report-grid{grid-template-columns:1fr}.page-hero{padding:6rem 5% 3rem}
+  /* --- モバイル調整（2026-09-11） --- */
+  .hero-in{padding:5.5rem 5% 3rem}
+  .hero-strip{gap:.35rem .5rem}.hero-strip span{font-size:.74rem}
+  .ring-wrap{flex-direction:column;align-items:stretch;overflow:visible;padding:0}
+  .ring-box{flex-wrap:wrap;justify-content:center;gap:.5rem 0;padding:2rem .5rem 1rem;margin-top:1rem}
+  .ring-node{min-width:46%!important;width:46%}.ring-line{display:none!important}
+  .ring-wrap>.ring-node{width:100%;padding-top:1rem!important;min-width:0!important}
+  .cmp-wrap{overflow:visible;padding:0}
+  .cmp{min-width:0;border-spacing:0 .8rem}
+  .cmp thead{display:none}
+  .cmp,.cmp tbody,.cmp tr,.cmp td{display:block;width:auto}
+  .cmp tr{background:#fff;border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem 1rem;margin-bottom:.8rem}
+  .cmp td{padding:.35rem 0;border:none!important;text-align:left;box-shadow:none!important;border-radius:0!important;background:transparent!important;font-size:.85rem}
+  .cmp td:first-child{font-size:.75rem;color:var(--text-muted);letter-spacing:.08em;padding-bottom:.4rem;border-bottom:1px solid var(--line)!important;margin-bottom:.4rem;white-space:normal}
+  .cmp td.adory{display:block;width:auto!important;background:rgba(232,98,28,.08)!important;border-radius:8px!important;padding:.6rem .8rem;margin:.2rem 0 .5rem}
+  .cmp td.adory b{display:inline;font-size:.92rem}.cmp td.adory small{display:inline;margin-left:.4rem}
+  .cmp td.adory::before{content:'Adory';display:block;font-family:var(--font-en);font-size:.7rem;font-weight:700;color:var(--red);letter-spacing:.08em;margin-bottom:.1rem}
+  .cmp td[data-col]:not(.adory){display:flex;justify-content:space-between;gap:1rem;color:var(--text-light);padding:.3rem 0;border-top:1px dashed var(--line)!important}
+  .cmp td[data-col]:not(.adory)::before{content:attr(data-col);flex-shrink:0;font-size:.75rem;color:var(--text-muted)}
+  .loss-grid{grid-template-columns:1fr 1fr;gap:.8rem}.loss-card{padding:1.2rem .6rem 1rem}.loss-card .v{font-size:1.7rem}
+  .survey-grid{grid-template-columns:1fr 1fr;gap:.6rem}.survey-item{padding:1rem .6rem}.survey-item h4{font-size:.95rem}.survey-item p{font-size:.7rem}
+  .prob-fig{height:170px}.prob-fig img{max-height:155px}
+  .venn-legend{gap:.6rem}
+  .pt{min-width:0;font-size:.78rem}.pt th,.pt td{padding:.6rem .5rem}
+  .roi-left .rl-price{font-size:2.3rem}
+  .cost-adory{padding:1.5rem}.cost-adory .ca-price b{font-size:2.4rem}
+  .sv-card{padding:1.2rem}.sv-tags span{font-size:.68rem}
+  .company-row{grid-template-columns:1fr}.company-value{padding-top:.2rem}
+  .message-photo{height:260px}
+  .lg-result{padding:1.6rem}.lg-result .t{font-size:1.2rem}
+  .poc-box{padding:1.5rem}.poc-box .poc-cta{width:100%;text-align:center}
+  .cta .btn-row a{flex:1 1 100%}
+
 }
 @media(max-width:480px){
   .hero-sub1{font-size:1.3rem}.hero-sub2{font-size:1.05rem;white-space:normal;flex-wrap:wrap}.hero-visual{margin-right:0;padding-left:0}.hero-actions{flex-direction:row;gap:.6rem}.hero-actions a{flex:1;justify-content:center;padding:.85rem .4rem;font-size:.85rem;white-space:nowrap}.full{display:none}.short{display:inline}.btn-row{gap:.6rem}.btn-row a{flex:1;justify-content:center;padding:.85rem .5rem;font-size:.85rem;white-space:nowrap}.hero-strip{justify-content:center;gap:.3rem .6rem}.hero-strip span{border-left:none;padding:0}.hero-strip span+span::before{content:"／";margin-right:.6rem;color:#cfd3d9}.cta h2{font-size:1.3rem}.hero-sub2{font-size:1.1rem}
   .act-grid{grid-template-columns:1fr}.prob-grid{gap:1rem}.act-flow{gap:.3rem}.act-pill{font-size:.85rem;padding:.4rem 1rem}.diff-card .dc-icon{width:120px;height:120px}.sol-card .illust{width:140px;height:140px}
-  .steps5-grid,.ind-grid,.cycle-grid,.loss-grid{grid-template-columns:1fr}.vision .hero-title{font-size:1.3rem}.thank-card{padding:2rem 1.3rem}
+  .steps5-grid,.ind-grid,.cycle-grid{grid-template-columns:1fr}.vision .hero-title{font-size:1.3rem}.thank-card{padding:2rem 1.3rem}
 }
